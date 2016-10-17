@@ -1,4 +1,4 @@
-<#assign currentPage = "test">
+<#assign currentPage = "test3">
 
 <html>
 <head>
@@ -8,7 +8,7 @@
 <body>
 <#include "/templates/frameHeader.ftl">
 
-<p>Hello, ${name}</p>
+yet another test!
 
 <#include "/templates/frameFooter.ftl">
 </body>

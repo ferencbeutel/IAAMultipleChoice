@@ -6,5 +6,11 @@
         <action name="test" class="de.nordakademie.multiplechoice.action.TestAction">
             <result type="freemarker">templates/test-success.ftl</result>
         </action>
+        <action name="test2" class="de.nordakademie.multiplechoice.action.TestAction2">
+            <result type="freemarker">templates/test-success2.ftl</result>
+        </action>
+        <action name="test3" class="de.nordakademie.multiplechoice.action.TestAction3">
+            <result type="freemarker">templates/test-success3.ftl</result>
+        </action>
     </package>
 </struts>

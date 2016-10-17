@@ -1,0 +1,45 @@
+$content-width: 70%
+$footer-height: 40px
+$collapse-nav: 992px
+
+html
+  position: relative
+  min-height: 100%
+
+body
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height
+  background-color: #e3ede2
+
+.footer
+  position: absolute
+  bottom: 0
+  width: $content-width
+  /* Set the fixed height of the footer here */
+  height: $footer-height
+  line-height: $footer-height /* Vertically center the text there */
+  background-color: #d7d7d7
+
+#footerContainer
+  text-align: center
+  width: 100%
+  height: 100%
+
+#contentContainer
+  width: $content-width
+  margin-left: auto
+  margin-right: auto
+  background-color: white
+  min-height: 100%
+  text-align: center
+
+/* responsive nav stacked */
+@media(max-width: $collapse-nav)
+  #navBar.navbar .navbar-brand
+    float: none
+    display: block
+  #navBar.navbar .navbar-nav>.nav-item
+    float: none
+    margin-left: .1rem
+  #navBar.navbar .navbar-nav
+    float: none !important

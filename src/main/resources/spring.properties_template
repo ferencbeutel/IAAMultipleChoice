@@ -1,0 +1,4 @@
+# Copy this file to src/main/resources and name it spring.properties
+# Replace all placeholders with the correct values for your setup
+
+datasource.url="replaceMe"

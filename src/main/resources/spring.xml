@@ -10,9 +10,16 @@
   <mvc:annotation-driven/>
   <context:component-scan base-package="de.nordakademie.multiplechoice"/>
 
+  <bean id="springProperties"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+    <property name="location" value="classpath:spring.properties" />
+
+  </bean>
+
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="org.h2.Driver"/>
-    <property name="url" value="jdbc:h2:~classpath:/multipleChoiceDB;MV_STORE=FALSE;MVCC=FALSE"/>
+    <property name="url" value="jdbc:h2:${datasource.url};MV_STORE=FALSE;MVCC=FALSE"/>
     <property name="username" value="bene"/>
     <property name="password" value="bene"/>
   </bean>

@@ -2,3 +2,7 @@
 # Replace all placeholders with the correct values for your setup
 
 datasource.url=replaceMe
+smtp.host=replaceMe
+smtp.port=replaceMe
+smtp.socketFactoryClass=replaceMe
+smtp.auth=replaceMe

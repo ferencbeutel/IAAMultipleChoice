@@ -7,6 +7,7 @@ import lombok.Setter;
 /**
  * Created by ferencbeutel on 17.10.16.
  */
+//testkommentar
 @Getter
 @Setter
 public class TestAction extends ActionSupport {

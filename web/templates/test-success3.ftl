@@ -10,6 +10,10 @@
 
 yet another test!
 
+<div class="btn btn-primary">
+    <a href="testMail">send mail</a>
+</div>
+
 <#include "/templates/frameFooter.ftl">
 </body>
 </html>

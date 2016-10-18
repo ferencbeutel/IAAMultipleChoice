@@ -44,5 +44,14 @@
     <property name="entityManagerFactory" ref="entityManagerFactory"/>
   </bean>
 
+  <bean name="MailService" id="mailService" class="de.nordakademie.multiplechoice.service.MailService">
+    <property name="host" value="${smtp.host}"/>
+    <property name="port" value="${smtp.port}"/>
+    <property name="startTls" value="${smtp.startTls}"/>
+    <property name="auth" value="${smtp.auth}"/>
+    <property name="user" value="${smtp.user}"/>
+    <property name="password" value="${smtp.password}"/>
+  </bean>
+  
   <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

@@ -12,20 +12,27 @@
         <action name="test3" class="de.nordakademie.multiplechoice.action.TestAction3">
             <result type="freemarker">templates/test-success3.ftl</result>
         </action>
-        <action name="sendRegistrationConfirmation" class="de.nordakademie.multiplechoice.action.RegisterAction" method="sendConfirmationMail">
-            <result type="freemarker">templates/registration-step1-complete.ftl</result>
-            <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
-        </action>
-        <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegisterAction" method="acceptRegistration">
-            <result type="freemarker">templates/registration-step2-complete.ftl</result>
-            <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
-        </action>
         <action name="login-form">
             <result type="freemarker">templates/login-form.ftl</result>
         </action>
         <action name="login" class="de.nordakademie.multiplechoice.action.LoginAction" method="login">
             <result type="chain">home</result>
             <result name="input" type="freemarker">templates/login-form.ftl</result>
+        </action>
+        <action name="registration-form">
+            <result type="freemarker">templates/registration-form.ftl</result>
+        </action>
+        <action name="register" class="de.nordakademie.multiplechoice.action.RegistrationAction" method="register">
+            <result type="chain">sendRegistrationConfirmation</result>
+            <result name="input" type="freemarker">templates/registration-form.ftl</result>
+        </action>
+        <action name="sendRegistrationConfirmation" class="de.nordakademie.multiplechoice.action.RegistrationAction" method="sendConfirmationMail">
+            <result type="freemarker">templates/registration-step1-complete.ftl</result>
+            <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
+        </action>
+        <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction" method="acceptRegistration">
+            <result type="freemarker">templates/registration-step2-complete.ftl</result>
+            <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
     </package>
 </struts>

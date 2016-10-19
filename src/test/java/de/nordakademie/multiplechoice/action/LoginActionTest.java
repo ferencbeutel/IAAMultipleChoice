@@ -14,14 +14,16 @@ import static org.junit.Assert.*;
  * Created by Ferenc on 19.10.2016.
  */
 public class LoginActionTest {
+    private static final String CORRECT_MAIL = "hans.müller@nordakademie.de";
+    private static final String CORRECT_PASSWORD = "!Password1";
 
-    LoginAction loginAction;
+    private LoginAction loginAction;
 
     @Test
     public void validateNAKAdress() throws Exception {
         loginAction = Mockito.spy(new LoginAction());
         loginAction.setMail("ferenc.beutel@gmx.de");
-        loginAction.setPassword("1234");
+        loginAction.setPassword(CORRECT_PASSWORD);
         loginAction.validate();
         Mockito.verify(loginAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
@@ -29,7 +31,7 @@ public class LoginActionTest {
     @Test
     public void validateMailIsSet() throws Exception {
         loginAction = Mockito.spy(new LoginAction());
-        loginAction.setPassword("1234");
+        loginAction.setPassword(CORRECT_PASSWORD);
         loginAction.validate();
         Mockito.verify(loginAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
@@ -37,7 +39,7 @@ public class LoginActionTest {
     @Test
     public void validatePasswordIsSet() throws Exception {
         loginAction = Mockito.spy(new LoginAction());
-        loginAction.setMail("user@nordakademie.de");
+        loginAction.setMail(CORRECT_MAIL);
         loginAction.validate();
         Mockito.verify(loginAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }

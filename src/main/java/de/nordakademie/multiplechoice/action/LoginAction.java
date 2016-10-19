@@ -29,7 +29,7 @@ public class LoginAction extends ActionSupport {
         } else {
             String[] domains = mail.split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", "Please only use your Nordakademie E-Mail adress");
+                addFieldError("mail", "Please only use your Nordakademie E-Mail address");
             }
         }
 

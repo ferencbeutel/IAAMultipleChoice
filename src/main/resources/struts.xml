@@ -3,8 +3,8 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
     <package name="default" extends="struts-default" namespace="/">
-        <action name="test" class="de.nordakademie.multiplechoice.action.TestAction">
-            <result type="freemarker">templates/test-success.ftl</result>
+        <action name="home" class="de.nordakademie.multiplechoice.action.HomeAction">
+            <result type="freemarker">templates/home.ftl</result>
         </action>
         <action name="test2" class="de.nordakademie.multiplechoice.action.TestAction2">
             <result type="freemarker">templates/test-success2.ftl</result>
@@ -19,6 +19,13 @@
         <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegisterAction" method="acceptRegistration">
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
+        </action>
+        <action name="login-form">
+            <result type="freemarker">templates/login-form.ftl</result>
+        </action>
+        <action name="login" class="de.nordakademie.multiplechoice.action.LoginAction" method="login">
+            <result type="chain">home</result>
+            <result name="input" type="freemarker">templates/login-form.ftl</result>
         </action>
     </package>
 </struts>

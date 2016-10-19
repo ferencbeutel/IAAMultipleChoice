@@ -9,10 +9,10 @@
             <div class="collapse navbar-toggleable-md" id="collapsingNavbar">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                    <#if currentPage == "test">
-                        <a class="nav-link active" href="#">test</a>
+                    <#if currentPage == "home">
+                        <a class="nav-link active" href="#">Home</a>
                     <#else>
-                        <a class="nav-link" href="test">test</a>
+                        <a class="nav-link" href="home">Home</a>
                     </#if>
                     </li>
                     <li class="nav-item">
@@ -33,9 +33,9 @@
                 <ul class="nav navbar-nav pull-xs-right">
                     <li class="nav-item">
                     <#if currentPage == "login">
-                        <a class="nav-link active" href="#">Login</a>
+                        <a class="nav-link active" href="+">Login</a>
                     <#else>
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="login-form">Login</a>
                     </#if>
                     </li>
                     <li class="nav-item">

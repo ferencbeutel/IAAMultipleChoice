@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class TestAction extends ActionSupport {
+public class HomeAction extends ActionSupport {
     private String name;
 
     public String execute() {

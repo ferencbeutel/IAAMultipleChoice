@@ -1,6 +1,5 @@
 $content-width: 70%
 $footer-height: 40px
-$collapse-nav: 992px
 
 html
   position: relative
@@ -34,7 +33,7 @@ body
   text-align: center
 
 /* responsive nav stacked */
-@media(max-width: $collapse-nav)
+@media(max-width: 992px)
   #navBar.navbar .navbar-brand
     float: none
     display: block
@@ -43,3 +42,6 @@ body
     margin-left: .1rem
   #navBar.navbar .navbar-nav
     float: none !important
+
+#navBar
+  margin-bottom: 40px

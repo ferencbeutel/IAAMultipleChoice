@@ -3,8 +3,8 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
     <package name="default" extends="struts-default" namespace="/">
-        <action name="test" class="de.nordakademie.multiplechoice.action.TestAction">
-            <result type="freemarker">templates/test-success.ftl</result>
+        <action name="home" class="de.nordakademie.multiplechoice.action.HomeAction">
+            <result type="freemarker">templates/home.ftl</result>
         </action>
         <action name="test2" class="de.nordakademie.multiplechoice.action.TestAction2">
             <result type="freemarker">templates/test-success2.ftl</result>
@@ -12,6 +12,20 @@
         <action name="test3" class="de.nordakademie.multiplechoice.action.TestAction3">
             <result type="freemarker">templates/test-success3.ftl</result>
         </action>
-        <action name="testMail" class="de.nordakademie.multiplechoice.action.TestMailAction" method="sendMail"/>
+        <action name="sendRegistrationConfirmation" class="de.nordakademie.multiplechoice.action.RegisterAction" method="sendConfirmationMail">
+            <result type="freemarker">templates/registration-step1-complete.ftl</result>
+            <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
+        </action>
+        <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegisterAction" method="acceptRegistration">
+            <result type="freemarker">templates/registration-step2-complete.ftl</result>
+            <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
+        </action>
+        <action name="login-form">
+            <result type="freemarker">templates/login-form.ftl</result>
+        </action>
+        <action name="login" class="de.nordakademie.multiplechoice.action.LoginAction" method="login">
+            <result type="chain">home</result>
+            <result name="input" type="freemarker">templates/login-form.ftl</result>
+        </action>
     </package>
 </struts>

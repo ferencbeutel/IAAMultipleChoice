@@ -1,6 +1,5 @@
-$content-width: 70%
+$content-width: 60%
 $footer-height: 40px
-$collapse-nav: 992px
 
 html
   position: relative
@@ -10,6 +9,7 @@ body
   /* Margin bottom by footer height */
   margin-bottom: $footer-height
   background-color: #e3ede2
+  font-family: 'Lato', sans-serif
 
 .footer
   position: absolute
@@ -34,7 +34,7 @@ body
   text-align: center
 
 /* responsive nav stacked */
-@media(max-width: $collapse-nav)
+@media(max-width: 992px)
   #navBar.navbar .navbar-brand
     float: none
     display: block
@@ -43,3 +43,11 @@ body
     margin-left: .1rem
   #navBar.navbar .navbar-nav
     float: none !important
+
+#navBar
+  margin-bottom: 40px
+
+.centered
+  margin-left: auto
+  margin-right: auto
+  float: none

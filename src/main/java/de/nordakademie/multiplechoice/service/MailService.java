@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.InternetHeaders;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 /**
@@ -26,7 +29,16 @@ public class MailService {
     private String user;
     private String password;
 
-    public void sendMail(String to, String subject, String text) {
+    public void sendMail(String to, String subject, String text) throws MessagingException {
+
+        Properties properties = buildProperties();
+        Session session = initSession(properties);
+
+        Message message = buildMessage(session, to, subject, text);
+        Transport.send(message);
+    }
+
+    private Properties buildProperties() {
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.starttls.enable", startTls);
@@ -34,25 +46,25 @@ public class MailService {
         props.put("mail.smtp.port", port);
         props.put("mail.smtp.ssl.trust", host);
 
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(user, password);
-                    }
-                });
+        return props;
+    }
 
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(user));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject(subject);
-            message.setText(text);
+    private Session initSession(Properties properties) {
+        Authenticator authenticator = new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        };
+        return Session.getInstance(properties, authenticator);
+    }
 
-            Transport.send(message);
+    private Message buildMessage(Session session, String to, String subject, String text) throws MessagingException {
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(user));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        message.setSubject(subject);
+        message.setText(text, "utf-8", "html");
 
-            System.out.println("done sending");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+        return message;
     }
 }

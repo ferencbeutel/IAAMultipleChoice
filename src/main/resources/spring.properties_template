@@ -4,5 +4,7 @@
 datasource.url=replaceMe
 smtp.host=replaceMe
 smtp.port=replaceMe
-smtp.socketFactoryClass=replaceMe
+smtp.startTls=replaceMe
 smtp.auth=replaceMe
+smtp.user=replaceMe
+smtp.password=replaceMe

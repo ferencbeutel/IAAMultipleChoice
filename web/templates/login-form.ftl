@@ -9,6 +9,15 @@
 <body>
 <#include "/templates/frameHeader.ftl">
 
+<div class="row">
+    <div class="col-xs-12">
+        <p>Herzlich Willkommen auf dem Seminarportal der NORDAKADEMIE.</p>
+        <p>Bitte melden Sie sich an.</p>
+        <p>Wenn Sie noch nicht registriert sind, klicken Sie bitte <a class="nav-link" href="registration-form">hier</a>.</p>
+
+    </div>
+</div>
+
 <div class="container">
 <@s.form action="login" method="post">
     <div class="form-group row">

@@ -1,6 +1,7 @@
 <footer class="footer">
     <div id="footerContainer">
-        <span class="text-muted">This is the footer for displaying some data...</span>
+        <p> <span class="text-muted"><a class="nav-link" href="impressum">Impressum</a></span>  |
+        <span class="text-muted"> <a class="nav-link" href="contact">Kontakt </a></span></p>
     </div>
 </footer>
 </div>

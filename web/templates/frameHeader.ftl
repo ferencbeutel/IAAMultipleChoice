@@ -45,6 +45,13 @@
                         <a class="nav-link" href="registration-form">Register</a>
                     </#if>
                     </li>
+                    <li class="nav-item">
+                    <#if currentPage == "logout">
+                        <a class="nav-link active" href="#">Logout</a>
+                    <#else>
+                        <a class="nav-link" href="logout">Logout</a>
+                    </#if>
+                    </li>
                 </ul>
             </div>
         </div>

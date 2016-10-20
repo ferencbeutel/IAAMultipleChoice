@@ -12,6 +12,15 @@
         <action name="test3" class="de.nordakademie.multiplechoice.action.TestAction3">
             <result type="freemarker">templates/test-success3.ftl</result>
         </action>
+        <action name="impressum">
+            <result type="freemarker">templates/impressum.ftl</result>
+        </action>
+        <action name="logout">
+            <result type="freemarker">templates/logout.ftl</result>
+        </action>
+        <action name="contact">
+            <result type="freemarker">templates/contact.ftl</result>
+        </action>
         <action name="login-form">
             <result type="freemarker">templates/login-form.ftl</result>
         </action>

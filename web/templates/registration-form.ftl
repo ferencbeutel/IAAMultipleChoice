@@ -12,27 +12,27 @@
 <div class="container">
 <@s.form action="register" method="post">
     <div class="form-group row">
-        <label for="firstName" class="col-md-2 col-form-label col-form-label-lg">First Name</label>
+        <label for="name" class="col-md-2 col-form-label col-form-label-lg">First Name</label>
         <div class="col-md-10">
-            <@s.textfield class="form-control form-control-lg" id="firstName" name="firstName"/>
+            <@s.textfield class="form-control form-control-lg" id="name" name="user.name"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="lastName" class="col-md-2 col-form-label col-form-label-lg">Last Name</label>
+        <label for="surName" class="col-md-2 col-form-label col-form-label-lg">Last Name</label>
         <div class="col-md-10">
-            <@s.textfield class="form-control form-control-lg" id="lastName" name="lastName"/>
+            <@s.textfield class="form-control form-control-lg" id="surName" name="user.surName"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="email" class="col-md-2 col-form-label col-form-label-lg">Email</label>
         <div class="col-md-10">
-            <@s.textfield class="form-control form-control-lg" id="email" name="mail"/>
+            <@s.textfield class="form-control form-control-lg" id="email" name="user.email"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="password" class="col-md-2 col-form-label col-form-label-lg">Password</label>
         <div class="col-md-10">
-            <@s.password class="form-control form-control-lg" id="password" name="password"/>
+            <@s.password class="form-control form-control-lg" id="password" name="user.password"/>
         </div>
     </div>
     <div class="form-group row">

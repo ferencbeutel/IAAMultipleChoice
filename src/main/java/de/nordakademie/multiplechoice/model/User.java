@@ -14,15 +14,11 @@ import javax.persistence.*;
 @Entity
 public class User {
 
-    @Basic
-    private String name;
-    @Basic
-    private String surName;
     @Id
-    @Basic
     private String email;
-    @Basic
+    private String name;
+    private String surName;
     private String password;
-    @Basic
     private String regToken;
+    private boolean regComplete;
 }

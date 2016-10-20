@@ -26,7 +26,12 @@
 
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="packagesToScan" value="de.nordakademie.multiplechoice.domain"/>
+    <property name="packagesToScan">
+      <array>
+        <value>de.nordakademie.multiplechoice.domain</value>
+        <value>de.nordakademie.multiplechoice.model</value>
+      </array>
+    </property>
     <property name="jpaVendorAdapter">
       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
     </property>

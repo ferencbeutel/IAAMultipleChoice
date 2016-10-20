@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * Created by Melanie on 19.10.2016.
@@ -12,25 +14,19 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-public class Test {
+public class Test implements Serializable {
 
-    @Basic
-    private int credits;
-    @Basic
-    private String assessmentType;
-    @Basic
-    private int passingThreshold;
-    @Basic
-    private int duration;
-    @Basic
-    private Date beginDate;
-    @Basic
-    private Date endDate;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long testId;
+    private int credits;
+    private String assessmentType;
+    private int passingThreshold;
+    private int duration;
+    private Date beginDate;
+    private Date endDate;
     @OneToOne
     private Seminar seminar;
-    @ManyToOne
-    private TestCompletion testCompletion;
-
-
+    @OneToMany(mappedBy = "test")
+    private Set<TestCompletion> testCompletion;
 }

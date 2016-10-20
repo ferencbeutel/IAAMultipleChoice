@@ -53,7 +53,7 @@
             <result type="chain">sendRegistrationConfirmation</result>
             <result name="input" type="freemarker">templates/registration-form.ftl</result>
         </action>
-        <action name="sendRegistrationConfirmation" class="de.nordakademie.multiplechoice.action.RegistrationAction" method="sendConfirmationMail">
+        <action name="sendRegistrationConfirmation" class="de.nordakademie.multiplechoice.action.RegistrationConfirmationAction" method="sendConfirmationMail">
             <result type="freemarker">templates/registration-step1-complete.ftl</result>
             <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
         </action>

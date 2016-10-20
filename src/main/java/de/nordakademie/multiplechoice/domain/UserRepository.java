@@ -4,6 +4,7 @@ import de.nordakademie.multiplechoice.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -25,11 +26,26 @@ public class UserRepository {
         return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
 
-    public User find(final String userNaturalId) {
-        return entityManager.createQuery(
-                "Select user FROM User user WHERE email = :userNaturalId", User.class)
-                .setParameter("userNaturalId", userNaturalId)
-                .getSingleResult();
+    public User findById(final String id) {
+        try {
+            return entityManager.createQuery(
+                    "Select user FROM User user WHERE email = :id", User.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+
+    public User findByRegToken(final String regToken) {
+        try {
+            return entityManager.createQuery(
+                    "Select user FROM User user WHERE regToken = :regToken", User.class)
+                    .setParameter("regToken", regToken)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
     public User update(final User updateUser){

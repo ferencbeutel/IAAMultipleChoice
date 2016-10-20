@@ -17,14 +17,9 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Basic
     private int points;
-    @Basic
     private String text;
-    @Basic
     private String type;
     @ManyToOne
     private Test test;
-
-
 }

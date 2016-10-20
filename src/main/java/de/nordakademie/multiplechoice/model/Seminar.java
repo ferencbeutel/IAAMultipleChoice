@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -13,24 +14,14 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-public class Seminar {
+public class Seminar implements Serializable {
 
     @Id
-    @Basic
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Date endDate;
-    @Id
-    @Basic
     private Date startDate;
-    @Basic
     private int numberOfParticipants;
-    @Basic
     private String description;
-    @Id
-    @Basic
     private String name;
-    @ManyToOne
-    private Lecturer lecturer;
-
-
-
 }

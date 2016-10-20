@@ -19,14 +19,9 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Basic
     private String text;
-    @Basic
     private int position;
-    @Basic
     private boolean correctness;
     @ManyToOne
     private Question question;
-
-
 }

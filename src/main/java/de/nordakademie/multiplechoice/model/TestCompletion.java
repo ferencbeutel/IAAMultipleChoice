@@ -1,5 +1,7 @@
 package de.nordakademie.multiplechoice.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.Basic;
 import javax.persistence.ManyToOne;
 import java.util.Date;
@@ -13,5 +15,8 @@ public class TestCompletion {
     private int score;
     @Basic
     private Date startDate;
-
+    @NaturalId
+    private Student student;
+    @NaturalId
+    private Test test;
     }

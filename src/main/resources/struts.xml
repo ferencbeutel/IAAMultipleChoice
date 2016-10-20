@@ -18,6 +18,24 @@
         <action name="logout">
             <result type="freemarker">templates/logout.ftl</result>
         </action>
+        <action name="testAdministration">
+            <result type="freemarker">templates/testAdministration.ftl</result>
+        </action>
+        <action name="results">
+            <result type="freemarker">templates/results.ftl</result>
+        </action>
+        <action name="chooseSeminar">
+            <result type="freemarker">templates/chooseSeminar.ftl</result>
+        </action>
+        <action name="addTest">
+            <result type="freemarker">templates/addTest.ftl</result>
+        </action>
+        <action name="addQuestion">
+            <result type="freemarker">templates/addQuestion.ftl</result>
+        </action>
+        <action name="performTest">
+            <result type="freemarker">templates/performTest.ftl</result>
+        </action>
         <action name="contact">
             <result type="freemarker">templates/contact.ftl</result>
         </action>

@@ -16,17 +16,24 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "test2">
-                        <a class="nav-link active" href="#">test2</a>
+                    <#if currentPage == "testAdministration">
+                        <a class="nav-link active" href="#">Test Verwalten</a>
                     <#else>
-                        <a class="nav-link" href="test2">test2</a>
+                        <a class="nav-link" href="testAdministration">Test Verwalten</a>
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "test3">
-                        <a class="nav-link active" href="#">test3</a>
+                    <#if currentPage == "results">
+                        <a class="nav-link active" href="#">Ergebnisse</a>
                     <#else>
-                        <a class="nav-link" href="test3">test3</a>
+                        <a class="nav-link" href="results">Ergebnisse</a>
+                    </#if>
+                    </li>
+                    <li class="nav-item">
+                    <#if currentPage == "chooseSeminar">
+                        <a class="nav-link active" href="#">Seminar auswählen</a>
+                    <#else>
+                        <a class="nav-link" href="chooseSeminar">Seminar auswählen</a>
                     </#if>
                     </li>
                 </ul>

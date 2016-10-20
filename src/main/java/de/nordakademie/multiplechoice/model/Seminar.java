@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -27,6 +25,9 @@ public class Seminar {
     private String description;
     @Basic
     private String name;
+    @ManyToOne
+    private Lecturer lecturer;
 
-    //TODO: DozentBenutzerMail fremdschlüssel hinzufügen
+
+
 }

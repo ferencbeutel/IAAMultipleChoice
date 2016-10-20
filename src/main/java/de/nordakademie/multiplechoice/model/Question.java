@@ -23,6 +23,8 @@ public class Question {
     private String text;
     @Basic
     private String type;
+    @ManyToOne
+    private Test test;
 
-    //add test-seminar-ps
+
 }

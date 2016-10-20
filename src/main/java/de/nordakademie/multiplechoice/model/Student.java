@@ -2,10 +2,10 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -19,4 +19,11 @@ public class Student {
     @OneToOne
     @Basic
     private String userMail;
+    @OneToOne
+    private User user;
+    @ManyToOne
+    private Seminar seminar;
+    @ManyToOne
+    private TestCompletion testCompletion;
+
 }

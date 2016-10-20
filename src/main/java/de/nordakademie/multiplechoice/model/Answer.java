@@ -25,6 +25,8 @@ public class Answer {
     private int position;
     @Basic
     private boolean correctness;
+    @ManyToOne
+    private Question question;
 
 
 }

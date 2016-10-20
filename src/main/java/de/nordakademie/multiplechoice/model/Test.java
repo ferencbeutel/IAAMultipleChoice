@@ -2,11 +2,8 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -29,6 +26,10 @@ public class Test {
     private Date beginDate;
     @Basic
     private Date endDate;
+    @ManyToOne
+    private Seminar seminar;
+    @ManyToOne
+    private TestCompletion testCompletion;
 
-    //TODO: Seminar-PS noch hinzufügen.
+
 }

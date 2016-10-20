@@ -3,6 +3,7 @@ package de.nordakademie.multiplechoice.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -20,9 +21,9 @@ public class Answer {
     private Long id;
     @Basic
     private String text;
-    @NaturalId
+    @Basic
     private int position;
-    //@Value
+    @Basic
     private boolean correctness;
 
 

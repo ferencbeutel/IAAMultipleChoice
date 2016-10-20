@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class Lecturer {
 
-    @NaturalId
+    //TODO: Implement ID (Matrikelnummer aus User)
+    @Basic
     private String userMail;
 }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.sql.Date;
 
 /**
  * Created by Melanie on 19.10.2016.
@@ -14,25 +15,20 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-
 public class Test {
 
-@NaturalId
-private int credit;
-@Basic
+    @Basic
+    private int credits;
+    @Basic
     private String assessmentType;
-    @NaturalId
-    private double pointsToPass;
-    @NaturalId
+    @Basic
+    private int passingThreshold;
+    @Basic
     private int duration;
-    @Column(name = "begin_date")
-    private String beginDate;
-    @Column(name = "end_date")
-    private String endDate;
+    @Basic
+    private Date beginDate;
+    @Basic
+    private Date endDate;
 
-    //Seminar-PS noch hinzufügen.
-
-
-
-
+    //TODO: Seminar-PS noch hinzufügen.
 }

@@ -17,7 +17,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NaturalId
+    @Basic
     private int points;
     @Basic
     private String text;

@@ -7,6 +7,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.sql.Date;
 
 /**
  * Created by Melanie on 19.10.2016.
@@ -16,16 +17,16 @@ import javax.persistence.Entity;
 @Entity
 public class Seminar {
 
-    @Column(name = "end_date")
-    private String endDate;
-    @Column(name = "start_date")
-    private String startDate;
-    @NaturalId
+    @Basic
+    private Date endDate;
+    @Basic
+    private Date startDate;
+    @Basic
     private int numberOfParticipants;
     @Basic
     private String description;
     @Basic
     private String name;
 
-    //DozentBenutzerMail fremdschlüssel hinzufügen
+    //TODO: DozentBenutzerMail fremdschlüssel hinzufügen
 }

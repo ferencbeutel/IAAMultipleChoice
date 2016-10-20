@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 /**
@@ -14,6 +15,6 @@ import javax.persistence.Entity;
 @Entity
 public class Student {
 
-    @NaturalId
+    @Basic
     private String userMail;
 }

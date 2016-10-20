@@ -15,14 +15,17 @@ import java.sql.Date;
 @Entity
 public class Seminar {
 
+    @Id
     @Basic
     private Date endDate;
+    @Id
     @Basic
     private Date startDate;
     @Basic
     private int numberOfParticipants;
     @Basic
     private String description;
+    @Id
     @Basic
     private String name;
     @ManyToOne

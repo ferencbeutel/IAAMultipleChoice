@@ -12,18 +12,17 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Basic
     private String name;
     @Basic
-    private String surname;
+    private String surName;
+    @Id
     @Basic
     private String email;
     @Basic
     private String password;
+    @Basic
+    private String regToken;
 }

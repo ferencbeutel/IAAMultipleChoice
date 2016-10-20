@@ -24,11 +24,16 @@ public class LoginAction extends ActionSupport {
     //TODO: Valide User existance and correct password
     public void validate() {
 
-        if (mail.length() == 0) {
+        if (mail == null || mail.length() == 0) {
             addFieldError("mail", "Please enter your E-Mail-Address");
+        } else {
+            String[] domains = mail.split("@");
+            if (!domains[domains.length - 1].equals("nordakademie.de")) {
+                addFieldError("mail", "Please only use your Nordakademie E-Mail address");
+            }
         }
 
-        if (password.length() == 0) {
+        if (password  == null || password.length() == 0) {
             addFieldError("password", "Please enter your valid Password");
         }
     }

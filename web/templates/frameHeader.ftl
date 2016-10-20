@@ -42,7 +42,7 @@
                     <#if currentPage == "registration">
                         <a class="nav-link active" href="#">Register</a>
                     <#else>
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="registration-form">Register</a>
                     </#if>
                     </li>
                 </ul>

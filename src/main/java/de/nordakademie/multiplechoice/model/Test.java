@@ -26,7 +26,8 @@ public class Test {
     private Date beginDate;
     @Basic
     private Date endDate;
-    @ManyToOne
+    @Id
+    @OneToOne
     private Seminar seminar;
     @ManyToOne
     private TestCompletion testCompletion;

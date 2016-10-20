@@ -1,10 +1,9 @@
-package de.nordakademie.multiplechoice.domain;
+package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 /**
@@ -13,7 +12,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-public class Lecturer {
+public class Student {
 
     @NaturalId
     private String userMail;

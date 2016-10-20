@@ -1,4 +1,4 @@
-package de.nordakademie.multiplechoice.domain;
+package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,11 +10,18 @@ import javax.persistence.Entity;
 /**
  * Created by Melanie on 19.10.2016.
  */
-@Getter
 @Setter
+@Getter
 @Entity
-public class Student {
 
+public class User {
+
+    @Basic
+    private String name;
+    @Basic
+    private String surname;
     @NaturalId
-    private String userMail;
+    private String email;
+    @Basic
+    private String password;
 }

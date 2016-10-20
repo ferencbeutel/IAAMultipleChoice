@@ -1,4 +1,4 @@
-package de.nordakademie.multiplechoice.domain;
+package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;

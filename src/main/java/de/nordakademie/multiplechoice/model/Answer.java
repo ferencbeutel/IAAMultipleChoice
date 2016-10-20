@@ -1,4 +1,4 @@
-package de.nordakademie.multiplechoice.domain;
+package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,20 +9,21 @@ import javax.persistence.*;
 /**
  * Created by Melanie on 19.10.2016.
  */
+
 @Getter
 @Setter
 @Entity
-public class Question {
+public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NaturalId
-    private int points;
     @Basic
     private String text;
-    @Basic
-    private String type;
+    @NaturalId
+    private int position;
+    //@Value
+    private boolean correctness;
 
-    //add test-seminar-ps
+
 }

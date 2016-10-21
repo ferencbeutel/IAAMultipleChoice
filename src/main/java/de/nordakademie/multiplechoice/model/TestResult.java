@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
@@ -12,12 +14,11 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Answer {
+public class TestResult {
 
     @Id
     @GeneratedValue
-    private long answerId;
-    private String text;
-    private boolean correct;
-    private int position;
+    private long restResultId;
+    private int points;
+    private LocalDateTime startDateTime;
 }

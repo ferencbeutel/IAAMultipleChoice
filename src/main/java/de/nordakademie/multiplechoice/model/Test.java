@@ -4,29 +4,62 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalTime;
 import java.util.Set;
 
 /**
  * Created by Melanie on 19.10.2016.
  */
-@Getter
 @Setter
+@Getter
 @Entity
-public class Test implements Serializable {
+public class Test {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long testId;
-    private int credits;
-    private String assessmentType;
-    private int passingThreshold;
-    private int duration;
+    @GeneratedValue
+    private long testId;
     private Date beginDate;
     private Date endDate;
-    @OneToOne
-    private Seminar seminar;
-    @OneToMany(mappedBy = "test")
-    private Set<TestCompletion> testCompletion;
+    private int minScore;
+    private CreditPointsType creditPoints;
+    private EvaluationType evaluationType;
+    private LocalTime duration;
+    @OneToMany(cascade= CascadeType.ALL)
+    private Set<Question> questions;
+    @OneToMany(cascade=CascadeType.ALL)
+    private Set<TestResult> results;
+
+    enum CreditPointsType {
+        HALF("0.5"),
+        THREEQUARTER("0.75"),
+        ONE("1");
+
+        private final String realVal;
+
+        CreditPointsType(String s) {
+            this.realVal = s;
+        }
+
+        @Override
+        public String toString() {
+            return realVal;
+        }
+    }
+
+    enum EvaluationType {
+        SUBSTRACT("Loose a point on wrong answer"),
+        IGNORE("Get 0 Points for wrong answer");
+
+        private final String realVal;
+
+        EvaluationType(String s) {
+            this.realVal = s;
+        }
+
+        @Override
+        public String toString() {
+            return realVal;
+        }
+    }
 }

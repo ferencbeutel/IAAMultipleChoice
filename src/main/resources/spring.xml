@@ -20,8 +20,8 @@
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="org.h2.Driver"/>
     <property name="url" value="jdbc:h2:${datasource.url};MV_STORE=FALSE;MVCC=FALSE"/>
-    <property name="username" value="bene"/>
-    <property name="password" value="bene"/>
+    <property name="username" value="seminarTestDBUser"/>
+    <property name="password" value="password1234"/>
   </bean>
 
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

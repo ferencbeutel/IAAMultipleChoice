@@ -5,24 +5,24 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by Melanie on 19.10.2016.
  */
-@Getter
 @Setter
+@Getter
 @Entity
-public class Lecturer implements Serializable {
+public class Lecturer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @OneToMany
-    private Set<Test> tests;
-    @OneToOne
+    @GeneratedValue
+    private long lecturerId;
+    @NaturalId
+    @OneToOne(cascade=CascadeType.ALL)
     private User user;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "lecturer")
     private Set<Seminar> seminars;
+    @OneToMany(cascade=CascadeType.ALL)
+    private Set<Test> tests;
 }

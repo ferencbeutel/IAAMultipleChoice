@@ -2,27 +2,27 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by Melanie on 19.10.2016.
  */
-@Getter
 @Setter
+@Getter
 @Entity
-public class Student implements Serializable {
+public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long studentId;
-    @OneToOne
+    @GeneratedValue
+    private long studentId;
+    @NaturalId
+    @OneToOne(cascade=CascadeType.ALL)
     private User user;
-    @ManyToMany
-    private Set<Seminar> seminar;
-    @OneToMany(mappedBy = "student")
-    private Set<TestCompletion> testCompletion;
-
+    @ManyToMany(mappedBy = "participants")
+    private Set<Seminar> seminars;
+    @OneToMany(cascade=CascadeType.ALL)
+    private Set<TestResult> results;
 }

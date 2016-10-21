@@ -18,7 +18,7 @@ public class UserRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createUser(final User user){
+    public void create(final User user){
         entityManager.persist(user);
     }
 
@@ -26,11 +26,11 @@ public class UserRepository {
         return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
 
-    public User findById(final String id) {
+    public User findByMail(final String mail) {
         try {
             return entityManager.createQuery(
                     "Select user FROM User user WHERE email = :id", User.class)
-                    .setParameter("id", id)
+                    .setParameter("id", mail)
                     .getSingleResult();
         } catch(NoResultException e) {
             return null;

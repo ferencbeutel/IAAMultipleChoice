@@ -19,7 +19,12 @@ public class UserService {
 
     @Transactional
     public void saveUser(final User user) {
-        userRepository.createUser(user);
+        userRepository.create(user);
+    }
+
+    @Transactional
+    public User updateUser(final User user){
+        return userRepository.update(user);
     }
 
     @Transactional(readOnly = true)
@@ -29,12 +34,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User byNatID (final String natID){
-        return userRepository.findById(natID);
-    }
-
-    @Transactional(readOnly = true)
-    public User updateUser(final User user){
-        return userRepository.update(user);
+        return userRepository.findByMail(natID);
     }
 
     @Transactional(readOnly = true)

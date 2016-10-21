@@ -1,42 +1,29 @@
 package de.nordakademie.multiplechoice.service;
 
 import de.nordakademie.multiplechoice.domain.AnswerRepository;
-import de.nordakademie.multiplechoice.domain.QuestionRepository;
-import de.nordakademie.multiplechoice.model.*;
+import de.nordakademie.multiplechoice.model.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * Created by Melanie on 20.10.2016.
+ * Created by MHORT on 20.10.2016.
  */
+@Service
 public class AnswerService {
+
     @Autowired
     private AnswerRepository answerRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
 
     @Transactional
-    public void saveAnswer(final Answer answer, final String questionNaturalId) {
-        final Question question = questionRepository.find(questionNaturalId);
-        answer.setQuestion(question);
-
-        answerRepository.createAnswer(answer);
-
+    public void saveAnswer(final Answer answer) {
+        answerRepository.create(answer);
     }
 
-    @Transactional(readOnly = true)
-    public List<Answer> listAll() {
-        return answerRepository.findAll();
-    }
-
-    public Answer byNatID (final String natID){
-        return answerRepository.find(natID);
-    }
-
-    public Answer changeAnswer(final Answer answer){
+    @Transactional
+    public Answer updateAnswer(final Answer answer){
         return answerRepository.update(answer);
     }
-
 }

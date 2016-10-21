@@ -1,13 +1,7 @@
 package de.nordakademie.multiplechoice.service;
 
-import de.nordakademie.multiplechoice.domain.SeminarRepository;
 import de.nordakademie.multiplechoice.domain.StudentRepository;
-import de.nordakademie.multiplechoice.domain.TestCompletionRepository;
-import de.nordakademie.multiplechoice.domain.UserRepository;
-import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.TestCompletion;
-import de.nordakademie.multiplechoice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,25 +13,18 @@ import java.util.List;
  */
 @Service
 public class StudentService {
+
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private SeminarRepository seminarRepository;
-    @Autowired
-    private TestCompletionRepository testCompletionRepository;
 
     @Transactional
-    public void saveStudent(final Student student, final String userNaturalId,
-                            final String seminarNaturalId, final String testCompletionNaturalId) {
-        final User user = userRepository.find(userNaturalId);
-        final Seminar seminar = seminarRepository.find(seminarNaturalId);
-        final TestCompletion testCompletion = testCompletionRepository.find(testCompletionNaturalId);
-        student.setUser(user);
-        student.setSeminar(seminar);
-        student.setTestCompletion(testCompletion);
-        studentRepository.createStudent(student);
+    public void saveStudent(final Student student) {
+        studentRepository.create(student);
+    }
+
+    @Transactional
+    public Student updateStudent(final Student student){
+        return studentRepository.update(student);
     }
 
     @Transactional(readOnly = true)
@@ -45,13 +32,8 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student byNatID (final String natID){
-        return studentRepository.find(natID);
+    @Transactional(readOnly = true)
+    public Student byUserId (final long userId){
+        return studentRepository.findByUserId(userId);
     }
-
-    public Student changeStudent(final Student student){
-        return studentRepository.update(student);
-    }
-
-
 }

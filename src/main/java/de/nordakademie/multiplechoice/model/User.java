@@ -15,6 +15,9 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @GeneratedValue
+    private long id;
+    @NaturalId
     private String email;
     private String name;
     private String surName;

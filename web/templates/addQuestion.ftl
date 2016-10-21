@@ -8,11 +8,9 @@
 <body>
 <#include "/templates/frameHeader.ftl">
 
-<div class="col-xs-12">
+<span> Hier können Bald Fragen hinzugefügt werden</span>
 
-    <p> Irgendwie können Sie hier später dämliche Frage stellen. </p>
 
-</div>
 
 
 <#include "/templates/frameFooter.ftl">

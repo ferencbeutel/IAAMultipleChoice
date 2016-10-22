@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by Ferenc on 19.10.2016.
  */
-public class RegistrationAction extends ActionSupport {
+public class RegistrationAction extends BaseAction {
 
     private static final String SUBJECT_LINE = "Your registration at the Nordakademie Seminartool";
     private static final String MAIL_TEXT_BEGINNING = "<p>Thank you for registering at the Nordakademie Seminartool. Please open the following link to complete your registration</p>";
@@ -43,6 +43,10 @@ public class RegistrationAction extends ActionSupport {
     private User user;
 
     public String register() {
+        if(isUserLoggedIn()) {
+            return "alreadyLoggedInError";
+        }
+
         final String uuid = uuidService.getUUID();
         user.setRegToken(uuid);
         user.setRegComplete(false);
@@ -86,7 +90,7 @@ public class RegistrationAction extends ActionSupport {
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
                 addFieldError("mail", "Please use your Nordakademie E-Mail address");
             } else {
-                if(userService.byNatID(user.getEmail()) != null) {
+                if(userService.byMail(user.getEmail()) != null) {
                     addFieldError("mail", "This E-Mail is already registered.");
                 }
             }

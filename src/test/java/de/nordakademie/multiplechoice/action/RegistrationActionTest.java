@@ -2,7 +2,6 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.UserService;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,7 +28,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testFirstNameValidation() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
         registrationAction.getUser().setEmail(CORRECT_MAIL);
@@ -41,7 +40,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testLastNameValidation() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUser().setName(CORRECT_FIRST_NAME);
         registrationAction.getUser().setEmail(CORRECT_MAIL);
@@ -53,7 +52,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testMailBasicValidation() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUser().setName(CORRECT_FIRST_NAME);
         registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
@@ -65,7 +64,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testMailNakOnlyValidation() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUser().setName(CORRECT_FIRST_NAME);
         registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
@@ -78,7 +77,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testNoDuplicateMail() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(new User());
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(new User());
         registrationAction.setUser(new User());
         registrationAction.getUser().setName(CORRECT_FIRST_NAME);
         registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
@@ -91,7 +90,7 @@ public class RegistrationActionTest {
 
     @Test
     public void testPasswordBasicValidation() {
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUser().setName(CORRECT_FIRST_NAME);
         registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
@@ -115,7 +114,7 @@ public class RegistrationActionTest {
         incorrectPasswords.add("1337!!!<>_-.");
         incorrectPasswords.add("123456789");
 
-        Mockito.when(userService.byNatID(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
 
         for (String incorrectPassword : incorrectPasswords) {
             registrationAction.setUser(new User());

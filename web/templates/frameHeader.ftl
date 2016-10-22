@@ -2,7 +2,8 @@
     <nav class="navbar navbar-dark bg-inverse" id="navBar">
         <div class="container-fluid">
             <button class="navbar-toggler hidden-lg-up pull-xs-right" type="button" data-toggle="collapse"
-                    data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 &#9776;
             </button>
             <a class="navbar-brand" href="#">Prüfungssystem</a>
@@ -16,10 +17,12 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "testAdministration">
-                        <a class="nav-link active" href="#">Test Verwalten</a>
-                    <#else>
-                        <a class="nav-link" href="testAdministration">Test Verwalten</a>
+                    <#if Session?? && Session.user??>
+                        <#if currentPage == "testAdministration">
+                            <a class="nav-link active" href="#">Test Verwalten</a>
+                        <#else>
+                            <a class="nav-link" href="testAdministration">Test Verwalten</a>
+                        </#if>
                     </#if>
                     </li>
                     <li class="nav-item">

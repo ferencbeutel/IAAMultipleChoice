@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by Ferenc on 19.10.2016.
  */
-public class RegistrationAcceptationAction extends ActionSupport {
+public class RegistrationAcceptationAction extends BaseAction {
 
     @Getter
     @Setter
@@ -20,6 +20,10 @@ public class RegistrationAcceptationAction extends ActionSupport {
     private UserService userService;
 
     public String acceptRegistration() {
+        if(isUserLoggedIn()) {
+            return "alreadyLoggedInError";
+        }
+
         if(regCode == null) {
             return "emptyRegCodeError";
         }
@@ -32,7 +36,7 @@ public class RegistrationAcceptationAction extends ActionSupport {
         userToUnlock.setRegComplete(true);
         userService.updateUser(userToUnlock);
 
-        System.out.println(userService.byNatID(userToUnlock.getEmail()));
+        System.out.println(userService.byMail(userToUnlock.getEmail()));
 
         return SUCCESS;
     }

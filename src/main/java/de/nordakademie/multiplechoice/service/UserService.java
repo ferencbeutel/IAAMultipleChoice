@@ -33,7 +33,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User byNatID (final String natID){
+    public User byMail(final String natID){
         return userRepository.findByMail(natID);
     }
 

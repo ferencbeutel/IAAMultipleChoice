@@ -32,7 +32,7 @@
     <div class="form-group row">
         <label for="enterQuestion" class="col-md-2 col-form-label col-form-label-lg">Frage</label>
         <div class="col-md-10">
-            <textarea name="enterQuestion" id="enterQuestion" class="form-control form-control-lg" onblur="questionBlur()" placeholder="Ihre Frage"></textarea>
+            <textarea name="enterQuestion" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></textarea>
         </div>
     </div>
 
@@ -66,7 +66,7 @@
     </div>
 <@s.submit class="btn btn-primary" value="Submit"/>
 
-</div>
+
 <#--
 </@s.form>
 -->
@@ -126,6 +126,8 @@
         if (newType =="Gap"){
             resetForm("Choice","Gap");
             answerType = "Gap";
+            questionType = newType;
+            calculateGaps();
         }
         else if (newType == "Multiple" && questionType=="Single"){
             for (i = 0; i < countAnswers; i++) {
@@ -138,11 +140,13 @@
             }
         }
         else if (newType == "Single"){
+            updateGapSelect(1);
             resetForm("Gap","Choice");
             answerType = "Choice";
             changeInputType(document.getElementById("answerChoice1Valid"),"radio");
         }
         else{
+            updateGapSelect(1);
             resetForm("Gap","Choice");
             answerType = "Choice";
             changeInputType(document.getElementById("answerChoice1Valid"),"checkbox");
@@ -150,15 +154,42 @@
         questionType = newType;
     }
 
-    function questionBlur(){
+    function calculateGaps(){
         if (questionType == "Gap"){
             var questionText = document.getElementById("enterQuestion").value;
             var count = (questionText.match(new RegExp(gapIdentificator, "g")) || []).length;
+            count = Math.max(count,1);
             if (count> countAnswers){
-                for (i = 0; i < (count+1-countAnswers); i++) {
+                updateGapSelect(count);
+                for (i = countAnswers; i <count; i++) {
                     addAnswer();
                 }
-                countAnswers = count;
+                console.log(countAnswers);
+            }
+            else if (count <  countAnswers){
+                updateGapSelect(count);
+            }
+
+        }
+    }
+
+    function updateGapSelect(maxGaps){
+        if (maxGaps> countAnswers){
+            for (i = 1; i <= countAnswers; i++) {
+                var selectElement = document.getElementById("answerGap" + i.toString() + "Valid");
+                for (j=countAnswers+1; j<=maxGaps;j++) {
+                    var opt = document.createElement('option');
+                    opt.value = j;
+                    opt.innerHTML = j;
+                    selectElement.appendChild(opt);
+                }
+            }
+        }else{
+            for (i = 1; i <= countAnswers; i++) {
+                var selectElement = document.getElementById("answerGap" + i.toString() + "Valid");
+                for (j=countAnswers; j>=maxGaps;j--) {
+                    selectElement.remove(j);
+                }
             }
         }
     }

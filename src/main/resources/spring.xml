@@ -7,56 +7,58 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-  <mvc:annotation-driven/>
-  <context:component-scan base-package="de.nordakademie.multiplechoice"/>
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="de.nordakademie.multiplechoice"/>
 
-  <bean id="springProperties"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!-- Spring Properties -->
+    <bean id="springProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:spring.properties"/>
+    </bean>
 
-    <property name="location" value="classpath:spring.properties" />
+    <!-- I18N -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
 
-  </bean>
+    <!-- Database Config -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:${datasource.url};MV_STORE=FALSE;MVCC=FALSE"/>
+        <property name="username" value="seminarTestDBUser"/>
+        <property name="password" value="password1234"/>
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <array>
+                <value>de.nordakademie.multiplechoice.domain</value>
+                <value>de.nordakademie.multiplechoice.model</value>
+            </array>
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="org.h2.Driver"/>
-    <property name="url" value="jdbc:h2:${datasource.url};MV_STORE=FALSE;MVCC=FALSE"/>
-    <property name="username" value="seminarTestDBUser"/>
-    <property name="password" value="password1234"/>
-  </bean>
-
-  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="dataSource" ref="dataSource"/>
-    <property name="packagesToScan">
-      <array>
-        <value>de.nordakademie.multiplechoice.domain</value>
-        <value>de.nordakademie.multiplechoice.model</value>
-      </array>
-    </property>
-    <property name="jpaVendorAdapter">
-      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-    </property>
-    <property name="jpaProperties">
-      <props>
-        <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-        <prop key="hibernate.show_sql">false</prop>
-        <prop key="hibernate.format_sql">true</prop>
-        <prop key="hibernate.hbm2ddl.auto">update</prop>
-      </props>
-    </property>
-  </bean>
-
-  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-    <property name="entityManagerFactory" ref="entityManagerFactory"/>
-  </bean>
-
-  <bean name="MailService" id="mailService" class="de.nordakademie.multiplechoice.service.MailService">
-    <property name="host" value="${smtp.host}"/>
-    <property name="port" value="${smtp.port}"/>
-    <property name="startTls" value="${smtp.startTls}"/>
-    <property name="auth" value="${smtp.auth}"/>
-    <property name="user" value="${smtp.user}"/>
-    <property name="password" value="${smtp.password}"/>
-  </bean>
-  
-  <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!-- Mail Service Configuration -->
+    <bean name="MailService" id="mailService" class="de.nordakademie.multiplechoice.service.MailService">
+        <property name="host" value="${smtp.host}"/>
+        <property name="port" value="${smtp.port}"/>
+        <property name="startTls" value="${smtp.startTls}"/>
+        <property name="auth" value="${smtp.auth}"/>
+        <property name="user" value="${smtp.user}"/>
+        <property name="password" value="${smtp.password}"/>
+    </bean>
 </beans>

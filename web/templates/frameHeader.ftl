@@ -26,40 +26,50 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "results">
-                        <a class="nav-link active" href="#">Ergebnisse</a>
-                    <#else>
-                        <a class="nav-link" href="results">Ergebnisse</a>
+                    <#if Session?? && Session.user??>
+                        <#if currentPage == "results">
+                            <a class="nav-link active" href="#">Ergebnisse</a>
+                        <#else>
+                            <a class="nav-link" href="results">Ergebnisse</a>
+                        </#if>
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "chooseSeminar">
-                        <a class="nav-link active" href="#">Seminar auswählen</a>
-                    <#else>
-                        <a class="nav-link" href="chooseSeminar">Seminar auswählen</a>
+                    <#if Session?? && Session.user??>
+                        <#if currentPage == "chooseSeminar">
+                            <a class="nav-link active" href="#">Seminar auswählen</a>
+                        <#else>
+                            <a class="nav-link" href="chooseSeminar">Seminar auswählen</a>
+                        </#if>
                     </#if>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav pull-xs-right">
                     <li class="nav-item">
-                    <#if currentPage == "login">
-                        <a class="nav-link active" href="+">Login</a>
-                    <#else>
-                        <a class="nav-link" href="login-form">Login</a>
+                    <#if Session?? && !Session.user??>
+                        <#if currentPage == "login">
+                            <a class="nav-link active" href="+">Login</a>
+                        <#else>
+                            <a class="nav-link" href="login-form">Login</a>
+                        </#if>
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "registration">
-                        <a class="nav-link active" href="#">Register</a>
-                    <#else>
-                        <a class="nav-link" href="registration-form">Register</a>
+                    <#if Session?? && !Session.user??>
+                        <#if currentPage == "registration">
+                            <a class="nav-link active" href="#">Register</a>
+                        <#else>
+                            <a class="nav-link" href="registration-form">Register</a>
+                        </#if>
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if currentPage == "logout">
-                        <a class="nav-link active" href="#">Logout</a>
-                    <#else>
-                        <a class="nav-link" href="logout">Logout</a>
+                    <#if Session?? && Session.user??>
+                        <#if currentPage == "logout">
+                            <a class="nav-link active" href="#">Logout</a>
+                        <#else>
+                            <a class="nav-link" href="logout">Logout</a>
+                        </#if>
                     </#if>
                     </li>
                 </ul>

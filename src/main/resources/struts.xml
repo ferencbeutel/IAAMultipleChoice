@@ -66,5 +66,11 @@
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
+        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="openForm">
+            <result type="freemarker">templates/add-seminar-form.ftl</result>
+        </action>
+        <action name="addSeminar" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="addSeminar">
+            <result type="chain">home</result>
+        </action>
     </package>
 </struts>

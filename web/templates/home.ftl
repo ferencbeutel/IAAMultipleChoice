@@ -19,6 +19,13 @@
         <a class="nav-link" href="performTest">hier</a>
     </div>
 </div>
+<#list seminarList as seminar>
+<div class="row">
+    <div class="col-xs-4">
+        <p>${seminar.name}</p>
+    </div>
+</div>
+</#list>
 
 <#include "/templates/frameFooter.ftl">
 </body>

@@ -1,6 +1,7 @@
 package de.nordakademie.multiplechoice.service;
 
 import de.nordakademie.multiplechoice.domain.SeminarRepository;
+import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Seminar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,10 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.model.Lecturer;
+import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.service.LecturerService;
+import de.nordakademie.multiplechoice.service.StudentService;
 import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,14 +23,30 @@ public class LoginAction extends BaseAction {
     private String password;
 
     @Autowired
-    private UserService userService;
+    UserService userService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LecturerService lecturerService;
 
     public String login() {
-        if(isUserLoggedIn()) {
+        if (isUserLoggedIn()) {
             return "alreadyLoggedInError";
         }
-
-        session.put("user", userService.byMail(mail));
+        User user = userService.byMail(mail);
+        Student potentialStudent = studentService.byUserId(user.getId());
+        Lecturer potentialLecturer = lecturerService.byUserId(user.getId());
+        if (potentialStudent == null) {
+            if (potentialLecturer == null) {
+                return "noStudentOrLecturerFoundError";
+            } else {
+                session.put("user", potentialLecturer);
+            }
+        } else {
+            session.put("user", potentialStudent);
+        }
         return SUCCESS;
     }
 

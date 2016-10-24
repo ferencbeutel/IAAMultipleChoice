@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -22,9 +22,9 @@ public class Seminar {
     @NaturalId
     private String name;
     @NaturalId
-    private Date beginDate;
+    private LocalDate beginDate;
     @NaturalId
-    private Date endDate;
+    private LocalDate endDate;
     private String description;
     private int maxParticipants;
     @ManyToMany

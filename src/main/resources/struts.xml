@@ -19,7 +19,7 @@
         <action name="impressum">
             <result type="freemarker">templates/impressum.ftl</result>
         </action>
-        <action name="logout">
+        <action name="logout" class="de.nordakademie.multiplechoice.action.LogoutAction" method="logOut">
             <result type="freemarker">templates/logout.ftl</result>
         </action>
         <action name="testAdministration">

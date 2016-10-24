@@ -4,6 +4,9 @@
 <struts>
     <constant name="struts.custom.i18n.resources" value="messages" />
     <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result type="redirect">home</result>
+        </action>
         <action name="home" class="de.nordakademie.multiplechoice.action.HomeAction">
             <result type="freemarker">templates/home.ftl</result>
         </action>

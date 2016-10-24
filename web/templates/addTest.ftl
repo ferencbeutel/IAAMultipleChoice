@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Test erstellen</title>
+    <title><@s.text name="addTest.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/addTest.css">
 </head>
@@ -115,30 +115,7 @@
 <p><@s.text name="global.notLoggedIn.info"/></p>
 </#if>
 
-<script>
-    $(document).ready(function () {
-        var language = window.navigator.language;
-        var start_date_input = $('input[name="startDate"]');
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        start_date_input.datepicker({
-            language: language,
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true
-        });
-        var end_date_input = $('input[name="endDate"]');
-        end_date_input.datepicker({
-            language: language,
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true
-        });
-    })
-</script>
-
-
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/addTestTimePicker.js"></script>
 </body>
 </html>

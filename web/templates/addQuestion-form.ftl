@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Fragen zum Test Hinzufügen</title>
+    <title><@s.text name="addQuestion-form.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/question.css">
 </head>
@@ -12,20 +12,20 @@
 <div class="container">
 <@s.form action="addQuestion" method="post">
     <div class="form-group row">
-        <label for="selectquestiontype" class="col-md-2 col-form-label col-form-label-lg">Fragentyp</label>
+        <label for="selectquestiontype" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.typeOfQuestion"/></label>
         <div class="col-md-10">
 
             <@s.select list="questionTypes" class="select form-control" id="selectQuestionType" name="question.type" onchange="changeQuestionType(this)"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="points" class="col-md-2 col-form-label col-form-label-lg">Punktzahl</label>
+        <label for="points" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.points"/></label>
         <div class="col-md-10">
         <@s.textfield class="form-control form-control-lg" id="points" name="question.points"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="enterQuestion" class="col-md-2 col-form-label col-form-label-lg">Frage</label>
+        <label for="enterQuestion" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.question"/></label>
         <div class="col-md-10">
             <@s.textarea name="question.text" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></@s.textarea>
         </div>
@@ -34,7 +34,7 @@
 
     <div class="container" id="answerChoice">
         <div class="form-group row" id="answerChoice1">
-            <label for="answerChoice1Text" class="col-md-2 col-form-label col-form-label-lg">Antwort 1</label>
+            <label for="answerChoice1Text" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer1"/></label>
             <div class="col-md-10">
             <@s.textfield class="form-control form-control-lg answer" id="answerChoice1Text" name="answerChoice1Text"/>
                 <input type="radio" id="answerChoice1Valid" name="choiceValid"/>
@@ -44,7 +44,7 @@
 
     <div class="container none" id="answerGap">
         <div class="form-group row" id="answerGap1">
-            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg">Antwort 1</label>
+            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer1"/></label>
             <div class="col-md-10">
             <@s.textfield class="form-control form-control-lg answer" id="answerGap1Text" name="answerGap1Text"/>
                 <select class="gapSelect none" id="answerGap1Valid" name="gapValid">

@@ -1,41 +1,43 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ferenc on 19.10.2016.
  */
 public class AddQuestionAction extends BaseAction {
-    @Autowired
-    StudentService studentService;
 
     @Autowired
     QuestionService questionService;
     @Autowired
-    UserService userService;
-
+    AnswerService answerService;
     @Getter
     @Setter
-    private User user;
-    private String addQuestion(){
+    private Question question;
+    @Getter
+    private List<String> questionTypes;
+
+    public String addQuestion(){
+        questionService.saveQuestion(question);
         return SUCCESS;
     }
-    public String register() {
-        final String uuid = "f";
-        user.setRegToken(uuid);
-        user.setRegComplete(false);
-        final Student student = new Student();
-        student.setUser(user);
-        studentService.saveStudent(student);
+
+    public String prepare(){
+        questionTypes = new ArrayList<String>();
+        for (QuestionType questionType: QuestionType.values()) {
+            questionTypes.add(questionType.name());
+        }
         return SUCCESS;
     }
 

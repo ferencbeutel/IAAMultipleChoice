@@ -10,29 +10,24 @@
 <#include "/templates/frameHeader.ftl">
 
 <div class="container">
-<#--
 <@s.form action="addQuestion" method="post">
--->
     <div class="form-group row">
         <label for="selectquestiontype" class="col-md-2 col-form-label col-form-label-lg">Fragentyp</label>
         <div class="col-md-10">
-            <select class="select form-control" id="selectQuestionType" name="selectQuestionType" onchange="changeQuestionType(this)">
-                <option value="Single"> Single Choice</option>
-                <option value="Multiple"> Multiple Choice</option>
-                <option value="Gap"> Lückentext</option>
-            </select>
+
+            <@s.select list="questionTypes" class="select form-control" id="selectQuestionType" name="question.type" onchange="changeQuestionType(this)"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="points" class="col-md-2 col-form-label col-form-label-lg">Punktzahl</label>
         <div class="col-md-10">
-        <@s.textfield class="form-control form-control-lg" id="points" name="points"/>
+        <@s.textfield class="form-control form-control-lg" id="points" name="question.points"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="enterQuestion" class="col-md-2 col-form-label col-form-label-lg">Frage</label>
         <div class="col-md-10">
-            <textarea name="enterQuestion" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></textarea>
+            <@s.textarea name="question.text" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></@s.textarea>
         </div>
     </div>
 
@@ -52,24 +47,20 @@
             <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg">Antwort 1</label>
             <div class="col-md-10">
             <@s.textfield class="form-control form-control-lg answer" id="answerGap1Text" name="answerGap1Text"/>
-              <#--  <input type="radio" id="answerGap1Valid" name="gapValid"/>-->
-                <select class="gapSelect" id="answerGap1Valid" name="gapValid">
+                <select class="gapSelect none" id="answerGap1Valid" name="gapValid">
                     <option value="1">1</option>
                 </select>
             </div>
         </div>
     </div>
 
+
+<@s.submit class="btn btn-primary" value="Submit"/>
+</@s.form>
     <div class="form-group row" id="manageAnswers">
         <button class="manageAnswer" onclick="addAnswer()">+</button>
         <button class="manageAnswer" onclick="removeAnswer()">-</button>
     </div>
-<@s.submit class="btn btn-primary" value="Submit"/>
-
-
-<#--
-</@s.form>
--->
 </div>
 
 
@@ -140,13 +131,13 @@
             }
         }
         else if (newType == "Single"){
-            updateGapSelect(1);
+            //updateGapSelect(1);
             resetForm("Gap","Choice");
             answerType = "Choice";
             changeInputType(document.getElementById("answerChoice1Valid"),"radio");
         }
         else{
-            updateGapSelect(1);
+            //updateGapSelect(1);
             resetForm("Gap","Choice");
             answerType = "Choice";
             changeInputType(document.getElementById("answerChoice1Valid"),"checkbox");
@@ -160,14 +151,17 @@
             var count = (questionText.match(new RegExp(gapIdentificator, "g")) || []).length;
             count = Math.max(count,1);
             if (count> countAnswers){
-                updateGapSelect(count);
+                //updateGapSelect(count);
                 for (i = countAnswers; i <count; i++) {
                     addAnswer();
                 }
                 console.log(countAnswers);
             }
             else if (count <  countAnswers){
-                updateGapSelect(count);
+                for (i = count; i <countAnswers; i++) {
+                    removeAnswer();
+                }
+                //updateGapSelect(count);
             }
 
         }

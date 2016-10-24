@@ -24,20 +24,6 @@ public class Question {
     @OneToMany(cascade=CascadeType.ALL)
     private Set<Answer> answers;
 
-    enum QuestionType {
-        SINGLE("Single Choice"),
-        multipleChoice("Multiple Choice"),
-        cloze("Cloze Text");
 
-        private final String realVal;
-
-        QuestionType(String s) {
-            this.realVal = s;
-        }
-
-        @Override
-        public String toString() {
-            return realVal;
-        }
-    }
 }
+

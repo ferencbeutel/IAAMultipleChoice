@@ -1,4 +1,4 @@
-<#assign currentPage = "seminarAdministration">
+<#assign currentPage = "seminar-form">
 
 <html>
 <head>

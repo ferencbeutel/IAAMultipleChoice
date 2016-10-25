@@ -35,7 +35,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user??>
+                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
                         <#if currentPage == "results">
                             <a class="nav-link active" href="#">Ergebnisse</a>
                         <#else>
@@ -44,11 +44,21 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user??>
+                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
                         <#if currentPage == "chooseSeminar">
                             <a class="nav-link active" href="#">Seminar auswählen</a>
                         <#else>
                             <a class="nav-link" href="chooseSeminar">Seminar auswählen</a>
+                        </#if>
+                    </#if>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")>
+                        <#if currentPage == "seminar-form">
+                            <a class="nav-link active" href="#">Seminar anlegen</a>
+                        <#else>
+                            <a class="nav-link" href="seminar-form">Seminar anlegen</a>
                         </#if>
                     </#if>
                     </li>

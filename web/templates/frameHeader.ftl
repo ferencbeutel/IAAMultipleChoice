@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="nav navbar-nav pull-xs-right">
                     <li class="nav-item">
-                    <#if Session?? && !Session.user??>
+                    <#if !Session?? || !Session.user??>
                         <#if currentPage == "login">
                             <a class="nav-link active" href="+">Login</a>
                         <#else>
@@ -55,7 +55,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && !Session.user??>
+                    <#if !Session?? || !Session.user??>
                         <#if currentPage == "registration">
                             <a class="nav-link active" href="#">Register</a>
                         <#else>

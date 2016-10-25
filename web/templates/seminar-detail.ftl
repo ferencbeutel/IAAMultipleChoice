@@ -22,8 +22,23 @@
         </div>
     </div>
     <div class="row seminarListItem">
-        <div class="col-xs-8 centered seminarListItemEntry">
+        <div class="col-xs-6 seminarListItemEntry no-border">
             <span>${seminar.description}</span>
+        </div>
+        <div class="col-xs-6 participantsList">
+        <#list seminar.participants as participant>
+            <div class="row participantsListItem">
+                <div class="col-xs-12 centered">
+                    <span>${participant.user.name} ${participant.user.surName}</span>
+                </div>
+            </div>
+        <#else>
+            <div class="row participantsListItem">
+                <div class="col-xs-12 centered">
+                    <span>no participants yet</span>
+                </div>
+            </div>
+        </#list>
         </div>
     </div>
 </div>

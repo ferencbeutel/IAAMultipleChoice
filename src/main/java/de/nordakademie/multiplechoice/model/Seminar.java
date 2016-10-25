@@ -27,8 +27,8 @@ public class Seminar {
     private LocalDate endDate;
     private String description;
     private int maxParticipants;
-    @ManyToMany
     @JoinTable
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Student> participants;
     @ManyToOne
     private Lecturer lecturer;

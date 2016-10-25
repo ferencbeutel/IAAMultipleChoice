@@ -44,7 +44,8 @@
                 <#--<input name="answerValidity" type="radio" id="answerChoice1Valid" name="answerValidity"/>
                 <@s.radio name="answerValidity" id="answerChoice1Valid" value="true"
             list="{''}"/>-->
-                <@s.checkbox id="answerChoice1Valid" label="checkbox test" name="answerValidity" value="false" fieldValue="true"/>
+                <@s.checkbox id="answerChoice1Valid" label="checkbox test" name="answerValidity" value="true" fieldValue="true"/>
+                <@s.checkbox id="answerChoice2Valid" label="checkbox test2" name="answerValidity" value="true" fieldValue="true"/>
             </div>
         </div>
     </div>

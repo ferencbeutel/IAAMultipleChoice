@@ -43,15 +43,7 @@
                         </#if>
                     </#if>
                     </li>
-                    <li class="nav-item">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
-                        <#if currentPage == "chooseSeminar">
-                            <a class="nav-link active" href="#"><@s.text name="frameHeader.linkChooseSeminar"/></a>
-                        <#else>
-                            <a class="nav-link" href="chooseSeminar"><@s.text name="frameHeader.linkChooseSeminar"/></a>
-                        </#if>
-                    </#if>
-                    </li>
+
                     </li>
                     <li class="nav-item">
                     <#if Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")>

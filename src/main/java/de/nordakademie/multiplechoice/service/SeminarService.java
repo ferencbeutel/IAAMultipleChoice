@@ -32,4 +32,9 @@ public class SeminarService {
     public List<Seminar> listAll() {
         return seminarRepository.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public Seminar byId(final long id) {
+        return seminarRepository.byId(id);
+    }
 }

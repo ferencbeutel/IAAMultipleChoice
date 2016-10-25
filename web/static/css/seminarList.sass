@@ -1,28 +1,55 @@
+$listItemEntryHeight: 40px
+
 .seminarList
   width: 90%
   text-align: center
   margin: 0 auto
 
-  .seminarListItem
-    cursor: hand
-    width: 100%
-    margin: 0 auto
-    border-left: 1px solid black
+.seminarListItem
+  cursor: hand
+  width: 100%
+  margin: 0 auto
+  border-left: 1px solid black
+  border-right: 1px solid black
+  border-top: 1px solid black
+  position: relative
+
+  .seminarListItemEntry
+    height: $listItemEntryHeight
     border-right: 1px solid black
-    border-top: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    button
+      width: 40%
 
-    .seminarListItemEntry
-      height: 40px
-      border-right: 1px solid black
+  .seminarListItemEntry:last-child
+    border-right: 0
 
-    .seminarListItemEntry:last-child
-      border-right: 0
+  .overlay
+    position: absolute
+    top: 0
+    left: 0
+    height: $listItemEntryHeight
+    width: 100%
+    opacity: 0
+    z-index: 100
+    background: rgba(0, 0, 0, 0.5)
+    -moz-transition: all 1s
+    -webkit-transition: all 1s
+    transition: all 1s
 
-  .seminarListItem:last-child
-    border-bottom: 1px solid black
+.seminarListItem:last-child
+  border-bottom: 1px solid black
 
-  .seminarListItem:nth-child(2n)
-    background-color: #f3f3f3
+.overlay:hover
+  opacity: 1
 
-  .seminarListHeader
-    background-color: #d9e0f6
+.seminarListItem:nth-child(2n)
+  background-color: #f3f3f3
+
+.seminarListHeader
+  @extend .seminarListItem
+  cursor: default
+  background-color: #d9e0f6

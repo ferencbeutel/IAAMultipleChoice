@@ -28,4 +28,15 @@ public class SeminarRepository {
     public Seminar update(final Seminar updateSeminar) {
         return entityManager.merge(updateSeminar);
     }
+
+    public Seminar byId(final long id) {
+        try {
+            return entityManager.createQuery(
+                    "Select seminar FROM Seminar seminar WHERE seminarId = :id", Seminar.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
 }

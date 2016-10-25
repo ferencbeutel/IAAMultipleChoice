@@ -21,8 +21,8 @@ public class Student {
     @NaturalId
     @OneToOne(cascade=CascadeType.ALL)
     private User user;
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
     private Set<Seminar> seminars;
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<TestResult> results;
 }

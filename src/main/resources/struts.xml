@@ -82,5 +82,8 @@
         <action name="seminar-detail" class="de.nordakademie.multiplechoice.action.SeminarDetailAction" method="displaySeminarDetail">
             <result type="freemarker">templates/seminar-detail.ftl</result>
         </action>
+        <action name="enroll-seminar" class="de.nordakademie.multiplechoice.action.EnrollSeminarAction" method="enroll">
+            <result type="chain">seminar-list</result>
+        </action>
     </package>
 </struts>

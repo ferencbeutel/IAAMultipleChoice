@@ -3,5 +3,5 @@ $(".seminarListItem:not('.seminarListHeader')").click(function (event) {
 });
 $(".enrollButton").click(function (event) {
     event.stopPropagation();
-    window.location.href = "enroll-seminar?seminarId=" + $(event.currentTarget).data("id");
+    window.location.href = "enroll-seminar?seminarId=" + $(event.currentTarget).closest(".row").data("id");
 });

@@ -36,7 +36,7 @@
         <label for="enterQuestion"
                class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.question"/></label>
         <div class="col-md-10">
-            <@s.textarea name="question.text" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></@s.textarea>
+            <@s.textarea name="question.text" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"/>
         </div>
     </div>
     <div class="container" id="answerChoice">
@@ -49,7 +49,6 @@
                 <@s.radio name="answerValidity" id="answerChoice1Valid" value="true"
             list="{''}"/>-->
                 <@s.checkbox id="answerChoice1Valid" label="checkbox test" name="answerValidity" value="true" fieldValue="true"/>
-                <@s.checkbox id="answerChoice2Valid" label="checkbox test2" name="answerValidity" value="true" fieldValue="true"/>
             </div>
         </div>
     </div>

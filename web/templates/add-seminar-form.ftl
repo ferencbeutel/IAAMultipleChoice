@@ -5,6 +5,7 @@
     <title><@s.text name="add-seminar-form.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/add-seminar-form.css">
+    <link rel="stylesheet" href="/static/css/validationError.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -55,7 +56,11 @@
         <@s.textarea class="form-control form-control-lg" id="seminarDesc" name="seminar.description" rows="5"/>
     </div>
 </div>
-
+    <div class="form-group row">
+        <div class="col-md-6 centered" id="validation-errors">
+            <@s.fielderror/>
+        </div>
+    </div>
     <@s.submit class="btn btn-primary" value="Submit"/>
 </@s.form>
     </div>

@@ -4,7 +4,7 @@
 <head>
     <title>Registration</title>
 <#include "/templates/frameHeadImports.ftl">
-    <link rel="stylesheet" href="/static/css/registration.css">
+    <link rel="stylesheet" href="/static/css/validationError.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-md-6 centered" id="registration-errors">
+        <div class="col-md-6 centered" id="validation-errors">
             <@s.fielderror/>
         </div>
     </div>

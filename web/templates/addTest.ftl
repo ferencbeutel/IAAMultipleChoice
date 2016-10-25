@@ -11,7 +11,8 @@
 
 <#if Session?? && Session.user??>
 <div class="container">
-<#--<@s.form action="addTest" method="post"> -->
+
+<@s.form action="addTest" method="post">
 
     <div class="form-group row">
         <label for="selectseminar"
@@ -30,10 +31,10 @@
         <label for="selectcredits"
                class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectCredits"/> </label>
         <div class="col-md-7">
-            <select class="select form-control" id="selectcredits" name="selectcredits">
-                <option value="Credit050"> <@s.text name="addTest.selectCredits.05credits"/></option>
-                <option value="Credit075"> <@s.text name="addTest.selectCredits.075credits"/></option>
-                <option value="Credit100"> <@s.text name="addTest.selectCredits.1credits"/></option>
+            <select class="select form-control" id="selectcredits" name="test.creditPoints">
+                <option value="HALF"> <@s.text name="addTest.selectCredits.05credits"/></option>
+                <option value="THREEQUARTER"> <@s.text name="addTest.selectCredits.075credits"/></option>
+                <option value="ONE"> <@s.text name="addTest.selectCredits.1credits"/></option>
             </select>
         </div>
     </div>
@@ -80,19 +81,7 @@
         <label for="passThreshold"
                class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="addTest.selectPassThreshold"/></label>
         <div class="col-md-7">
-        <@s.textfield class="form-control form-control-lg" id="passThreshold" name="passThreshold"/>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="selectMissingAnswerGrading"
-               class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectMissingAnswerGrading"/> </label>
-        <div class="col-md-7 ">
-            <select class="select form-control" id="selectmissinganswergrading" name="selectmissinganswergrading">
-                <option value="MissAnwsZeroPointDeduction"> <@s.text name="addTest.selectMissingAnswerGrading.ZeroPointDeduction"/></option>
-                <option value="MissAnwsFiftyPercentRule"> <@s.text name="addTest.selectMissingAnswerGrading.FiftyPercentRule"/></option>
-                <option value="MissAnwsOnePointDeduction"> <@s.text name="addTest.selectMissingAnswerGrading.OnePointDeduction"/></option>
-            </select>
+        <@s.textfield class="form-control form-control-lg" id="passThreshold" name="test.minScore"/>
         </div>
     </div>
 
@@ -100,15 +89,15 @@
         <label for="selectFalseAnswerGrading"
                class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectFalseAnswerGrading"/> </label>
         <div class="col-md-7">
-            <select class="select form-control" id="selectfalseanswergrading" name="selectfalseanswergrading">
-                <option value="FalseAnwsZeroPointDeduction"> <@s.text name="addTest.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
-                <option value="FalseAnwsOnePointDeductiomn"> <@s.text name="addTest.selectFalseAnswerGrading.OnePointDeduction"/></option>
+            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
+                <option value="SUBSTRACT"> <@s.text name="addTest.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
+                <option value="IGNORE"> <@s.text name="addTest.selectFalseAnswerGrading.OnePointDeduction"/></option>
             </select>
         </div>
     </div>
 
-<#--  <@s.submit class="btn btn-primary" value="Add"/>
-</@s.form> -->
+   <@s.submit class="btn btn-primary" value="Add"/>
+</@s.form>
 </div>
 
 <#else>

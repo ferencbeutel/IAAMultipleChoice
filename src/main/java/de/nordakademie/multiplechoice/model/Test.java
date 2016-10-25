@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -19,8 +20,8 @@ public class Test {
     @Id
     @GeneratedValue
     private long testId;
-    private Date beginDate;
-    private Date endDate;
+    private LocalDate beginDate;
+    private LocalDate endDate;
     private int minScore;
     private CreditPointsType creditPoints;
     private EvaluationType evaluationType;

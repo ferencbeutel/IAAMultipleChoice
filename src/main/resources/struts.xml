@@ -31,8 +31,11 @@
         <action name="chooseSeminar">
             <result type="freemarker">templates/chooseSeminar.ftl</result>
         </action>
-        <action name="addTest">
+        <action name="addTest-form" class="de.nordakademie.multiplechoice.action.AddTestAction" method="openForm">
             <result type="freemarker">templates/addTest.ftl</result>
+        </action>
+        <action name="addTest" class="de.nordakademie.multiplechoice.action.AddTestAction" method="addTest">
+            <result type="chain">home</result>
         </action>
         <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="prepare">
             <result type="freemarker">templates/addQuestion-form.ftl</result>

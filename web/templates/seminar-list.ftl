@@ -36,15 +36,6 @@
 
 <#include "/templates/frameFooter.ftl">
 
-<script type="application/javascript">
-
-    $(".seminarListItem").click(function (event) {
-        window.location.href = "seminarDetail?seminarId=" + $(event.currentTarget).data("id");
-    });
-    $(".enrollButton").click(function (event) {
-        event.stopPropagation();
-        window.location.href = "enrollForSeminar?seminarId=" + $(event.currentTarget).data("id");
-    });
-</script>
+<script type="application/javascript" src="/static/js/seminarForm.js"/>
 </body>
 </html>

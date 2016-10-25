@@ -17,6 +17,15 @@
                     </#if>
                     </li>
                     <li class="nav-item">
+                    <#if Session?? && Session.user.getClass()?contains("Student")>
+                        <#if currentPage == "seminarList">
+                            <a class="nav-link active" href="#">Seminarlist</a>
+                        <#else>
+                            <a class="nav-link" href="seminar-list">Seminarlist</a>
+                        </#if>
+                    </#if>
+                    </li>
+                    <li class="nav-item">
                     <#if Session?? && Session.user??>
                         <#if currentPage == "testAdministration">
                             <a class="nav-link active" href="#">Test Verwalten</a>

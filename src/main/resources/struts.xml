@@ -72,5 +72,8 @@
         <action name="addSeminar" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="addSeminar">
             <result type="chain">home</result>
         </action>
+        <action name="seminar-list" class="de.nordakademie.multiplechoice.action.SeminarListAction" method="displaySeminarList">
+            <result type="freemarker">templates/seminar-list.ftl</result>
+        </action>
     </package>
 </struts>

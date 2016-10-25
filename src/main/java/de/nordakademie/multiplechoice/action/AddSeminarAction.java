@@ -51,11 +51,21 @@ public class AddSeminarAction extends BaseAction {
         if (endDate == null || !endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
             addFieldError("endDate", "Please enter a valid end date");
         }
-        if (beginDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}") && endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
-            if (endDate.compareTo(beginDate)<0){
+        if (beginDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}") && endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
+            if (endDate.compareTo(beginDate) < 0) {
                 addFieldError("endDate", "Please enter an end date following the start date");
             }
         }
+        if (beginDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate begin = LocalDate.parse(beginDate, formatter);
+            if (begin.compareTo(LocalDate.now().minusDays(1))<=0){
+                addFieldError("endDate", "Please enter an begin date in the future");
+            }
+        }
+
+
+
         if (seminar.getDescription()==null || seminar.getDescription().length()<2){
             addFieldError("description", "Please enter a descritption to the seminar");
         }

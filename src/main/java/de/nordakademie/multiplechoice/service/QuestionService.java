@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by MHORT on 20.10.2016.
  */
@@ -19,7 +21,10 @@ public class QuestionService {
     public void saveQuestion(final Question question) {
         questionRepository.create(question);
     }
-
+    @Transactional(readOnly = true)
+    public List<Question> listAll() {
+        return questionRepository.findAll();
+    }
     @Transactional
     public Question updateQuestion(final Question question){
         return questionRepository.update(question);

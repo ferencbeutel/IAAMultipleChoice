@@ -38,7 +38,7 @@
             <result type="freemarker">templates/addQuestion-form.ftl</result>
         </action>
         <action name="addQuestion" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="addQuestion">
-            <result type="freemarker">templates/home.ftl</result>
+            <result type="freemarker">templates/impressum.ftl</result>
             <result name="input" type="freemarker">templates/addQuestion-form.ftl</result>
         </action>
         <action name="performTest">

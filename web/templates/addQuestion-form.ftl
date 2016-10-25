@@ -11,17 +11,23 @@
 
 <div class="container">
 <@s.form action="addQuestion" method="post">
+
+    <div class="form-group row">
+        <label for="selectposition" class="col-md-2 col-form-label col-form-label-lg">Position</label>
+        <div class="col-md-10">
+            <@s.textfield class="form-control form-control-lg" value="1" list="questionPosition" id="selectPosition" name="question.position"/>
+        </div>
+    </div>
     <div class="form-group row">
         <label for="selectquestiontype" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.typeOfQuestion"/></label>
         <div class="col-md-10">
-
-            <@s.select list="questionTypes" class="select form-control" id="selectQuestionType" name="question.type" onchange="changeQuestionType(this)"/>
+            <@s.select list="questionTypes" class="select form-control" id="selectQuestionType" name="questionTypeString" onchange="changeQuestionType(this)"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="points" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.points"/></label>
         <div class="col-md-10">
-        <@s.textfield class="form-control form-control-lg" id="points" name="question.points"/>
+            <@s.textfield class="form-control form-control-lg" id="points" name="question.points"/>
         </div>
     </div>
     <div class="form-group row">
@@ -30,32 +36,36 @@
             <@s.textarea name="question.text" id="enterQuestion" class="form-control form-control-lg" onblur="calculateGaps()" placeholder="Ihre Frage"></@s.textarea>
         </div>
     </div>
-
-
     <div class="container" id="answerChoice">
         <div class="form-group row" id="answerChoice1">
             <label for="answerChoice1Text" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer1"/></label>
             <div class="col-md-10">
-            <@s.textfield class="form-control form-control-lg answer" id="answerChoice1Text" name="answerChoice1Text"/>
-                <input type="radio" id="answerChoice1Valid" name="choiceValid"/>
+                <@s.textfield class="form-control form-control-lg answer" id="answerChoice1Text" name="answerTexts"/>
+                <#--<input name="answerValidity" type="radio" id="answerChoice1Valid" name="answerValidity"/>
+                <@s.radio name="answerValidity" id="answerChoice1Valid" value="true"
+            list="{''}"/>-->
+                <@s.checkbox id="answerChoice1Valid" label="checkbox test" name="answerValidity" value="false" fieldValue="true"/>
             </div>
         </div>
     </div>
 
     <div class="container none" id="answerGap">
         <div class="form-group row" id="answerGap1">
-            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer1"/></label>
+            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg">Antwort 1</label>
             <div class="col-md-10">
-            <@s.textfield class="form-control form-control-lg answer" id="answerGap1Text" name="answerGap1Text"/>
-                <select class="gapSelect none" id="answerGap1Valid" name="gapValid">
-                    <option value="1">1</option>
-                </select>
+                <@s.textfield class="form-control form-control-lg answer" id="answerGap1Text" name="answerGap1Text"/>
+                <input type="radio" class="none" id="answerGap1Valid" name="answerValidity"/>
+            <#--
+            <select class="gapSelect none" id="answerGap1Valid" name="gapValid">
+                <option value="1">1</option>
+            </select>
+            -->
             </div>
         </div>
     </div>
 
 
-<@s.submit class="btn btn-primary" value="Submit"/>
+    <@s.submit class="btn btn-primary" value="Submit"/>
 </@s.form>
     <div class="form-group row" id="manageAnswers">
         <button class="manageAnswer" onclick="addAnswer()">+</button>
@@ -94,7 +104,9 @@
         appendText.id = newId +"Text";
         var appendValidator =document.getElementById("answer"+answerType+"1Valid").cloneNode(true);
         appendValidator.id = newId +"Valid";
-        appendValidator.checked = false;
+        appendValidator.value = true;
+        appendValidator.value = false;
+        //appendValidator.fieldValue = true;
 
         innerDiv.appendChild(appendText);
         innerDiv.appendChild(appendValidator);

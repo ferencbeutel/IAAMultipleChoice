@@ -5,11 +5,7 @@ package de.nordakademie.multiplechoice.action;
  */
 public class LogoutAction extends BaseAction {
     public String logOut() {
-        if(session.containsKey("user")) {
-            session.remove("user");
-            return SUCCESS;
-        } else {
-            return "notLoggedInError";
-        }
+        logOutUser();
+        return SUCCESS;
     }
 }

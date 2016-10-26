@@ -1,9 +1,14 @@
 package de.nordakademie.multiplechoice.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Unchainable;
+import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
+import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Test;
+import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.TestService;
+import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +22,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class AddTestAction extends BaseAction {
     @Autowired
-    TestService testService;
+    private TestService testService;
 
     @Getter
     @Setter
@@ -32,7 +37,11 @@ public class AddTestAction extends BaseAction {
     @Setter
     private String duration;
 
-    public String execute() {
+    public String openForm() throws NoUserInSessionException, InsufficientPermissionsException {
+        User user = getUserFromSession();
+        if(!isUserLecturer(user)) {
+            throw new InsufficientPermissionsException();
+        }
         return SUCCESS;
     }
 

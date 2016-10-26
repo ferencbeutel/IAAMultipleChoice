@@ -1,8 +1,12 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
+import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.SeminarService;
+import de.nordakademie.multiplechoice.service.StudentService;
+import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,10 @@ import java.util.Set;
 public class EnrollSeminarAction extends BaseAction {
 
     @Autowired
-    SeminarService seminarService;
+    private SeminarService seminarService;
+
+    @Autowired
+    private StudentService studentService;
 
     @Setter
     private long seminarId;
@@ -23,21 +30,18 @@ public class EnrollSeminarAction extends BaseAction {
     @Getter
     Seminar seminar;
 
-    public String enroll() {
-        if(!isUserLoggedIn()) {
-            return "notLoggedInError";
-        }
-        Object userObject = session.get("user");
-        if(!isStudent(userObject)) {
+    public String enroll() throws NoUserInSessionException {
+        User user = getUserFromSession();
+        if (!isUserStudent(user)) {
             return "insufficientPermissionsError";
         }
-        Student student = (Student) userObject;
+        Student student = studentService.byUserId(user.getId());
         seminar = seminarService.byId(seminarId);
-        if(seminar == null) {
+        if (seminar == null) {
             return "seminarNotFoundError";
         }
         Set<Student> newParticipantsSet = seminar.getParticipants();
-        if(newParticipantsSet.contains(student)) {
+        if (newParticipantsSet.contains(student)) {
             return "alreadyEnrolledError";
         }
         newParticipantsSet.add(student);

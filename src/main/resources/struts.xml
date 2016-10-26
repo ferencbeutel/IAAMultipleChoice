@@ -10,12 +10,6 @@
         <action name="home" class="de.nordakademie.multiplechoice.action.HomeAction">
             <result type="freemarker">templates/home.ftl</result>
         </action>
-        <action name="test2" class="de.nordakademie.multiplechoice.action.TestAction2">
-            <result type="freemarker">templates/test-success2.ftl</result>
-        </action>
-        <action name="test3" class="de.nordakademie.multiplechoice.action.TestAction3">
-            <result type="freemarker">templates/test-success3.ftl</result>
-        </action>
         <action name="impressum">
             <result type="freemarker">templates/impressum.ftl</result>
         </action>
@@ -31,11 +25,10 @@
         <action name="chooseSeminar">
             <result type="freemarker">templates/chooseSeminar.ftl</result>
         </action>
-        <action name="addTest-form"  class="de.nordakademie.multiplechoice.action.LecturerOpenAction" method="openForm">
+        <action name="addTest-form" class="de.nordakademie.multiplechoice.action.AddTestAction" method="openForm">
             <result type="freemarker">templates/addTest.ftl</result>
         </action>
         <action name="addTest" class="de.nordakademie.multiplechoice.action.AddTestAction" method="addTest">
-            <result name="input" type="freemarker">templates/addTest.ftl</result>
             <result type="chain">home</result>
         </action>
         <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="prepare">
@@ -70,7 +63,7 @@
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
-        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.LecturerOpenAction" method="openForm">
+        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.SeminarFormAction" method="openForm">
             <result type="freemarker">templates/add-seminar-form.ftl</result>
         </action>
         <action name="addSeminar" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="addSeminar">

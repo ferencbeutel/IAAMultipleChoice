@@ -24,7 +24,5 @@ public class Question {
     private QuestionType type;
     @OneToMany(cascade=CascadeType.ALL)
     private Set<Answer> answers;
-
-
 }
 

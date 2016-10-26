@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.UserService;
 import org.junit.Test;
@@ -27,81 +28,81 @@ public class RegistrationActionTest {
     private RegistrationAction registrationAction = Mockito.spy(new RegistrationAction());
 
     @Test
-    public void testFirstNameValidation() {
+    public void testFirstNameValidation() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
-        registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-        registrationAction.getUser().setEmail(CORRECT_MAIL);
-        registrationAction.getUser().setPassword(CORRECT_PASSWORD);
+        registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+        registrationAction.getUserFromSession().setEmail(CORRECT_MAIL);
+        registrationAction.getUserFromSession().setPassword(CORRECT_PASSWORD);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testLastNameValidation() {
+    public void testLastNameValidation() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
-        registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-        registrationAction.getUser().setEmail(CORRECT_MAIL);
-        registrationAction.getUser().setPassword(CORRECT_PASSWORD);
+        registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+        registrationAction.getUserFromSession().setEmail(CORRECT_MAIL);
+        registrationAction.getUserFromSession().setPassword(CORRECT_PASSWORD);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testMailBasicValidation() {
+    public void testMailBasicValidation() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
-        registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-        registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-        registrationAction.getUser().setPassword(CORRECT_PASSWORD);
+        registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+        registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+        registrationAction.getUserFromSession().setPassword(CORRECT_PASSWORD);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testMailNakOnlyValidation() {
+    public void testMailNakOnlyValidation() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
-        registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-        registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-        registrationAction.getUser().setEmail("incorrect.mail@gmx.de");
-        registrationAction.getUser().setPassword(CORRECT_PASSWORD);
+        registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+        registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+        registrationAction.getUserFromSession().setEmail("incorrect.mail@gmx.de");
+        registrationAction.getUserFromSession().setPassword(CORRECT_PASSWORD);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testNoDuplicateMail() {
+    public void testNoDuplicateMail() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(new User());
         registrationAction.setUser(new User());
-        registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-        registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-        registrationAction.getUser().setEmail(CORRECT_MAIL);
-        registrationAction.getUser().setPassword(CORRECT_PASSWORD);
+        registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+        registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+        registrationAction.getUserFromSession().setEmail(CORRECT_MAIL);
+        registrationAction.getUserFromSession().setPassword(CORRECT_PASSWORD);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testPasswordBasicValidation() {
+    public void testPasswordBasicValidation() throws NoUserInSessionException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
-        registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-        registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-        registrationAction.getUser().setEmail(CORRECT_MAIL);
+        registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+        registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+        registrationAction.getUserFromSession().setEmail(CORRECT_MAIL);
 
         registrationAction.validate();
         Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());
     }
 
     @Test
-    public void testPasswordCriteriaValidation() {
+    public void testPasswordCriteriaValidation() throws NoUserInSessionException {
         final List<String> incorrectPasswords = new ArrayList<String>();
         incorrectPasswords.add("ONLYUPPERCASE");
         incorrectPasswords.add("UPPERCASEANDDIGITS132");
@@ -118,10 +119,10 @@ public class RegistrationActionTest {
 
         for (String incorrectPassword : incorrectPasswords) {
             registrationAction.setUser(new User());
-            registrationAction.getUser().setName(CORRECT_FIRST_NAME);
-            registrationAction.getUser().setSurName(CORRECT_LAST_NAME);
-            registrationAction.getUser().setEmail(CORRECT_MAIL);
-            registrationAction.getUser().setPassword(incorrectPassword);
+            registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
+            registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
+            registrationAction.getUserFromSession().setEmail(CORRECT_MAIL);
+            registrationAction.getUserFromSession().setPassword(incorrectPassword);
 
             registrationAction.validate();
             Mockito.verify(registrationAction, Mockito.times(1)).addFieldError(Mockito.anyString(), Mockito.anyString());

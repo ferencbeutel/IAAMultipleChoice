@@ -1,6 +1,8 @@
 package de.nordakademie.multiplechoice.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
@@ -19,24 +21,20 @@ public class RegistrationAcceptationAction extends BaseAction {
     @Autowired
     private UserService userService;
 
-    public String acceptRegistration() {
+    public String acceptRegistration() throws AlreadyLoggedInException, GenericErrorException {
         if(isUserLoggedIn()) {
-            return "alreadyLoggedInError";
+            throw new AlreadyLoggedInException();
         }
-
         if(regCode == null) {
-            return "emptyRegCodeError";
+            throw new GenericErrorException();
         }
-
         final User userToUnlock = userService.byRegToken(regCode);
         if (userToUnlock == null) {
-            return "NoUserFoundForRegCodeError";
+            throw new GenericErrorException();
         }
 
         userToUnlock.setRegComplete(true);
         userService.updateUser(userToUnlock);
-
-        System.out.println(userService.byMail(userToUnlock.getEmail()));
 
         return SUCCESS;
     }

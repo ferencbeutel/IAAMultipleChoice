@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
@@ -20,10 +21,10 @@ public class SeminarDetailAction extends BaseAction {
     @Getter
     Seminar seminar;
 
-    public String displaySeminarDetail() {
+    public String displaySeminarDetail() throws GenericErrorException {
         seminar = seminarService.byId(seminarId);
         if(seminar == null) {
-            return "seminarNotFoundError";
+            throw new GenericErrorException();
         }
         return SUCCESS;
     }

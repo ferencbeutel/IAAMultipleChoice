@@ -1,11 +1,15 @@
 package de.nordakademie.multiplechoice.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
-import lombok.Getter;
+import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Setter;
 import org.apache.struts2.interceptor.SessionAware;
+import org.mockito.internal.matchers.Not;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
@@ -14,35 +18,45 @@ import java.util.Map;
  * If you need Session Support in your Action, extend this Base Action class
  */
 public abstract class BaseAction extends ActionSupport implements SessionAware {
-    @Getter
     @Setter
-    Map<String, Object> session;
+    private Map<String, Object> session;
+
+    @Autowired
+    private UserService userService;
+
+    public boolean isUserLoggedIn() {
+        if(session.containsKey("userMail")) {
+            return true;
+        }
+        return false;
+    }
 
     /**
-     * Check whether a user is logged in or not
-     * If not, redirect to Login Page
+     * specific getter for retrieving an updated user object for the user mail
+     * @return
      */
-    public boolean isUserLoggedIn() {
-        if(!session.containsKey("user")) {
-            return false;
+    public User getUserFromSession() throws NoUserInSessionException {
+        Object userMailObject = session.get("userMail");
+        if(userMailObject == null) {
+            throw new NoUserInSessionException();
         }
-
-        return true;
+        String userMail = (String) userMailObject;
+        return userService.byMail(userMail);
     }
 
-    public boolean isLecturer(Object userObject) {
-        if (userObject instanceof Lecturer) {
-            return true;
-        }
-
-        return false;
+    public void SetUserInSession(String userMail, String userType) {
+        session.put("userMail", userMail);
+        session.put("userType", userType);
     }
 
-    public boolean isStudent(Object userObject) {
-        if (userObject instanceof Student) {
-            return true;
-        }
+    public void logOutUser() {
+        session.remove("userMail");
+    }
 
-        return false;
+    public boolean isUserLecturer(User user) {
+        return userService.isUserLecturer(user);
+    }
+    public boolean isUserStudent(User user) {
+        return userService.isUserStudent(user);
     }
 }

@@ -17,7 +17,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
                         <#if currentPage == "seminarList">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkSeminarlist"/></a>
                         <#else>
@@ -26,7 +26,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")>
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
                         <#if currentPage == "testAdministration">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkTestAdministration"/></a>
                         <#else>
@@ -35,7 +35,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
                         <#if currentPage == "results">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkResults"/></a>
                         <#else>
@@ -46,7 +46,7 @@
 
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")>
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
                         <#if currentPage == "seminar-form">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkCreateSeminar"/></a>
                         <#else>
@@ -57,7 +57,7 @@
                 </ul>
                 <ul class="nav navbar-nav pull-xs-right">
                     <li class="nav-item">
-                    <#if !Session?? || !Session.user??>
+                    <#if !Session?? || !Session.userMail??>
                         <#if currentPage == "login">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkLogin"/></a>
                         <#else>
@@ -66,7 +66,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if !Session?? || !Session.user??>
+                    <#if !Session?? || !Session.userMail??>
                         <#if currentPage == "registration">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkRegister"/></a>
                         <#else>
@@ -75,7 +75,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.user??>
+                    <#if Session?? && Session.userMail??>
                         <#if currentPage == "logout">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkLogout"/></a>
                         <#else>

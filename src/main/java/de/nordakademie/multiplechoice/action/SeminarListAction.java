@@ -1,6 +1,9 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
+import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
 import de.nordakademie.multiplechoice.model.Seminar;
+import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +21,11 @@ public class SeminarListAction extends BaseAction {
     @Getter
     List<Seminar> seminarList = new ArrayList<>();
 
-    public String displaySeminarList() {
-        if (!isUserLoggedIn()) {
-            return "notLoggedInError";
-        }
-        Object userObject = session.get("user");
-        if(!isStudent(userObject)) {
-            return "insufficientPermissionError";
+    public String displaySeminarList() throws NoUserInSessionException, InsufficientPermissionsException {
+        User user = getUserFromSession();
+
+        if(!isUserStudent(user)) {
+            throw new InsufficientPermissionsException();
         }
         seminarList = seminarService.listAll();
         return SUCCESS;

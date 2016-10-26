@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
@@ -14,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created by Ferenc on 19.10.2016.
  */
 public class LoginAction extends BaseAction {
+
+    @Autowired
+    private UserService userService;
+
     @Getter
     @Setter
     private String mail;
@@ -22,31 +27,18 @@ public class LoginAction extends BaseAction {
     @Setter
     private String password;
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private LecturerService lecturerService;
-
-    public String login() {
+    public String login() throws AlreadyLoggedInException {
         if (isUserLoggedIn()) {
-            return "alreadyLoggedInError";
+            throw new AlreadyLoggedInException();
         }
         User user = userService.byMail(mail);
-        Student potentialStudent = studentService.byUserId(user.getId());
-        Lecturer potentialLecturer = lecturerService.byUserId(user.getId());
-        if (potentialStudent == null) {
-            if (potentialLecturer == null) {
-                return "noStudentOrLecturerFoundError";
-            } else {
-                session.put("user", potentialLecturer);
-            }
-        } else {
-            session.put("user", potentialStudent);
+        String userType = "";
+        if(isUserLecturer(user)) {
+            userType = "Lecturer";
+        } else if (isUserStudent(user)) {
+            userType = "Student";
         }
+        SetUserInSession(mail, userType);
         return SUCCESS;
     }
 

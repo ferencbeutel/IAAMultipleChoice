@@ -1,6 +1,7 @@
 package de.nordakademie.multiplechoice.service;
 
 import de.nordakademie.multiplechoice.domain.UserRepository;
+import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LecturerService lecturerService;
 
     @Transactional
     public void saveUser(final User user) {
@@ -40,5 +47,21 @@ public class UserService {
     @Transactional(readOnly = true)
     public User byRegToken(final String regToken) {
         return userRepository.findByRegToken(regToken);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean isUserStudent(User user) {
+        if(studentService.byUserId(user.getId()) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional(readOnly = true)
+    public boolean isUserLecturer(User user) {
+        if(lecturerService.byUserId(user.getId()) == null) {
+            return false;
+        }
+        return true;
     }
 }

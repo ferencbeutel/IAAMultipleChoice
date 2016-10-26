@@ -10,7 +10,7 @@
 <body>
 <#include "/templates/frameHeader.ftl">
 
-<#if Session?? && Session.user??>
+<#if Session?? && Session.userMail??>
 <div class="container">
 
 <@s.form action="addTest" method="post">

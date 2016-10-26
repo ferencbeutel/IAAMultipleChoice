@@ -34,7 +34,7 @@ public class Seminar {
     private Set<Student> participants;
     @ManyToOne
     private Lecturer lecturer;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Test test;
 
     public String getHtmlDescription() {

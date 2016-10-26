@@ -8,7 +8,7 @@
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
-<div class="seminarList">
+<div class="seminarList" id="seminarList">
     <div class="row seminarListHeader">
         <div class="col-xs-2 seminarListItemEntry">Seminar Name</div>
         <div class="col-xs-4 seminarListItemEntry">Begindate - Enddate</div>

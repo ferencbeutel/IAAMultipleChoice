@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by Ferenc on 19.10.2016.
  */
-public class OpenSeminarAction extends BaseAction {
+public class LecturerOpenAction extends BaseAction {
     public String openForm() {
         if (!isUserLoggedIn()) {
             return "notLoggedInError";

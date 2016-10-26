@@ -31,10 +31,11 @@
         <action name="chooseSeminar">
             <result type="freemarker">templates/chooseSeminar.ftl</result>
         </action>
-        <action name="addTest-form" class="de.nordakademie.multiplechoice.action.AddTestAction" method="openForm">
+        <action name="addTest-form"  class="de.nordakademie.multiplechoice.action.LecturerOpenAction" method="openForm">
             <result type="freemarker">templates/addTest.ftl</result>
         </action>
         <action name="addTest" class="de.nordakademie.multiplechoice.action.AddTestAction" method="addTest">
+            <result name="input" type="freemarker">templates/addTest.ftl</result>
             <result type="chain">home</result>
         </action>
         <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="prepare">
@@ -69,7 +70,7 @@
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
-        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.OpenSeminarAction" method="openForm">
+        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.LecturerOpenAction" method="openForm">
             <result type="freemarker">templates/add-seminar-form.ftl</result>
         </action>
         <action name="addSeminar" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="addSeminar">

@@ -36,17 +36,6 @@ public class AddTestAction extends BaseAction {
         return SUCCESS;
     }
 
-    public String openForm() {
-        if (!isUserLoggedIn()) {
-            return "notLoggedInError";
-        } else {
-            Object userObject = session.get("user");
-            if(!isLecturer(userObject)) {
-                return "insufficientPermissionError";
-            }
-        }
-        return SUCCESS;
-    }
     public String addTest() {
         //TODO: Find a way to bind dates directly to the test model
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -56,6 +45,39 @@ public class AddTestAction extends BaseAction {
         test.setDuration(LocalTime.parse(duration, formatterDate));
         testService.saveTest(test);
         return SUCCESS;
+    }
+
+
+    public void validate() {
+        if (startDate == null || !startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
+            addFieldError("startDate", "Please enter a valid begin date");
+        }
+        if (endDate == null || !endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
+            addFieldError("endDate", "Please enter a valid end date");
+        }
+        if (startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}") && endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
+            if (endDate.compareTo(startDate) < 0) {
+                addFieldError("endDate", "Please enter an end date following the start date");
+            }
+        }
+        if (startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate begin = LocalDate.parse(startDate, formatter);
+            if (begin.compareTo(LocalDate.now().minusDays(1))<=0){
+                addFieldError("beginDate", "Please enter a begin date that is not in the past");
+            }
+        }
+        if (duration == null){
+            addFieldError("duration", "Please enter a duration for the test");
+        }
+        else if (duration != null && !duration.matches("[0-9]{2}:[0-9]{2}:[0-9]{2}")){
+            addFieldError("duration", "Please enter a duration in the format hh:mm:ss");
+        }
+        if (test.getMinScore()<=0){
+            addFieldError("minScore", "Please enter a minimum score greater than 0");
+        }
+
+
     }
 }
 

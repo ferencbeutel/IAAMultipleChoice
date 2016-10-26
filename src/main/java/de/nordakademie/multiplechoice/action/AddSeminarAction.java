@@ -60,7 +60,7 @@ public class AddSeminarAction extends BaseAction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate begin = LocalDate.parse(beginDate, formatter);
             if (begin.compareTo(LocalDate.now().minusDays(1))<=0){
-                addFieldError("endDate", "Please enter an begin date in the future");
+                addFieldError("beginDate", "Please enter a begin date that is not in the past");
             }
         }
 

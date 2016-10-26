@@ -5,6 +5,7 @@
     <title><@s.text name="addTest.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/addTest.css">
+    <link rel="stylesheet" href="/static/css/validationError.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -95,7 +96,11 @@
             </select>
         </div>
     </div>
-
+    <div class="form-group row">
+        <div class="col-md-6 centered" id="validation-errors">
+            <@s.fielderror/>
+        </div>
+    </div>
    <@s.submit class="btn btn-primary" value="Add"/>
 </@s.form>
 </div>

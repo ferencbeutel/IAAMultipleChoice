@@ -25,7 +25,7 @@ public class Seminar {
     private LocalDate beginDate;
     @NaturalId
     private LocalDate endDate;
-    @Column(length = 255)
+    @Column(length = 5000)
     private String description;
     private int maxParticipants;
     @JoinTable
@@ -33,4 +33,6 @@ public class Seminar {
     private Set<Student> participants;
     @ManyToOne
     private Lecturer lecturer;
+    @OneToOne
+    private Test test;
 }

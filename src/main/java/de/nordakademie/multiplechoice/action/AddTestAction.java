@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Unchainable;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.model.CreditPointsType;
+import de.nordakademie.multiplechoice.model.EvaluationType;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Test;
 import de.nordakademie.multiplechoice.model.User;
@@ -27,7 +29,10 @@ public class AddTestAction extends BaseAction {
     @Getter
     @Setter
     private Test test;
-
+    @Setter
+    private String creditPointsString;
+    @Setter
+    private String evaluationTypeString;
     @Setter
     private String startDate;
 
@@ -37,14 +42,6 @@ public class AddTestAction extends BaseAction {
     @Setter
     private String duration;
 
-    public String openForm() throws NoUserInSessionException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if(!isUserLecturer(user)) {
-            throw new InsufficientPermissionsException();
-        }
-        return SUCCESS;
-    }
-
     public String addTest() {
         //TODO: Find a way to bind dates directly to the test model
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -52,6 +49,8 @@ public class AddTestAction extends BaseAction {
         test.setBeginDate(LocalDate.parse( startDate, formatter));
         test.setEndDate(LocalDate.parse(endDate, formatter));
         test.setDuration(LocalTime.parse(duration, formatterDate));
+        test.setCreditPoints(CreditPointsType.getName(creditPointsString));
+        test.setEvaluationType(EvaluationType.getName(evaluationTypeString));
         testService.saveTest(test);
         return SUCCESS;
     }

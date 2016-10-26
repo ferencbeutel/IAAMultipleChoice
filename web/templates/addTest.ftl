@@ -32,11 +32,7 @@
         <label for="selectcredits"
                class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectCredits"/> </label>
         <div class="col-md-7">
-            <select class="select form-control" id="selectcredits" name="test.creditPoints">
-                <option value="HALF"> <@s.text name="addTest.selectCredits.05credits"/></option>
-                <option value="THREEQUARTER"> <@s.text name="addTest.selectCredits.075credits"/></option>
-                <option value="ONE"> <@s.text name="addTest.selectCredits.1credits"/></option>
-            </select>
+            <@s.select list="creditPointsTypes" class="select form-control" id="selectcredits" name="creditPointsString"/>
         </div>
     </div>
 
@@ -90,10 +86,11 @@
         <label for="selectFalseAnswerGrading"
                class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectFalseAnswerGrading"/> </label>
         <div class="col-md-7">
-            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
+            <@s.select list="evaluationTypes" class="select form-control" id="selectfalseanswergrading" name="evaluationTypeString"/>
+                    <#--            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
                 <option value="SUBSTRACT"> <@s.text name="addTest.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
                 <option value="IGNORE"> <@s.text name="addTest.selectFalseAnswerGrading.OnePointDeduction"/></option>
-            </select>
+            </select>-->
         </div>
     </div>
     <div class="form-group row">

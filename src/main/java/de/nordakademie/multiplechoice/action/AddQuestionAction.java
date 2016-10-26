@@ -45,23 +45,13 @@ public class AddQuestionAction extends BaseAction {
             answer.setText(answerTexts.get(i));
             answer.setCorrect(true);
             answers.add(answer);
-            //answerService.saveAnswer(answer);
+            answerService.saveAnswer(answer);
         }
         System.out.println(answerTexts);
         System.out.println(answerValidity);
-        question.setType(QuestionType.valueOf(questionTypeString));
+        question.setType(QuestionType.getName(questionTypeString));
         question.setAnswers(answers);
-        //questionService.saveQuestion(question);
+        questionService.saveQuestion(question);
         return SUCCESS;
     }
-
-    public String prepare(){
-        questionTypes = new ArrayList<String>();
-        for (QuestionType questionType: QuestionType.values()) {
-            questionTypes.add(questionType.name());
-        }
-        return SUCCESS;
-    }
-
-
 }

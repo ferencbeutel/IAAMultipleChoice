@@ -30,37 +30,4 @@ public class Test {
     private Set<Question> questions;
     @OneToMany(cascade=CascadeType.ALL)
     private Set<TestResult> results;
-
-    enum CreditPointsType {
-        HALF("0.5"),
-        THREEQUARTER("0.75"),
-        ONE("1");
-
-        private final String realVal;
-
-        CreditPointsType(String s) {
-            this.realVal = s;
-        }
-
-        @Override
-        public String toString() {
-            return realVal;
-        }
-    }
-
-    enum EvaluationType {
-        SUBSTRACT("Loose a point on wrong answer"),
-        IGNORE("Get 0 Points for wrong answer");
-
-        private final String realVal;
-
-        EvaluationType(String s) {
-            this.realVal = s;
-        }
-
-        @Override
-        public String toString() {
-            return realVal;
-        }
-    }
 }

@@ -4,8 +4,12 @@ import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.CreditPointsType;
 import de.nordakademie.multiplechoice.model.EvaluationType;
+import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,15 @@ public class TestFormAction extends BaseAction {
     private List<String> evaluationTypes;
     @Getter
     private List<String> creditPointsTypes;
+
+    @Autowired
+    SeminarService seminarService;
+
+    @Setter
+    private long seminarId;
+
+    @Getter
+    Seminar seminar;
 
 
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException{
@@ -34,8 +47,14 @@ public class TestFormAction extends BaseAction {
         for (CreditPointsType creditPointsType: CreditPointsType.values()) {
             creditPointsTypes.add(creditPointsType.toString());
         }
-        return SUCCESS;
+        seminar = seminarService.byId(seminarId);
+        if(seminar == null) {
+            return "seminarNotFoundError";
         }
+        return SUCCESS;
+
+        }
+
 
     }
 

@@ -2,7 +2,9 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.model.CreditPointsType;
 import de.nordakademie.multiplechoice.model.EvaluationType;
+import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Test;
+import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.service.TestService;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +37,12 @@ public class AddTestAction extends BaseAction {
     @Setter
     private String duration;
 
+
+
+    public String execute() {
+        return SUCCESS;
+    }
+
     public String addTest() {
         //TODO: Find a way to bind dates directly to the test model
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -47,6 +55,8 @@ public class AddTestAction extends BaseAction {
         testService.saveTest(test);
         return SUCCESS;
     }
+
+
 
 
     public void validate() {

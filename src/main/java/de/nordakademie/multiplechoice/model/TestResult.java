@@ -18,7 +18,7 @@ public class TestResult {
 
     @Id
     @GeneratedValue
-    private long restResultId;
+    private long testResultId;
     private int points;
     private LocalDateTime startDateTime;
 }

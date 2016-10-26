@@ -3,11 +3,14 @@ package de.nordakademie.multiplechoice.service;
 import de.nordakademie.multiplechoice.domain.SeminarRepository;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Seminar;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by MHORT on 20.10.2016.
@@ -36,5 +39,11 @@ public class SeminarService {
     @Transactional(readOnly = true)
     public Seminar byId(final long id) {
         return seminarRepository.byId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Seminar> allWithTestsStartingToday() {
+        List<Seminar> allSeminars = seminarRepository.findAll();
+        return allSeminars.stream().filter(seminar -> seminar.getTest().getBeginDate().isEqual(LocalDate.now())).collect(Collectors.toList());
     }
 }

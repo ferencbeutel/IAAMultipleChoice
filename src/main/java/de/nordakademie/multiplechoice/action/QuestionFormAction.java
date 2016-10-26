@@ -1,7 +1,7 @@
 package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.QuestionType;
 import de.nordakademie.multiplechoice.model.User;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class QuestionFormAction extends BaseAction {
     @Getter
     private List<String> questionTypes;
 
-    public String openForm() throws NoUserInSessionException, InsufficientPermissionsException{
+    public String openForm() throws NotLoggedInException, InsufficientPermissionsException{
         User user = getUserFromSession();
         if(!isUserLecturer(user)) {
             throw new InsufficientPermissionsException();

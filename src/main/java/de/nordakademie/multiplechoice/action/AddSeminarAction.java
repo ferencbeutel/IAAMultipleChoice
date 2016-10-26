@@ -1,16 +1,12 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -34,7 +30,7 @@ public class AddSeminarAction extends BaseAction {
     @Setter
     private String endDate;
 
-    public String addSeminar() throws NoUserInSessionException {
+    public String addSeminar() throws NotLoggedInException {
         //TODO: Find a way to bind dates directly to the seminar model
         User user = getUserFromSession();
         if (!isUserLecturer(user)) {

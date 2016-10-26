@@ -2,6 +2,7 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -35,4 +36,9 @@ public class Seminar {
     private Lecturer lecturer;
     @OneToOne
     private Test test;
+
+    public String getHtmlDescription() {
+        String escaped = StringEscapeUtils.escapeHtml4(description);
+        return escaped.replace("\r\n", "<br/>");
+    }
 }

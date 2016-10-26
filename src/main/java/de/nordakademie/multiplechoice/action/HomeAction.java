@@ -1,8 +1,7 @@
 package de.nordakademie.multiplechoice.action;
 
-import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
@@ -11,13 +10,9 @@ import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -52,7 +47,7 @@ public class HomeAction extends BaseAction {
             } else {
                 throw new GenericErrorException();
             }
-        } catch(NoUserInSessionException e) {
+        } catch(NotLoggedInException e) {
             //this is fine...
         }
         return SUCCESS;

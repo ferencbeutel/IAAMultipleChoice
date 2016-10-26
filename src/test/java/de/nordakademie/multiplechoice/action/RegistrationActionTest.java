@@ -1,6 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.UserService;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class RegistrationActionTest {
     private RegistrationAction registrationAction = Mockito.spy(new RegistrationAction());
 
     @Test
-    public void testFirstNameValidation() throws NoUserInSessionException {
+    public void testFirstNameValidation() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setSurName(CORRECT_LAST_NAME);
@@ -40,7 +40,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testLastNameValidation() throws NoUserInSessionException {
+    public void testLastNameValidation() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
@@ -52,7 +52,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testMailBasicValidation() throws NoUserInSessionException {
+    public void testMailBasicValidation() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
@@ -64,7 +64,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testMailNakOnlyValidation() throws NoUserInSessionException {
+    public void testMailNakOnlyValidation() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
@@ -77,7 +77,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testNoDuplicateMail() throws NoUserInSessionException {
+    public void testNoDuplicateMail() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(new User());
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
@@ -90,7 +90,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testPasswordBasicValidation() throws NoUserInSessionException {
+    public void testPasswordBasicValidation() throws NotLoggedInException {
         Mockito.when(userService.byMail(Mockito.anyString())).thenReturn(null);
         registrationAction.setUser(new User());
         registrationAction.getUserFromSession().setName(CORRECT_FIRST_NAME);
@@ -102,7 +102,7 @@ public class RegistrationActionTest {
     }
 
     @Test
-    public void testPasswordCriteriaValidation() throws NoUserInSessionException {
+    public void testPasswordCriteriaValidation() throws NotLoggedInException {
         final List<String> incorrectPasswords = new ArrayList<String>();
         incorrectPasswords.add("ONLYUPPERCASE");
         incorrectPasswords.add("UPPERCASEANDDIGITS132");

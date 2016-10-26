@@ -18,3 +18,5 @@ spring.properties
 
 # css and map files, since we use sass #
 *.css*
+
+.DS_Store

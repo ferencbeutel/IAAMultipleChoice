@@ -1,7 +1,7 @@
 package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.CreditPointsType;
 import de.nordakademie.multiplechoice.model.EvaluationType;
 import de.nordakademie.multiplechoice.model.User;
@@ -21,7 +21,7 @@ public class TestFormAction extends BaseAction {
     private List<String> creditPointsTypes;
 
 
-    public String openForm() throws NoUserInSessionException, InsufficientPermissionsException{
+    public String openForm() throws NotLoggedInException, InsufficientPermissionsException{
         User user = getUserFromSession();
         if(!isUserLecturer(user)) {
             throw new InsufficientPermissionsException();

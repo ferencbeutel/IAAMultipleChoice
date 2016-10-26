@@ -22,25 +22,26 @@
         </div>
     </div>
     <div class="row seminarListItem">
-        <div class="col-xs-6 seminarListItemEntry no-border">
-            <span>${seminar.description}</span>
-        </div>
-        <div class="col-xs-6 participantsList">
-        <#list seminar.participants as participant>
-            <div class="row participantsListItem">
-                <div class="col-xs-12 centered">
-                    <span>${participant.user.name} ${participant.user.surName}</span>
-                </div>
-            </div>
-        <#else>
-            <div class="row participantsListItem">
-                <div class="col-xs-12 centered">
-                    <span>no participants yet</span>
-                </div>
-            </div>
-        </#list>
+        <div class="col-xs-10 seminarListItemEntry centered">
+            <span>${seminar.htmlDescription}</span>
         </div>
     </div>
+    <div class="row seminarListHeader">
+        <span class="col-xs-12 seminarListItemEntry">Participants</span>
+    </div>
+<#list seminar.participants as participant>
+    <div class="row participantsListItem">
+        <div class="col-xs-12 centered">
+            <span>${participant.user.name} ${participant.user.surName}</span>
+        </div>
+    </div>
+<#else>
+    <div class="row participantsListItem">
+        <div class="col-xs-12 centered">
+            <span>no participants yet</span>
+        </div>
+    </div>
+</#list>
 </div>
 
 <#include "/templates/frameFooter.ftl">

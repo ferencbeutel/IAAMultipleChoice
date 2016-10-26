@@ -1,12 +1,11 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.exception.NoUserInSessionException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.service.StudentService;
-import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class EnrollSeminarAction extends BaseAction {
     @Getter
     Seminar seminar;
 
-    public String enroll() throws NoUserInSessionException {
+    public String enroll() throws NotLoggedInException {
         User user = getUserFromSession();
         if (!isUserStudent(user)) {
             return "insufficientPermissionsError";

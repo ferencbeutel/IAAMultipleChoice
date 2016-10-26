@@ -17,6 +17,7 @@ public class Question {
     @Id
     @GeneratedValue
     private long questionId;
+    @Column(length = 255)
     private String text;
     private int points;
     private int position;

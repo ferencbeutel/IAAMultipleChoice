@@ -25,6 +25,7 @@ public class Seminar {
     private LocalDate beginDate;
     @NaturalId
     private LocalDate endDate;
+    @Column(length = 255)
     private String description;
     private int maxParticipants;
     @JoinTable

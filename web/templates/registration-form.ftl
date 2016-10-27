@@ -44,6 +44,7 @@
     <@s.submit class="btn btn-primary" value="Register"/>
 </@s.form>
 </div>
+<p><@s.text name="global.alreadyRegistered"/> <a class="nav-link" href="login-form"><@s.text name="global.clickHereLink"/></a>.</p>
 
 <#include "/templates/frameFooter.ftl">
 </body>

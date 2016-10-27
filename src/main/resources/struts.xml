@@ -5,12 +5,12 @@
     <constant name="struts.custom.i18n.resources" value="messages" />
     <package name="default" extends="struts-default" namespace="/">
         <global-results>
-            <result name="notLoggedIn" type="freemarker">not-logged-in-errorpage.ftl</result>
-            <result name="alreadyLoggedIn" type="freemarker">already-logged-in-errorpage.ftl</result>
-            <result name="insufficientPermissions" type="freemarker">insufficient-permissions-errorpage.ftl</result>
-            <result name="alreadyEnrolled" type="freemarker">already-enrolled-errorpage.ftl</result>
-            <result name="testAlreadyStarted" type="freemarker">test-already-started-errorpage.ftl</result>
-            <result name="genericError" type="freemarker">generic-errorpage.ftl</result>
+            <result name="notLoggedIn" type="freemarker">templates/not-logged-in-errorpage.ftl</result>
+            <result name="alreadyLoggedIn" type="freemarker">templates/already-logged-in-errorpage.ftl</result>
+            <result name="insufficientPermissions" type="freemarker">templates/insufficient-permissions-errorpage.ftl</result>
+            <result name="alreadyEnrolled" type="freemarker">templates/already-enrolled-errorpage.ftl</result>
+            <result name="testAlreadyStarted" type="freemarker">templates/test-already-started-errorpage.ftl</result>
+            <result name="genericError" type="freemarker">templates/generic-errorpage.ftl</result>
         </global-results>
 
         <global-exception-mappings>
@@ -97,6 +97,24 @@
         </action>
         <action name="enroll-seminar" class="de.nordakademie.multiplechoice.action.EnrollSeminarAction" method="enroll">
             <result type="chain">seminar-list</result>
+        </action>
+        <action name="not-logged-in-errorpage">
+            <result type="freemarker">templates/not-logged-in-errorpage.ftl</result>
+        </action>
+        <action name="already-logged-in-errorpage">
+            <result type="freemarker">templates/already-logged-in-errorpage.ftl</result>
+        </action>
+        <action name="insufficient-permissions-errorpage">
+            <result type="freemarker">templates/insufficient-permissions-errorpage.ftl</result>
+        </action>
+        <action name="already-enrolled-errorpage">
+            <result type="freemarker">templates/already-enrolled-errorpage.ftl</result>
+        </action>
+        <action name="test-already-started-errorpage">
+            <result type="freemarker">templates/test-already-started-errorpage.ftl</result>
+        </action>
+        <action name="generic-errorpage">
+            <result type="freemarker">templates/generic-errorpage.ftl</result>
         </action>
     </package>
 </struts>

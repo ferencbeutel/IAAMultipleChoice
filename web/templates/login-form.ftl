@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <p><@s.text name="loginForm.welcomeText"/></p>
         <p><@s.text name="loginForm.instruction"/></p>
-        <p><@s.text name="loginForm.ifNotRegisteredText"/> <a class="nav-link" href="registration-form"><@s.text name="loginForm.clickHereLink"/></a>.</p>
+        <p><@s.text name="global.notRegisteredYet"/> <a class="nav-link" href="registration-form"><@s.text name="global.clickHereLink"/></a>.</p>
 
     </div>
 </div>

@@ -19,7 +19,7 @@
             <label for="seminar"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectSeminar"/> </label>
             <div class="col-md-7">
-                <span>${seminar.name}</span>
+                <@s.textfield class="form-control form-control-lg" id="seminar" name="seminarName" readonly="true"/>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             <label for="selectcredits"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectCredits"/> </label>
             <div class="col-md-7">
-                <@s.select list="creditPointsTypes" class="select form-control" id="selectcredits" name="creditPointsString"/>
+                <@s.select list="@de.nordakademie.multiplechoice.model.CreditPointsType@values()" class="select form-control" id="selectcredits" name="test.creditPoints" listValue="realVal"/>
             </div>
         </div>
 
@@ -82,7 +82,7 @@
             <label for="selectFalseAnswerGrading"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectFalseAnswerGrading"/> </label>
             <div class="col-md-7">
-                <@s.select list="evaluationTypes" class="select form-control" id="selectfalseanswergrading" name="evaluationTypeString"/>
+                <@s.select list="@de.nordakademie.multiplechoice.model.EvaluationType@values()" class="select form-control" id="selectfalseanswergrading" name="test.evaluationType" listValue="realVal"/>
                     <#--            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
                 <option value="SUBSTRACT"> <@s.text name="addTest.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
                 <option value="IGNORE"> <@s.text name="addTest.selectFalseAnswerGrading.OnePointDeduction"/></option>

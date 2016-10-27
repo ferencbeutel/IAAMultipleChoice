@@ -3,6 +3,7 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
     <constant name="struts.custom.i18n.resources" value="messages" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
     <package name="default" extends="struts-default" namespace="/">
         <global-results>
             <result name="notLoggedIn" type="freemarker">templates/not-logged-in-errorpage.ftl</result>
@@ -19,7 +20,7 @@
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException" result="insufficientPermissions" />
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.AlreadyEnrolledException" result="alreadyEnrolled" />
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.TestAlreadyStartedException" result="testAlreadyStarted" />
-            <exception-mapping exception="java.lang.Exception" result="genericError" />
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException" result="genericError" />
         </global-exception-mappings>
 
 
@@ -49,6 +50,11 @@
         </action>
         <action name="addTest" class="de.nordakademie.multiplechoice.action.AddTestAction" method="addTest">
             <result type="chain">home</result>
+            <result name="input" type="freemarker">
+                <param name="location">templates/addTest.ftl</param>
+                <param name="seminarName">${seminarName}</param>
+            </result>
+
         </action>
         <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction" method="openForm">
             <result type="freemarker">templates/addQuestion-form.ftl</result>

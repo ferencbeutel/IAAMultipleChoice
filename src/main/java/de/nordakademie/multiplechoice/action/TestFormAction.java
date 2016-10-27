@@ -20,36 +20,14 @@ import java.util.List;
 public class TestFormAction extends BaseAction {
 
     @Getter
-    private List<String> evaluationTypes;
-    @Getter
-    private List<String> creditPointsTypes;
-
-    @Autowired
-    SeminarService seminarService;
-
     @Setter
-    private long seminarId;
-
-    @Getter
-    Seminar seminar;
+    String seminarName;
 
 
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException{
         User user = getUserFromSession();
         if(!isUserLecturer(user)) {
             throw new InsufficientPermissionsException();
-        }
-        evaluationTypes = new ArrayList<>();
-        for (EvaluationType evaluationType: EvaluationType.values()) {
-             evaluationTypes.add(evaluationType.toString());
-        }
-        creditPointsTypes = new ArrayList<String>();
-        for (CreditPointsType creditPointsType: CreditPointsType.values()) {
-            creditPointsTypes.add(creditPointsType.toString());
-        }
-        seminar = seminarService.byId(seminarId);
-        if(seminar == null) {
-            return "seminarNotFoundError";
         }
         return SUCCESS;
 

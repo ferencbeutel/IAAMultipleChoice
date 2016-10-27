@@ -24,43 +24,31 @@ public class AddTestAction extends BaseAction {
     @Getter
     @Setter
     private Test test;
+
+    @Getter
     @Setter
-    private String creditPointsString;
-    @Setter
-    private String evaluationTypeString;
+    private String seminarName;
+
     @Setter
     private String startDate;
-
     @Setter
     private String endDate;
-
     @Setter
     private String duration;
-
-
-
-    public String execute() {
-        return SUCCESS;
-    }
 
     public String addTest() {
         //TODO: Find a way to bind dates directly to the test model
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("H:mm:ss");
-        test.setBeginDate(LocalDate.parse( startDate, formatter));
+        test.setBeginDate(LocalDate.parse(startDate, formatter));
         test.setEndDate(LocalDate.parse(endDate, formatter));
         test.setDuration(LocalTime.parse(duration, formatterDate));
-        test.setCreditPoints(CreditPointsType.getName(creditPointsString));
-        test.setEvaluationType(EvaluationType.getName(evaluationTypeString));
         testService.saveTest(test);
         return SUCCESS;
     }
 
-
-
-
     public void validate() {
-        if (startDate == null || !startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
+        if (startDate == null || !startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
             addFieldError("startDate", "Please enter a valid begin date");
         }
         if (endDate == null || !endDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
@@ -71,24 +59,21 @@ public class AddTestAction extends BaseAction {
                 addFieldError("endDate", "Please enter an end date following the start date");
             }
         }
-        if (startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")){
+        if (startDate.matches("[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate begin = LocalDate.parse(startDate, formatter);
-            if (begin.compareTo(LocalDate.now().minusDays(1))<=0){
+            if (begin.compareTo(LocalDate.now().minusDays(1)) <= 0) {
                 addFieldError("beginDate", "Please enter a begin date that is not in the past");
             }
         }
-        if (duration == null){
+        if (duration == null) {
             addFieldError("duration", "Please enter a duration for the test");
-        }
-        else if (duration != null && !duration.matches("[0-9]{2}:[0-9]{2}:[0-9]{2}")){
+        } else if (duration != null && !duration.matches("[0-9]{2}:[0-9]{2}:[0-9]{2}")) {
             addFieldError("duration", "Please enter a duration in the format hh:mm:ss");
         }
-        if (test.getMinScore()<=0){
+        if (test.getMinScore() <= 0) {
             addFieldError("minScore", "Please enter a minimum score greater than 0");
         }
-
-
     }
 }
 

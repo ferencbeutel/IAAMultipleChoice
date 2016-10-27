@@ -1,5 +1,7 @@
 package de.nordakademie.multiplechoice.model;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,25 +13,10 @@ public enum CreditPointsType {
     THREEQUARTER("0.75"),
     ONE("1");
 
+    @Getter
     private final String realVal;
 
-    private static Map<String, CreditPointsType> map = new HashMap<String, CreditPointsType>();
-
-    static {
-        for (CreditPointsType pointEnum : CreditPointsType.values()) {
-            map.put(pointEnum.realVal, pointEnum);
-        }
-    }
-
-    public static CreditPointsType getName(String cp) {
-        return map.get(cp);
-    }
     CreditPointsType(String s) {
         this.realVal = s;
-    }
-
-    @Override
-    public String toString() {
-        return realVal;
     }
 }

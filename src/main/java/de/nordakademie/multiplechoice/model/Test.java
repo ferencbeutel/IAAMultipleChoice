@@ -23,7 +23,9 @@ public class Test {
     private LocalDate beginDate;
     private LocalDate endDate;
     private int minScore;
+    @Enumerated(EnumType.STRING)
     private CreditPointsType creditPoints;
+    @Enumerated(EnumType.STRING)
     private EvaluationType evaluationType;
     private LocalTime duration;
     @OneToMany(cascade= CascadeType.ALL)

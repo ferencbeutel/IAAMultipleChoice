@@ -1,3 +1,4 @@
+//TODO: This is a gross hack and should definitely be replaced; Also, if we already have JQuery, we should use it instead of plain JS
 NodeList.prototype.forEach = Array.prototype.forEach;
 
 var semlist = document.getElementById("seminarList").childNodes;
@@ -14,8 +15,4 @@ semlist.forEach (function(seminarItem){
 
 $(".seminarListItem:not('.seminarListHeader')").click(function (event) {
     window.location.href = "seminar-detail?seminarId=" + $(event.currentTarget).data("id");
-});
-$(".enrollButton").click(function (event) {
-    event.stopPropagation();
-    window.location.href = "enroll-seminar?seminarId=" + $(event.currentTarget).closest(".row").data("id");
 });

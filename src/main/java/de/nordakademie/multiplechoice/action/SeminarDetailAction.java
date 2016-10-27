@@ -16,6 +16,7 @@ public class SeminarDetailAction extends BaseAction {
     SeminarService seminarService;
 
     @Setter
+    @Getter
     private long seminarId;
 
     @Getter

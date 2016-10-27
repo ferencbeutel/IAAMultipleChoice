@@ -21,8 +21,11 @@ public class TestFormAction extends BaseAction {
 
     @Getter
     @Setter
-    String seminarName;
+    private String seminarName;
 
+    @Getter
+    @Setter
+    private long seminarId;
 
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException{
         User user = getUserFromSession();
@@ -32,8 +35,6 @@ public class TestFormAction extends BaseAction {
         return SUCCESS;
 
         }
-
-
     }
 
 

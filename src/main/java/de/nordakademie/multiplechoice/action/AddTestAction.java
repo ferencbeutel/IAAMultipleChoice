@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import com.opensymphony.xwork2.Preparable;
 import de.nordakademie.multiplechoice.model.CreditPointsType;
 import de.nordakademie.multiplechoice.model.EvaluationType;
 import de.nordakademie.multiplechoice.model.Seminar;
@@ -19,11 +20,15 @@ import java.time.format.DateTimeFormatter;
  */
 public class AddTestAction extends BaseAction {
     @Autowired
-    private TestService testService;
+    private SeminarService seminarService;
 
     @Getter
     @Setter
     private Test test;
+
+    @Getter
+    @Setter
+    private long seminarId;
 
     @Getter
     @Setter
@@ -43,7 +48,9 @@ public class AddTestAction extends BaseAction {
         test.setBeginDate(LocalDate.parse(startDate, formatter));
         test.setEndDate(LocalDate.parse(endDate, formatter));
         test.setDuration(LocalTime.parse(duration, formatterDate));
-        testService.saveTest(test);
+        Seminar seminar = seminarService.byId(seminarId);
+        seminar.setTest(test);
+        seminarService.updateSeminar(seminar);
         return SUCCESS;
     }
 

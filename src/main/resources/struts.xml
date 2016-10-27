@@ -52,6 +52,7 @@
             <result type="chain">home</result>
             <result name="input" type="freemarker">
                 <param name="location">templates/addTest.ftl</param>
+                <param name="seminarId">${seminarId}</param>
                 <param name="seminarName">${seminarName}</param>
             </result>
 

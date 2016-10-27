@@ -43,7 +43,7 @@
 
     </div>
     <#list seminarList as seminar>
-    <div class="row seminarListItem" data-name="${seminar.name}">
+    <div class="row seminarListItem" data-name="${seminar.name}" data-id="${seminar.seminarId}">
         <div class="col-xs-2 seminarListItemEntry">
             <span>${seminar.name}</span>
         </div>

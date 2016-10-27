@@ -16,10 +16,11 @@
     <@s.form action="addTest" method="post">
 
         <div class="form-group row">
-            <label for="seminar"
+            <label for="seminarName"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectSeminar"/> </label>
             <div class="col-md-7">
-                <@s.textfield class="form-control form-control-lg" id="seminar" name="seminarName" readonly="true"/>
+                <@s.textfield class="form-control form-control-lg" id="seminarName" name="seminarName" value="${seminarName}" readonly="true"/>
+                <@s.hidden class="form-control form-control-lg" id="seminarId" name="seminarId" value="${seminarId}"/>
             </div>
         </div>
 

@@ -33,34 +33,36 @@
     <div class="row seminarListItem seminarListHeader">
         <div class="col-xs-2 seminarListItemEntry">Seminar Name</div>
         <div class="col-xs-4 seminarListItemEntry">Begindate - Enddate</div>
-        <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")>
+
+        <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
             <div class="col-xs-4 seminarListItemEntry">start the test</div>
+
         <#else>
             <div class="col-xs-4 seminarListItemEntry">Test verwalten</div>
         </#if>
-        <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
-        <div class="col-xs-4 seminarListItemEntry">start the test</div></#if>
+
     </div>
     <#list seminarList as seminar>
-        <div class="row seminarListItem" data-id="${seminar.seminarId}">
-            <div class="col-xs-2 seminarListItemEntry">
-                <span>${seminar.name}</span>
-            </div>
-            <div class="col-xs-4 seminarListItemEntry">
-                <span>${seminar.beginDate} - ${seminar.endDate}</span>
-            </div>
+    <div class="row seminarListItem" data-id="${seminar.seminarId}">
+        <div class="col-xs-2 seminarListItemEntry">
+            <span>${seminar.name}</span>
+        </div>
+        <div class="col-xs-4 seminarListItemEntry">
+            <span>${seminar.beginDate} - ${seminar.endDate}</span>
+        </div>
 
-            <div class="col-xs-3 seminarListItemEntry">
-                    <#if Session?? && Session.user?? && Session.user.getClass()?contains("Student")><!--ToDo: button nur anzeigen, wenn Test da -->
-                    <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
-                </#if>
-                <#if Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")&& seminar.test??>
-                    <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
-                   <#else>
-                    <button class="btn btn-secondary addTestButton"><@s.text name="home.AddTestButton"/></button>
+    <div class="col-xs-3 seminarListItemEntry">
+        <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
+                <!--ToDo: button nur anzeigen, wenn Test da -->
+                <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
 
-                </#if>
-            </div>
+            <#elseif Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")&& seminar.test??>
+                <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
+            <#else>
+                <button class="btn btn-secondary addTestButton"><@s.text name="home.AddTestButton"/></button>
+
+            </#if>
+        </div>
         </div>
     </#list>
 </div>

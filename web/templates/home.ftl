@@ -4,7 +4,7 @@
 <head>
     <title>Registration</title>
 <#include "/templates/frameHeadImports.ftl">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/seminarList.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -31,7 +31,7 @@
 <div class="seminarList">
 
     <div class="row seminarListItem seminarListHeader">
-        <div class="col-xs-2 seminarListItemEntry">Seminar Name</div>
+        <div class="col-xs-4 seminarListItemEntry">Seminar Name</div>
         <div class="col-xs-4 seminarListItemEntry">Begindate - Enddate</div>
 
         <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
@@ -43,15 +43,15 @@
 
     </div>
     <#list seminarList as seminar>
-    <div class="row seminarListItem" data-name="${seminar.name}" data-id="${seminar.seminarId}">
-        <div class="col-xs-2 seminarListItemEntry">
+    <div class="row seminarListItem " data-name="${seminar.name}" data-id="${seminar.seminarId}">
+        <div class="col-xs-4 seminarListItemEntry ">
             <span>${seminar.name}</span>
         </div>
         <div class="col-xs-4 seminarListItemEntry">
             <span>${seminar.beginDate} - ${seminar.endDate}</span>
         </div>
 
-    <div class="col-xs-3 seminarListItemEntry">
+    <div class="col-xs-4 seminarListItemEntry">
         <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
                 <!--ToDo: button nur anzeigen, wenn Test da -->
                 <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>

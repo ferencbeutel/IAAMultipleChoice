@@ -54,9 +54,9 @@
                 </div>
                 <div class="col-xs-4 seminarListItemEntry">
                     <#if seminar.test??>
-                        <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
+                        <button class="btn btn-secondary edit-test-button"><@s.text name="home.EditTestButton"/></button>
                     <#else>
-                        <button class="btn btn-secondary addTestButton"><@s.text name="home.add-testButton"/></button>
+                        <button class="btn btn-secondary add-test-button"><@s.text name="home.add-testButton"/></button>
                     </#if>
                 </div>
             </div>

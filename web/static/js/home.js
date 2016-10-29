@@ -14,9 +14,11 @@ semlist.forEach (function(seminarItem){
 });
 
 $(".studentItem").click(function (event) {
+    event.stopPropagation();
     window.location.href = "seminar-detail?seminarId=" + $(event.currentTarget).data("id");
 });
 
 $(".lecturerItem").click(function (event) {
+    event.stopPropagation();
     window.location.href = "edit-seminar-form?seminarId=" + $(event.currentTarget).data("id");
 });

@@ -2,12 +2,15 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,7 +33,10 @@ public class Test {
     private EvaluationType evaluationType;
     private LocalTime duration;
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Question> questions;
+    @Fetch(value = FetchMode.SUBSELECT)
+    @OrderBy("position asc")
+    private List<Question> questions;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<TestResult> results;
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<TestResult> results;
 }

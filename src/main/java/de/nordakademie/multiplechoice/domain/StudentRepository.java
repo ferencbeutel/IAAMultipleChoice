@@ -17,8 +17,8 @@ public class StudentRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void create(final Student student){
-        entityManager.persist(student);
+    public Student createOrUpdate(final Student student){
+        return entityManager.merge(student);
     }
 
     public List<Student> findAll(){
@@ -34,9 +34,5 @@ public class StudentRepository {
         } catch(NoResultException e) {
             return null;
         }
-    }
-
-    public Student update(final Student updateStudent){
-        return entityManager.merge(updateStudent);
     }
 }

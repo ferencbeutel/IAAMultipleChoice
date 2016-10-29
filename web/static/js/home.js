@@ -23,4 +23,15 @@ $(".lecturerItem").click(function (event) {
     window.location.href = "edit-seminar-form?seminarId=" + $(event.currentTarget).data("id");
 });
 
-var tooltips = $('[data-toggle="tooltip"]');
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
+$('.startTestButton.disabled').click(function (event) {
+    event.stopPropagation();
+});
+
+$('.startTestButton:not(".disabled")').click(function (event) {
+    event.stopPropagation();
+    window.location.href = "start-test?seminarId=" + $(event.currentTarget).data("id");
+});

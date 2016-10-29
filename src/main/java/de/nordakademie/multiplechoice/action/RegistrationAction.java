@@ -52,7 +52,7 @@ public class RegistrationAction extends BaseAction {
         user.setRegComplete(false);
         final Student student = new Student();
         student.setUser(user);
-        studentService.saveStudent(student);
+        studentService.createOrUpdate(student);
         sendConfirmationMail();
         return SUCCESS;
     }

@@ -70,8 +70,9 @@
                     <span>${seminar.beginDate} - ${seminar.endDate}</span>
                 </div>
                 <div class="col-xs-4 seminarListItemEntry">
+                    <!-- TODO: man soll klicken können wenn endDate <= now ist -->
                     <#if seminar.test?? && seminar.test.beginDate == now>
-                        <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
+                        <button class="btn btn-secondary startTestButton" data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
                     <#else>
                         <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip" date-placement="top" data-title="No test available yet"><@s.text name="home.StartTestButton"/></button>
                     </#if>

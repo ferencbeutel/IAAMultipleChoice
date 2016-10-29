@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,7 +25,7 @@ public class Student {
     @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
     private Set<Seminar> seminars;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<TestResult> results;
+    private List<TestResult> results;
 
     @Override
     public boolean equals(Object o) {

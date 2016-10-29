@@ -22,4 +22,20 @@ public class TestResult {
     private int points;
     private LocalDateTime startDateTime;
     private String accessToken;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TestResult that = (TestResult) o;
+
+        return testResultId == that.testResultId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (testResultId ^ (testResultId >>> 32));
+    }
 }

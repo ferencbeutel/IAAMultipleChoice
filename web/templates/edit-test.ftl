@@ -12,13 +12,14 @@
 
 <div class="container">
     <@s.form action="edit-test" method="post">
+        <@s.hidden class="form-control form-control-lg" name="seminarId" value="${seminar.seminarId}"/>
+        <@s.hidden class="form-control form-control-lg" name="test.testId" value="${seminar.test.testId}"/>
 
         <div class="form-group row">
             <label for="seminarName"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectSeminar"/> </label>
             <div class="col-md-7">
                 <@s.textfield class="form-control form-control-lg" id="seminarName" name="seminarName" value="${seminar.name}" readonly="true"/>
-                <@s.hidden class="form-control form-control-lg" id="seminarId" name="seminarId" value="${seminar.seminarId}"/>
             </div>
         </div>
 

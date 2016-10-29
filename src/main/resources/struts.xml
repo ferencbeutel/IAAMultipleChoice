@@ -13,6 +13,7 @@
             </result>
             <result name="alreadyEnrolled" type="freemarker">templates/already-enrolled-errorpage.ftl</result>
             <result name="testAlreadyStarted" type="freemarker">templates/test-already-started-errorpage.ftl</result>
+            <result name="seminarNotFound" type="freemarker">templates/seminar-not-found-errorpage.ftl</result>
             <result name="genericError" type="freemarker">templates/generic-errorpage.ftl</result>
         </global-results>
 
@@ -27,6 +28,8 @@
                                result="alreadyEnrolled"/>
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.TestAlreadyStartedException"
                                result="testAlreadyStarted"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.SeminarNotFoundException"
+                               result="seminarNotFound"/>
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException"
                                result="genericError"/>
         </global-exception-mappings>
@@ -146,6 +149,9 @@
         </action>
         <action name="test-already-started-errorpage">
             <result type="freemarker">templates/test-already-started-errorpage.ftl</result>
+        </action>
+        <action name="seminar-not-found-errorpage">
+            <result type="freemarker">templates/seminar-not-found-errorpage.ftl</result>
         </action>
         <action name="generic-errorpage">
             <result type="freemarker">templates/generic-errorpage.ftl</result>

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Logout</title>
+    <title>Perform Test</title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

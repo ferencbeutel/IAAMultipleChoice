@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.AlreadyEnrolledException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
@@ -32,16 +33,16 @@ public class EnrollSeminarAction extends BaseAction {
     public String enroll() throws NotLoggedInException {
         User user = getUserFromSession();
         if (!isUserStudent(user)) {
-            return "insufficientPermissionsError";
+            return "insufficientPermissions";
         }
         Student student = studentService.byUserId(user.getId());
         seminar = seminarService.byId(seminarId);
         if (seminar == null) {
-            return "seminarNotFoundError";
+            return "seminarNotFound";
         }
         Set<Student> newParticipantsSet = seminar.getParticipants();
         if (newParticipantsSet.contains(student)) {
-            return "alreadyEnrolledError";
+            return "alreadyEnrolled";
         }
         newParticipantsSet.add(student);
         seminar.setParticipants(newParticipantsSet);

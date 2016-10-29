@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title><p><@s.text name="notLoggedInErrorPage.title"/></p></title>
+    <title><@s.text name="notLoggedInErrorPage.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

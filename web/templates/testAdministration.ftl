@@ -15,7 +15,6 @@
     </div>
 </div>
 
-<p>Wenn Sie einen neuen Test erstellen wollen, klicken Sie bitte <a class="nav-link" href="add-test-form">hier</a>.</p>
 <p>Wenn Sie zu einem Test neue Fragen erstellen wollen, klicken Sie bitte <a class="nav-link" href="addQuestion-form">hier</a>.</p>
 <#include "/templates/frameFooter.ftl">
 </body>

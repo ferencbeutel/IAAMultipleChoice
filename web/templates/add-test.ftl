@@ -2,31 +2,30 @@
 
 <html>
 <head>
-    <title><@s.text name="addTest.title"/></title>
+    <title><@s.text name="add-test.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
-    <link rel="stylesheet" href="/static/css/addTest.css">
+    <link rel="stylesheet" href="/static/css/add-test.css">
     <link rel="stylesheet" href="/static/css/validationError.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
 
-<#if Session?? && Session.userMail??>
 <div class="container">
 
-    <@s.form action="addTest" method="post">
+    <@s.form action="add-test" method="post">
 
         <div class="form-group row">
             <label for="seminarName"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectSeminar"/> </label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectSeminar"/> </label>
             <div class="col-md-7">
-                <@s.textfield class="form-control form-control-lg" id="seminarName" name="seminarName" value="${seminarName}" readonly="true"/>
-                <@s.hidden class="form-control form-control-lg" id="seminarId" name="seminarId" value="${seminarId}"/>
+                <span>${seminar.name}</span>
+                <@s.hidden id="hiddenSeminarId" name="seminarId" value="${seminar.seminarId}"/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="selectcredits"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectCredits"/> </label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectCredits"/> </label>
             <div class="col-md-7">
                 <@s.select list="@de.nordakademie.multiplechoice.model.CreditPointsType@values()" class="select form-control" id="selectcredits" name="test.creditPoints" listValue="realVal"/>
             </div>
@@ -34,13 +33,13 @@
 
         <div class="form-group row">
             <label for="startDate"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="addTest.selectStartdate"/></label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="test.selectStartdate"/></label>
             <div class="col-md-7">
                 <div class="input-group">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
-                    <input class="form-control form-control-lg" id="startDate" name="startDate"
+                    <input class="form-control form-control-lg" id="startDate" name="startDateString"
                            placeholder="MM/DD/YYYY"
                            type="text"/>
                 </div>
@@ -50,13 +49,13 @@
 
         <div class="form-group row">
             <label for="endDate"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="addTest.selectEnddate"/></label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="test.selectEnddate"/></label>
             <div class="col-md-7">
                 <div class="input-group">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
-                    <input class="form-control form-control-lg" id="endDate" name="endDate" placeholder="MM/DD/YYYY"
+                    <input class="form-control form-control-lg" id="endDate" name="endDateString" placeholder="MM/DD/YYYY"
                            type="text"/>
                 </div>
             </div>
@@ -65,15 +64,15 @@
 
         <div class="form-group row">
             <label for="duration"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="addTest.selectDuration"/></label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="test.selectDuration"/></label>
             <div class="col-md-7">
-                <@s.textfield class="form-control form-control-lg" id="duration" name="duration"/>
+                <@s.textfield placeholder="HH:mm" class="form-control form-control-lg" id="duration" name="durationString"/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="passThreshold"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="addTest.selectPassThreshold"/></label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="test.selectPassThreshold"/></label>
             <div class="col-md-7">
                 <@s.textfield class="form-control form-control-lg" id="passThreshold" name="test.minScore"/>
             </div>
@@ -81,12 +80,12 @@
 
         <div class="form-group row">
             <label for="selectFalseAnswerGrading"
-                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="addTest.selectFalseAnswerGrading"/> </label>
+                   class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectFalseAnswerGrading"/> </label>
             <div class="col-md-7">
                 <@s.select list="@de.nordakademie.multiplechoice.model.EvaluationType@values()" class="select form-control" id="selectfalseanswergrading" name="test.evaluationType" listValue="realVal"/>
                     <#--            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
-                <option value="SUBSTRACT"> <@s.text name="addTest.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
-                <option value="IGNORE"> <@s.text name="addTest.selectFalseAnswerGrading.OnePointDeduction"/></option>
+                <option value="SUBSTRACT"> <@s.text name="add-test.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
+                <option value="IGNORE"> <@s.text name="add-test.selectFalseAnswerGrading.OnePointDeduction"/></option>
             </select>-->
             </div>
         </div>
@@ -99,11 +98,7 @@
     </@s.form>
 </div>
 
-<#else>
-<p><@s.text name="global.notLoggedIn.info"/></p>
-</#if>
-
 <#include "/templates/frameFooter.ftl">
-<script type="text/javascript" src="/static/js/addTestTimePicker.js"></script>
+<script type="text/javascript" src="/static/js/add-test-time-picker.js"></script>
 </body>
 </html>

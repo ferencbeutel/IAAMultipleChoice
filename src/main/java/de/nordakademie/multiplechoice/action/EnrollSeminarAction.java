@@ -45,7 +45,7 @@ public class EnrollSeminarAction extends BaseAction {
         }
         newParticipantsSet.add(student);
         seminar.setParticipants(newParticipantsSet);
-        seminarService.updateSeminar(seminar);
+        seminarService.createOrUpdate(seminar);
 
         return SUCCESS;
     }

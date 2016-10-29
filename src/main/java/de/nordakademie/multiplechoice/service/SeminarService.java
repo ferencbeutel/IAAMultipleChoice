@@ -1,9 +1,7 @@
 package de.nordakademie.multiplechoice.service;
 
 import de.nordakademie.multiplechoice.domain.SeminarRepository;
-import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Seminar;
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +20,8 @@ public class SeminarService {
     private SeminarRepository seminarRepository;
 
     @Transactional
-    public void saveSeminar(final Seminar seminar) {
-        seminarRepository.create(seminar);
-    }
-
-    @Transactional
-    public Seminar updateSeminar(final Seminar seminar){
-        return seminarRepository.update(seminar);
+    public Seminar createOrUpdate(final Seminar seminar){
+        return seminarRepository.createOrUpdate(seminar);
     }
 
     @Transactional(readOnly = true)

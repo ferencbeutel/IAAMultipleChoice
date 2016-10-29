@@ -26,7 +26,7 @@
             <div class="input-group-addon">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
             </div>
-            <input class="form-control form-control-lg" id="startDate" name="beginDate" placeholder="MM/DD/YYYY"
+            <input class="form-control form-control-lg" id="startDate" name="beginDateString" placeholder="MM/DD/YYYY"
                    type="text"/>
         </div>
     </div>
@@ -39,7 +39,7 @@
             <div class="input-group-addon">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
             </div>
-            <input class="form-control form-control-lg" id="endDate" name="endDate" placeholder="MM/DD/YYYY"
+            <input class="form-control form-control-lg" id="endDate" name="endDateString" placeholder="MM/DD/YYYY"
                    type="text"/>
         </div>
     </div>

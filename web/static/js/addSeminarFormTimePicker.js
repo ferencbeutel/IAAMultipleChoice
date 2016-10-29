@@ -5,7 +5,7 @@ $(document).ready(function () {
     var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
     start_date_input.datepicker({
         language: language,
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true
@@ -13,7 +13,7 @@ $(document).ready(function () {
     var end_date_input = $('#endDate');
     end_date_input.datepicker({
         language: language,
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true

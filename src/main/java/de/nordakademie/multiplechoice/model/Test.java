@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 /**
@@ -28,8 +29,8 @@ public class Test {
     @Enumerated(EnumType.STRING)
     private EvaluationType evaluationType;
     private LocalTime duration;
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Question> questions;
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<TestResult> results;
 }

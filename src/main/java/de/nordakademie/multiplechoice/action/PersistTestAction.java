@@ -2,53 +2,62 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
-import de.nordakademie.multiplechoice.model.*;
-import de.nordakademie.multiplechoice.service.*;
+import de.nordakademie.multiplechoice.model.Seminar;
+import de.nordakademie.multiplechoice.model.Test;
+import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.util.DateTimeValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * Created by Hendrik Peters on 17.10.16.
  */
-public class AddSeminarAction extends BaseAction {
+public class PersistTestAction extends BaseAction {
     @Autowired
     private SeminarService seminarService;
 
-    @Autowired
-    private LecturerService lecturerService;
+    @Getter
+    @Setter
+    private Test test;
 
     @Getter
     @Setter
-    private Seminar seminar;
+    private long seminarId;
 
     @Setter
-    private String beginDateString;
-
+    private String startDateString;
     @Setter
     private String endDateString;
+    @Setter
+    private String durationString;
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    public String addSeminar() throws NotLoggedInException, InsufficientPermissionsException {
+    public String persistTest() throws NotLoggedInException, InsufficientPermissionsException {
         User user = getUserFromSession();
         if (!isUserLecturer(user)) {
             throw new InsufficientPermissionsException();
         }
-        seminar.setBeginDate(LocalDate.parse(beginDateString, dateFormatter));
-        seminar.setEndDate(LocalDate.parse(endDateString, dateFormatter));
-        seminar.setLecturer(lecturerService.byUserId(user.getId()));
+        test.setBeginDate(LocalDate.parse(startDateString, dateFormatter));
+        test.setEndDate(LocalDate.parse(endDateString, dateFormatter));
+        test.setDuration(LocalTime.parse(durationString, durationFormatter));
+        Seminar seminar = seminarService.byId(seminarId);
+        seminar.setTest(test);
         seminarService.createOrUpdate(seminar);
         return SUCCESS;
     }
 
     public void validate() {
+
         boolean startDateParseable = false;
-        if(!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
+        if(!DateTimeValidationUtils.isDateParseable(startDateString, dateFormatter)) {
             addFieldError("startDate", "Please enter a valid begin date");
         } else {
             startDateParseable = true;
@@ -62,7 +71,7 @@ public class AddSeminarAction extends BaseAction {
         }
 
         if(endDateParseable && startDateParseable) {
-            LocalDate startDate = LocalDate.parse(beginDateString, dateFormatter);
+            LocalDate startDate = LocalDate.parse(startDateString, dateFormatter);
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
             if(startDate.isBefore(now)) {
@@ -73,16 +82,13 @@ public class AddSeminarAction extends BaseAction {
             }
         }
 
-        if (seminar.getDescription() == null || seminar.getDescription().length() < 2) {
-            addFieldError("description", "Please enter a description to the seminar");
+        if(!DateTimeValidationUtils.isTimeParseable(durationString, durationFormatter)) {
+            addFieldError("duration", "Please enter a valid duration");
         }
-        if (seminar.getMaxParticipants() <= 0) {
-            addFieldError("maxParticipants", "Please enter a maximum number of participants > 0");
-        }
-        if (seminar.getName() == null || seminar.getName().length() < 2) {
-            addFieldError("name", "Please enter a name to the seminar");
+
+        if(test.getMinScore() <= 0) {
+            addFieldError("minScore", "Please enter a minimum score greater than 0");
         }
     }
-
-
 }
+

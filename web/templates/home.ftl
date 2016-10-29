@@ -4,7 +4,7 @@
 <head>
     <title>Registration</title>
 <#include "/templates/frameHeadImports.ftl">
-    <link rel="stylesheet" href="/static/css/seminarList.css">
+    <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -43,26 +43,26 @@
 
     </div>
     <#list seminarList as seminar>
-    <div class="row seminarListItem " data-name="${seminar.name}" data-id="${seminar.seminarId}">
-        <div class="col-xs-4 seminarListItemEntry ">
-            <span>${seminar.name}</span>
-        </div>
-        <div class="col-xs-4 seminarListItemEntry">
-            <span>${seminar.beginDate} - ${seminar.endDate}</span>
-        </div>
+        <div class="row seminarListItem" data-id="${seminar.seminarId}">
+            <div class="col-xs-4 seminarListItemEntry">
+                <span>${seminar.name}</span>
+            </div>
+            <div class="col-xs-4 seminarListItemEntry">
+                <span>${seminar.beginDate} - ${seminar.endDate}</span>
+            </div>
 
-    <div class="col-xs-4 seminarListItemEntry">
-        <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
-                <!--ToDo: button nur anzeigen, wenn Test da -->
-                <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
+            <div class="col-xs-3 seminarListItemEntry">
+                <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
+                    <!--ToDo: button nur anzeigen, wenn Test da -->
+                    <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
 
-            <#elseif Session?? && Session.user?? && Session.user.getClass()?contains("Lecturer")&& seminar.test??>
-                <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
-            <#else>
-                <button class="btn btn-secondary addTestButton"><@s.text name="home.AddTestButton"/></button>
+                <#elseif Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer" && seminar.test??>
+                    <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
+                <#elseif Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
+                    <button class="btn btn-secondary add-testButton"><@s.text name="home.add-testButton"/></button>
 
-            </#if>
-        </div>
+                </#if>
+            </div>
         </div>
     </#list>
 </div>
@@ -70,6 +70,6 @@
 
 </#if>
 <#include "/templates/frameFooter.ftl">
-<script type="text/javascript" src="/static/js/addTest.js"></script>
+<script type="text/javascript" src="/static/js/add-test.js"></script>
 </body>
 </html>

@@ -2,25 +2,33 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-    <constant name="struts.custom.i18n.resources" value="messages" />
-    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <constant name="struts.custom.i18n.resources" value="messages"/>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    <constant name="struts.xwork.chaining.copyFieldErrors" value="true"/>
     <package name="default" extends="struts-default" namespace="/">
         <global-results>
             <result name="notLoggedIn" type="freemarker">templates/not-logged-in-errorpage.ftl</result>
             <result name="alreadyLoggedIn" type="freemarker">templates/already-logged-in-errorpage.ftl</result>
-            <result name="insufficientPermissions" type="freemarker">templates/insufficient-permissions-errorpage.ftl</result>
+            <result name="insufficientPermissions" type="freemarker">templates/insufficient-permissions-errorpage.ftl
+            </result>
             <result name="alreadyEnrolled" type="freemarker">templates/already-enrolled-errorpage.ftl</result>
             <result name="testAlreadyStarted" type="freemarker">templates/test-already-started-errorpage.ftl</result>
             <result name="genericError" type="freemarker">templates/generic-errorpage.ftl</result>
         </global-results>
 
         <global-exception-mappings>
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.NotLoggedInException" result="notLoggedIn" />
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.AlreadyLoggedInException" result="alreadyLoggedIn" />
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException" result="insufficientPermissions" />
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.AlreadyEnrolledException" result="alreadyEnrolled" />
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.TestAlreadyStartedException" result="testAlreadyStarted" />
-            <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException" result="genericError" />
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.NotLoggedInException"
+                               result="notLoggedIn"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.AlreadyLoggedInException"
+                               result="alreadyLoggedIn"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException"
+                               result="insufficientPermissions"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.AlreadyEnrolledException"
+                               result="alreadyEnrolled"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.TestAlreadyStartedException"
+                               result="testAlreadyStarted"/>
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException"
+                               result="genericError"/>
         </global-exception-mappings>
 
 
@@ -45,19 +53,26 @@
         <action name="chooseSeminar">
             <result type="freemarker">templates/chooseSeminar.ftl</result>
         </action>
-        <action name="addTest-form" class="de.nordakademie.multiplechoice.action.TestFormAction" method="openForm">
-            <result type="freemarker">templates/addTest.ftl</result>
+        <action name="add-test-form" class="de.nordakademie.multiplechoice.action.TestFormAction" method="openAddForm">
+            <interceptor-ref name="chain"/>
+            <interceptor-ref name="basicStack"/>
+            <result type="freemarker">templates/add-test.ftl</result>
         </action>
-        <action name="addTest" class="de.nordakademie.multiplechoice.action.AddTestAction" method="addTest">
+        <action name="add-test" class="de.nordakademie.multiplechoice.action.PersistTestAction" method="persistTest">
             <result type="chain">home</result>
-            <result name="input" type="freemarker">
-                <param name="location">templates/addTest.ftl</param>
-                <param name="seminarId">${seminarId}</param>
-                <param name="seminarName">${seminarName}</param>
-            </result>
-
+            <result name="input" type="chain">add-test-form</result>
         </action>
-        <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction" method="openForm">
+        <action name="edit-test-form" class="de.nordakademie.multiplechoice.action.TestFormAction" method="openEditForm">
+            <interceptor-ref name="chain"/>
+            <interceptor-ref name="basicStack"/>
+            <result type="freemarker">templates/edit-test.ftl</result>
+        </action>
+        <action name="edit-test" class="de.nordakademie.multiplechoice.action.PersistTestAction" method="persistTest">
+            <result type="chain">home</result>
+            <result name="input" type="chain">edit-test-form</result>
+        </action>
+        <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
+                method="openForm">
             <result type="freemarker">templates/addQuestion-form.ftl</result>
         </action>
         <action name="addQuestion" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="addQuestion">
@@ -85,7 +100,8 @@
             <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
             <result name="input" type="freemarker">templates/registration-form.ftl</result>
         </action>
-        <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction" method="acceptRegistration">
+        <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction"
+                method="acceptRegistration">
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
@@ -96,10 +112,12 @@
             <result type="chain">home</result>
             <result name="input" type="freemarker">templates/add-seminar-form.ftl</result>
         </action>
-        <action name="seminar-list" class="de.nordakademie.multiplechoice.action.SeminarListAction" method="displaySeminarList">
+        <action name="seminar-list" class="de.nordakademie.multiplechoice.action.SeminarListAction"
+                method="displaySeminarList">
             <result type="freemarker">templates/seminar-list.ftl</result>
         </action>
-        <action name="seminar-detail" class="de.nordakademie.multiplechoice.action.SeminarDetailAction" method="displaySeminarDetail">
+        <action name="seminar-detail" class="de.nordakademie.multiplechoice.action.SeminarDetailAction"
+                method="displaySeminarDetail">
             <result type="freemarker">templates/seminar-detail.ftl</result>
         </action>
         <action name="enroll-seminar" class="de.nordakademie.multiplechoice.action.EnrollSeminarAction" method="enroll">

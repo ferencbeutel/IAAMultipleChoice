@@ -27,8 +27,8 @@
 
     </div>
 </div>
-<#if Session?? && Session.userMail??>
-<div class="seminarList">
+<#if Session?? && Session.userMail?? && Session.userType??>
+<div id="seminarList" class="seminarList">
 
     <div class="row seminarListItem seminarListHeader">
         <div class="col-xs-4 seminarListItemEntry">Seminar Name</div>
@@ -43,27 +43,44 @@
 
     </div>
     <#list seminarList as seminar>
-        <div class="row seminarListItem" data-id="${seminar.seminarId}">
-            <div class="col-xs-4 seminarListItemEntry">
-                <span>${seminar.name}</span>
+        <#if Session.userType == "Lecturer">
+            <div class="row seminarListItem lecturerItem" data-id="${seminar.seminarId}">
+                <span class="overlay"></span>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <span>${seminar.name}</span>
+                </div>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <span>${seminar.beginDate} - ${seminar.endDate}</span>
+                </div>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <#if seminar.test??>
+                        <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
+                    <#else>
+                        <button class="btn btn-secondary addTestButton"><@s.text name="home.add-testButton"/></button>
+                    </#if>
+                </div>
             </div>
-            <div class="col-xs-4 seminarListItemEntry">
-                <span>${seminar.beginDate} - ${seminar.endDate}</span>
+        <#elseif Session.userType == "Student">
+            <div class="row seminarListItem studentItem" data-id="${seminar.seminarId}">
+                <span class="overlay"></span>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <span>${seminar.name}</span>
+                </div>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <span>${seminar.beginDate} - ${seminar.endDate}</span>
+                </div>
+                <div class="col-xs-4 seminarListItemEntry">
+                    <#if seminar.test??>
+                        <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
+                    <#else>
+                        <button disabled class="btn btn-secondary startTestButton">
+                            <@s.text name="home.StartTestButton"/>
+                        </button>
+                    </#if>
+                </div>
+                <!--TODO: only display if test is actually executable time-wise-->
             </div>
-
-            <div class="col-xs-3 seminarListItemEntry">
-                <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
-                    <!--ToDo: button nur anzeigen, wenn Test da -->
-                    <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
-
-                <#elseif Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer" && seminar.test??>
-                    <button class="btn btn-secondary editTestButton"><@s.text name="home.EditTestButton"/></button>
-                <#elseif Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
-                    <button class="btn btn-secondary add-testButton"><@s.text name="home.add-testButton"/></button>
-
-                </#if>
-            </div>
-        </div>
+        </#if>
     </#list>
 </div>
 
@@ -71,5 +88,6 @@
 </#if>
 <#include "/templates/frameFooter.ftl">
 <script type="text/javascript" src="/static/js/add-test.js"></script>
+<script type="text/javascript" src="/static/js/home.js"></script>
 </body>
 </html>

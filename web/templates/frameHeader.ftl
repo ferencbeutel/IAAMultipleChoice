@@ -50,7 +50,7 @@
                         <#if currentPage == "seminar-form">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkCreateSeminar"/></a>
                         <#else>
-                            <a class="nav-link" href="seminar-form"><@s.text name="frameHeader.linkCreateSeminar"/></a>
+                            <a class="nav-link" href="add-seminar-form"><@s.text name="frameHeader.linkCreateSeminar"/></a>
                         </#if>
                     </#if>
                     </li>

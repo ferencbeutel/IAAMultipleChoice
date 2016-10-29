@@ -20,11 +20,8 @@ public class Seminar {
     @Id
     @GeneratedValue
     private long seminarId;
-    @NaturalId
     private String name;
-    @NaturalId
     private LocalDate beginDate;
-    @NaturalId
     private LocalDate endDate;
     @Column(length = 5000)
     private String description;

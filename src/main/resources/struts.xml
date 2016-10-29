@@ -105,12 +105,21 @@
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
             <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
-        <action name="seminar-form" class="de.nordakademie.multiplechoice.action.SeminarFormAction" method="openForm">
+        <action name="add-seminar-form" class="de.nordakademie.multiplechoice.action.SeminarFormAction" method="openAddForm">
             <result type="freemarker">templates/add-seminar-form.ftl</result>
         </action>
-        <action name="addSeminar" class="de.nordakademie.multiplechoice.action.AddSeminarAction" method="addSeminar">
+        <action name="edit-seminar-form" class="de.nordakademie.multiplechoice.action.SeminarFormAction" method="openEditForm">
+            <interceptor-ref name="chain"/>
+            <interceptor-ref name="basicStack"/>
+            <result type="freemarker">templates/edit-seminar-form.ftl</result>
+        </action>
+        <action name="add-seminar" class="de.nordakademie.multiplechoice.action.PersistSeminarAction" method="persistSeminar">
             <result type="chain">home</result>
             <result name="input" type="freemarker">templates/add-seminar-form.ftl</result>
+        </action>
+        <action name="edit-seminar" class="de.nordakademie.multiplechoice.action.PersistSeminarAction" method="persistSeminar">
+            <result type="chain">home</result>
+            <result name="input" type="chain">edit-seminar-form</result>
         </action>
         <action name="seminar-list" class="de.nordakademie.multiplechoice.action.SeminarListAction"
                 method="displaySeminarList">

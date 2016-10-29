@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by Ferenc on 19.10.2016.
  */
-public class AddSeminarAction extends BaseAction {
+public class PersistSeminarAction extends BaseAction {
     @Autowired
     private SeminarService seminarService;
 
@@ -32,13 +32,18 @@ public class AddSeminarAction extends BaseAction {
     @Setter
     private String endDateString;
 
+    @Setter
+    @Getter
+    private long seminarId;
+
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public String addSeminar() throws NotLoggedInException, InsufficientPermissionsException {
+    public String persistSeminar() throws NotLoggedInException, InsufficientPermissionsException {
         User user = getUserFromSession();
         if (!isUserLecturer(user)) {
             throw new InsufficientPermissionsException();
         }
+        seminar.setSeminarId(seminarId);
         seminar.setBeginDate(LocalDate.parse(beginDateString, dateFormatter));
         seminar.setEndDate(LocalDate.parse(endDateString, dateFormatter));
         seminar.setLecturer(lecturerService.byUserId(user.getId()));
@@ -48,27 +53,27 @@ public class AddSeminarAction extends BaseAction {
 
     public void validate() {
         boolean startDateParseable = false;
-        if(!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
+        if (!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
             addFieldError("startDate", "Please enter a valid begin date");
         } else {
             startDateParseable = true;
         }
 
         boolean endDateParseable = false;
-        if(!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
+        if (!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
             addFieldError("endDateString", "Please enter a valid end date");
         } else {
             endDateParseable = true;
         }
 
-        if(endDateParseable && startDateParseable) {
+        if (endDateParseable && startDateParseable) {
             LocalDate startDate = LocalDate.parse(beginDateString, dateFormatter);
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
-            if(startDate.isBefore(now)) {
+            if (startDate.isBefore(now)) {
                 addFieldError("startDate", "Please enter a start date which is not in the past");
             }
-            if(endDate.isBefore(startDate)) {
+            if (endDate.isBefore(startDate)) {
                 addFieldError("endDateString", "Please enter an end date which is after the start date");
             }
         }

@@ -37,6 +37,7 @@ public class SeminarService {
     @Transactional(readOnly = true)
     public List<Seminar> allWithTestsStartingToday() {
         List<Seminar> allSeminars = seminarRepository.findAll();
-        return allSeminars.stream().filter(seminar -> seminar.getTest().getBeginDate().isEqual(LocalDate.now())).collect(Collectors.toList());
+        List<Seminar> seminarsWithTest = allSeminars.stream().filter(seminar -> seminar.getTest() != null).collect(Collectors.toList());
+        return seminarsWithTest.stream().filter(seminar -> seminar.getTest().getBeginDate().isEqual(LocalDate.now())).collect(Collectors.toList());
     }
 }

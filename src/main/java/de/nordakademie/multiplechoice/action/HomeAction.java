@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +32,9 @@ public class HomeAction extends BaseAction {
 
     @Getter
     private Set<Seminar> seminarList = new HashSet<>();
+
+    @Getter
+    private String now = LocalDate.now().toString();
 
     //TODO: Overthink current student/lecturer implementation since it leads to duplicate code
     public String execute() throws GenericErrorException {

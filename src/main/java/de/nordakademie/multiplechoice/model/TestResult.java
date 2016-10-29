@@ -21,4 +21,5 @@ public class TestResult {
     private long testResultId;
     private int points;
     private LocalDateTime startDateTime;
+    private String accessToken;
 }

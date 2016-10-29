@@ -70,15 +70,12 @@
                     <span>${seminar.beginDate} - ${seminar.endDate}</span>
                 </div>
                 <div class="col-xs-4 seminarListItemEntry">
-                    <#if seminar.test??>
+                    <#if seminar.test?? && seminar.test.beginDate == now>
                         <button class="btn btn-secondary startTestButton"><@s.text name="home.StartTestButton"/></button>
                     <#else>
-                        <button disabled class="btn btn-secondary startTestButton">
-                            <@s.text name="home.StartTestButton"/>
-                        </button>
+                        <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip" date-placement="top" data-title="No test available yet"><@s.text name="home.StartTestButton"/></button>
                     </#if>
                 </div>
-                <!--TODO: only display if test is actually executable time-wise-->
             </div>
         </#if>
     </#list>

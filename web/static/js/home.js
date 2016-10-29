@@ -22,3 +22,5 @@ $(".lecturerItem").click(function (event) {
     event.stopPropagation();
     window.location.href = "edit-seminar-form?seminarId=" + $(event.currentTarget).data("id");
 });
+
+var tooltips = $('[data-toggle="tooltip"]');

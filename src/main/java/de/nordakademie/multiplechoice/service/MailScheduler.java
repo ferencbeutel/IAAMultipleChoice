@@ -1,6 +1,6 @@
 package de.nordakademie.multiplechoice.service;
 
-import com.sun.tools.javac.jvm.Gen;
+
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Set;
 
 /**
@@ -37,10 +38,10 @@ public class MailScheduler {
     @Scheduled(cron = "0 0 1 * * *")
     public void sendTestToken() throws GenericErrorException {
         for (Seminar seminar : seminarService.allWithTestsStartingToday()) {
-            for(Student student : seminar.getParticipants()) {
+            for (Student student : seminar.getParticipants()) {
                 List<TestResult> testResultIntersection = new ArrayList<>(CollectionUtils.intersection(seminar.getTest().getResults(), student.getResults()));
                 // There should be no test result which the student AND the test contains in their results yet
-                if(testResultIntersection.size() != 0) {
+                if (testResultIntersection.size() != 0) {
                     //TODO: throw exception
                     System.out.println("oh noes! not again...");
                     return;
@@ -59,7 +60,7 @@ public class MailScheduler {
 
                 // There should be exactly one TestResult which is not in the student AND the test(the one we just persisted)
                 List<TestResult> testResultDisjunction = new ArrayList<>(CollectionUtils.disjunction(student.getResults(), seminar.getTest().getResults()));
-                if(testResultDisjunction.size() != 1) {
+                if (testResultDisjunction.size() != 1) {
                     //TODO: throw ex
                     System.out.println("oh noes #2...");
                     return;

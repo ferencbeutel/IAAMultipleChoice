@@ -10,8 +10,8 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <p>Sie haben sich erfolgreich Abgemeldet.</p>
-        <p>Bis Bald!</p>
+        <p><@s.text name="logout.info"/></p>
+        <p><@s.text name="logout.seeyou"/></p>
     </div>
 </div>
 

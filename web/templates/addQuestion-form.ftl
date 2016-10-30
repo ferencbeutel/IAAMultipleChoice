@@ -55,7 +55,7 @@
 
     <div class="container none" id="answerGap">
         <div class="form-group row" id="answerGap1">
-            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg">Antwort 1</label>
+            <label for="answerGap1Text" class="col-md-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer1"/></label>
             <div class="col-md-10">
                 <@s.textfield class="form-control form-control-lg answer" id="answerGap1Text" name="answerGap1Text"/>
                 <input type="radio" class="none" id="answerGap1Valid" name="answerValidity"/>

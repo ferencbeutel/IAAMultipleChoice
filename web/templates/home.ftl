@@ -31,14 +31,14 @@
 <div id="seminarList" class="seminarList">
 
     <div class="row seminarListItem seminarListHeader">
-        <div class="col-xs-4 seminarListItemEntry">Seminar Name</div>
-        <div class="col-xs-4 seminarListItemEntry">Begindate - Enddate</div>
+        <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderName"/></div>
+        <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
 
         <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
-            <div class="col-xs-4 seminarListItemEntry">start the test</div>
+            <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.startTest"/></div>
 
         <#else>
-            <div class="col-xs-4 seminarListItemEntry">Test verwalten</div>
+            <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.AdministrateTest"/></div>
         </#if>
 
     </div>

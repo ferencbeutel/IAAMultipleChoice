@@ -1,5 +1,5 @@
 <#assign currentPage = "chooseSeminar">
-
+<!-- TODO: Seite löschen-->
 <html>
 <head>
     <title>Seminar auswählen</title>

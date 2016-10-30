@@ -20,7 +20,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == studentUser>
                         <#if currentPage == "seminarList">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkSeminarlist"/></a>
                         <#else>
@@ -29,7 +29,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == lecturerUser>
                         <#if currentPage == "testAdministration">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkTestAdministration"/></a>
                         <#else>
@@ -38,7 +38,7 @@
                     </#if>
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == studentUser>
                         <#if currentPage == "results">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkResults"/></a>
                         <#else>
@@ -49,7 +49,7 @@
 
                     </li>
                     <li class="nav-item">
-                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Lecturer">
+                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == lecturerUser>
                         <#if currentPage == "seminar-form">
                             <a class="nav-link active" href="#"><@s.text name="frameHeader.linkCreateSeminar"/></a>
                         <#else>

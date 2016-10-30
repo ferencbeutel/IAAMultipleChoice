@@ -23,7 +23,7 @@
             <span>${seminar.beginDate} - ${seminar.endDate}</span>
         </div>
         <div class="col-xs-4 seminarListItemEntry">
-            <span>${seminar.lecturer.user.name} ${seminar.lecturer.user.surName}</span>
+            <span>${seminar.lecturer.name} ${seminar.lecturer.surName}</span>
         </div>
     </div>
     <div class="row seminarListHeader">
@@ -40,7 +40,7 @@
 <#list seminar.participants as participant>
     <div class="row seminarListItem">
         <div class="col-xs-12 centered">
-            <span>${participant.user.name} ${participant.user.surName}</span>
+            <span>${participant.name} ${participant.surName}</span>
         </div>
     </div>
 <#else>

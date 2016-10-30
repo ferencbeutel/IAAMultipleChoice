@@ -1,12 +1,13 @@
 package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
-import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LoginAction extends BaseAction {
 
     @Autowired
-    private UserService userService;
+    private StudentService studentService;
+
+    @Autowired
+    private LecturerService lecturerService;
 
     @Getter
     @Setter
@@ -27,24 +31,28 @@ public class LoginAction extends BaseAction {
     @Setter
     private String password;
 
-    public String login() throws AlreadyLoggedInException {
+    public String login() throws AlreadyLoggedInException, GenericErrorException {
         if (isUserLoggedIn()) {
             throw new AlreadyLoggedInException();
         }
-        User user = userService.byMail(mail);
-        String userType = "";
-        if(isUserLecturer(user)) {
-            userType = "Lecturer";
-        } else if (isUserStudent(user)) {
-            userType = "Student";
+        if (studentService.findByMail(mail) != null) {
+            setUserInSession(mail, UserType.STUDENT);
+            return SUCCESS;
         }
-        SetUserInSession(mail, userType);
-        return SUCCESS;
+        if (lecturerService.findByMail(mail) != null) {
+            setUserInSession(mail, UserType.LECTURER);
+            return SUCCESS;
+        }
+        // should not happen because the validate method checks whether the user can be logged in or not
+        throw new GenericErrorException();
     }
 
     public void validate() {
+        User user = lecturerService.findByMail(mail);
+        if (user == null) {
+            user = studentService.findByMail(mail);
+        }
 
-        final User user = userService.byMail(mail);
         if (mail == null || mail.length() == 0) {
             addFieldError("mail", "Please enter your E-Mail-Address");
         } else {
@@ -60,10 +68,8 @@ public class LoginAction extends BaseAction {
 
         if (password == null || password.length() == 0) {
             addFieldError("password", "Please enter your valid Password");
-        } else if (user != null) {
-            if (!user.getPassword().equals(password)) {
-                addFieldError("password", "Wrong password");
-            }
+        } else if (user != null && !user.getPassword().equals(password)) {
+            addFieldError("password", "Wrong password");
         }
     }
 }

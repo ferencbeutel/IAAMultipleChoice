@@ -1,7 +1,6 @@
 package de.nordakademie.multiplechoice.service;
 
 import de.nordakademie.multiplechoice.domain.StudentRepository;
-import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +18,28 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     @Transactional
-    public Student createOrUpdate(final Student student){
+    public Student save(final Student student){
         return studentRepository.createOrUpdate(student);
     }
 
     @Transactional(readOnly = true)
-    public List<Student> listAll() {
+    public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
     @Transactional(readOnly = true)
-    public Student byUserId (final long userId){
-        return studentRepository.findByUserId(userId);
+    public Student findById(final long id){
+        return studentRepository.byId(id);
     }
+
+    @Transactional(readOnly = true)
+    public Student findByMail(final String mail){
+        return studentRepository.byMail(mail);
+    }
+
+    @Transactional(readOnly = true)
+    public Student findByRegToken(final String regToken) {
+        return studentRepository.byRegToken(regToken);
+    }
+
 }

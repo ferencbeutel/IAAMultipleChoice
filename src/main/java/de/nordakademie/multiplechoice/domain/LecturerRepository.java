@@ -1,7 +1,6 @@
 package de.nordakademie.multiplechoice.domain;
 
 import de.nordakademie.multiplechoice.model.Lecturer;
-import de.nordakademie.multiplechoice.model.Lecturer;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,26 +18,33 @@ public class LecturerRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void create(final Lecturer lecturer){
-        entityManager.persist(lecturer);
+    public void createOrUpdate(final Lecturer lecturer) {
+        entityManager.merge(lecturer);
     }
 
-    public List<Lecturer> findAll(){
+    public List<Lecturer> findAll() {
         return entityManager.createQuery("SELECT lecturer FROM Lecturer lecturer", Lecturer.class).getResultList();
     }
 
-    public Lecturer findByUserId(final long id) {
+    public Lecturer byId(final long lecturerId) {
         try {
             return entityManager.createQuery(
-                    "Select lecturer FROM Lecturer lecturer WHERE user_id = :id", Lecturer.class)
-                    .setParameter("id", id)
+                    "Select lecturer FROM Lecturer lecturer WHERE userId = :id", Lecturer.class)
+                    .setParameter("id", lecturerId)
                     .getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
 
-    public Lecturer update(final Lecturer updateLecturer){
-        return entityManager.merge(updateLecturer);
+    public Lecturer byMail(final String mail) {
+        try {
+            return entityManager.createQuery(
+                    "SELECT lecturer FROM Lecturer lecturer WHERE email = :mail", Lecturer.class)
+                    .setParameter("mail", mail)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

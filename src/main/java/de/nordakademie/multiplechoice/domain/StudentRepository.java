@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.domain;
 
+import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
 import org.springframework.stereotype.Repository;
 
@@ -25,13 +26,35 @@ public class StudentRepository {
         return entityManager.createQuery("SELECT student FROM Student student", Student.class).getResultList();
     }
 
-    public Student findByUserId(final long id) {
+    public Student byId(final long studentId) {
         try {
             return entityManager.createQuery(
-                    "Select student FROM Student student WHERE user_id = :id", Student.class)
-                    .setParameter("id", id)
+                    "Select student FROM Student student WHERE userId = :id", Student.class)
+                    .setParameter("id", studentId)
                     .getSingleResult();
         } catch(NoResultException e) {
+            return null;
+        }
+    }
+
+    public Student byMail(final String mail) {
+        try {
+            return entityManager.createQuery(
+                    "SELECT student FROM Student student WHERE email = :mail", Student.class)
+                    .setParameter("mail", mail)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public Student byRegToken(final String regToken) {
+        try {
+            return entityManager.createQuery(
+                    "SELECT student FROM Student student WHERE regToken = :regToken", Student.class)
+                    .setParameter("regToken", regToken)
+                    .getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }

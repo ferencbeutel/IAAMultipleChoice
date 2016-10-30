@@ -1,10 +1,9 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
-import de.nordakademie.multiplechoice.model.Seminar;
-import de.nordakademie.multiplechoice.model.Test;
-import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.util.DateTimeValidationUtils;
 import lombok.Getter;
@@ -40,9 +39,8 @@ public class PersistTestAction extends BaseAction {
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    public String persistTest() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if (!isUserLecturer(user)) {
+    public String persistTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
+        if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
         test.setBeginDate(LocalDate.parse(startDateString, dateFormatter));

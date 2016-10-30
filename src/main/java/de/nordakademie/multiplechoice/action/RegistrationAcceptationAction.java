@@ -1,10 +1,10 @@
 package de.nordakademie.multiplechoice.action;
 
-import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
+import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
-import de.nordakademie.multiplechoice.service.UserService;
+import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class RegistrationAcceptationAction extends BaseAction {
     private String regCode;
 
     @Autowired
-    private UserService userService;
+    private StudentService studentService;
 
     public String acceptRegistration() throws AlreadyLoggedInException, GenericErrorException {
         if(isUserLoggedIn()) {
@@ -28,13 +28,12 @@ public class RegistrationAcceptationAction extends BaseAction {
         if(regCode == null) {
             throw new GenericErrorException();
         }
-        final User userToUnlock = userService.byRegToken(regCode);
-        if (userToUnlock == null) {
+        final Student studentToUnlock = studentService.findByRegToken(regCode);
+        if (studentToUnlock == null) {
             throw new GenericErrorException();
         }
-
-        userToUnlock.setRegComplete(true);
-        userService.updateUser(userToUnlock);
+        studentToUnlock.setRegComplete(true);
+        studentService.save(studentToUnlock);
 
         return SUCCESS;
     }

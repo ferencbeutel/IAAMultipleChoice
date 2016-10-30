@@ -24,7 +24,7 @@
             <span>${seminar.beginDate} - ${seminar.endDate}</span>
         </div>
         <div class="col-xs-4 seminarListItemEntry">
-            <span>${seminar.lecturer.user.name} ${seminar.lecturer.user.surName}</span>
+            <span>${seminar.lecturer.name} ${seminar.lecturer.surName}</span>
         </div>
     </div>
 </#list>

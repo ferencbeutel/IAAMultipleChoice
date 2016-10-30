@@ -1,9 +1,11 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,17 +25,15 @@ public class SeminarFormAction extends BaseAction {
     @Setter
     private long seminarId;
 
-    public String openAddForm() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if(!isUserLecturer(user)) {
+    public String openAddForm() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
+        if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
         return SUCCESS;
     }
 
     public String openEditForm() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if(!isUserLecturer(user)) {
+        if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
         seminar = seminarService.byId(seminarId);

@@ -14,14 +14,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Student {
+public class Student extends User {
 
-    @Id
-    @GeneratedValue
-    private long studentId;
-    @NaturalId
-    @OneToOne(cascade=CascadeType.ALL)
-    private User user;
     @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
     private Set<Seminar> seminars;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -34,12 +28,12 @@ public class Student {
 
         Student student = (Student) o;
 
-        return studentId == student.studentId;
+        return getUserId() == student.getUserId();
 
     }
 
     @Override
     public int hashCode() {
-        return (int) (studentId ^ (studentId >>> 32));
+        return (int) (getUserId() ^ (getUserId() >>> 32));
     }
 }

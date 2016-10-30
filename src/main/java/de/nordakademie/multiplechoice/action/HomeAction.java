@@ -2,10 +2,7 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
-import de.nordakademie.multiplechoice.model.Lecturer;
-import de.nordakademie.multiplechoice.model.Seminar;
-import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
@@ -22,7 +19,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class HomeAction extends BaseAction {
-    private String name;
 
     @Autowired
     private StudentService studentService;
@@ -34,25 +30,30 @@ public class HomeAction extends BaseAction {
     private Set<Seminar> seminarList = new HashSet<>();
 
     @Getter
-    private String now = LocalDate.now().toString();
+    private LocalDate now = LocalDate.now();
 
-    //TODO: Overthink current student/lecturer implementation since it leads to duplicate code
+    @Getter
+    private Student student;
+
+    @Getter
+    private Lecturer lecturer;
+
     public String execute() throws GenericErrorException {
-        name = "Dir";
+        if (!isUserLoggedIn()) {
+            return SUCCESS;
+        }
         try {
-            User user = getUserFromSession();
-            name = user.getName() + " " + user.getSurName();
-            if(isUserStudent(user)) {
-                Student student = studentService.byUserId(user.getId());
+            if(getUserType() == UserType.STUDENT) {
+                student = getStudentFromSession();
                 seminarList = student.getSeminars();
-            } else if (isUserLecturer(user)) {
-                Lecturer lecturer = lecturerService.byUserId(user.getId());
+            } else if(getUserType() == UserType.LECTURER) {
+                lecturer = getLecturerFromSession();
                 seminarList = lecturer.getSeminars();
-            } else {
-                throw new GenericErrorException();
             }
         } catch(NotLoggedInException e) {
-            //this is fine...
+            // if we cant fetch a user from the session for some reason, flush it and display generic error
+            logOutUser();
+            throw new GenericErrorException();
         }
         return SUCCESS;
     }

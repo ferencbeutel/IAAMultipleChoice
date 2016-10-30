@@ -1,9 +1,14 @@
 package de.nordakademie.multiplechoice.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
+import de.nordakademie.multiplechoice.model.Lecturer;
+import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
-import de.nordakademie.multiplechoice.service.UserService;
+import de.nordakademie.multiplechoice.model.UserType;
+import de.nordakademie.multiplechoice.service.LecturerService;
+import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Setter;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +24,10 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
 
     @Autowired
-    private UserService userService;
+    private LecturerService lecturerService;
+
+    @Autowired
+    private StudentService studentService;
 
     public boolean isUserLoggedIn() {
         if(session.containsKey("userMail")) {
@@ -28,32 +36,49 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
         return false;
     }
 
-    /**
-     * specific getter for retrieving an updated user object for the user mail
-     * @return
-     */
-    public User getUserFromSession() throws NotLoggedInException {
-        Object userMailObject = session.get("userMail");
-        if(userMailObject == null) {
+    public UserType getUserType() throws NotLoggedInException {
+        Object userType = session.get("userType");
+        if(userType == null) {
             throw new NotLoggedInException();
         }
-        String userMail = (String) userMailObject;
-        return userService.byMail(userMail);
+        return (UserType) userType;
     }
 
-    public void SetUserInSession(String userMail, String userType) {
+    public Student getStudentFromSession() throws NotLoggedInException, GenericErrorException {
+        String userMail = getUserMail();
+
+        Student student = studentService.findByMail(userMail);
+        if(student == null) {
+            throw new GenericErrorException();
+        }
+        return student;
+    }
+
+    public Lecturer getLecturerFromSession() throws NotLoggedInException, GenericErrorException {
+        String userMail = getUserMail();
+
+        Lecturer lecturer = lecturerService.findByMail(userMail);
+        if(lecturer == null) {
+            throw new GenericErrorException();
+        }
+        return lecturer;
+    }
+
+    public void setUserInSession(String userMail, UserType userType) {
         session.put("userMail", userMail);
         session.put("userType", userType);
     }
 
     public void logOutUser() {
         session.remove("userMail");
+        session.remove("userType");
     }
 
-    public boolean isUserLecturer(User user) {
-        return userService.isUserLecturer(user);
-    }
-    public boolean isUserStudent(User user) {
-        return userService.isUserStudent(user);
+    private String getUserMail() throws NotLoggedInException {
+        Object userMailObject = session.get("userMail");
+        if(userMailObject == null) {
+            throw new NotLoggedInException();
+        }
+        return userMailObject.toString();
     }
 }

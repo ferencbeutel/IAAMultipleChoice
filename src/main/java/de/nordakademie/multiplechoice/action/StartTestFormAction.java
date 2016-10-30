@@ -13,9 +13,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by ferencbeutel on 29.10.16.
@@ -40,12 +38,11 @@ public class StartTestFormAction extends BaseAction {
     private String savedAccessToken;
 
     public String openStartForm() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
-        User user = getUserFromSession();
-        if(!isUserStudent(user)) {
+        if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
         mailScheduler.sendTestToken();
-        Student student = studentService.byUserId(user.getId());
+        Student student = getStudentFromSession();
         Test test = seminarService.byId(seminarId).getTest();
 
         List<TestResult> testResultIntersection = new ArrayList<>(CollectionUtils.intersection(test.getResults(), student.getResults()));

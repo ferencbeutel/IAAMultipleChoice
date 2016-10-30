@@ -1,3 +1,6 @@
+<#assign studentUser = "STUDENT">
+<#assign lecturerUser = "LECTURER">
+
 <div id="contentContainer">
     <nav class="navbar navbar-dark bg-inverse" id="navBar">
         <div class="container-fluid">

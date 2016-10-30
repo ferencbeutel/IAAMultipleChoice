@@ -35,3 +35,12 @@ $('.startTestButton:not(".disabled")').click(function (event) {
     event.stopPropagation();
     window.location.href = "start-test?seminarId=" + $(event.currentTarget).data("id");
 });
+
+$('.hiddenResultToken').each(function(i, e) {
+    var passed = $(e).val();
+    if(passed) {
+        $(e).parent().css('background-color', 'green')
+    } else {
+        $(e).parent().css('background-color', 'red')
+    }
+});

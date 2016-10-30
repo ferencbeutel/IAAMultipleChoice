@@ -1,9 +1,12 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Seminar;
+import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
+import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +35,8 @@ public class PerformTestAction extends BaseAction {
     @Getter
     private Seminar seminar;
 
-    public String performTest() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if(!isUserStudent(user)) {
+    public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
+        if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
         seminar = seminarService.byId(seminarId);

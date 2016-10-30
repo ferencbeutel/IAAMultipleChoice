@@ -4,7 +4,6 @@ package de.nordakademie.multiplechoice.service;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.Test;
 import de.nordakademie.multiplechoice.model.TestResult;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import java.util.Set;
 
 /**
  * Created by ferencbeutel on 26.10.16.
@@ -53,10 +50,10 @@ public class MailScheduler {
 
                 // Persist test Result at student
                 student.getResults().add(testResult);
-                studentService.createOrUpdate(student);
+                studentService.save(student);
 
                 // Re-fetch the student to get the auto generated test result id
-                student = studentService.byUserId(student.getUser().getId());
+                student = studentService.findById(student.getUserId());
 
                 // There should be exactly one TestResult which is not in the student AND the test(the one we just persisted)
                 List<TestResult> testResultDisjunction = new ArrayList<>(CollectionUtils.disjunction(student.getResults(), seminar.getTest().getResults()));
@@ -72,7 +69,7 @@ public class MailScheduler {
 
                 String mailText = "Your token for accessing the test: " + accessToken;
                 try {
-                    mailService.sendMail(student.getUser().getEmail(), "Your test in " + seminar.getName(), mailText);
+                    mailService.sendMail(student.getEmail(), "Your test in " + seminar.getName(), mailText);
                 } catch (MessagingException e) {
                     //TODO: Implement Logging
                 }

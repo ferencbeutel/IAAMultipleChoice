@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.*;
@@ -38,15 +39,16 @@ public class PersistSeminarAction extends BaseAction {
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public String persistSeminar() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if (!isUserLecturer(user)) {
+    public String persistSeminar() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
+        if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
+        Lecturer lecturer = getLecturerFromSession();
+
         seminar.setSeminarId(seminarId);
         seminar.setBeginDate(LocalDate.parse(beginDateString, dateFormatter));
         seminar.setEndDate(LocalDate.parse(endDateString, dateFormatter));
-        seminar.setLecturer(lecturerService.byUserId(user.getId()));
+        seminar.setLecturer(lecturer);
         seminarService.createOrUpdate(seminar);
         return SUCCESS;
     }

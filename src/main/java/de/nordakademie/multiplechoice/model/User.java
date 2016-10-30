@@ -12,11 +12,13 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "userType")
 public class User {
 
     @Id
     @GeneratedValue
-    private long id;
+    private long userId;
     @NaturalId
     private String email;
     private String name;
@@ -25,3 +27,4 @@ public class User {
     private String regToken;
     private boolean regComplete;
 }
+

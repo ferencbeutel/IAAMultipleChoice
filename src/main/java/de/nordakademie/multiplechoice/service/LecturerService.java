@@ -18,22 +18,22 @@ public class LecturerService {
     private LecturerRepository lecturerRepository;
 
     @Transactional
-    public void saveLecturer(final Lecturer lecturer) {
-        lecturerRepository.create(lecturer);
-    }
-
-    @Transactional
-    public Lecturer updateLecturer(final Lecturer lecturer){
-        return lecturerRepository.update(lecturer);
+    public void save(final Lecturer lecturer) {
+        lecturerRepository.createOrUpdate(lecturer);
     }
 
     @Transactional(readOnly = true)
-    public List<Lecturer> listAll() {
+    public List<Lecturer> findAll() {
         return lecturerRepository.findAll();
     }
 
     @Transactional(readOnly = true)
-    public Lecturer byUserId (final long userId){
-        return lecturerRepository.findByUserId(userId);
+    public Lecturer findById(final long id){
+        return lecturerRepository.byId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Lecturer findByMail(final String mail){
+        return lecturerRepository.byMail(mail);
     }
 }

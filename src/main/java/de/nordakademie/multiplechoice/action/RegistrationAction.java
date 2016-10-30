@@ -1,12 +1,11 @@
 package de.nordakademie.multiplechoice.action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.MailService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import de.nordakademie.multiplechoice.service.UUIDService;
-import de.nordakademie.multiplechoice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
@@ -33,27 +32,22 @@ public class RegistrationAction extends BaseAction {
     StudentService studentService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     MailService mailService;
 
     @Getter
     @Setter
-    private User user;
+    private Student student;
 
-    public String register() {
+    public String register() throws AlreadyLoggedInException {
         if(isUserLoggedIn()) {
-            return "alreadyLoggedInError";
+            throw new AlreadyLoggedInException();
         }
-
         final String uuid = uuidService.getUUID();
-        user.setRegToken(uuid);
-        user.setRegComplete(false);
-        final Student student = new Student();
-        student.setUser(user);
-        studentService.createOrUpdate(student);
+        student.setRegToken(uuid);
+        student.setRegComplete(false);
+        studentService.save(student);
         sendConfirmationMail();
+
         return SUCCESS;
     }
 
@@ -64,11 +58,11 @@ public class RegistrationAction extends BaseAction {
         final String host = request.getLocalAddr() + ":" + request.getLocalPort() + "/";
         final String action = "acceptRegistration";
         final String uuidParameterName = "regCode";
-        final String link = protocol + "://" + host + action + "?" + uuidParameterName + "=" + user.getRegToken();
+        final String link = protocol + "://" + host + action + "?" + uuidParameterName + "=" + student.getRegToken();
         final String htmlLink = "<a href=" + link + ">" + link + "</a>";
 
         try {
-            mailService.sendMail(user.getEmail(), SUBJECT_LINE, MAIL_TEXT_BEGINNING + htmlLink + MAIL_TEXT_ENDING + MAIL_TEXT_GREETING + MAIL_TEXT_SIGNATURE);
+            mailService.sendMail(student.getEmail(), SUBJECT_LINE, MAIL_TEXT_BEGINNING + htmlLink + MAIL_TEXT_ENDING + MAIL_TEXT_GREETING + MAIL_TEXT_SIGNATURE);
         } catch(MessagingException e) {
             return "mailError";
         }
@@ -77,38 +71,38 @@ public class RegistrationAction extends BaseAction {
     }
 
     public void validate() {
-        if(user.getName() == null || user.getName().length() < 2) {
+        if(student.getName() == null || student.getName().length() < 2) {
             addFieldError("name", "Please enter your First Name");
         }
-        if(user.getSurName() == null || user.getSurName().length() < 2) {
+        if(student.getSurName() == null || student.getSurName().length() < 2) {
             addFieldError("surName", "Please enter your Last Name");
         }
-        if(user.getEmail() == null || user.getEmail().length() == 0) {
+        if(student.getEmail() == null || student.getEmail().length() == 0) {
             addFieldError("surName", "Please enter your Nordakademie E-Mail address");
         } else {
-            String[] domains = user.getEmail().split("@");
+            String[] domains = student.getEmail().split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
                 addFieldError("mail", "Please use your Nordakademie E-Mail address");
             } else {
-                if(userService.byMail(user.getEmail()) != null) {
+                if(studentService.findByMail(student.getEmail()) != null) {
                     addFieldError("mail", "This E-Mail is already registered.");
                 }
             }
         }
-        if(user.getPassword() == null || user.getPassword().length() < 8) {
+        if(student.getPassword() == null || student.getPassword().length() < 8) {
             addFieldError("password", "Please enter a password with a length of at least 8");
         } else {
             int fulfilledCriteria = 0;
-            if (user.getPassword().matches(".*\\d+.*")) {
+            if (student.getPassword().matches(".*\\d+.*")) {
                 fulfilledCriteria ++;
             }
-            if(!user.getPassword().equals(user.getPassword().toLowerCase())) {
+            if(!student.getPassword().equals(student.getPassword().toLowerCase())) {
                 fulfilledCriteria ++;
             }
-            if(!user.getPassword().equals(user.getPassword().toUpperCase())) {
+            if(!student.getPassword().equals(student.getPassword().toUpperCase())) {
                 fulfilledCriteria ++;
             }
-            if(!user.getPassword().matches("[a-zA-Z0-9 ]*")) {
+            if(!student.getPassword().matches("[a-zA-Z0-9 ]*")) {
                 fulfilledCriteria ++;
             }
 

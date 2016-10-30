@@ -39,8 +39,7 @@ public class TestFormAction extends BaseAction {
     }
 
     private void checkAuth() throws NotLoggedInException, InsufficientPermissionsException {
-        User user = getUserFromSession();
-        if (!isUserLecturer(user)) {
+        if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
     }

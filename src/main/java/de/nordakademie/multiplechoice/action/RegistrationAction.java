@@ -20,14 +20,14 @@ import java.util.ResourceBundle;
  * Created by Ferenc on 19.10.2016.
  */
 public class RegistrationAction extends BaseAction {
-    HttpServletRequest request = ServletActionContext.getRequest();
-    Locale userLocale = request.getLocale();
-    ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
-    private static final String SUBJECT_LINE = "Your registration at the Nordakademie Seminartool";
-    private static final String MAIL_TEXT_BEGINNING = "<p>Thank you for registering at the Nordakademie Seminartool. Please open the following link to complete your registration</p>";
-    private static final String MAIL_TEXT_ENDING = "<p>If you cant open the link directly, try to copy and paste it directly into your browser.</p>";
-    private static final String MAIL_TEXT_GREETING = "<p>Yours sincerely,</p>";
-    private static final String MAIL_TEXT_SIGNATURE = "<p>The Nordakademie Seminartool</p>";
+    static HttpServletRequest request = ServletActionContext.getRequest();
+    static Locale userLocale = request.getLocale();
+    static ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+    private static final String SUBJECT_LINE = messages.getString("registrationMail.subjectLine");
+    private static final String MAIL_TEXT_BEGINNING = messages.getString("registrationMail.textBeginning");
+    private static final String MAIL_TEXT_ENDING = messages.getString("registrationMail.textEnding");
+    private static final String MAIL_TEXT_GREETING = messages.getString("registrationMail.textGreeting");
+    private static final String MAIL_TEXT_SIGNATURE = messages.getString("registrationMail.textSignature");
 
     @Autowired
     UUIDService uuidService;

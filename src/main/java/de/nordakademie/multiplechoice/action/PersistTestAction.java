@@ -8,11 +8,15 @@ import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.util.DateTimeValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Hendrik Peters on 17.10.16.
@@ -53,17 +57,19 @@ public class PersistTestAction extends BaseAction {
     }
 
     public void validate() {
-
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
         boolean startDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(startDateString, dateFormatter)) {
-            addFieldError("startDate", "Please enter a valid begin date");
+            addFieldError("startDate", messages.getString("persistTestFieldError.validStart"));
         } else {
             startDateParseable = true;
         }
 
         boolean endDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
-            addFieldError("endDateString", "Please enter a valid end date");
+            addFieldError("endDateString", messages.getString("persistTestFieldError.validEnd"));
         } else {
             endDateParseable = true;
         }
@@ -73,19 +79,19 @@ public class PersistTestAction extends BaseAction {
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
             if(startDate.isBefore(now)) {
-                addFieldError("startDate", "Please enter a start date which is not in the past");
+                addFieldError("startDate", messages.getString("persistTestFieldError.startInPast"));
             }
             if(endDate.isBefore(startDate)) {
-                addFieldError("endDateString", "Please enter an end date which is after the start date");
+                addFieldError("endDateString", messages.getString("persistTestFieldError.startBeforeEnd"));
             }
         }
 
         if(!DateTimeValidationUtils.isTimeParseable(durationString, durationFormatter)) {
-            addFieldError("duration", "Please enter a valid duration");
+            addFieldError("duration", messages.getString("persistTestFieldError.duration"));
         }
 
         if(test.getMinScore() <= 0) {
-            addFieldError("minScore", "Please enter a minimum score greater than 0");
+            addFieldError("minScore", messages.getString("persistTestFieldError.minScore"));
         }
     }
 }

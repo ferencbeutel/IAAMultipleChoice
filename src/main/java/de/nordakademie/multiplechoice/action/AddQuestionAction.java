@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Ferenc on 19.10.2016.
@@ -53,5 +50,27 @@ public class AddQuestionAction extends BaseAction {
         question.setAnswers(answers);
         questionService.saveQuestion(question);
         return SUCCESS;
+    }
+
+
+    public void validate() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+        if (question.getPoints() <=0){
+            addFieldError("points", messages.getString("questionFieldError.points"));
+        }
+        if (question.getText() == null || question.getText().length()<=5){
+            addFieldError("text", messages.getString("questionFieldError.texts"));
+        }
+        for (int i = 0; i < answerTexts.size(); i++) {
+            if (answerTexts.get(i).length() < 2){
+                addFieldError("text", messages.getString("questionFieldError.answers"));
+                break;
+            }
+        }
+
+
     }
 }

@@ -7,9 +7,9 @@ import java.util.Map;
  * Created by MHORT on 24.10.2016.
  */
 public enum QuestionType {
-    Single("Single Choice"),
-    Multiple("Multiple Choice"),
-    Gap("Cloze Text");
+    Single("single"),
+    Multiple("multiple"),
+    Gap("cloze");
 
     private final String realVal;
 

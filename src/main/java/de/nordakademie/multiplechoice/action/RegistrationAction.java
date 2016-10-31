@@ -13,12 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Ferenc on 19.10.2016.
  */
 public class RegistrationAction extends BaseAction {
-
+    HttpServletRequest request = ServletActionContext.getRequest();
+    Locale userLocale = request.getLocale();
+    ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
     private static final String SUBJECT_LINE = "Your registration at the Nordakademie Seminartool";
     private static final String MAIL_TEXT_BEGINNING = "<p>Thank you for registering at the Nordakademie Seminartool. Please open the following link to complete your registration</p>";
     private static final String MAIL_TEXT_ENDING = "<p>If you cant open the link directly, try to copy and paste it directly into your browser.</p>";
@@ -71,26 +75,30 @@ public class RegistrationAction extends BaseAction {
     }
 
     public void validate() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
         if(student.getName() == null || student.getName().length() < 2) {
-            addFieldError("name", "Please enter your First Name");
+            addFieldError("name", messages.getString("registrationFieldError.firstName"));
         }
         if(student.getSurName() == null || student.getSurName().length() < 2) {
-            addFieldError("surName", "Please enter your Last Name");
+            addFieldError("surName", messages.getString("registrationFieldError.lastName"));
         }
         if(student.getEmail() == null || student.getEmail().length() == 0) {
-            addFieldError("surName", "Please enter your Nordakademie E-Mail address");
+            addFieldError("mail", messages.getString("registrationFieldError.mail"));
         } else {
             String[] domains = student.getEmail().split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", "Please use your Nordakademie E-Mail address");
+                addFieldError("mail", messages.getString("registrationFieldError.nakMail"));
             } else {
                 if(studentService.findByMail(student.getEmail()) != null) {
-                    addFieldError("mail", "This E-Mail is already registered.");
+                    addFieldError("mail", messages.getString("registrationFieldError.mailRegistrated"));
                 }
             }
         }
         if(student.getPassword() == null || student.getPassword().length() < 8) {
-            addFieldError("password", "Please enter a password with a length of at least 8");
+            addFieldError("password", messages.getString("registrationFieldError.passwordLen"));
         } else {
             int fulfilledCriteria = 0;
             if (student.getPassword().matches(".*\\d+.*")) {
@@ -107,7 +115,7 @@ public class RegistrationAction extends BaseAction {
             }
 
             if (fulfilledCriteria < 3) {
-                addFieldError("password", "Please fulfill at least 3 of the mentioned criteria for your password");
+                addFieldError("password", messages.getString("registrationFieldError.passwordCriteria"));
             }
         }
     }

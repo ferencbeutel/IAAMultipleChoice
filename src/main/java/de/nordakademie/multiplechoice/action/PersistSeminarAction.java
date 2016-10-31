@@ -8,10 +8,14 @@ import de.nordakademie.multiplechoice.service.*;
 import de.nordakademie.multiplechoice.util.DateTimeValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Ferenc on 19.10.2016.
@@ -54,16 +58,19 @@ public class PersistSeminarAction extends BaseAction {
     }
 
     public void validate() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
         boolean startDateParseable = false;
         if (!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
-            addFieldError("startDate", "Please enter a valid begin date");
+            addFieldError("startDate", messages.getString("persistSeminarFieldError.validStart"));
         } else {
             startDateParseable = true;
         }
 
         boolean endDateParseable = false;
         if (!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
-            addFieldError("endDateString", "Please enter a valid end date");
+            addFieldError("endDateString", messages.getString("persistSeminarFieldError.validEnd"));
         } else {
             endDateParseable = true;
         }
@@ -73,21 +80,21 @@ public class PersistSeminarAction extends BaseAction {
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
             if (startDate.isBefore(now)) {
-                addFieldError("startDate", "Please enter a start date which is not in the past");
+                addFieldError("startDate", messages.getString("persistSeminarFieldError.startInPast"));
             }
             if (endDate.isBefore(startDate)) {
-                addFieldError("endDateString", "Please enter an end date which is after the start date");
+                addFieldError("endDateString", messages.getString("persistSeminarFieldError.startBeforeEnd"));
             }
         }
 
         if (seminar.getDescription() == null || seminar.getDescription().length() < 2) {
-            addFieldError("description", "Please enter a description to the seminar");
+            addFieldError("description", messages.getString("persistSeminarFieldError.description"));
         }
         if (seminar.getMaxParticipants() <= 0) {
-            addFieldError("maxParticipants", "Please enter a maximum number of participants > 0");
+            addFieldError("maxParticipants", messages.getString("persistSeminarFieldError.maxParticipants"));
         }
         if (seminar.getName() == null || seminar.getName().length() < 2) {
-            addFieldError("name", "Please enter a name to the seminar");
+            addFieldError("name", messages.getString("persistSeminarFieldError.name"));
         }
     }
 

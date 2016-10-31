@@ -10,7 +10,12 @@ import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Ferenc on 19.10.2016.
@@ -48,28 +53,31 @@ public class LoginAction extends BaseAction {
     }
 
     public void validate() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
         User user = lecturerService.findByMail(mail);
         if (user == null) {
             user = studentService.findByMail(mail);
         }
 
         if (mail == null || mail.length() == 0) {
-            addFieldError("mail", "Please enter your E-Mail-Address");
+            addFieldError("mail", messages.getString("loginFieldError.mail"));
         } else {
             String[] domains = mail.split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", "Please only use your Nordakademie E-Mail address");
+                addFieldError("mail", messages.getString("loginFieldError.nak"));
             } else if (user == null) {
-                addFieldError("mail", "Please enter a valid E-Mail");
+                addFieldError("mail", messages.getString("loginFieldError.mailValid"));
             } else if (!user.isRegComplete()) {
-                addFieldError("mail", "Please validate your account before logging in by clicking on the link we sent to your E-Mail Account.");
+                addFieldError("mail", messages.getString("loginFieldError.activation"));
             }
         }
 
         if (password == null || password.length() == 0) {
-            addFieldError("password", "Please enter your valid Password");
+            addFieldError("password", messages.getString("loginFieldError.validPassword"));
         } else if (user != null && !user.getPassword().equals(password)) {
-            addFieldError("password", "Wrong password");
+            addFieldError("password", messages.getString("loginFieldError.wrongPassword"));
         }
     }
 }

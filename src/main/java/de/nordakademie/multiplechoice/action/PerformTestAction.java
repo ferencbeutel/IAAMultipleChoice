@@ -10,7 +10,12 @@ import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by ferencbeutel on 29.10.16.
@@ -44,8 +49,11 @@ public class PerformTestAction extends BaseAction {
     }
 
     public void validate() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
         if(!savedAccessToken.equals(inputAccessToken)) {
-            addFieldError("accessToken", "wrong access token");
+            addFieldError("accessToken", messages.getString("performTestFieldError.token"));
         }
     }
 }

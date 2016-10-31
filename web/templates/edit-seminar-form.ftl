@@ -15,14 +15,14 @@
     <@s.hidden name="seminarId" value="${seminar.seminarId}"/>
     <div class="form-group row">
         <label for="seminarName"
-               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="edit-seminar-form.seminarName"/></label>
+               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.seminarName"/></label>
         <div class="col-md-8">
             <@s.textfield class="form-control form-control-lg" id="seminarName" name="seminar.name" value="${seminar.name}"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="startDate"
-               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="edit-seminar-form.startDate"/></label>
+               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.startDate"/></label>
         <div class="col-md-8">
             <div class="input-group">
                 <div class="input-group-addon">
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group row">
         <label for="startDate"
-               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="edit-seminar-form.endDate"/></label>
+               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.endDate"/></label>
         <div class="col-md-8">
             <div class="input-group">
                 <div class="input-group-addon">
@@ -49,14 +49,14 @@
     </div>
     <div class="form-group row">
         <label for="seminarMaxPart"
-               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="edit-seminar-form.maxParticipants"/></label>
+               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.maxParticipants"/></label>
         <div class="col-md-8">
             <@s.textfield type="number" class="form-control form-control-lg" id="seminarMaxPart" name="seminar.maxParticipants" value="${seminar.maxParticipants}"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="seminarDesc"
-               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="edit-seminar-form.shortDescription"/></label>
+               class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.shortDescription"/></label>
         <div class="col-md-8">
             <@s.textarea class="form-control form-control-lg" id="seminarDesc" name="seminar.description" value="${seminar.description}" rows="5"/>
         </div>

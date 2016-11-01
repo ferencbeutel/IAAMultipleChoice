@@ -7,6 +7,7 @@ import de.nordakademie.multiplechoice.model.QuestionType;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.model.UserType;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,8 @@ import java.util.ResourceBundle;
  * Created by Ferenc on 19.10.2016.
  */
 public class QuestionFormAction extends BaseAction {
-    private Locale aLocale;
-
+    @Getter
+    private boolean answerValidity;
     @Getter
     private List<String> questionTypes;
 
@@ -28,13 +29,11 @@ public class QuestionFormAction extends BaseAction {
         if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
-
-
-
         questionTypes = new ArrayList<>();
         for (QuestionType questionType: QuestionType.values()) {
             questionTypes.add(getI18NValue("question."+questionType.toString()));
         }
+        answerValidity = false;
         return SUCCESS;
         }
 

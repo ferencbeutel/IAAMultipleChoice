@@ -20,6 +20,7 @@ public class AddQuestionAction extends BaseAction {
     private List<String> answerTexts;
     @Setter
     private List<String> answerValidity;
+    //private List<Boolean> answerValidity=new ArrayList<Boolean>();
     @Setter
     private String questionTypeString;
     @Autowired
@@ -29,8 +30,6 @@ public class AddQuestionAction extends BaseAction {
     @Getter
     @Setter
     private Question question;
-    @Getter
-    private List<String> questionTypes;
 
 
     public String addQuestion(){
@@ -46,7 +45,7 @@ public class AddQuestionAction extends BaseAction {
         }
         System.out.println(answerTexts);
         System.out.println(answerValidity);
-        question.setType(QuestionType.getName(questionTypeString));
+        question.setType(QuestionType.getTranslation(questionTypeString));
         question.setAnswers(answers);
         questionService.saveQuestion(question);
         return SUCCESS;

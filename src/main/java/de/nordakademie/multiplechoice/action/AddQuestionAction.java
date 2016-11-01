@@ -34,6 +34,9 @@ public class AddQuestionAction extends BaseAction {
     @Setter
     private List<Integer> multipleChoiceAnswerValues;
 
+    @Setter
+    private List<String> gapAnswers;
+
     @Getter
     @Setter
     private Question question;
@@ -43,7 +46,7 @@ public class AddQuestionAction extends BaseAction {
     private long seminarId;
 
     public String addQuestion() throws NotLoggedInException, InsufficientPermissionsException {
-        if(getUserType() != UserType.LECTURER) {
+        if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
         Seminar seminar = seminarService.byId(seminarId);
@@ -60,14 +63,19 @@ public class AddQuestionAction extends BaseAction {
             case Multiple:
                 answersToPersist = multipleChoiceAnswers;
                 answerValuesToPersist = multipleChoiceAnswerValues;
+            case Gap:
+                answersToPersist = gapAnswers;
+                for (int i = 0; i <= answersToPersist.size(); i++) {
+                    answerValuesToPersist.add(i);
+                }
         }
 
         int i = 0;
-        for(String answerString : answersToPersist) {
+        for (String answerString : answersToPersist) {
             Answer answer = new Answer();
             answer.setText(answerString);
             answer.setPosition(i);
-            if(answerValuesToPersist.contains(i)) {
+            if (answerValuesToPersist.contains(i)) {
                 answer.setCorrect(true);
             } else {
                 answer.setCorrect(false);

@@ -6,7 +6,7 @@ $('#select-question-type').change(function (e) {
 
     var singleChoiceAnswers = $('#singleChoiceAnswers');
     var multipleChoiceAnswers = $('#multipleChoiceAnswers');
-    var clozeAnswers = $('#clozeAnswers');
+    var clozeAnswers = $('#gapAnswers');
     singleChoiceAnswers.addClass('none');
     multipleChoiceAnswers.addClass('none');
     clozeAnswers.addClass('none');
@@ -18,7 +18,7 @@ $('#select-question-type').change(function (e) {
         case "Multiple":
             multipleChoiceAnswers.removeClass('none');
             break;
-        case "Cloze":
+        case "Gap":
             clozeAnswers.removeClass('none');
             break;
     }
@@ -107,8 +107,36 @@ $('#addAnswerButton').click(function (e) {
             answerContainer.appendChild(checkboxContainer);
             answerList.append(answerContainer);
             break;
-        case "Cloze":
-            console.log("cloze");
+        case "Gap":
+            var answerList = $('#gapAnswers');
+            var answerContainer = document.createElement('div');
+            var answerAmount = answerList.children().length;
+            var newListItem = document.createElement('div');
+            var label = document.createElement('label');
+            var labelBaseVal = $('#gapAnswerBaseItem').children('label').html().split(" ")[0];
+            var answerInput = document.createElement('input');
+            var answerInputContainer = document.createElement('div');
+
+            $(newListItem).addClass("row");
+            $(newListItem).addClass("answerListItem");
+            $(label).addClass("col-xs-2");
+            $(label).addClass("col-form-label");
+            $(label).addClass("col-form-label-lg");
+            $(label).html(labelBaseVal + " " + (answerAmount + 1));
+            label.htmlFor = "CgapAnswer-" + answerAmount;
+            answerInput.type = "text";
+            answerInput.name = "gapAnswers";
+            answerInput.id = "gapAnswer-" + answerAmount;
+            $(answerInput).addClass("form-control");
+            $(answerInput).addClass("form-control-lg");
+            $(answerInputContainer).addClass("col-xs-8");
+            $(answerContainer).addClass('row');
+            $(answerContainer).addClass('answerListItem');
+            answerInputContainer.appendChild(answerInput);
+            answerContainer.appendChild(label);
+            answerContainer.appendChild(answerInputContainer);
+            answerList.append(answerContainer);
+            break;
     }
 });
 

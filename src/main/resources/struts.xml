@@ -80,7 +80,7 @@
         </action>
         <action name="add-question" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="addQuestion">
             <result type="freemarker">templates/impressum.ftl</result>
-            <result name="input" type="freemarker">templates/addQuestion-form.ftl</result>
+            <result name="input" type="freemarker">templates/add-question-form.ftl</result>
         </action>
         <action name="edit-question-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
                 method="openEditForm">

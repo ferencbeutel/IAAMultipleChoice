@@ -67,6 +67,11 @@
         <div class="none answerList" id="gapAnswers">
         </div>
     </div>
+    <div class="form-group row">
+        <div class="col-md-6 centered" id="validation-errors">
+            <@s.fielderror/>
+        </div>
+    </div>
     <br/>
     <div class="row">
         <div class="col-xs-4 centered">

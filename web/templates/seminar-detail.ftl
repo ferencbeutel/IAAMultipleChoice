@@ -10,37 +10,65 @@
 
 <div class="seminarList">
     <div class="row seminarListHeader">
-        <span class="col-xs-4 seminarListItemEntry"><@s.text name="seminarDetail.name"/></span>
-        <span class="col-xs-4 seminarListItemEntry"><@s.text name="seminarDetail.period"/></span>
+        <span class="col-xs-12 seminarListItemEntry">${seminar.name}</span>
+       </div>
+    <div class="row seminarListHeader">
+        <span class="col-xs-4 seminarListItemEntry"><@s.text name="seminarDetail.startdate"/></span>
+        <span class="col-xs-4 seminarListItemEntry"><@s.text name="seminarDetail.enddate"/></span>
         <span class="col-xs-4 seminarListItemEntry"><@s.text name="seminarDetail.lecturer"/></span>
     </div>
     <div class="row seminarListItem">
         <div class="col-xs-4 seminarListItemEntry">
-            <span>${seminar.name}</span>
+            <span>${seminar.beginDate}</span>
         </div>
         <div class="col-xs-4 seminarListItemEntry">
-            <span>${seminar.beginDate} - ${seminar.endDate}</span>
+            <span>  ${seminar.endDate}</span>
         </div>
         <div class="col-xs-4 seminarListItemEntry">
             <span>${seminar.lecturer.name} ${seminar.lecturer.surName}</span>
         </div>
     </div>
-    <div class="row seminarListHeader">
-        <span class="col-xs-12 seminarListItemEntry"><@s.text name="seminarDetail.description"/></span>
-    </div>
     <div class="row seminarListItem">
-        <div class="col-xs-10 seminarListItemEntry centered">
-            <span>${seminar.htmlDescription}</span>
+        <div class="col-xs-12 centered">
+            <div class="col-xs-2 seminarListItemEntry">
+                <span><@s.text name="seminarDetail.description"/></span>
+            </div>
+            <div class="description col-xs-10 seminarListItemEntry ">
+                <p>${seminar.htmlDescription}</p>
+            </div>
         </div>
     </div>
     <div class="row seminarListHeader">
         <span class="col-xs-12 seminarListItemEntry"><@s.text name="seminarDetail.participants"/></span>
     </div>
-<#list seminar.participants as participant>
-    <#assign enrolled = "false">
+
     <div class="row seminarListItem">
         <div class="col-xs-12 centered">
-            <span>${participant.name} ${participant.surName}</span>
+            <div class="col-xs-2 seminarListItemEntry">
+                <span><@s.text name="seminarDetail.number"/></span>
+            </div>
+            <div class="col-xs-5 seminarListItemEntry">
+                <span><@s.text name="seminarDetail.firstName"/></span>
+            </div>
+            <div class="col-xs-5 seminarListItemEntry">
+                <span><@s.text name="seminarDetail.lastName"/></span>
+            </div>
+        </div>
+    </div>
+<#assign enrolled = "false">
+<#list seminar.participants as participant>
+
+    <div class="row seminarListItem">
+        <div class="col-xs-12 centered">
+            <div class="col-xs-2 seminarListItemEntry">
+                <span>${participant?index+1}</span>
+            </div>
+            <div class="col-xs-5 seminarListItemEntry">
+                <span>${participant.name}</span>
+            </div>
+            <div class="col-xs-5 seminarListItemEntry">
+                <span>${participant.surName}</span>
+            </div>
             <#if participant.email == userMail>
                 <#assign enrolled = "true">
             </#if>

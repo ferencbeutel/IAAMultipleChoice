@@ -63,11 +63,13 @@ public class AddQuestionAction extends BaseAction {
             case Multiple:
                 answersToPersist = multipleChoiceAnswers;
                 answerValuesToPersist = multipleChoiceAnswerValues;
+                break;
             case Gap:
                 answersToPersist = gapAnswers;
                 for (int i = 0; i <= answersToPersist.size(); i++) {
                     answerValuesToPersist.add(i);
                 }
+                break;
         }
 
         int i = 0;
@@ -87,5 +89,54 @@ public class AddQuestionAction extends BaseAction {
         test.getQuestions().add(question);
         seminarService.createOrUpdate(seminar);
         return SUCCESS;
+    }
+
+
+    public void validate() {
+        switch (question.getType()) {
+            case Single:
+                for (int i = 0; i < singleChoiceAnswers.size(); i++) {
+                    if (singleChoiceAnswers.get(i).length() < 2){
+                        addFieldError("text", getI18NValue("questionFieldError.answers"));
+                        break;
+                    }
+                }
+                if (singleChoiceAnswerValues== null){
+                    addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
+                }
+                break;
+            case Multiple:
+                for (int i = 0; i < multipleChoiceAnswers.size(); i++) {
+                    if (multipleChoiceAnswers.get(i).length() < 2){
+                        addFieldError("text", getI18NValue("questionFieldError.answers"));
+                        break;
+                    }
+                }
+                if (multipleChoiceAnswerValues==null){
+                    addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
+                }
+                break;
+            case Gap:
+                if (gapAnswers==null){
+                    addFieldError("text", getI18NValue("questionFieldError.gapAnswers"));
+                }
+                else {
+                    for (int i = 0; i < gapAnswers.size(); i++) {
+                        if (gapAnswers.get(i).length() < 2) {
+                            addFieldError("text", getI18NValue("questionFieldError.answers"));
+                            break;
+                        }
+                    }
+                }
+                break;
+        }
+
+
+        if (question.getPoints() <=0){
+            addFieldError("points", getI18NValue("questionFieldError.points"));
+        }
+        if (question.getText() == null || question.getText().length()<=5){
+            addFieldError("text", getI18NValue("questionFieldError.texts"));
+        }
     }
 }

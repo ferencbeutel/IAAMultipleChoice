@@ -17,8 +17,10 @@ import java.util.Set;
 public class Student extends User {
 
     @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
+    @OrderBy("beginDate desc")
     private Set<Seminar> seminars;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+
     private List<TestResult> results;
 
     @Override

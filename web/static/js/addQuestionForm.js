@@ -6,12 +6,16 @@ $('#select-question-type').change(function (e) {
 
     var singleChoiceAnswers = $('#singleChoiceAnswers');
     var multipleChoiceAnswers = $('#multipleChoiceAnswers');
-    var clozeAnswers = $('#gapAnswers');
+    var gapAnswers = $('#gapAnswers');
     singleChoiceAnswers.addClass('none');
     multipleChoiceAnswers.addClass('none');
-    clozeAnswers.addClass('none');
+    gapAnswers.addClass('none');
+    var addAnswerButton = $('#addAnswerButton');
+    var removeAnswerButton = $('#removeAnswerButton');
+    addAnswerButton.removeClass('none');
+    removeAnswerButton.removeClass('none');
 
-    switch(selectedVal) {
+    switch (selectedVal) {
         case "Single":
             singleChoiceAnswers.removeClass('none');
             break;
@@ -19,7 +23,9 @@ $('#select-question-type').change(function (e) {
             multipleChoiceAnswers.removeClass('none');
             break;
         case "Gap":
-            clozeAnswers.removeClass('none');
+            addAnswerButton.addClass('none');
+            removeAnswerButton.addClass('none');
+            gapAnswers.removeClass('none');
             break;
     }
 });
@@ -37,7 +43,7 @@ $('#addAnswerButton').click(function (e) {
             var answerInput = document.createElement('input');
             var answerInputContainer = document.createElement('div');
             var checkboxContainer = document.createElement('div');
-            
+
             $(newListItem).addClass("row");
             $(newListItem).addClass("answerListItem");
             $(label).addClass("col-xs-2");
@@ -49,7 +55,7 @@ $('#addAnswerButton').click(function (e) {
             checkbox.name = "singleChoiceAnswerValues";
             checkbox.value = answerAmount;
             $(checkbox).addClass("singleChoiceCheckBox");
-            $(checkbox).click(function(e) {
+            $(checkbox).click(function (e) {
                 clickBoxHandler(e);
             });
             $(checkboxContainer).addClass("col-xs-2");
@@ -79,7 +85,7 @@ $('#addAnswerButton').click(function (e) {
             var answerInput = document.createElement('input');
             var answerInputContainer = document.createElement('div');
             var checkboxContainer = document.createElement('div');
-            
+
             $(newListItem).addClass("row");
             $(newListItem).addClass("answerListItem");
             $(label).addClass("col-xs-2");
@@ -107,44 +113,56 @@ $('#addAnswerButton').click(function (e) {
             answerContainer.appendChild(checkboxContainer);
             answerList.append(answerContainer);
             break;
-        case "Gap":
-            var answerList = $('#gapAnswers');
-            var answerContainer = document.createElement('div');
-            var answerAmount = answerList.children().length;
-            var newListItem = document.createElement('div');
-            var label = document.createElement('label');
-            var labelBaseVal = $('#gapAnswerBaseItem').children('label').html().split(" ")[0];
-            var answerInput = document.createElement('input');
-            var answerInputContainer = document.createElement('div');
-
-            $(newListItem).addClass("row");
-            $(newListItem).addClass("answerListItem");
-            $(label).addClass("col-xs-2");
-            $(label).addClass("col-form-label");
-            $(label).addClass("col-form-label-lg");
-            $(label).html(labelBaseVal + " " + (answerAmount + 1));
-            label.htmlFor = "CgapAnswer-" + answerAmount;
-            answerInput.type = "text";
-            answerInput.name = "gapAnswers";
-            answerInput.id = "gapAnswer-" + answerAmount;
-            $(answerInput).addClass("form-control");
-            $(answerInput).addClass("form-control-lg");
-            $(answerInputContainer).addClass("col-xs-8");
-            $(answerContainer).addClass('row');
-            $(answerContainer).addClass('answerListItem');
-            answerInputContainer.appendChild(answerInput);
-            answerContainer.appendChild(label);
-            answerContainer.appendChild(answerInputContainer);
-            answerList.append(answerContainer);
-            break;
     }
 });
 
-$('.singleChoiceCheckBox').click(function(e) {
+$('.singleChoiceCheckBox').click(function (e) {
     clickBoxHandler(e);
 });
 
-var clickBoxHandler = function(e) {
+$('#questionText').focusout(function(e) {
+
+    if(selectedVal != "Gap") {
+        return;
+    }
+    var target = e.target;
+    var questionString = $(target).val();
+    var amountOfGaps = (questionString.match(/\[\*]/g) || []).length;
+
+    var answerList = $('#gapAnswers');
+    answerList.empty();
+    
+    for(let i of Array(amountOfGaps).keys()) {
+        var answerContainer = document.createElement('div');
+        var newListItem = document.createElement('div');
+        var label = document.createElement('label');
+        var labelBaseVal = $('#singleChoiceAnswerBaseItem').children('label').html().split(" ")[0];
+        var answerInput = document.createElement('input');
+        var answerInputContainer = document.createElement('div');
+
+        $(newListItem).addClass("row");
+        $(newListItem).addClass("answerListItem");
+        $(label).addClass("col-xs-2");
+        $(label).addClass("col-form-label");
+        $(label).addClass("col-form-label-lg");
+        $(label).html(labelBaseVal + " " + (i + 1));
+        label.htmlFor = "gapAnswer-" + i;
+        answerInput.type = "text";
+        answerInput.name = "gapAnswers";
+        answerInput.id = "gapAnswer-" + i;
+        $(answerInput).addClass("form-control");
+        $(answerInput).addClass("form-control-lg");
+        $(answerInputContainer).addClass("col-xs-8");
+        $(answerContainer).addClass('row');
+        $(answerContainer).addClass('answerListItem');
+        answerInputContainer.appendChild(answerInput);
+        answerContainer.appendChild(label);
+        answerContainer.appendChild(answerInputContainer);
+        answerList.append(answerContainer);
+    }
+});
+
+var clickBoxHandler = function (e) {
     var checkBoxState = e.target.checked;
     $('.singleChoiceCheckBox').each(function (i, ele) {
         ele.checked = false;

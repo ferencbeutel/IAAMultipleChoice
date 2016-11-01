@@ -27,11 +27,14 @@
             <@s.textfield class="form-control form-control-lg" name="question.points"/>
         </div>
     </div>
+    <div class="row">
+        <span class="col-xs-12">Add gaps as [*] in the question text</span>
+    </div>
     <div class="form-group row">
         <label for="enterQuestion"
                class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.question"/></label>
         <div class="col-xs-10">
-            <@s.textarea name="question.text" class="form-control form-control-lg" placeholder="Ihre Frage"/>
+            <@s.textarea name="question.text" id="questionText" class="form-control form-control-lg" placeholder="Ihre Frage"/>
         </div>
     </div>
     <div class="container" id="answerChoices">
@@ -62,17 +65,6 @@
             </div>
         </div>
         <div class="none answerList" id="gapAnswers">
-            <div class="row">
-                <span class="col-xs-12">Add gaps as [*] in the question text</span>
-            </div>
-            <div class="row answerListItem" id="gapAnswerBaseItem">
-                <label for="gapAnswer-0"
-                       class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer"/>
-                    1</label>
-                <div class="col-xs-10">
-                    <@s.textfield class="form-control form-control-lg" id="gapAnswer-0" name="gapAnswers"/>
-                </div>
-            </div>
         </div>
     </div>
     <br/>

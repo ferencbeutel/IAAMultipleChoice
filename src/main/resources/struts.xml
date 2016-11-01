@@ -165,5 +165,8 @@
         <action name="generic-errorpage">
             <result type="freemarker">templates/generic-errorpage.ftl</result>
         </action>
+        <action name="application-administration">
+            <result type="freemarker">templates/application-administration.ftl</result>
+        </action>
     </package>
 </struts>

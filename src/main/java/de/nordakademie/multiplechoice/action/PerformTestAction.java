@@ -49,11 +49,11 @@ public class PerformTestAction extends BaseAction {
     }
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
         if(!savedAccessToken.equals(inputAccessToken)) {
-            addFieldError("accessToken", messages.getString("performTestFieldError.token"));
+            addFieldError("accessToken", getI18NValue("performTestFieldError.token"));
         }
     }
 }

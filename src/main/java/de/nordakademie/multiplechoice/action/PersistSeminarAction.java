@@ -58,19 +58,19 @@ public class PersistSeminarAction extends BaseAction {
     }
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
         boolean startDateParseable = false;
         if (!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
-            addFieldError("startDate", messages.getString("persistSeminarFieldError.validStart"));
+            addFieldError("startDate", getI18NValue("persistSeminarFieldError.validStart"));
         } else {
             startDateParseable = true;
         }
 
         boolean endDateParseable = false;
         if (!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
-            addFieldError("endDateString", messages.getString("persistSeminarFieldError.validEnd"));
+            addFieldError("endDateString", getI18NValue("persistSeminarFieldError.validEnd"));
         } else {
             endDateParseable = true;
         }
@@ -80,21 +80,21 @@ public class PersistSeminarAction extends BaseAction {
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
             if (startDate.isBefore(now)) {
-                addFieldError("startDate", messages.getString("persistSeminarFieldError.startInPast"));
+                addFieldError("startDate", getI18NValue("persistSeminarFieldError.startInPast"));
             }
             if (endDate.isBefore(startDate)) {
-                addFieldError("endDateString", messages.getString("persistSeminarFieldError.startBeforeEnd"));
+                addFieldError("endDateString", getI18NValue("persistSeminarFieldError.startBeforeEnd"));
             }
         }
 
         if (seminar.getDescription() == null || seminar.getDescription().length() < 2) {
-            addFieldError("description", messages.getString("persistSeminarFieldError.description"));
+            addFieldError("description", getI18NValue("persistSeminarFieldError.description"));
         }
         if (seminar.getMaxParticipants() <= 0) {
-            addFieldError("maxParticipants", messages.getString("persistSeminarFieldError.maxParticipants"));
+            addFieldError("maxParticipants", getI18NValue("persistSeminarFieldError.maxParticipants"));
         }
         if (seminar.getName() == null || seminar.getName().length() < 2) {
-            addFieldError("name", messages.getString("persistSeminarFieldError.name"));
+            addFieldError("name", getI18NValue("persistSeminarFieldError.name"));
         }
     }
 

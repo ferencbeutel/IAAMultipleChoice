@@ -2,7 +2,6 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.MailService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import de.nordakademie.multiplechoice.service.UUIDService;
@@ -13,21 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * Created by Ferenc on 19.10.2016.
  */
 public class RegistrationAction extends BaseAction {
-    static HttpServletRequest request = ServletActionContext.getRequest();
-    static Locale userLocale = request.getLocale();
-    static ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
-    private static final String SUBJECT_LINE = messages.getString("registrationMail.subjectLine");
-    private static final String MAIL_TEXT_BEGINNING = messages.getString("registrationMail.textBeginning");
-    private static final String MAIL_TEXT_ENDING = messages.getString("registrationMail.textEnding");
-    private static final String MAIL_TEXT_GREETING = messages.getString("registrationMail.textGreeting");
-    private static final String MAIL_TEXT_SIGNATURE = messages.getString("registrationMail.textSignature");
+    private final String subjectLine = getI18NValue("registrationMail.subjectLine");
+    private final String mailTextBeginning = getI18NValue("registrationMail.textBeginning");
+    private final String mailTextEnding = getI18NValue("registrationMail.textEnding");
+    private final String mailTextGreeting = getI18NValue("registrationMail.textGreeting");
+    private final String mailTextSignature = getI18NValue("registrationMail.textSignature");
 
     @Autowired
     UUIDService uuidService;
@@ -58,6 +52,7 @@ public class RegistrationAction extends BaseAction {
 
     private String sendConfirmationMail() {
         HttpServletRequest request = ServletActionContext.getRequest();
+
         final String protocol = request.getScheme();
         final String host = request.getLocalAddr() + ":" + request.getLocalPort() + "/";
         final String action = "acceptRegistration";
@@ -66,7 +61,7 @@ public class RegistrationAction extends BaseAction {
         final String htmlLink = "<a href=" + link + ">" + link + "</a>";
 
         try {
-            mailService.sendMail(student.getEmail(), SUBJECT_LINE, MAIL_TEXT_BEGINNING + htmlLink + MAIL_TEXT_ENDING + MAIL_TEXT_GREETING + MAIL_TEXT_SIGNATURE);
+            mailService.sendMail(student.getEmail(), subjectLine, mailTextBeginning + htmlLink + mailTextEnding + mailTextGreeting + mailTextSignature);
         } catch(MessagingException e) {
             return "mailError";
         }
@@ -75,30 +70,30 @@ public class RegistrationAction extends BaseAction {
     }
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
 
         if(student.getName() == null || student.getName().length() < 2) {
-            addFieldError("name", messages.getString("registrationFieldError.firstName"));
+            addFieldError("name", getI18NValue("registrationFieldError.firstName"));
         }
         if(student.getSurName() == null || student.getSurName().length() < 2) {
-            addFieldError("surName", messages.getString("registrationFieldError.lastName"));
+            addFieldError("surName", getI18NValue("registrationFieldError.lastName"));
         }
         if(student.getEmail() == null || student.getEmail().length() == 0) {
-            addFieldError("mail", messages.getString("registrationFieldError.mail"));
+            addFieldError("mail", getI18NValue("registrationFieldError.mail"));
         } else {
             String[] domains = student.getEmail().split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", messages.getString("registrationFieldError.nakMail"));
+                addFieldError("mail", getI18NValue("registrationFieldError.nakMail"));
             } else {
                 if(studentService.findByMail(student.getEmail()) != null) {
-                    addFieldError("mail", messages.getString("registrationFieldError.mailRegistrated"));
+                    addFieldError("mail", getI18NValue("registrationFieldError.mailRegistrated"));
                 }
             }
         }
         if(student.getPassword() == null || student.getPassword().length() < 8) {
-            addFieldError("password", messages.getString("registrationFieldError.passwordLen"));
+            addFieldError("password", getI18NValue("registrationFieldError.passwordLen"));
         } else {
             int fulfilledCriteria = 0;
             if (student.getPassword().matches(".*\\d+.*")) {
@@ -115,7 +110,7 @@ public class RegistrationAction extends BaseAction {
             }
 
             if (fulfilledCriteria < 3) {
-                addFieldError("password", messages.getString("registrationFieldError.passwordCriteria"));
+                addFieldError("password", getI18NValue("registrationFieldError.passwordCriteria"));
             }
         }
     }

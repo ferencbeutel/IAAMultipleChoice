@@ -53,31 +53,29 @@ public class LoginAction extends BaseAction {
     }
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
         User user = lecturerService.findByMail(mail);
         if (user == null) {
             user = studentService.findByMail(mail);
         }
 
         if (mail == null || mail.length() == 0) {
-            addFieldError("mail", messages.getString("loginFieldError.mail"));
+            addFieldError("mail", getI18NValue("loginFieldError.mail"));
         } else {
             String[] domains = mail.split("@");
             if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", messages.getString("loginFieldError.nak"));
+                addFieldError("mail", getI18NValue("loginFieldError.nak"));
             } else if (user == null) {
-                addFieldError("mail", messages.getString("loginFieldError.mailValid"));
+                addFieldError("mail", getI18NValue("loginFieldError.mailValid"));
             } else if (!user.isRegComplete()) {
-                addFieldError("mail", messages.getString("loginFieldError.activation"));
+                addFieldError("mail", getI18NValue("loginFieldError.activation"));
             }
         }
 
         if (password == null || password.length() == 0) {
-            addFieldError("password", messages.getString("loginFieldError.validPassword"));
+            addFieldError("password", getI18NValue("loginFieldError.validPassword"));
         } else if (user != null && !user.getPassword().equals(password)) {
-            addFieldError("password", messages.getString("loginFieldError.wrongPassword"));
+            addFieldError("password", getI18NValue("loginFieldError.wrongPassword"));
         }
     }
 }

@@ -28,12 +28,12 @@ public class QuestionFormAction extends BaseAction {
         if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
         questionTypes = new ArrayList<>();
         for (QuestionType questionType: QuestionType.values()) {
-            questionTypes.add(messages.getString("question."+questionType.toString()));
+            questionTypes.add(getI18NValue("question."+questionType.toString()));
         }
         return SUCCESS;
         }

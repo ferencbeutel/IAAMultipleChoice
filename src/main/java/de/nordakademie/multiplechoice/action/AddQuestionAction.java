@@ -54,19 +54,19 @@ public class AddQuestionAction extends BaseAction {
 
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
 
         if (question.getPoints() <=0){
-            addFieldError("points", messages.getString("questionFieldError.points"));
+            addFieldError("points", getI18NValue("questionFieldError.points"));
         }
         if (question.getText() == null || question.getText().length()<=5){
-            addFieldError("text", messages.getString("questionFieldError.texts"));
+            addFieldError("text", getI18NValue("questionFieldError.texts"));
         }
         for (int i = 0; i < answerTexts.size(); i++) {
             if (answerTexts.get(i).length() < 2){
-                addFieldError("text", messages.getString("questionFieldError.answers"));
+                addFieldError("text", getI18NValue("questionFieldError.answers"));
                 break;
             }
         }

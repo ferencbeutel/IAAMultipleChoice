@@ -10,10 +10,14 @@ import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Setter;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by ferencbeutel on 22.10.16.
@@ -28,6 +32,10 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
 
     @Autowired
     private StudentService studentService;
+
+    private HttpServletRequest request = ServletActionContext.getRequest();
+    private Locale userLocale = request.getLocale();
+    private ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
 
     public boolean isUserLoggedIn() {
         if(session.containsKey("userMail")) {
@@ -80,5 +88,9 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
             throw new NotLoggedInException();
         }
         return userMailObject.toString();
+    }
+
+    public String getI18NValue(String key) {
+        return messages.getString(key);
     }
 }

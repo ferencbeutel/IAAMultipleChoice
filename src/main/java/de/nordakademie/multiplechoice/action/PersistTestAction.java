@@ -57,19 +57,19 @@ public class PersistTestAction extends BaseAction {
     }
 
     public void validate() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        Locale userLocale = request.getLocale();
-        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+
+
         boolean startDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(startDateString, dateFormatter)) {
-            addFieldError("startDate", messages.getString("persistTestFieldError.validStart"));
+            addFieldError("startDate", getI18NValue("persistTestFieldError.validStart"));
         } else {
             startDateParseable = true;
         }
 
         boolean endDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
-            addFieldError("endDateString", messages.getString("persistTestFieldError.validEnd"));
+            addFieldError("endDateString", getI18NValue("persistTestFieldError.validEnd"));
         } else {
             endDateParseable = true;
         }
@@ -79,19 +79,19 @@ public class PersistTestAction extends BaseAction {
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
             if(startDate.isBefore(now)) {
-                addFieldError("startDate", messages.getString("persistTestFieldError.startInPast"));
+                addFieldError("startDate", getI18NValue("persistTestFieldError.startInPast"));
             }
             if(endDate.isBefore(startDate)) {
-                addFieldError("endDateString", messages.getString("persistTestFieldError.startBeforeEnd"));
+                addFieldError("endDateString", getI18NValue("persistTestFieldError.startBeforeEnd"));
             }
         }
 
         if(!DateTimeValidationUtils.isTimeParseable(durationString, durationFormatter)) {
-            addFieldError("duration", messages.getString("persistTestFieldError.duration"));
+            addFieldError("duration", getI18NValue("persistTestFieldError.duration"));
         }
 
         if(test.getMinScore() <= 0) {
-            addFieldError("minScore", messages.getString("persistTestFieldError.minScore"));
+            addFieldError("minScore", getI18NValue("persistTestFieldError.minScore"));
         }
     }
 }

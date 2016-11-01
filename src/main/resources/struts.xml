@@ -165,6 +165,10 @@
         <action name="generic-errorpage">
             <result type="freemarker">templates/generic-errorpage.ftl</result>
         </action>
+        <action name="initializeApplicationData" class="de.nordakademie.multiplechoice.action.InitializeApplicationAction" method="initialize">
+            <result type="freemarker">templates/impressum.ftl</result>
+            <result name="input" type="freemarker">templates/application-administration.ftl</result>
+        </action>
         <action name="application-administration">
             <result type="freemarker">templates/application-administration.ftl</result>
         </action>

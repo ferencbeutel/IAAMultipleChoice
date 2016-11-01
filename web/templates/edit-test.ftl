@@ -98,14 +98,18 @@
     <div class="row questionListItem questionListHeader">
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderPos"/></div>
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderText"/></div>
+        <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
     </div>
     <#list seminar.test.questions as question>
         <div class="row questionListItem">
+            <span class="overlay"></span>
             <div class="col-xs-4 questionListItemEntry">
              <span>${question.position}</span></div>
-
             <div class="col-xs-4 questionListItemEntry">
             <span> ${question.text}</span>
+            </div>
+            <div class="col-xs-4 questionListItemEntry">
+                <button class="btn btn-secondary edit-question-button"><@s.text name="editTest.EditQuestionButton"/></button>
             </div>
         </div>
     </#list>
@@ -126,5 +130,6 @@
 <#include "/templates/frameFooter.ftl">
 <script type="text/javascript" src="/static/js/add-test-time-picker.js"></script>
 <script type="text/javascript" src="/static/js/editTest.js"></script>
+<script type="text/javascript" src="/static/js/editQuestion.js"></script>
 </body>
 </html>

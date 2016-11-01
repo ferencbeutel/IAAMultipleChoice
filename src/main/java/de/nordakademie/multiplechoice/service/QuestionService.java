@@ -29,4 +29,9 @@ public class QuestionService {
     public Question updateQuestion(final Question question){
         return questionRepository.update(question);
     }
+
+    @Transactional(readOnly = true)
+    public Question byId (final long id) {
+        return questionRepository.byId(id);
+    }
 }

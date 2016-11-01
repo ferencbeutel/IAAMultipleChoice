@@ -25,10 +25,19 @@ public class QuestionFormAction extends BaseAction {
     @Setter
     private long seminarId;
 
+
+
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
+
+        return SUCCESS;
+    }
+    public String openEditForm() throws NotLoggedInException, InsufficientPermissionsException {
+        if (getUserType() != UserType.LECTURER) {
+            throw new InsufficientPermissionsException();}
+
 
         return SUCCESS;
     }

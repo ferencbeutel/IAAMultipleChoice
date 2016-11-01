@@ -82,6 +82,13 @@
             <result type="freemarker">templates/impressum.ftl</result>
             <result name="input" type="freemarker">templates/addQuestion-form.ftl</result>
         </action>
+        <action name="edit-question-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
+                method="openEditForm">
+            <result type="freemarker">templates/edit-question-form.ftl</result>
+        </action>
+        <action name="edit-question" class="de.nordakademie.multiplechoice.action.PersistQuestionAction" method="persistQuestion">
+            <result name="input" type="freemarker">templates/edit-question-form.ftl</result>
+        </action>
         <action name="start-test" class="de.nordakademie.multiplechoice.action.StartTestFormAction" method="openStartForm">
             <interceptor-ref name="chain"/>
             <interceptor-ref name="basicStack"/>

@@ -1,9 +1,11 @@
 package de.nordakademie.multiplechoice.domain;
 
 import de.nordakademie.multiplechoice.model.Question;
+import de.nordakademie.multiplechoice.model.Seminar;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -27,6 +29,16 @@ public class QuestionRepository {
 
     public List<Question> findAll(){
         return entityManager.createQuery("SELECT question FROM Question question", Question .class).getResultList();
+    }
+    public Question byId(final long id) {
+        try {
+            return entityManager.createQuery(
+                    "Select question FROM Question question WHERE questionId = :id", Question.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
 }

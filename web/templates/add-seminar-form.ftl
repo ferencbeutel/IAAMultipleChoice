@@ -1,5 +1,5 @@
 <#assign currentPage = "seminar-form">
-
+<!--TODO: nach dem hinzufügen vom Seminar und weiterleitung auf Home Seite verhindern, dass beim Neuladen Semianr nochmal hinzugefügt wird-->
 <html>
 <head>
     <title><@s.text name="add-seminar-form.title"/></title>

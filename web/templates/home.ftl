@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title><@s.text name="home.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/home.css">
 </head>

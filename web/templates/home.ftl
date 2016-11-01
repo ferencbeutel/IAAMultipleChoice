@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
                         <!-- TODO: man soll klicken können wenn endDate <= now ist -->
-                        <#if seminar.test?? && seminar.test.endDate.isAfter(now)>
+                        <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
                             <button class="btn btn-secondary startTestButton"
                                     data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
                         <#else>

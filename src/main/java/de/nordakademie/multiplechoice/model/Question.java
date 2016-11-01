@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +23,7 @@ public class Question {
     private int points;
     private int position;
     private QuestionType type;
-    @OneToMany(cascade=CascadeType.ALL)
-    private Set<Answer> answers;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Answer> answers;
 }
 

@@ -20,23 +20,18 @@ import java.util.ResourceBundle;
  * Created by Ferenc on 19.10.2016.
  */
 public class QuestionFormAction extends BaseAction {
+
     @Getter
-    private boolean answerValidity;
-    @Getter
-    private List<String> questionTypes;
+    @Setter
+    private long seminarId;
 
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
-        if(getUserType() != UserType.LECTURER) {
+        if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
-        questionTypes = new ArrayList<>();
-        for (QuestionType questionType: QuestionType.values()) {
-            questionTypes.add(getI18NValue("question."+questionType.toString()));
-        }
-        answerValidity = false;
-        return SUCCESS;
-        }
 
+        return SUCCESS;
     }
+}
 
 

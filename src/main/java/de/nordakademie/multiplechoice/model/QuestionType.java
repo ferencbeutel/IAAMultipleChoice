@@ -12,41 +12,21 @@ import java.util.ResourceBundle;
  * Created by MHORT on 24.10.2016.
  */
 public enum QuestionType {
-    Single("single"),
-    Multiple("multiple"),
-    Gap("cloze");
-    private final String realVal;
+    Single("questionType.single"),
+    Multiple("questionType.multiple"),
+    Gap("questionType.cloze");
+
+    private final String i18nLookupKey;
 
     QuestionType(String s) {
-        this.realVal = s;
-    }
-    private static Map<String, QuestionType> map = new HashMap<String, QuestionType>();
-    static {
-        for (QuestionType qEnum : QuestionType.values()) {
-            map.put(qEnum.realVal, qEnum);
-        }
-    }
-    public static QuestionType getName(String qType) {
-        return map.get(qType);
-    }
-    @Override
-    public String toString() {
-        return realVal;
+        this.i18nLookupKey = s;
     }
 
-    public static QuestionType getTranslation(String translation){
+    public String getRealVal() {
         HttpServletRequest request = ServletActionContext.getRequest();
         Locale userLocale = request.getLocale();
-        System.out.println(userLocale);
-        System.out.println("trans: " + translation);
         ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
-        for (QuestionType qEnum : QuestionType.values()) {
-            System.out.println(messages.getString("question."+qEnum.realVal));
-            if (messages.getString("question."+qEnum.realVal).equals(translation)){
-                System.out.println(messages.getString("question."+qEnum.realVal));
-                return qEnum;
-            }
-        }
-        return null;
+
+        return messages.getString(i18nLookupKey);
     }
 }

@@ -1,5 +1,7 @@
 package de.nordakademie.multiplechoice.action;
 
+import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
+import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.*;
 import lombok.Getter;
@@ -16,60 +18,48 @@ import java.util.*;
  * Created by Ferenc on 19.10.2016.
  */
 public class AddQuestionAction extends BaseAction {
-    @Setter
-    private List<String> answerTexts;
-    @Setter
-    private List<String> answerValidity;
-    //private List<Boolean> answerValidity=new ArrayList<Boolean>();
-    @Setter
-    private String questionTypeString;
+
     @Autowired
-    QuestionService questionService;
-    @Autowired
-    AnswerService answerService;
+    private SeminarService seminarService;
+
+    @Setter
+    private List<String> singleChoiceAnswers;
+
+    @Setter
+    private List<Integer> singleChoiceAnswerValues;
+
     @Getter
     @Setter
     private Question question;
 
+    @Getter
+    @Setter
+    private long seminarId;
 
-    public String addQuestion(){
-        Long questionId = question.getQuestionId();
-        Set<Answer> answers = new HashSet<>();
-        for (int i = 0; i < answerTexts.size(); i++) {
-            Answer answer= new Answer();
+    public String addQuestion() throws NotLoggedInException, InsufficientPermissionsException {
+        if(getUserType() != UserType.LECTURER) {
+            throw new InsufficientPermissionsException();
+        }
+        Seminar seminar = seminarService.byId(seminarId);
+        Test test = seminar.getTest();
+        question.setAnswers(new ArrayList<>());
+        question.setPosition(test.getQuestions().size());
+        int i = 0;
+        for(String answerString : singleChoiceAnswers) {
+            Answer answer = new Answer();
+            answer.setText(answerString);
             answer.setPosition(i);
-            answer.setText(answerTexts.get(i));
-            answer.setCorrect(true);
-            answers.add(answer);
-            answerService.saveAnswer(answer);
-        }
-        System.out.println(answerTexts);
-        System.out.println(answerValidity);
-        question.setType(QuestionType.getTranslation(questionTypeString));
-        question.setAnswers(answers);
-        questionService.saveQuestion(question);
-        return SUCCESS;
-    }
-
-
-    public void validate() {
-
-
-
-
-        if (question.getPoints() <=0){
-            addFieldError("points", getI18NValue("questionFieldError.points"));
-        }
-        if (question.getText() == null || question.getText().length()<=5){
-            addFieldError("text", getI18NValue("questionFieldError.texts"));
-        }
-        for (int i = 0; i < answerTexts.size(); i++) {
-            if (answerTexts.get(i).length() < 2){
-                addFieldError("text", getI18NValue("questionFieldError.answers"));
-                break;
+            if(singleChoiceAnswerValues.contains(i)) {
+                answer.setCorrect(true);
+            } else {
+                answer.setCorrect(false);
             }
+            question.getAnswers().add(answer);
+            i++;
         }
 
-
+        test.getQuestions().add(question);
+        seminarService.createOrUpdate(seminar);
+        return SUCCESS;
     }
 }

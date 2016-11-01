@@ -30,7 +30,7 @@
                                result="testAlreadyStarted"/>
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.SeminarNotFoundException"
                                result="seminarNotFound"/>
-            <exception-mapping exception="java.lang.Exception"
+            <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException"
                                result="genericError"/>
         </global-exception-mappings>
 
@@ -74,11 +74,11 @@
             <result type="chain">home</result>
             <result name="input" type="chain">edit-test-form</result>
         </action>
-        <action name="addQuestion-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
+        <action name="add-question-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
                 method="openForm">
-            <result type="freemarker">templates/addQuestion-form.ftl</result>
+            <result type="freemarker">templates/add-question-form.ftl</result>
         </action>
-        <action name="addQuestion" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="addQuestion">
+        <action name="add-question" class="de.nordakademie.multiplechoice.action.AddQuestionAction" method="addQuestion">
             <result type="freemarker">templates/impressum.ftl</result>
             <result name="input" type="freemarker">templates/addQuestion-form.ftl</result>
         </action>

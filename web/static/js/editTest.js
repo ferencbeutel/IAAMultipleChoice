@@ -3,6 +3,6 @@
  */
 $(".add-question-button").click(function (event) {
     event.stopPropagation();
-    var seminarId = $(event.currentTarget).closest(".row").data("id");
-    window.location.href = "addQuestion-form?seminarId=" + seminarId;
+    var seminarId = $('#hiddenSeminarId').val();
+    window.location.href = "add-question-form?seminarId=" + seminarId;
 });

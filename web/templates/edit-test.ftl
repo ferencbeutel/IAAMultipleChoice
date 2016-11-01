@@ -89,24 +89,38 @@
             <@s.fielderror/>
         </div>
     </div>
-    <div class="questionList">
-        <div class="row questionListHeader">
-            <div class="col-xs-12 questionListHeaderItem">Questions</div>
-        </div>
-        <#list seminar.test.questions as question>
-            <div class="row">
-                <div class="col-xs-12">${question.text}</div>
-            </div>
-        </#list>
-        <div class="form-group row">
-            <div class="col-xs-8 centered">
-                <button type="button" class="btn btn-secondary add-question-button"><@s.text name="editTest.addQuestionButton"/></button>
-            </div>
-        </div>
-    </div>
     <@s.submit class="btn btn-primary" value="Save"/>
 </@s.form>
 </div>
+<hr/>
+
+<div id="questionList" class="questionList">
+    <div class="row questionListItem questionListHeader">
+        <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderPos"/></div>
+        <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderText"/></div>
+    </div>
+    <#list seminar.test.questions as question>
+        <div class="row questionListItem">
+            <div class="col-xs-4 questionListItemEntry">
+             <span>${question.position}</span></div>
+
+            <div class="col-xs-4 questionListItemEntry">
+            <span> ${question.text}</span>
+            </div>
+        </div>
+    </#list>
+</div>
+<hr/>
+<div class="form-group row">
+    <div class="col-xs-8 centered">
+        <button type="button"
+                class="btn btn-secondary add-question-button"><@s.text name="editTest.addQuestionButton"/></button>
+    </div>
+</div>
+<hr/>
+
+
+
 
 
 <#include "/templates/frameFooter.ftl">

@@ -28,6 +28,12 @@ public class AddQuestionAction extends BaseAction {
     @Setter
     private List<Integer> singleChoiceAnswerValues;
 
+    @Setter
+    private List<String> multipleChoiceAnswers;
+
+    @Setter
+    private List<Integer> multipleChoiceAnswerValues;
+
     @Getter
     @Setter
     private Question question;
@@ -44,12 +50,24 @@ public class AddQuestionAction extends BaseAction {
         Test test = seminar.getTest();
         question.setAnswers(new ArrayList<>());
         question.setPosition(test.getQuestions().size());
+        List<String> answersToPersist = new ArrayList<>();
+        List<Integer> answerValuesToPersist = new ArrayList<>();
+        switch (question.getType()) {
+            case Single:
+                answersToPersist = singleChoiceAnswers;
+                answerValuesToPersist = singleChoiceAnswerValues;
+                break;
+            case Multiple:
+                answersToPersist = multipleChoiceAnswers;
+                answerValuesToPersist = multipleChoiceAnswerValues;
+        }
+
         int i = 0;
-        for(String answerString : singleChoiceAnswers) {
+        for(String answerString : answersToPersist) {
             Answer answer = new Answer();
             answer.setText(answerString);
             answer.setPosition(i);
-            if(singleChoiceAnswerValues.contains(i)) {
+            if(answerValuesToPersist.contains(i)) {
                 answer.setCorrect(true);
             } else {
                 answer.setCorrect(false);

@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="container" id="answerChoices">
-        <div class="hidden answerList" id="singleChoiceAnswers">
+        <div class="none answerList" id="singleChoiceAnswers">
             <div class="row answerListItem" id="singleChoiceAnswerBaseItem">
                 <label for="singleChoiceAnswer-0"
                        class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer"/>
@@ -45,6 +45,19 @@
                 </div>
                 <div class="col-xs-2">
                     <input type="checkbox" class="singleChoiceCheckBox" name="singleChoiceAnswerValues" value="0">
+                </div>
+            </div>
+        </div>
+        <div class="none answerList" id="multipleChoiceAnswers">
+            <div class="row answerListItem" id="multipleChoiceAnswerBaseItem">
+                <label for="multipleChoiceAnswer-0"
+                       class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.answer"/>
+                    1</label>
+                <div class="col-xs-8">
+                    <@s.textfield class="form-control form-control-lg" id="multipleChoiceAnswer-0" name="multipleChoiceAnswers"/>
+                </div>
+                <div class="col-xs-2">
+                    <input type="checkbox" class="multipleChoiceCheckBox" name="multipleChoiceAnswerValues" value="0">
                 </div>
             </div>
         </div>

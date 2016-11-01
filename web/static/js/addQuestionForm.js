@@ -29,7 +29,9 @@ $('#select-question-type').change(function (e) {
             break;
     }
 });
-
+if ($('#select-question-type').val() != -1){
+    $('#select-question-type').change();
+}
 $('#addAnswerButton').click(function (e) {
     switch (selectedVal) {
         case "Single":
@@ -115,6 +117,24 @@ $('#addAnswerButton').click(function (e) {
             break;
     }
 });
+
+
+$('#removeAnswerButton').click(function (e) {
+    switch (selectedVal) {
+        case "Single":
+            if($('#singleChoiceAnswers').children().length>1){
+                $('#singleChoiceAnswers').children(':last').remove();
+            }
+            break;
+        case "Multiple":
+            if($('#multipleChoiceAnswers').children().length>1){
+                $('#multipleChoiceAnswers').children(':last').remove();
+            }
+            break;
+    }
+});
+
+
 
 $('.singleChoiceCheckBox').click(function (e) {
     clickBoxHandler(e);

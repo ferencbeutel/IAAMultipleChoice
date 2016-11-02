@@ -102,7 +102,7 @@
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
     </div>
     <#list seminar.test.questions as question>
-        <div class="row questionListItem">
+        <div class="row questionListItem" data-id="${question.questionId}">
             <span class="overlay"></span>
             <div class="col-xs-4 questionListItemEntry">
              <span>${question.position}</span></div>
@@ -133,7 +133,6 @@
 
 <#include "/templates/frameFooter.ftl">
 <script type="text/javascript" src="/static/js/add-test-time-picker.js"></script>
-<script type="text/javascript" src="/static/js/editTest.js"></script>
-<script type="text/javascript" src="/static/js/editQuestion.js"></script>
+<script type="text/javascript" src="/static/js/edit-test.js"></script>
 </body>
 </html>

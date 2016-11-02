@@ -80,11 +80,12 @@
         </div>
     </div>
     <br/>
+    <div class="none" id="hiddenAnswerLabelBaseValue"><@s.text name="addQuestion-form.answer"/></div>
     <@s.submit class="btn btn-primary" value="Submit"/>
 </@s.form>
 </div>
 
 <#include "/templates/frameFooter.ftl">
-<script type="text/javascript" src="/static/js/addQuestionForm.js"></script>
+<script type="text/javascript" src="/static/js/init-question-form.js"></script>
 </body>
 </html>

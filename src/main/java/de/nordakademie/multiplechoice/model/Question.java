@@ -24,6 +24,7 @@ public class Question {
     private int position;
     private QuestionType type;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("position asc")
     private List<Answer> answers;
 }
 

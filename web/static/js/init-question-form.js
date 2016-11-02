@@ -139,12 +139,20 @@ $('#select-question-type').change(function (e) {
                 buildSingleChoiceAnswer("", false);
             }
             singleChoiceAnswers.removeClass('none');
+            document.getElementById("gapAnswersText").className="row none"
+            document.getElementById("infoTextSingle").className="row"
+            document.getElementById("infoTextGap").className="row none"
+            document.getElementById("infoTextMultiple").className="row none"
             break;
         case "Multiple":
             if (multipleChoiceAnswers.children().length == 0) {
                 buildMultiChoiceAnswer("", false);
             }
             multipleChoiceAnswers.removeClass('none');
+            document.getElementById("gapAnswersText").className="row none"
+            document.getElementById("infoTextMultiple").className="row"
+            document.getElementById("infoTextSingle").className="row none"
+            document.getElementById("infoTextGap").className="row none"
             break;
         case "Gap":
             if (gapAnswers.children().length == 0) {
@@ -153,6 +161,10 @@ $('#select-question-type').change(function (e) {
             addAnswerButton.addClass('none');
             removeAnswerButton.addClass('none');
             gapAnswers.removeClass('none');
+            document.getElementById("gapAnswersText").className="row"
+            document.getElementById("infoTextGap").className="row"
+            document.getElementById("infoTextMultiple").className="row none"
+            document.getElementById("infoTextSingle").className="row none"
             break;
     }
 });

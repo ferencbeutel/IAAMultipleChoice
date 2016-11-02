@@ -9,7 +9,7 @@
 <#include "/templates/frameHeader.ftl">
 
 <div class="seminarList">
-    <div class="row seminarListHeader">
+    <div class="row seminarListHeader" id="headline">
         <span class="col-xs-12 seminarListItemEntry">${seminar.name}</span>
        </div>
     <div class="row seminarListHeader">
@@ -30,15 +30,15 @@
     </div>
     <div class="row seminarListItem">
         <div class="col-xs-12 centered">
-            <div class="col-xs-2 seminarListItemEntry">
+            <div class="col-xs-2 seminarListItemEntry" id="seminarDescriptionLabel">
                 <span><@s.text name="seminarDetail.description"/></span>
             </div>
-            <div class="description col-xs-10 seminarListItemEntry ">
-                <p>${seminar.htmlDescription}</p>
+            <div class="description col-xs-10 seminarListItemEntry" id="seminarDescriptionText">
+                <p class="descritpion-text">${seminar.htmlDescription}</p>
             </div>
         </div>
     </div>
-    <div class="row seminarListHeader">
+    <div class="row seminarListHeader" id="participants">
         <span class="col-xs-12 seminarListItemEntry"><@s.text name="seminarDetail.participants"/></span>
     </div>
 
@@ -58,15 +58,15 @@
 <#assign enrolled = "false">
 <#list seminar.participants as participant>
 
-    <div class="row seminarListItem">
+    <div class="row participantList">
         <div class="col-xs-12 centered">
-            <div class="col-xs-2 seminarListItemEntry">
+            <div class="col-xs-2 participantListEntry">
                 <span>${participant?index+1}</span>
             </div>
-            <div class="col-xs-5 seminarListItemEntry">
+            <div class="col-xs-5 participantListEntry">
                 <span>${participant.name}</span>
             </div>
-            <div class="col-xs-5 seminarListItemEntry">
+            <div class="col-xs-5 participantListEntry">
                 <span>${participant.surName}</span>
             </div>
             <#if participant.email == userMail>
@@ -86,7 +86,7 @@
             <#if enrolled=="true">
                 <span><@s.text name="seminarDetail.enrolled"/></span>
             <#elseif (seminar.maxParticipants >seminar.participants?size)>
-                <button class="btn btn-secondary enrollButton">enroll</button>
+                <button class="btn btn-secondary enrollButton"><@s.text name="seminarDetail.enroll"/></button>
             <#else>
                 <span><@s.text name="seminarDetail.seminarFull"/></span>
             </#if>

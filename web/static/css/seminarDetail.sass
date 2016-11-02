@@ -1,10 +1,40 @@
 @import "seminarList"
-
+$participantEntryHeight: 25px
+#headline
+  min-height: 60px
+  background-color: darkgray
+  font-size: 1.3em
 .seminarListItem
   cursor: default
+#participants
+  background-color: darkgray
+#seminarDescriptionText
+  align-items: flex-start
 
-#description
-  align-items: initial
 
+#seminarDescriptionLabel
+  justify-content: flex-start
 .descritpion-text
   text-align: left
+
+.participantList
+  width: 100%
+  margin: 0 auto
+  border-left: 1px solid black
+  border-right: 1px solid black
+  border-top: 1px solid black
+  position: relative
+  background-color: #DBFFDC
+
+  .participantListEntry
+    min-height: $participantEntryHeight
+    border-right: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+  .participantListEntry:last-child
+    border-right: 0
+
+.participantList:nth-child(2n)
+  background-color: #C1FFC3

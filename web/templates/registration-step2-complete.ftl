@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title><@s.text name="registration.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>
@@ -10,8 +10,8 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <p>Herzlichen Glückwunsch! Sie haben den letzten Schritt zur Registrierung in der Seminarverwaltung der Nordakademie abgeschlossen!</p>
-        <p>Sie können sich jetzt anmelden und den vollen Umfang der Seminare genießen.</p>
+        <p><@s.text name="registration.successMessage"/></p>
+        <p><@s.text name="registration.loginReady"/></p>
     </div>
 </div>
 

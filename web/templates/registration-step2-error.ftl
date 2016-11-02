@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title><@s.text name="registration.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>
@@ -10,8 +10,8 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <p>Leider konnten wir Sie nicht eindeutig identifizieren.</p>
-        <p>Bitte kopieren Sie den Ihnen zugeschickten Link in den Browser und versuchen Sie es erneut.</p>
+        <p><@s.text name="registration.identificationError"/></p>
+        <p><@s.text name="registration.tryLink"/></p>
     </div>
 </div>
 

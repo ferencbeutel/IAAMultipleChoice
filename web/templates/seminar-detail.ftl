@@ -81,10 +81,15 @@
         </div>
     </div>
 </#list>
-    <div class="row seminarListItem">
+
+    <div class="row seminarListItem" id="enrollItem">
         <div class="col-xs-6 centered seminarListItemEntry">
             <#if enrolled=="true">
-                <span><@s.text name="seminarDetail.enrolled"/></span>
+                <button class="btn btn-secondary enrollButton disabled" data-toggle="tooltip"
+                        date-placement="top"
+                        data-title="sdfasfd"><@s.text name="seminarDetail.enroll"/></button>
+
+            <#--   <span><@s.text name="seminarDetail.enrolled"/></span>-->
             <#elseif (seminar.maxParticipants >seminar.participants?size)>
                 <button class="btn btn-secondary enrollButton"><@s.text name="seminarDetail.enroll"/></button>
             <#else>

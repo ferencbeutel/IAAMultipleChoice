@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row">
-        <span class="col-xs-12">Add gaps as [*] in the question text</span>
+        <span class="col-xs-12"><@s.text name="addQuestion-form.gapExplaination"/></span>
     </div>
     <div class="form-group row">
         <label for="enterQuestion"

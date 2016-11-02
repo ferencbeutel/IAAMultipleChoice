@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Impressum</title>
+    <title><@s.text name="impressum.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

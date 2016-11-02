@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Logout</title>
+    <title><@s.text name="logout.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

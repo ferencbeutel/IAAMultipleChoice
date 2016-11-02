@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title><@s.text name="registration.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>
@@ -10,8 +10,8 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <p>Leider ist bei der Registrierung ein Fehler aufgetreten.</p>
-        <p>Bitte versuchen Sie es erneut.</p>
+        <p><@s.text name="registration.error"/></p>
+        <p><@s.text name="registration.tryAgain"/></p>
     </div>
 </div>
 

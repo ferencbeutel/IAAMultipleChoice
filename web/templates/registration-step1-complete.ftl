@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Registration</title>
+    <title><@s.text name="registration.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

@@ -7,7 +7,6 @@
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
-
 <div class="seminarList">
     <div class="row seminarListHeader" id="headline">
         <span class="col-xs-12 seminarListItemEntry">${seminar.name}</span>
@@ -85,15 +84,15 @@
     <div class="row seminarListItem" id="enrollItem">
         <div class="col-xs-6 centered seminarListItemEntry">
             <#if enrolled=="true">
+                <#assign toolTip><@s.text name="seminarDetail.enrolled"/></#assign>
                 <button class="btn btn-secondary enrollButton disabled" data-toggle="tooltip"
-                        date-placement="top"
-                        data-title="sdfasfd"><@s.text name="seminarDetail.enroll"/></button>
-
-            <#--   <span><@s.text name="seminarDetail.enrolled"/></span>-->
+                        data-title="${toolTip}"><@s.text name="seminarDetail.enroll"/></button>
             <#elseif (seminar.maxParticipants >seminar.participants?size)>
                 <button class="btn btn-secondary enrollButton"><@s.text name="seminarDetail.enroll"/></button>
             <#else>
-                <span><@s.text name="seminarDetail.seminarFull"/></span>
+                <#assign toolTip><@s.text name="seminarDetail.seminarFull"/></#assign>
+                <button class="btn btn-secondary enrollButton disabled" data-toggle="tooltip"
+                        data-title="${toolTip}"><@s.text name="seminarDetail.enroll"/></button>
             </#if>
         </div>
     </div>

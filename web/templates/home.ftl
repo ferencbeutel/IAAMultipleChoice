@@ -84,9 +84,10 @@
                             <button class="btn btn-secondary startTestButton"
                                     data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
                         <#else>
+                            <#assign toolTip><@s.text name="home.noTest"/></#assign>
                             <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip"
                                     date-placement="top"
-                                    data-title="No test available yet"><@s.text name="home.StartTestButton"/></button>
+                                    data-title="${toolTip}"><@s.text name="home.StartTestButton"/></button>
                         </#if>
                     </div>
                 </div>

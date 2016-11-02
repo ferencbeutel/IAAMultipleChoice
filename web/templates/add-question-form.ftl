@@ -13,31 +13,45 @@
 <div class="container">
 <@s.form action="add-question" method="post">
     <@s.hidden name="seminarId" value="${seminarId}"/>
-    <div class="form-group row">
+    <div class="form-group row"
+         <div><@s.text name="addQuestion.info"/></div>
+    <hr/>
+    <div class="row" >
+
+    <div class="col-xs-8 none" id="infoTextSingle">
+        <@s.text name="addQuestion.infoTextSingle"/></div>
+    <div class="col-xs-8 none" id="infoTextMultiple">
+        <@s.text name="addQuestion.infoTextMultiple"/></div>
+    <div class="col-xs-8 none" id="infoTextGap">
+            <@s.text name="addQuestion.infoTextGap"/></div>
+        <br>
+    </div>
+    <div class="form-group row text-no-center">
         <label for="select-question-type"
-               class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.typeOfQuestion"/></label>
+               class="col-xs-2 col-form-label col-form-label-lg "><@s.text name="addQuestion-form.typeOfQuestion"/></label>
         <div class="col-xs-10">
             <@s.select list="@de.nordakademie.multiplechoice.model.QuestionType@values()" id="select-question-type" class="select form-control" name="question.type" listValue="realVal" headerKey="-1" headerValue=""/>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row text-no-center">
         <label for="points"
-               class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.points"/></label>
+               class="col-xs-2 col-form-label col-form-label-lg "><@s.text name="addQuestion-form.points"/></label>
         <div class="col-xs-10">
             <@s.textfield class="form-control form-control-lg" name="question.points"/>
         </div>
     </div>
-    <div class="row">
-        <span class="col-xs-12"><@s.text name="addQuestion-form.gapExplaination"/></span>
+
+    <div class="row none " id="gapAnswersText">
+        <span class="col-xs-10"><@s.text name="addQuestion.gapInfo"/></span>
     </div>
-    <div class="form-group row">
+    <div class="form-group row text-no-center">
         <label for="enterQuestion"
                class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.question"/></label>
         <div class="col-xs-10">
             <@s.textarea name="question.text" id="questionText" class="form-control form-control-lg" placeholder="Ihre Frage"/>
         </div>
     </div>
-    <div class="container" id="answerChoices">
+    <div class=" text-no-center " id="answerChoices">
         <div class="none answerList" id="singleChoiceAnswers">
             <div class="row answerListItem" id="singleChoiceAnswerBaseItem">
                 <label for="singleChoiceAnswer-0"

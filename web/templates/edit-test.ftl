@@ -95,7 +95,8 @@
 <hr/>
 
 <div id="questionList" class="questionList">
-    <div class="row questionListItem questionListHeader">
+<#if seminar.test.questions?has_content>
+<div class="row questionListItem questionListHeader">
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderPos"/></div>
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderText"/></div>
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
@@ -113,6 +114,9 @@
             </div>
         </div>
     </#list>
+    <#else>
+        <p><@s.text name="editTest.emptyQuestionList"/></p>
+</#if>
 </div>
 <hr/>
 <div class="form-group row">

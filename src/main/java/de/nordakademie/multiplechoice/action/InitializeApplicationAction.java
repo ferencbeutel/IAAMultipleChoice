@@ -10,14 +10,16 @@ import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.service.StudentService;
 
-import lombok.Getter;
+
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Hendrik on 01.11.2016.
@@ -42,7 +44,9 @@ public class InitializeApplicationAction extends BaseAction {
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    private Set<Student> participants = new HashSet<>();
 
+    //List Initialization
     ArrayList<String> studentFirstNameList = new ArrayList<String>();
     ArrayList<String> studentLastNameList = new ArrayList<String>();
     ArrayList<String> lecturerFirstNameList = new ArrayList<String>();
@@ -51,6 +55,8 @@ public class InitializeApplicationAction extends BaseAction {
     ArrayList<String> seminarNameList = new ArrayList<String>();
     ArrayList<String> seminarDescriptionList = new ArrayList<String>();
     ArrayList<String> lecturerList = new ArrayList<String>();
+    ArrayList<String> studentList = new ArrayList<String>();
+    ArrayList<Seminar> seminarList = new ArrayList<Seminar>();
 
     int arrayposition;
     int maxParticipants;
@@ -59,21 +65,25 @@ public class InitializeApplicationAction extends BaseAction {
     String email;
     String seminarName;
     String seminarDescription;
+    LocalDate beginDate;
+    LocalDate endDate;
+
 
     public String initialize(){
         fillNameList();
         createStudent(quantStudents);
         createLecturer(quantLecturer);
-        createSeminar(10);
+        createSeminar(2); //TODO Implement how many seminar should be created
+        //TODO Implement Mapping of Students to seminars
+        //TODO Implement Test creation and mapping to seminars
         return SUCCESS;
     };
 
-    public Integer nextRandomNumber(int possibilities) {
+    public Integer nextRandomNumber(int possibilities) { //returns a random number between 0 and 'possibilities'-1
         int randNumber;
-        randNumber = (int)(Math.random() * possibilities) + 1;
+        randNumber = (int)(Math.random() * possibilities);
         return randNumber;
     }
-
 
     public void fillNameList(){
         studentFirstNameList.add("Anna");
@@ -133,12 +143,12 @@ public class InitializeApplicationAction extends BaseAction {
     public void createStudent(int number) {
         for (int i = 1; i <= number; i++) {
             Student student = new Student();
-            arrayposition = (nextRandomNumber(studentFirstNameList.size()-1)-1);
+            arrayposition = (nextRandomNumber(studentFirstNameList.size())); //Choose random index for studentFirstNameList
             firstName = studentFirstNameList.get(arrayposition);
-            arrayposition = (nextRandomNumber(studentLastNameList.size()-1)-1);
+            arrayposition = (nextRandomNumber(studentLastNameList.size())); //Choose random index for studentLastNameList
             lastName = studentLastNameList.get(arrayposition);
             email = (firstName + "." + lastName + "@nordakademie.de");
-            if (userEmailList.contains(email)){
+            if (lecturerList.contains(email) || studentList.contains(email)){ //Check wheter the combination of First and Last Name already exists or not (unique key = email)
                 number ++;
                 continue;
             }
@@ -148,19 +158,19 @@ public class InitializeApplicationAction extends BaseAction {
             student.setEmail(email);
             student.setPassword("Passwort1");
             studentService.save(student);
-            userEmailList.add(email);
+            studentList.add(email);
         }
     };
 
     public void createLecturer(int number) {
         for (int i = 1; i <= number; i++) {
             Lecturer lecturer = new Lecturer();
-            arrayposition = (nextRandomNumber(lecturerFirstNameList.size()-1)-1);
+            arrayposition = (nextRandomNumber(lecturerFirstNameList.size())); //Choose random index for lecturerFirstNameList
             firstName = lecturerFirstNameList.get(arrayposition);
-            arrayposition = (nextRandomNumber(lecturerLastNameList.size()-1)-1);
+            arrayposition = (nextRandomNumber(lecturerLastNameList.size())); //Choose random index for lecturerLastNameList
             lastName = lecturerLastNameList.get(arrayposition);
             email = (firstName + "." + lastName + "@nordakademie.de");
-            if (userEmailList.contains(email)){
+            if (lecturerList.contains(email) || studentList.contains(email)){ //Check wheter the combination of First and Last Name already exists or not (unique key = email)
                 number ++;
                 continue;
             }
@@ -178,21 +188,37 @@ public class InitializeApplicationAction extends BaseAction {
     public void createSeminar(int number) {
         for (int i = 1; i <= number; i++) {
             Seminar seminar = new Seminar();
-            arrayposition = (nextRandomNumber(seminarNameList.size()-1)-1);
+            arrayposition = (nextRandomNumber(seminarNameList.size()));   //Choose random index for seminarNameList
             seminarName = seminarNameList.get(arrayposition);
-            arrayposition = (nextRandomNumber(seminarDescriptionList.size()-1)-1);
+            arrayposition = (nextRandomNumber(seminarDescriptionList.size())); //Choose random index for seminarDescriptionList
             seminarDescription = seminarDescriptionList.get(arrayposition);
-            maxParticipants = (20 + nextRandomNumber(10));
-            arrayposition = (nextRandomNumber(lecturerList.size()-1)-1);
-            Lecturer lecturer = lecturerService.findByMail(lecturerList.get(arrayposition));
+            maxParticipants = (5 + nextRandomNumber(10));                // Max Participants = 5 + random number between 0...9
+            beginDate = LocalDate.now().plusDays((nextRandomNumber(365)+1)); //Startdate = Today + random number of days between 1...365
+            endDate = beginDate.plusDays(nextRandomNumber(31));          //Enddate = Startdate + random number of days between 0...30
+            arrayposition = (nextRandomNumber(lecturerList.size()));  //Choose random index from LecturerList
+            Lecturer lecturer = lecturerService.findByMail(lecturerList.get(arrayposition)); //Select Lecturer
             seminar.setLecturer(lecturer);
             seminar.setName(seminarName);
             seminar.setDescription(seminarDescription);
-            seminar.setBeginDate(LocalDate.parse("2017-01-01", dateFormatter));
-            seminar.setEndDate(LocalDate.parse("2017-02-17", dateFormatter));
+            seminar.setBeginDate(beginDate);
+            seminar.setEndDate(endDate);
             seminar.setMaxParticipants(maxParticipants);
+            int enrolledStudents = nextRandomNumber(maxParticipants); //Choose random number of participants
+            for (int j = 1; j <= enrolledStudents; j++) { //enroll students
+                arrayposition = (nextRandomNumber(studentList.size()));  //Choose random index from StudentList
+                Student student = studentService.findByMail(studentList.get(arrayposition)); //Select Student
+                if (participants.contains(student)){ //Check whether student is already enrolled for the seminar
+                    enrolledStudents ++;
+                    continue;
+                }
+                participants.add(student); //add Student to participants set of the seminar
+            }
+            seminar.setParticipants(participants);
             seminarService.createOrUpdate(seminar);
+            seminarList.add(seminar);
+            participants.clear();
         }
     }
+
 
 }

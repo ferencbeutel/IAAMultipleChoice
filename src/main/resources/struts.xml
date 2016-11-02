@@ -181,5 +181,8 @@
         <action name="application-administration">
             <result type="freemarker">templates/application-administration.ftl</result>
         </action>
+        <action name="404-errorpage">
+            <result type="freemarker">templates/404errorpage.ftl</result>
+        </action>
     </package>
 </struts>

@@ -15,7 +15,7 @@
         <p><@s.text name="global.notRegisteredYet"/> <a class="nav-link" href="registration-form"><@s.text name="global.clickHereLink"/></a>.</p>
         <p><@s.text name="global.alreadyRegistered"/> <a class="nav-link" href="login-form"><@s.text name="global.clickHereLink"/></a>.</p>
     </div>
-    <img src="/static/images/errorpage_paper_login.png" alt="bene" />
+    <img src="/static/images/errorpage_paper_bene.png" alt="bene" />
 </div>
 
 <#include "/templates/frameFooter.ftl">

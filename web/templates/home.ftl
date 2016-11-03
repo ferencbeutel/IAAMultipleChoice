@@ -61,10 +61,10 @@
                     </div>
                 </div>
             <#elseif Session.userType == studentUser>
+                <#assign testResultExist = false/>
                 <div class="row seminarListItem studentItem" data-id="${seminar.seminarId}">
                     <#if seminar.test?? && student??>
                         <#list student.results as result>
-                            <#assign testResultExist = false/>
                             <#if seminar.test.results?seq_contains(result) && result.points??>
                                 <#assign testResultExist = true/>
                                 <#if (seminar.test.minScore * seminar.test.maxScore) / 100 <= result.points>

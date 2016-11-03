@@ -142,7 +142,6 @@
 
 
 <#include "/templates/frameFooter.ftl">
-<script type="text/javascript" src="/static/js/date.js"></script>
 <script type="text/javascript" src="/static/js/add-test-time-picker.js"></script>
 <script type="text/javascript" src="/static/js/edit-test.js"></script>
 </body>

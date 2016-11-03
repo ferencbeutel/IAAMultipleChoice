@@ -1,9 +1,8 @@
 /**
  * Created by melanie on 30.10.2016.
  */
-var startValue =$('#startDate').val();
-var startDate = new Date(startValue);
-if (startDate.getDate() <= Date.today().getDate()){
+var startDate = new Date($('#startDate').val());
+if (startDate <= new Date()){
     $(':input').prop('disabled', true);
     $('#addQuestionDisabled').prop('disabled',false);
 }

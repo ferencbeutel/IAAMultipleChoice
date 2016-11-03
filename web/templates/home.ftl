@@ -18,7 +18,9 @@
         </#if>
         <#if Session?? && Session.userType?? && Session.userType == lecturerUser>
             <p><@s.text name="home.loggedIn.infoLecturer"/></p>
+            <p><@s.text name="home.loggedIn.testInfoLecturer"/></p>
         </#if>
+        <hr/>
     <#else>
         <p><@s.text name="home.notLoggedIn.info"/></p>
     </#if>

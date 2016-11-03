@@ -66,7 +66,7 @@
             <@s.fielderror/>
         </div>
     </div>
-    <@s.submit class="btn btn-primary" value="Submit"/>
+    <@s.submit class="btn btn-primary" value="Save"/>
 </@s.form>
 </div>
 

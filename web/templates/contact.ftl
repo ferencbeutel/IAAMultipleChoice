@@ -8,7 +8,7 @@
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
-<div class="container"
+    <div class="container">
     <div class="row">
         <div class="col-xs-12 ">
             <h1> <@s.text name="contact.contactHeadline"/> </h1>
@@ -35,9 +35,7 @@
             </iframe>
         </div>
     </div>
-</div>
-
-
+    </div>
 
 <#include "/templates/frameFooter.ftl">
 </body>

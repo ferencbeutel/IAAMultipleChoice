@@ -103,7 +103,7 @@
     </div>
     <#list seminar.test.questions as question>
         <div class="row questionListItem" data-id="${question.questionId}">
-            <span class="overlay"></span>
+
             <div class="col-xs-3 questionListItemEntry">
              <span>${question.position}</span></div>
             <div class="col-xs-4 questionListItemEntry">

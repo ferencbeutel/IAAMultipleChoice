@@ -65,7 +65,7 @@
     <#list question.answers as answer>
         <div class="none hiddenAnswer" data-text="${answer.text}" data-value="${answer.correct?c}"></div>
     </#list>
-    <@s.submit class="btn btn-primary" value="Submit"/>
+    <@s.submit class="btn btn-primary" value="Save"/>
 </@s.form>
 </div>
 

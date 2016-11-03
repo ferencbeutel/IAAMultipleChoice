@@ -30,7 +30,7 @@
     <#if seminarList?has_content>
         <div class="row seminarListItem seminarListHeader">
             <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderName"/></div>
-            <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
+            <div class="col-xs-3 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
 
             <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
                 <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.startTest"/></div>
@@ -47,10 +47,10 @@
                     <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.name}</span>
                     </div>
-                    <div class="col-xs-4 seminarListItemEntry">
+                    <div class="col-xs-3 seminarListItemEntry">
                         <span>${seminar.beginDate} - ${seminar.endDate}</span>
                     </div>
-                    <div class="col-xs-4 seminarListItemEntry">
+                    <div class="col-xs-5 seminarListItemEntry">
                         <#if seminar.test??>
                             <button class="btn btn-secondary edit-test-button"><@s.text name="home.EditTestButton"/></button>
                         <#else>
@@ -75,10 +75,10 @@
                     <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.name}</span>
                     </div>
-                    <div class="col-xs-4 seminarListItemEntry">
+                    <div class="col-xs-3 seminarListItemEntry">
                         <span>${seminar.beginDate} - ${seminar.endDate}</span>
                     </div>
-                    <div class="col-xs-4 seminarListItemEntry">
+                    <div class="col-xs-5 seminarListItemEntry">
                         <!-- TODO: man soll klicken können wenn endDate <= now ist -->
                         <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
                             <button class="btn btn-secondary startTestButton"

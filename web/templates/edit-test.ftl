@@ -97,19 +97,19 @@
 <div id="questionList" class="questionList">
 <#if seminar.test.questions?has_content>
 <div class="row questionListItem questionListHeader">
-        <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderPos"/></div>
+        <div class="col-xs-3 questionListItemEntry"><@s.text name="editTest.TableHeaderPos"/></div>
         <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderText"/></div>
-        <div class="col-xs-4 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
+        <div class="col-xs-5 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
     </div>
     <#list seminar.test.questions as question>
         <div class="row questionListItem" data-id="${question.questionId}">
             <span class="overlay"></span>
-            <div class="col-xs-4 questionListItemEntry">
+            <div class="col-xs-3 questionListItemEntry">
              <span>${question.position}</span></div>
             <div class="col-xs-4 questionListItemEntry">
             <span> ${question.text}</span>
             </div>
-            <div class="col-xs-4 questionListItemEntry">
+            <div class="col-xs-5 questionListItemEntry">
                 <button class="btn btn-secondary edit-question-button"><@s.text name="editTest.EditQuestionButton"/></button>
             </div>
         </div>

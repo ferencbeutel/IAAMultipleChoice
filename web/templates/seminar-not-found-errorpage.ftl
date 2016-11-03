@@ -4,15 +4,20 @@
 <head>
     <title><@s.text name="seminarNotFoundErrorPage.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
+    <link rel="stylesheet" href="/static/css/errorpage.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
 
 <div class="row">
-    <div class="col-xs-12">
-        <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"> </i>
-        <p><@s.text name="seminarNotFoundErrorPage.info"/></p>
+    <div class="col-xs-12 error-title">
+        <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"> </i>
+        <@s.text name="global-errorPage.OPS"/>
+        <div class="error-text"><@s.text name="seminarNotFoundErrorPage.info"/></div>
+    </div>
+    <img src="/static/images/errorpage_paper_find.png" alt="seminar_not_found" />
 </div>
+
 
 <#include "/templates/frameFooter.ftl">
 </body>

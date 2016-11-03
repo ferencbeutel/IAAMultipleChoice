@@ -6,6 +6,7 @@ import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -106,48 +107,57 @@ public class PersistQuestionAction extends BaseAction {
 
 
     public void validate() {
-        switch (question.getType()) {
-            case Single:
-                for (int i = 0; i < singleChoiceAnswers.size(); i++) {
-                    if (singleChoiceAnswers.get(i).length() < 2) {
-                        addFieldError("text", getI18NValue("questionFieldError.answers"));
-                        break;
-                    }
-                }
-                if (singleChoiceAnswerValues == null) {
-                    addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
-                }
-                break;
-            case Multiple:
-                for (int i = 0; i < multipleChoiceAnswers.size(); i++) {
-                    if (multipleChoiceAnswers.get(i).length() < 2) {
-                        addFieldError("text", getI18NValue("questionFieldError.answers"));
-                        break;
-                    }
-                }
-                if (multipleChoiceAnswerValues == null) {
-                    addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
-                }
-                break;
-            case Gap:
-                if (gapAnswers == null) {
-                    addFieldError("text", getI18NValue("questionFieldError.gapAnswers"));
-                } else {
-                    for (int i = 0; i < gapAnswers.size(); i++) {
-                        if (gapAnswers.get(i).length() < 2) {
+        //if (question.getType()==null){
+        //    addFieldError("type", getI18NValue("questionFieldError.questionType"));
+        //}
+        //else {
+        try {
+            switch (question.getType()) {
+                case Single:
+                    for (int i = 0; i < singleChoiceAnswers.size(); i++) {
+                        if (singleChoiceAnswers.get(i).length() < 2) {
                             addFieldError("text", getI18NValue("questionFieldError.answers"));
                             break;
                         }
                     }
-                }
-                break;
-        }
+                    if (singleChoiceAnswerValues == null) {
+                        addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
+                    }
+                    break;
+                case Multiple:
+                    for (int i = 0; i < multipleChoiceAnswers.size(); i++) {
+                        if (multipleChoiceAnswers.get(i).length() < 2) {
+                            addFieldError("text", getI18NValue("questionFieldError.answers"));
+                            break;
+                        }
+                    }
+                    if (multipleChoiceAnswerValues == null) {
+                        addFieldError("text", getI18NValue("questionFieldError.correctAnswers"));
+                    }
+                    break;
+                case Gap:
+                    if (gapAnswers == null) {
+                        addFieldError("text", getI18NValue("questionFieldError.gapAnswers"));
+                    } else {
+                        for (int i = 0; i < gapAnswers.size(); i++) {
+                            if (gapAnswers.get(i).length() < 2) {
+                                addFieldError("text", getI18NValue("questionFieldError.answers"));
+                                break;
+                            }
+                        }
+                    }
+                    break;
+            }
 
-        if (question.getPoints() <= 0) {
-            addFieldError("points", getI18NValue("questionFieldError.points"));
+            if (question.getPoints() <= 0) {
+                addFieldError("points", getI18NValue("questionFieldError.points"));
+            }
+            if (question.getText() == null || question.getText().length() <= 5) {
+                addFieldError("text", getI18NValue("questionFieldError.texts"));
+            }
+        } catch(NullPointerException e){
+            addFieldError("type", getI18NValue("questionFieldError.questionType"));
         }
-        if (question.getText() == null || question.getText().length() <= 5) {
-            addFieldError("text", getI18NValue("questionFieldError.texts"));
-        }
+        //}
     }
 }

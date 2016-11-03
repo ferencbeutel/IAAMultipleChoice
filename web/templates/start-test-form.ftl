@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row">
-        <@s.submit class="btn btn-primary" value="Submit"/>
+        <button type="submit" class="btn btn-primary"><@s.text name="button.submit"/></button>
     </div>
 </@s.form>
 </div>

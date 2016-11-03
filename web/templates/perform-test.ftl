@@ -20,7 +20,7 @@
                 <@s.fielderror/>
             </div>
         </div>
-        <@s.submit class="btn btn-primary" value="Submit Test"/>
+        <button type="submit" class="btn btn-primary"><@s.text name="button.submit"/></button>
     </div>
     </@s.form>
     </div>

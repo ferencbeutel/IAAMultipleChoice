@@ -10,6 +10,7 @@ import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Setter;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,6 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
     }
 
     public String getI18NValue(String key) {
-        return messages.getString(key);
+        return StringEscapeUtils.unescapeHtml4(messages.getString(key));
     }
 }

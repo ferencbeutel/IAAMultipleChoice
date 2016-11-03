@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <@s.submit class="btn btn-primary" value="Register"/>
+    <button type="submit" class="btn btn-primary"><@s.text name="button.register"/></button>
 </@s.form>
 </div>
 <p><@s.text name="global.alreadyRegistered"/> <a class="nav-link" href="login-form"><@s.text name="global.clickHereLink"/></a>.</p>

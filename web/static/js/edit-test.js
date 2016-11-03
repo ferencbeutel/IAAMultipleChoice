@@ -3,7 +3,7 @@
  */
 var startValue =$('#startDate').val();
 var startDate = new Date(startValue);
-if (startDate.getDay() <= Date.today().getDay()){
+if (startDate.getDate() <= Date.today().getDate()){
     $(':input').prop('disabled', true);
     $('#addQuestionDisabled').prop('disabled',false);
 }

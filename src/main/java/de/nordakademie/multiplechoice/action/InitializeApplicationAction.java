@@ -1,9 +1,7 @@
 package de.nordakademie.multiplechoice.action;
 
 
-import de.nordakademie.multiplechoice.model.Lecturer;
-import de.nordakademie.multiplechoice.model.Seminar;
-import de.nordakademie.multiplechoice.model.Student;
+import de.nordakademie.multiplechoice.model.*;
 
 import de.nordakademie.multiplechoice.service.LecturerService;
 
@@ -21,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Stream;
@@ -49,7 +48,7 @@ public class InitializeApplicationAction extends BaseAction {
     @Setter
     private Integer quantSeminar ;
 
-    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     private Set<Student> participants = new HashSet<>();
 
@@ -71,8 +70,11 @@ public class InitializeApplicationAction extends BaseAction {
     String email;
     String seminarName;
     String seminarDescription;
-    LocalDate beginDate;
-    LocalDate endDate;
+    LocalDate seminarBeginDate;
+    LocalDate seminarEndDate;
+    LocalDate testBeginDate;
+    LocalDate testEndDate;
+    LocalTime testDuration;
 
 
     public String initialize(){
@@ -97,6 +99,14 @@ public class InitializeApplicationAction extends BaseAction {
         int randNumber;
         randNumber = (int)(Math.random() * possibilities);
         return randNumber;
+    }
+
+    public boolean testOrNoTest(){ // In 80% this method will return true
+        int number = nextRandomNumber(10);
+        if (number <= 7){ //
+            return true;
+        }
+        return false;
     }
 
     public void fillNameList(){
@@ -164,15 +174,15 @@ public class InitializeApplicationAction extends BaseAction {
             seminarName = seminarNameList.get(arrayposition);
             seminarDescription = seminarDescriptionList.get(arrayposition);
             maxParticipants = (10 + nextRandomNumber(20));                // Max Participants = 5 + random number between 0...9
-            beginDate = LocalDate.now().plusDays((nextRandomNumber(365)+1)); //Startdate = Today + random number of days between 1...365
-            endDate = beginDate.plusDays(nextRandomNumber(31));          //Enddate = Startdate + random number of days between 0...30
+            seminarBeginDate = LocalDate.now().plusDays((nextRandomNumber(365)+1)); //Startdate = Today + random number of days between 1...365
+            seminarEndDate = seminarBeginDate.plusDays(nextRandomNumber(31));          //Enddate = Startdate + random number of days between 0...30
             arrayposition = (nextRandomNumber(lecturerList.size()));  //Choose random index from LecturerList
             Lecturer lecturer = lecturerService.findByMail(lecturerList.get(arrayposition)); //Select Lecturer
             seminar.setLecturer(lecturer);
             seminar.setName(seminarName);
             seminar.setDescription(seminarDescription);
-            seminar.setBeginDate(beginDate);
-            seminar.setEndDate(endDate);
+            seminar.setBeginDate(seminarBeginDate);
+            seminar.setEndDate(seminarEndDate);
             seminar.setMaxParticipants(maxParticipants);
             int enrolledStudents = nextRandomNumber(maxParticipants); //Choose random number of participants
             if (enrolledStudents >= studentList.size()) {
@@ -188,10 +198,49 @@ public class InitializeApplicationAction extends BaseAction {
                 participants.add(student); //add Student to participants set of the seminar
             }
             seminar.setParticipants(participants);
+            if (testOrNoTest()){
+                Test test = createTest();
+                seminar.setTest(test);
+            }
             seminarService.createOrUpdate(seminar);
             seminarList.add(seminar);
             participants.clear();
         }
+    }
+
+
+    public Test createTest(){
+        Test test = new Test();
+        testBeginDate =  seminarBeginDate.plusDays(nextRandomNumber(31));
+        testEndDate = testBeginDate.plusDays(nextRandomNumber(40));
+        test.setBeginDate(testBeginDate);
+        test.setEndDate(testEndDate);
+        testDuration = LocalTime.parse("00:00",durationFormatter); //Todo funzt noch nicht
+        testDuration.plusMinutes(nextRandomNumber(120));
+        test.setDuration(testDuration);
+        test.setMinScore(nextRandomNumber(80));
+        int creditPoint = nextRandomNumber(3);
+        switch ( creditPoint){
+            case 0:
+                test.setCreditPoints(CreditPointsType.HALF);
+                break;
+            case 1:
+                test.setCreditPoints(CreditPointsType.THREEQUARTER);
+                break;
+            case 2:
+                test.setCreditPoints(CreditPointsType.ONE);
+        }
+        int evalType = nextRandomNumber(2);
+        switch (evalType){
+            case 0:
+                test.setEvaluationType(EvaluationType.FATAL);
+                break;
+            case 1:
+                test.setEvaluationType(EvaluationType.SUBSTRACT);
+        }
+        //QuestionSet qs = createQuestions(10); //Todo question creation
+        //test.setQuestions(qs);
+        return test;
     }
 
 

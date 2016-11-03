@@ -15,31 +15,34 @@
     <@s.hidden name="seminarId" value="${seminarId}"/>
     <@s.hidden name="questionId" value="${questionId}"/>
     <@s.hidden name="question.position" value="${question.position}"/>
-    <div class="form-group row">
+    <div class="form-group row"
+    <div><@s.text name="editQuestion.info"/></div>
+    <hr/>
+    <div class="form-group row text-no-center">
         <label for="select-question-type"
                class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.typeOfQuestion"/></label>
         <div class="col-xs-10">
             <@s.select list="@de.nordakademie.multiplechoice.model.QuestionType@values()" id="select-question-type" class="select form-control" name="question.type" listValue="realVal" value="question.type"/>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row text-no-center" >
         <label for="points"
                class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.points"/></label>
         <div class="col-xs-10">
             <@s.textfield class="form-control form-control-lg" name="question.points"/>
         </div>
     </div>
-    <div class="row">
-        <span class="col-xs-12"><@s.text name="addQuestion-form.gapExplaination"/></span>
+    <div class="row none" id="gapAnswersText">
+        <span class="col-xs-12"><@s.text name="addQuestion.gapInfo"/></span>
     </div>
-    <div class="form-group row">
+    <div class="form-group row text-no-center">
         <label for="enterQuestion"
                class="col-xs-2 col-form-label col-form-label-lg"><@s.text name="addQuestion-form.question"/></label>
         <div class="col-xs-10">
             <@s.textarea name="question.text" id="questionText" class="form-control form-control-lg" placeholder="Ihre Frage"/>
         </div>
     </div>
-    <div class="container" id="answerChoices">
+    <div class="text-no-center" id="answerChoices">
         <div class="none answerList" id="singleChoiceAnswers"></div>
         <div class="none answerList" id="multipleChoiceAnswers"></div>
         <div class="none answerList" id="gapAnswers"></div>

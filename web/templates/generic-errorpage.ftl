@@ -15,7 +15,7 @@
         <@s.text name="global-errorPage.OPS"/>
         <div class="error-text"><@s.text name="genericErrorPage.info"/> </div>
     </div>
-    <img src="/static/images/errorpage_paper_code.png" alt="generic_error" />
+    <img src="/static/images/errorpage_paper_lego.png" alt="generic_error" />
 </div>
 <#include "/templates/frameFooter.ftl">
 </body>

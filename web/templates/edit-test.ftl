@@ -115,14 +115,24 @@
         </div>
     </#list>
     <#else>
-        <p><@s.text name="editTest.emptyQuestionList"/></p>
+        <#if (seminar.test.beginDate?datetime("yyyy-MM-dd")?date <= .now?date)>
+            <p><@s.text name="editTest.startedEmpty"/></p>
+        <#else>
+            <p><@s.text name="editTest.emptyQuestionList"/></p>
+        </#if>
 </#if>
 </div>
 <hr/>
 <div class="form-group row">
     <div class="col-xs-8 centered">
-        <button type="button"
-                class="btn btn-secondary add-question-button"><@s.text name="editTest.addQuestionButton"/></button>
+        <#if (seminar.test.beginDate?datetime("yyyy-MM-dd")?date <= .now?date)>
+            <#assign toolTip><@s.text name="editTest.tooltip"/></#assign>
+            <button type="button" id="addQuestionDisabled"
+                    class="btn btn-secondary add-question-button disabled" data-toggle="tooltip" data-title="${toolTip}"><@s.text name="editTest.addQuestionButton"/></button>
+        <#else>
+            <button type="button"
+                    class="btn btn-secondary add-question-button"><@s.text name="editTest.addQuestionButton"/></button>
+        </#if>
     </div>
 </div>
 <hr/>
@@ -132,6 +142,7 @@
 
 
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/date.js"></script>
 <script type="text/javascript" src="/static/js/add-test-time-picker.js"></script>
 <script type="text/javascript" src="/static/js/edit-test.js"></script>
 </body>

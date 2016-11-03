@@ -57,16 +57,12 @@ public class PersistTestAction extends BaseAction {
     }
 
     public void validate() {
-
-
-
         boolean startDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(startDateString, dateFormatter)) {
             addFieldError("startDate", getI18NValue("persistTestFieldError.validStart"));
         } else {
             startDateParseable = true;
         }
-
         boolean endDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(endDateString, dateFormatter)) {
             addFieldError("endDateString", getI18NValue("persistTestFieldError.validEnd"));
@@ -85,7 +81,10 @@ public class PersistTestAction extends BaseAction {
                 addFieldError("endDateString", getI18NValue("persistTestFieldError.startBeforeEnd"));
             }
         }
-
+        Seminar seminar = seminarService.byId(seminarId);
+        if(LocalDate.parse(startDateString, dateFormatter).isBefore(seminar.getBeginDate())){
+            addFieldError("startDate", getI18NValue("persistTestFieldError.seminarStart"));
+        }
         if(!DateTimeValidationUtils.isTimeParseable(durationString, durationFormatter)) {
             addFieldError("duration", getI18NValue("persistTestFieldError.duration"));
         }

@@ -71,6 +71,8 @@
 </div>
 
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/date.js"></script>
 <script type="text/javascript" src="/static/js/seminar-form-time-picker.js"></script>
+<script type="text/javascript" src="/static/js/edit-seminar.js"></script>
 </body>
 </html>

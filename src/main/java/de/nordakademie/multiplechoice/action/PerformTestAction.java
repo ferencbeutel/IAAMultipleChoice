@@ -3,17 +3,19 @@ package de.nordakademie.multiplechoice.action;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
-import de.nordakademie.multiplechoice.model.Seminar;
-import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
-import de.nordakademie.multiplechoice.model.UserType;
+import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.SeminarService;
+import de.nordakademie.multiplechoice.service.TestResultService;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -24,6 +26,9 @@ public class PerformTestAction extends BaseAction {
 
     @Autowired
     private SeminarService seminarService;
+
+    @Autowired
+    private TestResultService testResultService;
 
     @Getter
     @Setter
@@ -40,17 +45,23 @@ public class PerformTestAction extends BaseAction {
     @Getter
     private Seminar seminar;
 
+    @Getter
+    private long testResultId;
+
     public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
+        Student student = getStudentFromSession();
         seminar = seminarService.byId(seminarId);
+        TestResult result = new ArrayList<>(CollectionUtils.intersection(student.getResults(), seminar.getTest().getResults())).get(0);
+        testResultId = result.getTestResultId();
+        result.setStartDateTime(LocalDateTime.now());
+        testResultService.createOrUpdate(result);
         return SUCCESS;
     }
 
     public void validate() {
-
-
 
         if(!savedAccessToken.equals(inputAccessToken)) {
             addFieldError("accessToken", getI18NValue("performTestFieldError.token"));

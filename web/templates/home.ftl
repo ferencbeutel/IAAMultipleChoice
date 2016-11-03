@@ -64,8 +64,10 @@
                 <div class="row seminarListItem studentItem" data-id="${seminar.seminarId}">
                     <#if seminar.test?? && student??>
                         <#list student.results as result>
+                            <#assign testResultExist = false/>
                             <#if seminar.test.results?seq_contains(result) && result.points??>
-                                <#if seminar.test.minScore <= result.points>
+                                <#assign testResultExist = true/>
+                                <#if (seminar.test.minScore * seminar.test.maxScore) / 100 <= result.points>
                                     <@s.hidden class="hiddenResultToken" value="${true?c}"/>
                                 <#else>
                                     <@s.hidden class="hiddenResultToken" value="${false?c}"/>
@@ -80,16 +82,22 @@
                     <div class="col-xs-3 seminarListItemEntry">
                         <span>${seminar.beginDate} - ${seminar.endDate}</span>
                     </div>
-                    <div class="col-xs-5 seminarListItemEntry">
-                        <!-- TODO: man soll klicken können wenn endDate <= now ist -->
-                        <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
-                            <button class="btn btn-secondary startTestButton"
-                                    data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
+                    <div class="col-xs-4 seminarListItemEntry">
+                        <#if !testResultExist>
+                            <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
+                                <button class="btn btn-secondary startTestButton"
+                                        data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
+                            <#else>
+                                <#assign tooltip><@s.text name="home.noTest"/></#assign>
+                                <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip"
+                                        data-placement="top"
+                                        data-title="${tooltip}"><@s.text name="home.StartTestButton"/></button>
+                            </#if>
                         <#else>
-                            <#assign toolTip><@s.text name="home.noTest"/></#assign>
+                            <#assign tooltip><@s.text name="home.testAbsolved"/></#assign>
                             <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip"
-                                    date-placement="top"
-                                    data-title="${toolTip}"><@s.text name="home.StartTestButton"/></button>
+                                    data-placement="top"
+                                    data-title="${tooltip}"><@s.text name="home.StartTestButton"/></button>
                         </#if>
                     </div>
                 </div>

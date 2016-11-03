@@ -157,7 +157,7 @@ public class InitializeApplicationAction extends BaseAction {
             student.setRegComplete(true);
             student.setEmail(email);
             student.setPassword("Passwort1");
-            studentService.save(student);
+            studentService.createOrUpdate(student);
             studentList.add(email);
         }
     };

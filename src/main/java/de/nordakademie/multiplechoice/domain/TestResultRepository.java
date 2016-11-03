@@ -1,9 +1,11 @@
 package de.nordakademie.multiplechoice.domain;
 
+import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.TestResult;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -17,17 +19,18 @@ public class TestResultRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void create(final TestResult testResult){
-        entityManager.persist(testResult);
+    public TestResult createOrUpdate(final TestResult testResult) {
+        return entityManager.merge(testResult);
     }
 
-    public List<TestResult> findAll(){
-        return entityManager.createQuery("SELECT testResult FROM TestResult testResult", TestResult.class).getResultList();
+    public TestResult byId(final long id) {
+        try {
+            return entityManager.createQuery(
+                    "Select testResult FROM TestResult testResult WHERE testResultId = :id", TestResult.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
-
-    public TestResult update(final TestResult updateTestResult){
-        return entityManager.merge(updateTestResult);
-    }
-
-
 }

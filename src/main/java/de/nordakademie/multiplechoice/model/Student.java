@@ -2,6 +2,8 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -20,8 +22,8 @@ public class Student extends User {
     @OrderBy("beginDate desc")
     private Set<Seminar> seminars;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-
-    private List<TestResult> results;
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Set<TestResult> results;
 
     @Override
     public boolean equals(Object o) {

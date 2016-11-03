@@ -18,17 +18,12 @@ public class TestResultService {
     private TestResultRepository testResultRepository;
 
     @Transactional
-    public void saveTestResult(final TestResult testResult) {
-        testResultRepository.create(testResult);
-    }
-
-    @Transactional
-    public TestResult updateTestResult(final TestResult testResult){
-        return testResultRepository.update(testResult);
+    public TestResult createOrUpdate(final TestResult testResult) {
+        return testResultRepository.createOrUpdate(testResult);
     }
 
     @Transactional(readOnly = true)
-    public List<TestResult> listAll() {
-        return testResultRepository.findAll();
+    public TestResult byId(long id) {
+        return testResultRepository.byId(id);
     }
 }

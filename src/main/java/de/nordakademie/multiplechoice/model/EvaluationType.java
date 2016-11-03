@@ -9,8 +9,8 @@ import java.util.Map;
  * Created by MHORT on 24.10.2016.
  */
 public enum EvaluationType {
-    SUBSTRACT("Loose a point on wrong answer"),
-    IGNORE("Get 0 Points for wrong answer");
+    SUBSTRACT("Loose points on wrong answer"),
+    FATAL("Get total 0 points for single wrong answer");
 
     @Getter
     private final String realVal;

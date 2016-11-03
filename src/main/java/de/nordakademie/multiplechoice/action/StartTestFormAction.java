@@ -7,6 +7,7 @@ import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.MailScheduler;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.service.StudentService;
+import de.nordakademie.multiplechoice.service.TestResultService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
@@ -22,9 +23,6 @@ public class StartTestFormAction extends BaseAction {
 
     @Autowired
     private SeminarService seminarService;
-
-    @Autowired
-    private StudentService studentService;
 
     //TODO: remove, only here for testing purposes
     @Autowired
@@ -48,7 +46,7 @@ public class StartTestFormAction extends BaseAction {
         List<TestResult> testResultIntersection = new ArrayList<>(CollectionUtils.intersection(test.getResults(), student.getResults()));
         // There should be only one test result which the student AND the test contain in their results
         if(testResultIntersection.size() != 1) {
-            throw new GenericErrorException();
+        //    throw new GenericErrorException();
         }
 
         savedAccessToken = testResultIntersection.get(0).getAccessToken();

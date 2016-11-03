@@ -18,7 +18,7 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     @Transactional
-    public Student save(final Student student){
+    public Student createOrUpdate(final Student student){
         return studentRepository.createOrUpdate(student);
     }
 

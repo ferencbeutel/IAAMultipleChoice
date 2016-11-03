@@ -43,7 +43,7 @@ public class RegistrationAction extends BaseAction {
         final String uuid = uuidService.getUUID();
         student.setRegToken(uuid);
         student.setRegComplete(false);
-        studentService.save(student);
+        studentService.createOrUpdate(student);
         sendConfirmationMail();
 
         return SUCCESS;

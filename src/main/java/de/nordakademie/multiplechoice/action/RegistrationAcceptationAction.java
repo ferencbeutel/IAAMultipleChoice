@@ -3,7 +3,6 @@ package de.nordakademie.multiplechoice.action;
 import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +32,7 @@ public class RegistrationAcceptationAction extends BaseAction {
             throw new GenericErrorException();
         }
         studentToUnlock.setRegComplete(true);
-        studentService.save(studentToUnlock);
+        studentService.createOrUpdate(studentToUnlock);
 
         return SUCCESS;
     }

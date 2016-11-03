@@ -23,8 +23,8 @@ $(".lecturerItem").click(function (event) {
     window.location.href = "edit-seminar-form?seminarId=" + $(event.currentTarget).data("id");
 });
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 $('.startTestButton.disabled').click(function (event) {
@@ -38,7 +38,7 @@ $('.startTestButton:not(".disabled")').click(function (event) {
 
 $('.hiddenResultToken').each(function(i, e) {
     var passed = $(e).val();
-    if(passed) {
+    if(passed == 'true') {
         $(e).parent().css('background-color', 'green')
     } else {
         $(e).parent().css('background-color', 'red')

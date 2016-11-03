@@ -208,7 +208,7 @@ $('#questionText').focusout(function (e) {
     }
     var target = e.target;
     var questionString = $(target).val();
-    var amountOfGaps = (questionString.match(/\[\*]/g) || []).length;
+    var amountOfGaps = (questionString.match(/\[\.\.\.]/g) || []).length;
 
     var answerList = $('#gapAnswers');
     answerList.empty();

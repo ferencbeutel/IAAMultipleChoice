@@ -19,7 +19,7 @@ public class TestResult {
     @Id
     @GeneratedValue
     private long testResultId;
-    private int points;
+    private Integer points;
     private LocalDateTime startDateTime;
     private String accessToken;
 

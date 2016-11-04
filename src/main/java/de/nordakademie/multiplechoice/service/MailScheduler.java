@@ -50,9 +50,13 @@ public class MailScheduler {
                 seminar.getTest().getResults().add(testResult);
                 seminar = seminarService.createOrUpdate(seminar);
 
-                String mailText = "Your token for accessing the test: " + accessToken;
+                String mailText = "<p>Dear " + student.getName() + " " + student.getSurName() + ",</p>";
+                mailText = mailText + "<p>Please find your personal token for accessing the test below.</p>";
+                mailText = mailText + "<p>" + accessToken + "</p>";
+                mailText = mailText + "<p>Yours sincerely,</p></br>";
+                mailText = mailText + "<p>The Nordakademie Seminar Service";
                 try {
-                    mailService.sendMail(student.getEmail(), "Your test in " + seminar.getName(), mailText);
+                    mailService.sendMail(student.getEmail(), "Your personal token for your test in  " + seminar.getName(), mailText);
                 } catch (MessagingException e) {
                     System.out.println("Gmail sucks :/");
                     //TODO: Implement Logging

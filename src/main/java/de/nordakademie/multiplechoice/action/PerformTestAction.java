@@ -3,6 +3,7 @@ package de.nordakademie.multiplechoice.action;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
+import de.nordakademie.multiplechoice.exception.TestAlreadyStartedException;
 import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import de.nordakademie.multiplechoice.service.TestResultService;
@@ -51,13 +52,17 @@ public class PerformTestAction extends BaseAction {
     @Getter
     private long testResultId;
 
-    public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
+    public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException, TestAlreadyStartedException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
         Student student = getStudentFromSession();
         seminar = seminarService.byId(seminarId);
         TestResult result = new ArrayList<>(CollectionUtils.intersection(student.getResults(), seminar.getTest().getResults())).get(0);
+        if(result.getStartDateTime() != null) {
+            throw new TestAlreadyStartedException();
+        }
+
         test = seminar.getTest();
         testResultId = result.getTestResultId();
         result.setStartDateTime(LocalDateTime.now());

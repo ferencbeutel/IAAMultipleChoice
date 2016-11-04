@@ -45,8 +45,13 @@
                                                 <span>${answer.text}</span>
                                             </div>
                                             <div class="col-xs-2 checkBoxes">
-                                                <input type="checkbox" name="singleMultiChoiceInput"
-                                                       value="${answer.answerId}"/>
+                                                <#if question.type == "Single">
+                                                    <input type="checkbox" class="singleChoiceCheckbox" name="singleMultiChoiceInput"
+                                                           value="${answer.answerId}"/>
+                                                <#else>
+                                                    <input type="checkbox" name="singleMultiChoiceInput"
+                                                           value="${answer.answerId}"/>
+                                                </#if>
                                             </div>
                                         </div>
                                     </#if>

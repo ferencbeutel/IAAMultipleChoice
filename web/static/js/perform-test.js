@@ -37,3 +37,17 @@ $('#countdown').countdown(new Date(new Date().getTime() + toAdd), function(e) {
         submitForm();
     }
 });
+
+var clickBoxHandler = function (e) {
+    var checkBoxState = e.target.checked;
+    $(e.target).closest('.question').find('.singleChoiceCheckbox').each(function (i, ele) {
+        ele.checked = false;
+    });
+    if (checkBoxState) {
+        e.target.checked = true;
+    }
+};
+
+$('.singleChoiceCheckbox').click(function (e) {
+    clickBoxHandler(e);
+});

@@ -87,6 +87,11 @@
             <interceptor-ref name="basicStack"/>
             <result type="freemarker">templates/edit-question-form.ftl</result>
         </action>
+        <action name="edit-test-delete-question" class="de.nordakademie.multiplechoice.action.QuestionDeleteAction" method="deleteQuestion">
+            <interceptor-ref name="chain"/>
+            <interceptor-ref name="basicStack"/>
+            <result type="freemarker">templates/edit-test.ftl</result>
+        </action>
         <action name="edit-question" class="de.nordakademie.multiplechoice.action.PersistQuestionAction" method="persist">
             <result type="chain">edit-test-form</result>
             <result name="input" type="chain">edit-question-form</result>

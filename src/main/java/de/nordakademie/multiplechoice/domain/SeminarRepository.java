@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Repository
 public class SeminarRepository {
-
     @PersistenceContext
     private EntityManager entityManager;
 

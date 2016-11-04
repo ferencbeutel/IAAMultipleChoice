@@ -107,10 +107,6 @@ public class PersistQuestionAction extends BaseAction {
 
 
     public void validate() {
-        //if (question.getType()==null){
-        //    addFieldError("type", getI18NValue("questionFieldError.questionType"));
-        //}
-        //else {
         try {
             switch (question.getType()) {
                 case Single:
@@ -158,6 +154,5 @@ public class PersistQuestionAction extends BaseAction {
         } catch(NullPointerException e){
             addFieldError("type", getI18NValue("questionFieldError.questionType"));
         }
-        //}
     }
 }

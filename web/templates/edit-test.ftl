@@ -105,12 +105,13 @@
         <div class="row questionListItem" data-id="${question.questionId}">
 
             <div class="col-xs-3 questionListItemEntry">
-             <span>${question.position}</span></div>
+             <span>${question.position+1}</span></div>
             <div class="col-xs-4 questionListItemEntry">
             <span> ${question.text}</span>
             </div>
-            <div class="col-xs-5 questionListItemEntry">
+            <div id="buttonItemEntry" class="col-xs-5 questionListItemEntry ">
                 <button class="btn btn-secondary edit-question-button"><@s.text name="editTest.EditQuestionButton"/></button>
+                <button id="deleteButton" class="delete-question-button btn btn-secondary">X</button>
             </div>
         </div>
     </#list>

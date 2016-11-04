@@ -27,6 +27,9 @@ public class QuestionRepository {
         return entityManager.merge(updateQuestion);
     }
 
+    public void delete(final long questionId){
+       entityManager.remove(byId(questionId));
+    }
     public List<Question> findAll(){
         return entityManager.createQuery("SELECT question FROM Question question", Question .class).getResultList();
     }

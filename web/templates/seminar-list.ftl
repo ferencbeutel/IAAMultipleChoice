@@ -34,7 +34,7 @@
 </#list>
 
 </div>
-<script type="text/javascript" src="/static/js/seminar-list.js"></script>
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/seminar-list.js"></script>
 </body>
 </html>

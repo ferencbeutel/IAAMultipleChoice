@@ -98,7 +98,7 @@
     </div>
 </div>
 <input type="hidden" id="hiddenSeminarId" value="${seminarId}">
-<script type="text/javascript" src="/static/js/seminar-detail-page.js"></script>
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/seminar-detail-page.js"></script>
 </body>
 </html>

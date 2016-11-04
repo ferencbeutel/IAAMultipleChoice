@@ -48,6 +48,21 @@ public class InitializeApplicationAction extends BaseAction {
     @Setter
     private Integer quantSeminar ;
 
+    @Setter
+    private List<String> singleChoiceAnswers;
+
+    @Setter
+    private List<Integer> singleChoiceAnswerValues;
+
+    @Setter
+    private List<String> multipleChoiceAnswers;
+
+    @Setter
+    private List<Integer> multipleChoiceAnswerValues;
+
+    @Setter
+    private List<String> gapAnswers;
+
     private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     private Set<Student> participants = new HashSet<>();
@@ -103,10 +118,18 @@ public class InitializeApplicationAction extends BaseAction {
 
     public boolean testOrNoTest(){ // In 80% this method will return true
         int number = nextRandomNumber(10);
-        if (number <= 7){ //
+        if (number <= 6){ //
             return true;
         }
         return false;
+    }
+
+    public boolean answerIsTrue(){
+        int number = nextRandomNumber(10);
+        if (number <= 6){
+            return false;
+        }
+        return true;
     }
 
     public void fillNameList(){
@@ -129,7 +152,7 @@ public class InitializeApplicationAction extends BaseAction {
             firstName = studentFirstNameList.get(arrayposition);
             arrayposition = (nextRandomNumber(lastNameList.size())); //Choose random index for studentLastNameList
             lastName = lastNameList.get(arrayposition);
-            email = (firstName + "." + lastName + "@nordakademie.de");
+            email = (firstName + "_" + lastName + "@nordakademie.de");
             if (lecturerList.contains(email) || studentList.contains(email)){ //Check wheter the combination of First and Last Name already exists or not (unique key = email)
                 number ++;
                 continue;
@@ -151,7 +174,7 @@ public class InitializeApplicationAction extends BaseAction {
             firstName = lecturerFirstNameList.get(arrayposition);
             arrayposition = (nextRandomNumber(lastNameList.size())); //Choose random index for lecturerLastNameList
             lastName = lastNameList.get(arrayposition);
-            email = (firstName + "." + lastName + "@nordakademie.de");
+            email = (firstName + "_" + lastName + "@nordakademie.de");
             if (lecturerList.contains(email) || studentList.contains(email)){ //Check wheter the combination of First and Last Name already exists or not (unique key = email)
                 number ++;
                 continue;
@@ -216,7 +239,7 @@ public class InitializeApplicationAction extends BaseAction {
         test.setBeginDate(testBeginDate);
         test.setEndDate(testEndDate);
         testDuration = LocalTime.parse("00:00",durationFormatter); //Todo funzt noch nicht
-        testDuration.plusMinutes(nextRandomNumber(120));
+        testDuration = testDuration.plusMinutes(nextRandomNumber(120));
         test.setDuration(testDuration);
         test.setMinScore(nextRandomNumber(80));
         int creditPoint = nextRandomNumber(3);
@@ -238,10 +261,100 @@ public class InitializeApplicationAction extends BaseAction {
             case 1:
                 test.setEvaluationType(EvaluationType.SUBSTRACT);
         }
-        //QuestionSet qs = createQuestions(10); //Todo question creation
-        //test.setQuestions(qs);
+        int numberOfQuestions = nextRandomNumber(15);
+        test.setQuestions(createQuestionSet(numberOfQuestions));
         return test;
     }
 
+    public List<Question> createQuestionSet(int number){
+        List<Question> questionSet = new ArrayList<>();
+        for (int i = 1; i <= number; i++) {
+            Question question = new Question();
+            question.setPosition(i-1);
+            int points = (nextRandomNumber(5)+1);
+            question.setPoints(points);
+            int questionType = nextRandomNumber(3);
+            List<Answer> answerSet = new ArrayList<>();
+            switch (questionType) {
+                case 0:
+                    question.setType(QuestionType.Single);
+                    question.setText("Dies ist eine Single Choice Frage. Es ist also nur eine Antwort richtig");
+                    answerSet = createAnswer(points, question.getType());
+                    question.setAnswers(answerSet);
+                    break;
+                case 1:
+                    question.setType(QuestionType.Multiple);
+                    question.setText("Dies ist eine Multiple Choice Frage. Es sind also vielleicht mehrere Antworten richtig");
+                    answerSet = createAnswer(points, question.getType());
+                    question.setAnswers(answerSet);
+                    break;
+                case 2:
+                    question.setType(QuestionType.Gap);
+                    question.setText("Dies ist ein Lückentext. Beweise Mut zur [...]. Fortes [...] adiuvat. Und obwohl es "+points+" Punkte gibt, gibt es hier nur 2 Lücken.");
+                    answerSet = createAnswer(2, question.getType());
+                    question.setAnswers(answerSet);
+                    break;
+            }
+            questionSet.add(question);
+        }
+        return questionSet;
+
+
+    }
+
+    public List<Answer> createAnswer(int numberOfAnswers, QuestionType type){
+        boolean allAnswersFalse = true;
+        List<Answer> answerSet = new ArrayList<>();
+        for (int i = 1; i <= numberOfAnswers; i++){
+            Answer answer = new Answer();
+            answer.setPosition(i-1);
+            switch (type){
+                case Single:
+                    if (answerIsTrue()) {
+                        answer.setCorrect(true);
+                        answer.setText("Richtig");
+                        allAnswersFalse = false;
+                    }
+                    else {
+                        answer.setCorrect(false);
+                        answer.setText("Falsch");
+                    }
+                    break;
+
+                case Multiple:
+                    if (answerIsTrue()) {
+                        answer.setCorrect(true);
+                        answer.setText("Richtig");
+                        allAnswersFalse = false;
+                    }
+                    else {
+                        answer.setCorrect(false);
+                        answer.setText("Falsch");
+                    }
+                    break;
+
+                case Gap:
+                    answer.setCorrect(true);
+                    if (i<2){
+                        answer.setText("Lücke");
+                    }
+                    else {
+                        answer.setText("fortuna");
+                    }
+                    allAnswersFalse = false;
+                    break;
+                    }
+
+            answerSet.add(answer);
+            }
+            if (allAnswersFalse) {
+                answerSet.get(numberOfAnswers-1).setCorrect(true);
+                answerSet.get(numberOfAnswers-1).setText("Richtig");
+            }
+        return answerSet;
+    }
 
 }
+
+
+

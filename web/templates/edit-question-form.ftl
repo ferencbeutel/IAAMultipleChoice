@@ -6,6 +6,7 @@
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/question.css">
     <link rel="stylesheet" href="/static/css/validationError.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -56,8 +57,8 @@
     <br/>
     <div class="row">
         <div class="col-xs-4 centered">
-            <button type="button" class="manageAnswersButtons" id="addAnswerButton">+</button>
-            <button type="button" class="manageAnswersButtons" id="removeAnswerButton">-</button>
+            <button type="button" class="manageAnswersButtons fa fa-plus" id="addAnswerButton"/>
+            <button type="button" class="manageAnswersButtons fa fa-minus" id="removeAnswerButton"/>
         </div>
     </div>
     <br/>

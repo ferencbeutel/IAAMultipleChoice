@@ -6,6 +6,7 @@
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/edit-test.css">
     <link rel="stylesheet" href="/static/css/validationError.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -110,8 +111,8 @@
             <span> ${question.text}</span>
             </div>
             <div id="buttonItemEntry" class="col-xs-5 questionListItemEntry ">
-                <button class="btn btn-secondary edit-question-button"><@s.text name="editTest.EditQuestionButton"/></button>
-                <button id="deleteButton" class="delete-question-button btn btn-secondary">X</button>
+                <button class="btn btn-secondary edit-question-button fa fa-pencil"/>
+                <button id="deleteButton" class="delete-question-button btn btn-secondary fa fa-trash"/>
             </div>
         </div>
     </#list>

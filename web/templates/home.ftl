@@ -5,6 +5,7 @@
     <title><@s.text name="home.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
     <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <#include "/templates/frameHeader.ftl">
@@ -32,7 +33,7 @@
     <#if seminarList?has_content>
         <div class="row seminarListItem seminarListHeader">
             <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderName"/></div>
-            <div class="col-xs-3 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
+            <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
 
             <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
                 <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.startTest"/></div>
@@ -49,14 +50,14 @@
                     <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.name}</span>
                     </div>
-                    <div class="col-xs-3 seminarListItemEntry">
+                    <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.beginDate} - ${seminar.endDate}</span>
                     </div>
-                    <div class="col-xs-5 seminarListItemEntry">
+                    <div class="col-xs-4 seminarListItemEntry">
                         <#if seminar.test??>
-                            <button class="btn btn-secondary edit-test-button"><@s.text name="home.EditTestButton"/></button>
+                            <button class="btn btn-secondary edit-test-button fa fa-pencil"/>
                         <#else>
-                            <button class="btn btn-secondary add-test-button"><@s.text name="home.add-testButton"/></button>
+                            <button class="btn btn-secondary add-test-button fa fa-plus"/>
                         </#if>
                     </div>
                 </div>
@@ -79,25 +80,25 @@
                     <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.name}</span>
                     </div>
-                    <div class="col-xs-3 seminarListItemEntry">
+                    <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.beginDate} - ${seminar.endDate}</span>
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
                         <#if !testResultExist>
                             <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
-                                <button class="btn btn-secondary startTestButton"
-                                        data-id="${seminar.seminarId}"><@s.text name="home.StartTestButton"/></button>
+                                <button class="btn btn-secondary startTestButton fa fa-play"
+                                        data-id="${seminar.seminarId}"/>
                             <#else>
                                 <#assign tooltip><@s.text name="home.noTest"/></#assign>
-                                <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip"
+                                <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
                                         data-placement="top"
-                                        data-title="${tooltip}"><@s.text name="home.StartTestButton"/></button>
+                                        data-title="${tooltip}"/>
                             </#if>
                         <#else>
                             <#assign tooltip><@s.text name="home.testAbsolved"/></#assign>
-                            <button class="btn btn-secondary startTestButton disabled" data-toggle="tooltip"
+                            <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
                                     data-placement="top"
-                                    data-title="${tooltip}"><@s.text name="home.StartTestButton"/></button>
+                                    data-title="${tooltip}"/>
                         </#if>
                     </div>
                 </div>

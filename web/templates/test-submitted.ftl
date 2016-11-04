@@ -13,6 +13,8 @@
             <span>${result.points}</span>
         </div>
     </div>
+</div>
 <#include "/templates/frameFooter.ftl">
+<script type="text/javascript" src="/static/js/test-submit.js"></script>
 </body>
 </html>

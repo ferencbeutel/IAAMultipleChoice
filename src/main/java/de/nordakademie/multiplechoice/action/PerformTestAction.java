@@ -46,6 +46,9 @@ public class PerformTestAction extends BaseAction {
     private Seminar seminar;
 
     @Getter
+    private Test test;
+
+    @Getter
     private long testResultId;
 
     public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
@@ -55,6 +58,7 @@ public class PerformTestAction extends BaseAction {
         Student student = getStudentFromSession();
         seminar = seminarService.byId(seminarId);
         TestResult result = new ArrayList<>(CollectionUtils.intersection(student.getResults(), seminar.getTest().getResults())).get(0);
+        test = seminar.getTest();
         testResultId = result.getTestResultId();
         result.setStartDateTime(LocalDateTime.now());
         testResultService.createOrUpdate(result);

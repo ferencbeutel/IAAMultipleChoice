@@ -27,11 +27,11 @@ public class TestSubmitAction extends BaseAction {
 
     @Getter
     @Setter
-    private List<Long> singleMultiChoiceInput;
+    private List<Long> singleMultiChoiceInput = new ArrayList<>();
 
     @Getter
     @Setter
-    private List<String> gapInput;
+    private List<String> gapInput = new ArrayList<>();
 
     @Getter
     @Setter

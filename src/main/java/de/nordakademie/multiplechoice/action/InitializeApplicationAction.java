@@ -124,7 +124,7 @@ public class InitializeApplicationAction extends BaseAction {
         return false;
     }
 
-    public boolean answerIsTrue(){
+    public boolean answerIsTrue(){ // In 70% this method will return true
         int number = nextRandomNumber(10);
         if (number <= 6){
             return false;
@@ -132,7 +132,7 @@ public class InitializeApplicationAction extends BaseAction {
         return true;
     }
 
-    public void fillNameList(){
+    public void fillNameList(){ //Todo Fix the path
         Path path = Paths.get("/Users/HendrikPeters/Documents/IAA/hausarbeit/IAAMultipleChoice/src/main/resources/ExampleData/ExampleDataLastNames.txt");
         writeFromFileToList(path,lastNameList);
         path = Paths.get("/Users/HendrikPeters/Documents/IAA/hausarbeit/IAAMultipleChoice/src/main/resources/ExampleData/ExampleDataLecturerFirstName.txt");
@@ -234,15 +234,15 @@ public class InitializeApplicationAction extends BaseAction {
 
     public Test createTest(){
         Test test = new Test();
-        testBeginDate =  seminarBeginDate.plusDays(nextRandomNumber(31));
-        testEndDate = testBeginDate.plusDays(nextRandomNumber(40));
+        testBeginDate =  seminarBeginDate.plusDays(nextRandomNumber(31)); // Test-Date Equal/After Seminar beginDate
+        testEndDate = testBeginDate.plusDays(nextRandomNumber(40)); //TestEndDate Equal/After TestBeginDate
         test.setBeginDate(testBeginDate);
         test.setEndDate(testEndDate);
-        testDuration = LocalTime.parse("00:00",durationFormatter); //Todo funzt noch nicht
-        testDuration = testDuration.plusMinutes(nextRandomNumber(120));
+        testDuration = LocalTime.parse("00:00",durationFormatter);
+        testDuration = testDuration.plusMinutes(nextRandomNumber(120)+1); //Set Duration to at least 1 minute
         test.setDuration(testDuration);
-        test.setMinScore(nextRandomNumber(80));
-        int creditPoint = nextRandomNumber(3);
+        test.setMinScore(nextRandomNumber(80)+1); // Set minScore to at Least 1
+        int creditPoint = nextRandomNumber(3); //Chose  credits random
         switch ( creditPoint){
             case 0:
                 test.setCreditPoints(CreditPointsType.HALF);
@@ -253,7 +253,7 @@ public class InitializeApplicationAction extends BaseAction {
             case 2:
                 test.setCreditPoints(CreditPointsType.ONE);
         }
-        int evalType = nextRandomNumber(2);
+        int evalType = nextRandomNumber(2); //choose Evaluation Type of test random
         switch (evalType){
             case 0:
                 test.setEvaluationType(EvaluationType.FATAL);
@@ -261,8 +261,8 @@ public class InitializeApplicationAction extends BaseAction {
             case 1:
                 test.setEvaluationType(EvaluationType.SUBSTRACT);
         }
-        int numberOfQuestions = nextRandomNumber(15);
-        test.setQuestions(createQuestionSet(numberOfQuestions));
+        int numberOfQuestions = nextRandomNumber(15); //Set number of Questions (Random 0..14)
+        test.setQuestions(createQuestionSet(numberOfQuestions)); //Create questions for test
         return test;
     }
 
@@ -271,15 +271,15 @@ public class InitializeApplicationAction extends BaseAction {
         for (int i = 1; i <= number; i++) {
             Question question = new Question();
             question.setPosition(i-1);
-            int points = (nextRandomNumber(5)+1);
+            int points = (nextRandomNumber(5)+1); //Set random number of points 1..5
             question.setPoints(points);
-            int questionType = nextRandomNumber(3);
+            int questionType = nextRandomNumber(3); // set random question type
             List<Answer> answerSet = new ArrayList<>();
             switch (questionType) {
                 case 0:
                     question.setType(QuestionType.Single);
                     question.setText("Dies ist eine Single Choice Frage. Es ist also nur eine Antwort richtig");
-                    answerSet = createAnswer(points, question.getType());
+                    answerSet = createAnswer(points, question.getType()); //Create answer (number of answers = points)
                     question.setAnswers(answerSet);
                     break;
                 case 1:
@@ -291,7 +291,7 @@ public class InitializeApplicationAction extends BaseAction {
                 case 2:
                     question.setType(QuestionType.Gap);
                     question.setText("Dies ist ein Lückentext. Beweise Mut zur [...]. Fortes [...] adiuvat. Und obwohl es "+points+" Punkte gibt, gibt es hier nur 2 Lücken.");
-                    answerSet = createAnswer(2, question.getType());
+                    answerSet = createAnswer(2, question.getType()); //Create answer for only two gaps
                     question.setAnswers(answerSet);
                     break;
             }
@@ -309,8 +309,8 @@ public class InitializeApplicationAction extends BaseAction {
             Answer answer = new Answer();
             answer.setPosition(i-1);
             switch (type){
-                case Single:
-                    if (answerIsTrue()) {
+                case Single:                         //multiple choice answer
+                    if (answerIsTrue()) {            //Decide whether answer is right or wrong
                         answer.setCorrect(true);
                         answer.setText("Richtig");
                         allAnswersFalse = false;
@@ -347,7 +347,7 @@ public class InitializeApplicationAction extends BaseAction {
 
             answerSet.add(answer);
             }
-            if (allAnswersFalse) {
+            if (allAnswersFalse) {                                      //make sure that at least 1 answer is correct
                 answerSet.get(numberOfAnswers-1).setCorrect(true);
                 answerSet.get(numberOfAnswers-1).setText("Richtig");
             }

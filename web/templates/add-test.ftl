@@ -74,7 +74,7 @@
             <label for="passThreshold"
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"><@s.text name="test.selectPassThreshold"/></label>
             <div class="col-md-7">
-                <@s.textfield class="form-control form-control-lg" id="passThreshold" name="test.minScore"/>
+                <@s.textfield class="form-control form-control-lg" id="passThreshold" name="test.passingThreshold"/>
             </div>
         </div>
 

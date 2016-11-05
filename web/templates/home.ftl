@@ -68,7 +68,7 @@
                         <#list student.results as result>
                             <#if seminar.test.results?seq_contains(result) && result.points??>
                                 <#assign testResultExist = true/>
-                                <#if (seminar.test.minScore * seminar.test.maxScore) / 100 <= result.points>
+                                <#if (seminar.test.passingThreshold * seminar.test.maxScore) / 100 <= result.points>
                                     <@s.hidden class="hiddenResultToken" value="${true?c}"/>
                                 <#else>
                                     <@s.hidden class="hiddenResultToken" value="${false?c}"/>

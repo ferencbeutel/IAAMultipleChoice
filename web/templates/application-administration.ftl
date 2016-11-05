@@ -25,7 +25,7 @@
     <div class="form-group row">
         <label for="name" class="col-md-4 col-form-label col-form-label-lg"><@s.text name="applicationAdministration.quantSeminar"/></label>
         <div class="col-md-8">
-            <@s.textfield class="form-control form-control-lg" id="quantSeminar" name="quantSeminar"/>
+            <@s.textfield class="form-control form-control-lg" id="quantSeminars" name="quantSeminars"/>
         </div>
     </div>
 

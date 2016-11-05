@@ -18,8 +18,8 @@ public class LecturerService {
     private LecturerRepository lecturerRepository;
 
     @Transactional
-    public void save(final Lecturer lecturer) {
-        lecturerRepository.createOrUpdate(lecturer);
+    public Lecturer createOrUpdate(final Lecturer lecturer) {
+        return lecturerRepository.createOrUpdate(lecturer);
     }
 
     @Transactional(readOnly = true)

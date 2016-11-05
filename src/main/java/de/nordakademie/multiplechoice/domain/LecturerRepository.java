@@ -18,8 +18,8 @@ public class LecturerRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createOrUpdate(final Lecturer lecturer) {
-        entityManager.merge(lecturer);
+    public Lecturer createOrUpdate(final Lecturer lecturer) {
+        return entityManager.merge(lecturer);
     }
 
     public List<Lecturer> findAll() {

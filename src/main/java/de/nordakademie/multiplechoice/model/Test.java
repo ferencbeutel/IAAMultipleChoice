@@ -28,7 +28,7 @@ public class Test {
     private long testId;
     private LocalDate beginDate;
     private LocalDate endDate;
-    private int minScore;
+    private int passingThreshold;
     @Enumerated(EnumType.STRING)
     private CreditPointsType creditPoints;
     @Enumerated(EnumType.STRING)

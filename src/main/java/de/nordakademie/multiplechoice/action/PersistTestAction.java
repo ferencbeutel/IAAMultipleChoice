@@ -89,8 +89,8 @@ public class PersistTestAction extends BaseAction {
             addFieldError("duration", getI18NValue("persistTestFieldError.duration"));
         }
 
-        if(test.getMinScore() <= 0) {
-            addFieldError("minScore", getI18NValue("persistTestFieldError.minScore"));
+        if(test.getPassingThreshold() <= 0) {
+            addFieldError("passingThreshold", getI18NValue("persistTestFieldError.passingThreshold"));
         }
     }
 }

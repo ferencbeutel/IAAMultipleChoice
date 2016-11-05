@@ -21,6 +21,7 @@ public class QuestionDeleteAction extends BaseAction {
 
     @Autowired
     private QuestionService questionService;
+
     @Autowired
     private SeminarService seminarService;
 

@@ -51,10 +51,10 @@
         <error-code>404</error-code>
         <location>/pages/400-errorpage.html</location>
     </error-page>
-    <!--<error-page>
+    <error-page>
         <error-code>500</error-code>
         <location>/pages/500-errorpage.html</location>
-    </error-page>-->
+    </error-page>
     <error-page>
         <error-code>501</error-code>
         <location>/pages/500-errorpage.html</location>

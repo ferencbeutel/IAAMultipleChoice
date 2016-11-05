@@ -30,17 +30,12 @@ public class EnrollSeminarAction extends BaseAction {
     Seminar seminar;
 
     public String enroll() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException, AlreadyEnrolledException {
-        if(!isUserLoggedIn()) {
-            throw new NotLoggedInException();
-        }
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
         Student student = getStudentFromSession();
         seminar = seminarService.byId(seminarId);
-        if (seminar == null) {
-            throw new GenericErrorException();
-        }
+
         Set<Student> newParticipantsSet = seminar.getParticipants();
         if (newParticipantsSet.contains(student)) {
             throw new AlreadyEnrolledException();

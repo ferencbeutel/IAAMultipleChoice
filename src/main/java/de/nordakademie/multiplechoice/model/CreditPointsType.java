@@ -16,7 +16,7 @@ public enum CreditPointsType {
     @Getter
     private final String realVal;
 
-    CreditPointsType(String s) {
+    CreditPointsType(final String s) {
         this.realVal = s;
     }
 }

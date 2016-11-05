@@ -24,13 +24,8 @@ public class RegistrationAcceptationAction extends BaseAction {
         if(isUserLoggedIn()) {
             throw new AlreadyLoggedInException();
         }
-        if(regCode == null) {
-            throw new GenericErrorException();
-        }
         final Student studentToUnlock = studentService.findByRegToken(regCode);
-        if (studentToUnlock == null) {
-            throw new GenericErrorException();
-        }
+
         studentToUnlock.setRegComplete(true);
         studentService.createOrUpdate(studentToUnlock);
 

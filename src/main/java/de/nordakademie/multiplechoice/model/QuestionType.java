@@ -18,7 +18,7 @@ public enum QuestionType {
 
     private final String i18nLookupKey;
 
-    QuestionType(String s) {
+    QuestionType(final String s) {
         this.i18nLookupKey = s;
     }
 

@@ -33,8 +33,6 @@
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException"
                                result="genericError"/>
         </global-exception-mappings>
-
-
         <action name="">
             <result type="redirectAction">home</result>
         </action>
@@ -181,9 +179,12 @@
         <action name="generic-errorpage">
             <result type="freemarker">templates/generic-errorpage.ftl</result>
         </action>
-        <action name="initializeApplicationData" class="de.nordakademie.multiplechoice.action.InitializeApplicationAction" method="initialize">
-            <result type="freemarker">templates/impressum.ftl</result>
+        <action name="initializeApplicationData" class="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" method="initialize">
+            <result type="redirectAction">home</result>
             <result name="input" type="freemarker">templates/application-administration.ftl</result>
+        </action>
+        <action name="sendTestToken" class="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" method="sendTestToken">
+            <result type="redirectAction">home</result>
         </action>
         <action name="application-administration">
             <result type="freemarker">templates/application-administration.ftl</result>

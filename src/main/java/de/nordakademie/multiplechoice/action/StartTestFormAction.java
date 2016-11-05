@@ -39,14 +39,13 @@ public class StartTestFormAction extends BaseAction {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
         }
-        mailScheduler.sendTestToken();
         Student student = getStudentFromSession();
         Test test = seminarService.byId(seminarId).getTest();
 
         List<TestResult> testResultIntersection = new ArrayList<>(CollectionUtils.intersection(test.getResults(), student.getResults()));
         // There should be only one test result which the student AND the test contain in their results
         if(testResultIntersection.size() != 1) {
-        //    throw new GenericErrorException();
+            throw new GenericErrorException();
         }
 
         savedAccessToken = testResultIntersection.get(0).getAccessToken();

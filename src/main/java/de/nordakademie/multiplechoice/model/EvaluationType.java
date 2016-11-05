@@ -15,7 +15,7 @@ public enum EvaluationType {
     @Getter
     private final String realVal;
     
-    EvaluationType(String s) {
+    EvaluationType(final String s) {
         this.realVal = s;
     }
 }

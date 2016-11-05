@@ -24,9 +24,7 @@ public class SeminarDetailAction extends BaseAction {
 
     public String displaySeminarDetail() throws GenericErrorException {
         seminar = seminarService.byId(seminarId);
-        if(seminar == null) {
-            throw new GenericErrorException();
-        }
+
         return SUCCESS;
     }
 }

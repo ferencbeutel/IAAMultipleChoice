@@ -56,7 +56,7 @@ public class ExampleDataService {
         seminarDescriptions = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(SEMINAR_DESCRIPTIONS_FILE).toURI()));
     }
     
-    public void generateTestData(int quantStudents, int quantSeminars, int quantLecturer) {
+    public void generateTestData(final int quantStudents, final int quantSeminars, final int quantLecturer) {
         List<Student> students = new ArrayList<>();
         for (int i = 0; i < quantStudents; i++) {
             Student student = randomStudent();
@@ -275,7 +275,7 @@ public class ExampleDataService {
         return possibleStrings.get(randomInt(0, possibleStrings.size() - 1));
     }
 
-    private <T extends Enum<?>> T randomEnum(Class<T> clazz) {
+    private <T extends Enum<?>> T randomEnum(final Class<T> clazz) {
         int x = randomInt(0, clazz.getEnumConstants().length - 1);
         return clazz.getEnumConstants()[x];
     }

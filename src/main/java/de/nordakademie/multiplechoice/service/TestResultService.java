@@ -23,7 +23,7 @@ public class TestResultService {
     }
 
     @Transactional(readOnly = true)
-    public TestResult byId(long id) {
+    public TestResult byId(final long id) {
         return testResultRepository.byId(id);
     }
 }

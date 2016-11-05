@@ -73,7 +73,7 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
         return lecturer;
     }
 
-    public void setUserInSession(String userMail, UserType userType) {
+    public void setUserInSession(final String userMail, final UserType userType) {
         session.put("userMail", userMail);
         session.put("userType", userType);
     }
@@ -91,7 +91,7 @@ public abstract class BaseAction extends ActionSupport implements SessionAware {
         return userMailObject.toString();
     }
 
-    public String getI18NValue(String key) {
+    public String getI18NValue(final String key) {
         return StringEscapeUtils.unescapeHtml4(messages.getString(key));
     }
 }

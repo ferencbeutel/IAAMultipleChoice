@@ -46,7 +46,7 @@ public class Test {
         return questions.stream().mapToInt(Question::getPoints).sum();
     }
 
-    public int calculateTestResult(List<Answer> studentAnswers) {
+    public int calculateTestResult(final List<Answer> studentAnswers) {
         int result = 0;
         for (Question question : questions) {
             double partialResult = 0;

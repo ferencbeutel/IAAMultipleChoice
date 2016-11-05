@@ -29,7 +29,7 @@ public class MailService {
     private String user;
     private String password;
 
-    public void sendMail(String to, String subject, String text) throws MessagingException {
+    public void sendMail(final String to, final String subject, final String text) throws MessagingException {
 
         Properties properties = buildProperties();
         Session session = initSession(properties);
@@ -49,7 +49,7 @@ public class MailService {
         return props;
     }
 
-    private Session initSession(Properties properties) {
+    private Session initSession(final Properties properties) {
         Authenticator authenticator = new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(user, password);
@@ -58,7 +58,7 @@ public class MailService {
         return Session.getInstance(properties, authenticator);
     }
 
-    private Message buildMessage(Session session, String to, String subject, String text) throws MessagingException {
+    private Message buildMessage(final Session session, final String to, final String subject, final String text) throws MessagingException {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(user));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));

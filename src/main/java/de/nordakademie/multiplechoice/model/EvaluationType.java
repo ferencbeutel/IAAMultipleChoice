@@ -1,21 +1,32 @@
 package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
+import org.apache.struts2.ServletActionContext;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by MHORT on 24.10.2016.
  */
 public enum EvaluationType {
-    SUBSTRACT("Loose points on wrong answer"),
-    FATAL("Get total 0 points for single wrong answer");
+    SUBSTRACT("evaluationType.substract"),
+    FATAL("evaluationType.fatal");
 
-    @Getter
-    private final String realVal;
-    
+    private final String i18nLookupKey;
+
     EvaluationType(final String s) {
-        this.realVal = s;
+        this.i18nLookupKey = s;
+    }
+
+    public String getRealVal() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Locale userLocale = request.getLocale();
+        ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
+        return messages.getString(i18nLookupKey);
     }
 }

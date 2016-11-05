@@ -37,9 +37,6 @@ public class MailScheduler {
     @Autowired
     private UUIDService uuidService;
 
-    private HttpServletRequest request = ServletActionContext.getRequest();
-    private Locale userLocale = request.getLocale();
-    private ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
 
     @Scheduled(cron = "0 0 1 * * *")
     public void sendTestToken() throws GenericErrorException {
@@ -59,6 +56,9 @@ public class MailScheduler {
                 seminar.getTest().getResults().add(testResult);
                 seminar = seminarService.createOrUpdate(seminar);
 
+                HttpServletRequest request = ServletActionContext.getRequest();
+                Locale userLocale = request.getLocale();
+                ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
                 String mailText = "<p>"+StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.opening")) + " " + student.getName() + " " + student.getSurName() + ",</p>";
                 mailText = mailText + StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.token"));
                 mailText = mailText + "<p>" + accessToken + "</p>";

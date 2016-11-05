@@ -13,8 +13,8 @@
 
 <div class="container">
 <@s.form action="edit-test" method="post">
-    <@s.hidden id = "hiddenSeminarId" class="form-control form-control-lg" name="seminarId" value="${seminar.seminarId}"/>
-    <@s.hidden class="form-control form-control-lg" name="test.testId" value="${seminar.test.testId}"/>
+    <@s.hidden id = "hiddenSeminarId" name="seminarId" value="${seminar.seminarId?c}"/>
+    <@s.hidden name="test.testId" value="${seminar.test.testId?c}"/>
 
     <div class="form-group row">
         <label for="seminarName"
@@ -103,7 +103,7 @@
         <div class="col-xs-5 questionListItemEntry"><@s.text name="editTest.TableHeaderEdit"/></div>
     </div>
     <#list seminar.test.questions as question>
-        <div class="row questionListItem" data-id="${question.questionId}">
+        <div class="row questionListItem" data-id="${question.questionId?c}">
 
             <div class="col-xs-3 questionListItemEntry">
              <span>${question.position+1}</span></div>

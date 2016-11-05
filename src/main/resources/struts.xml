@@ -36,7 +36,7 @@
 
 
         <action name="">
-            <result type="redirect">home</result>
+            <result type="redirectAction">home</result>
         </action>
         <action name="home" class="de.nordakademie.multiplechoice.action.HomeAction">
             <result type="freemarker">templates/home.ftl</result>
@@ -50,19 +50,16 @@
         <action name="testAdministration">
             <result type="freemarker">templates/testAdministration.ftl</result>
         </action>
-        <action name="results">
-            <result type="freemarker">templates/results.ftl</result>
-        </action>
-        <action name="chooseSeminar">
-            <result type="freemarker">templates/chooseSeminar.ftl</result>
-        </action>
         <action name="add-test-form" class="de.nordakademie.multiplechoice.action.TestFormAction" method="openAddForm">
             <interceptor-ref name="chain"/>
             <interceptor-ref name="basicStack"/>
             <result type="freemarker">templates/add-test.ftl</result>
         </action>
         <action name="add-test" class="de.nordakademie.multiplechoice.action.PersistTestAction" method="persistTest">
-            <result type="chain">home</result>
+            <result type="redirectAction">
+                <param name="actionName">edit-test-form</param>
+                <param name="seminarId">${seminarId}</param>
+            </result>
             <result name="input" type="chain">add-test-form</result>
         </action>
         <action name="edit-test-form" class="de.nordakademie.multiplechoice.action.TestFormAction" method="openEditForm">
@@ -71,7 +68,7 @@
             <result type="freemarker">templates/edit-test.ftl</result>
         </action>
         <action name="edit-test" class="de.nordakademie.multiplechoice.action.PersistTestAction" method="persistTest">
-            <result type="chain">home</result>
+            <result type="redirectAction">home</result>
             <result name="input" type="chain">edit-test-form</result>
         </action>
         <action name="add-question-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction"
@@ -79,7 +76,10 @@
             <result type="freemarker">templates/add-question-form.ftl</result>
         </action>
         <action name="add-question" class="de.nordakademie.multiplechoice.action.PersistQuestionAction" method="persist">
-            <result type="chain">edit-test-form</result>
+            <result type="redirectAction">
+                <param name="actionName">edit-test-form</param>
+                <param name="seminarId">${seminarId}</param>
+            </result>
             <result name="input" type="freemarker">templates/add-question-form.ftl</result>
         </action>
         <action name="edit-question-form" class="de.nordakademie.multiplechoice.action.QuestionFormAction" method="openEditForm">
@@ -87,14 +87,18 @@
             <interceptor-ref name="basicStack"/>
             <result type="freemarker">templates/edit-question-form.ftl</result>
         </action>
-        <action name="edit-test-delete-question" class="de.nordakademie.multiplechoice.action.QuestionDeleteAction" method="deleteQuestion">
-            <interceptor-ref name="chain"/>
-            <interceptor-ref name="basicStack"/>
-            <result type="freemarker">templates/edit-test.ftl</result>
-        </action>
         <action name="edit-question" class="de.nordakademie.multiplechoice.action.PersistQuestionAction" method="persist">
-            <result type="chain">edit-test-form</result>
+            <result type="redirectAction">
+                <param name="actionName">edit-test-form</param>
+                <param name="seminarId">${seminarId}</param>
+            </result>
             <result name="input" type="chain">edit-question-form</result>
+        </action>
+        <action name="edit-test-delete-question" class="de.nordakademie.multiplechoice.action.QuestionDeleteAction" method="deleteQuestion">
+            <result type="redirectAction">
+                <param name="actionName">edit-test-form</param>
+                <param name="seminarId">${seminarId}</param>
+            </result>
         </action>
         <action name="start-test" class="de.nordakademie.multiplechoice.action.StartTestFormAction" method="openStartForm">
             <interceptor-ref name="chain"/>
@@ -115,7 +119,7 @@
             <result type="freemarker">templates/login-form.ftl</result>
         </action>
         <action name="login" class="de.nordakademie.multiplechoice.action.LoginAction" method="login">
-            <result type="chain">home</result>
+            <result type="redirectAction">home</result>
             <result name="input" type="freemarker">templates/login-form.ftl</result>
         </action>
         <action name="registration-form">
@@ -123,13 +127,11 @@
         </action>
         <action name="register" class="de.nordakademie.multiplechoice.action.RegistrationAction" method="register">
             <result type="freemarker">templates/registration-step1-complete.ftl</result>
-            <result name="mailError" type="freemarker">templates/registration-step1-error.ftl</result>
             <result name="input" type="freemarker">templates/registration-form.ftl</result>
         </action>
         <action name="acceptRegistration" class="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction"
                 method="acceptRegistration">
             <result type="freemarker">templates/registration-step2-complete.ftl</result>
-            <result name="emptyRegCodeError" type="freemarker">templates/registration-step2-error.ftl</result>
         </action>
         <action name="add-seminar-form" class="de.nordakademie.multiplechoice.action.SeminarFormAction" method="openAddForm">
             <result type="freemarker">templates/add-seminar-form.ftl</result>
@@ -140,11 +142,11 @@
             <result type="freemarker">templates/edit-seminar-form.ftl</result>
         </action>
         <action name="add-seminar" class="de.nordakademie.multiplechoice.action.PersistSeminarAction" method="persistSeminar">
-            <result type="chain">home</result>
+            <result type="redirectAction">home</result>
             <result name="input" type="freemarker">templates/add-seminar-form.ftl</result>
         </action>
         <action name="edit-seminar" class="de.nordakademie.multiplechoice.action.PersistSeminarAction" method="persistSeminar">
-            <result type="chain">home</result>
+            <result type="redirectAction">home</result>
             <result name="input" type="chain">edit-seminar-form</result>
         </action>
         <action name="seminar-list" class="de.nordakademie.multiplechoice.action.SeminarListAction"
@@ -156,7 +158,7 @@
             <result type="freemarker">templates/seminar-detail.ftl</result>
         </action>
         <action name="enroll-seminar" class="de.nordakademie.multiplechoice.action.EnrollSeminarAction" method="enroll">
-            <result type="chain">seminar-list</result>
+            <result type="redirectAction">home</result>
         </action>
         <action name="not-logged-in-errorpage">
             <result type="freemarker">templates/not-logged-in-errorpage.ftl</result>

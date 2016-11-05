@@ -13,7 +13,7 @@
 
 <div class="container">
 <@s.form action="add-question" method="post">
-    <@s.hidden name="seminarId" value="${seminarId}"/>
+    <@s.hidden name="seminarId" value="${seminarId?c}"/>
     <div class="form-group row"
          <div><@s.text name="addQuestion.info"/></div>
     <hr/>

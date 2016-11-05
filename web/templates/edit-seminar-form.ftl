@@ -12,7 +12,7 @@
 
 <div class="container">
 <@s.form action="edit-seminar" method="post">
-    <@s.hidden name="seminarId" value="${seminar.seminarId}"/>
+    <@s.hidden name="seminarId" value="${seminar.seminarId?c}"/>
     <div class="form-group row">
         <label for="seminarName"
                class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="seminar-form.seminarName"/></label>

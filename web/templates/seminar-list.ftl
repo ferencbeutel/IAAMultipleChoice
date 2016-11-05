@@ -16,7 +16,7 @@
         <div class="col-xs-1 seminarListItemEntry"><@s.text name="seminarList.participants"/></div>
     </div>
 <#list seminarList as seminar>
-    <div class="row seminarListItem" data-id="${seminar.seminarId}">
+    <div class="row seminarListItem" data-id="${seminar.seminarId?c}">
         <span class="overlay"></span>
         <div class="col-xs-4 seminarListItemEntry">
             <span>${seminar.name}</span>

@@ -13,8 +13,8 @@
 
 <div class="container">
 <@s.form action="edit-question" method="post">
-    <@s.hidden name="seminarId" value="${seminarId}"/>
-    <@s.hidden name="questionId" value="${questionId}"/>
+    <@s.hidden name="seminarId" value="${seminarId?c}"/>
+    <@s.hidden name="questionId" value="${questionId?c}"/>
     <@s.hidden name="question.position" value="${question.position}"/>
     <div class="form-group row"
     <div><@s.text name="editQuestion.info"/></div>

@@ -45,7 +45,7 @@
 
         <#list seminarList as seminar>
             <#if Session.userType == lecturerUser>
-                <div class="row seminarListItem lecturerItem" data-id="${seminar.seminarId}">
+                <div class="row seminarListItem lecturerItem" data-id="${seminar.seminarId?c}">
                     <span class="overlay"></span>
                     <div class="col-xs-4 seminarListItemEntry">
                         <span>${seminar.name}</span>
@@ -63,7 +63,7 @@
                 </div>
             <#elseif Session.userType == studentUser>
                 <#assign testResultExist = false/>
-                <div class="row seminarListItem studentItem" data-id="${seminar.seminarId}">
+                <div class="row seminarListItem studentItem" data-id="${seminar.seminarId?c}">
                     <#if seminar.test?? && student??>
                         <#list student.results as result>
                             <#if seminar.test.results?seq_contains(result) && result.points??>
@@ -87,7 +87,7 @@
                         <#if !testResultExist>
                             <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
                                 <button class="btn btn-secondary startTestButton fa fa-play"
-                                        data-id="${seminar.seminarId}"/>
+                                        data-id="${seminar.seminarId?c}"/>
                             <#else>
                                 <#assign tooltip><@s.text name="home.noTest"/></#assign>
                                 <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"

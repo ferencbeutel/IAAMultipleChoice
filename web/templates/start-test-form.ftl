@@ -11,7 +11,7 @@
 <@s.form action="perform-test" method="post">
     <div class="row">
         <div class="col-xs-12">
-            <@s.hidden name="seminarId" value="${seminarId}"/>
+            <@s.hidden name="seminarId" value="${seminarId?c}"/>
             <@s.hidden name="savedAccessToken" value="${savedAccessToken}"/>
             <div class="form-group row">
                 <label for="accessToken"

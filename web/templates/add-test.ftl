@@ -19,7 +19,7 @@
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectSeminar"/> </label>
             <div class="col-md-7">
                 <@s.textfield class="form-control form-control-lg" id="seminarName" name="seminarName" value="${seminar.name}" readonly="true"/>
-                <@s.hidden id="hiddenSeminarId" name="seminarId" value="${seminar.seminarId}"/>
+                <@s.hidden id="hiddenSeminarId" name="seminarId" value="${seminar.seminarId?c}"/>
             </div>
         </div>
 

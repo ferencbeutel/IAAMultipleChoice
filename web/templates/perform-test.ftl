@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col-xs-12">
         <@s.form id="testSubmitForm" action="submit-test" method="post">
-            <@s.hidden name="seminarId" value="${seminarId}"/>
-            <@s.hidden name="testResultId" value="${testResultId}"/>
+            <@s.hidden name="seminarId" value="${seminarId?c}"/>
+            <@s.hidden name="testResultId" value="${testResultId?c}"/>
             <div class="row">
                 <div id="questionContainer" class="col-xs-6 centered">
                     <div id="slickContainer">
@@ -35,7 +35,7 @@
                                     <#if question.type == "Gap">
                                         <div class="row">
                                             <div class="col-xs-4"></div>
-                                            <div class="col-xs-6 answerText" data-id="${answer.answerId}">
+                                            <div class="col-xs-6 answerText" data-id="${answer.answerId?c}">
                                                 <@s.textfield class="gapAnswerInput" name="gapInput"/>
                                             </div>
                                         </div>
@@ -47,10 +47,10 @@
                                             <div class="col-xs-2 checkBoxes">
                                                 <#if question.type == "Single">
                                                     <input type="checkbox" class="singleChoiceCheckbox" name="singleMultiChoiceInput"
-                                                           value="${answer.answerId}"/>
+                                                           value="${answer.answerId?c}"/>
                                                 <#else>
                                                     <input type="checkbox" name="singleMultiChoiceInput"
-                                                           value="${answer.answerId}"/>
+                                                           value="${answer.answerId?c}"/>
                                                 </#if>
                                             </div>
                                         </div>

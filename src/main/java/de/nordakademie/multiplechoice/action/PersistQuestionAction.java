@@ -151,7 +151,7 @@ public class PersistQuestionAction extends BaseAction {
             if (question.getText() == null || question.getText().length() <= 5) {
                 addFieldError("text", getI18NValue("questionFieldError.texts"));
             }
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             addFieldError("type", getI18NValue("questionFieldError.questionType"));
         }
     }

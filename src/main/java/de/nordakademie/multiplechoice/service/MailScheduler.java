@@ -5,11 +5,16 @@ import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.model.Seminar;
 import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.TestResult;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by ferencbeutel on 26.10.16.
@@ -32,6 +37,10 @@ public class MailScheduler {
     @Autowired
     private UUIDService uuidService;
 
+    private HttpServletRequest request = ServletActionContext.getRequest();
+    private Locale userLocale = request.getLocale();
+    private ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
+
     @Scheduled(cron = "0 0 1 * * *")
     public void sendTestToken() throws GenericErrorException {
         for (Seminar seminar : seminarService.allWithTestsStartingToday()) {
@@ -50,13 +59,13 @@ public class MailScheduler {
                 seminar.getTest().getResults().add(testResult);
                 seminar = seminarService.createOrUpdate(seminar);
 
-                String mailText = "<p>Dear " + student.getName() + " " + student.getSurName() + ",</p>";
-                mailText = mailText + "<p>Please find your personal token for accessing the test below.</p>";
+                String mailText = "<p>"+StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.opening")) + " " + student.getName() + " " + student.getSurName() + ",</p>";
+                mailText = mailText + StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.token"));
                 mailText = mailText + "<p>" + accessToken + "</p>";
-                mailText = mailText + "<p>Yours sincerely,</p></br>";
-                mailText = mailText + "<p>The Nordakademie Seminar Service";
+                mailText = mailText + StringEscapeUtils.unescapeHtml4(messages.getString("registrationMail.textGreeting"));
+                mailText = mailText + StringEscapeUtils.unescapeHtml4(messages.getString("registrationMail.textSignature"));
                 try {
-                    mailService.sendMail(student.getEmail(), "Your personal token for your test in  " + seminar.getName(), mailText);
+                    mailService.sendMail(student.getEmail(), StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.tokenTest")) + " " + seminar.getName(), mailText);
                 } catch (MessagingException e) {
                     System.out.println("Gmail sucks :/");
                     //TODO: Implement Logging

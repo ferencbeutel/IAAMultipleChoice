@@ -130,7 +130,7 @@
         <#if (seminar.test.beginDate?datetime("yyyy-MM-dd")?date <= .now?date)>
             <#assign toolTip><@s.text name="editTest.tooltip"/></#assign>
             <button type="button" id="addQuestionDisabled"
-                    class="btn btn-secondary add-question-button disabled" data-toggle="tooltip" data-title="${toolTip}"><@s.text name="editTest.addQuestionButton"/></button>
+                    class="btn btn-secondary disabled" data-toggle="tooltip" data-title="${toolTip}" disabled><@s.text name="editTest.addQuestionButton"/></button>
         <#else>
             <button type="button"
                     class="btn btn-secondary add-question-button"><@s.text name="editTest.addQuestionButton"/></button>

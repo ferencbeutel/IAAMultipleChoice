@@ -83,7 +83,11 @@
 
     <div class="row seminarListItem" id="enrollItem">
         <div class="col-xs-6 centered seminarListItemEntry">
-            <#if enrolled=="true">
+            <#if (seminar.endDate?datetime("yyyy-MM-dd")?date < .now?date)>
+                <#assign toolTip><@s.text name="seminarDetail.past"/></#assign>
+                <button class="btn btn-secondary enrollButton disabled" data-toggle="tooltip"
+                        data-title="${toolTip}"><@s.text name="seminarDetail.enroll"/></button>
+            <#elseif enrolled=="true">
                 <#assign toolTip><@s.text name="seminarDetail.enrolled"/></#assign>
                 <button class="btn btn-secondary enrollButton disabled" data-toggle="tooltip"
                         data-title="${toolTip}"><@s.text name="seminarDetail.enroll"/></button>

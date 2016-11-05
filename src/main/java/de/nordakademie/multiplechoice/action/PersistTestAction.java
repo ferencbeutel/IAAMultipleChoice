@@ -74,7 +74,7 @@ public class PersistTestAction extends BaseAction {
             LocalDate startDate = LocalDate.parse(startDateString, dateFormatter);
             LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
             LocalDate now = LocalDate.now();
-            if(startDate.isBefore(now)) {
+            if(startDate.isBefore(now.plusDays(1))) {
                 addFieldError("startDate", getI18NValue("persistTestFieldError.startInPast"));
             }
             if(endDate.isBefore(startDate)) {

@@ -57,7 +57,13 @@
                         <#if seminar.test??>
                             <button class="btn btn-secondary edit-test-button fa fa-pencil"/>
                         <#else>
-                            <button class="btn btn-secondary add-test-button fa fa-plus"/>
+                            <#if (seminar.endDate?datetime("yyyy-MM-dd")?date < .now?date)>
+                                <#assign toolTip><@s.text name="seminarDetail.past"/></#assign>
+                                <button class="btn btn-secondary add-test-button fa fa-plus disabled" data-toggle="tooltip"
+                                        data-title="${toolTip}"/>
+                            <#else>
+                                <button class="btn btn-secondary add-test-button fa fa-plus"/>
+                            </#if>
                         </#if>
                     </div>
                 </div>

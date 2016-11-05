@@ -4,7 +4,6 @@
 var startDate = new Date($('#startDate').val());
 if (startDate <= new Date()){
     $(':input').prop('disabled', true);
-    $('#addQuestionDisabled').prop('disabled',false);
 }
 
 $(".add-question-button").click(function (event) {

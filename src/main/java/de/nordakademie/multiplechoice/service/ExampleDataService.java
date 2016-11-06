@@ -75,7 +75,7 @@ public class ExampleDataService {
                 i--;
                 continue;
             }
-            int seminarsPerLecturer = 0;
+            int seminarsPerLecturer;
             // if last lecturer, give him all left seminars
             // else, give him #remainingSeminars / #lecturers, in order to distribute seminars evenly
             if (i + 1 == quantLecturer) {
@@ -209,7 +209,7 @@ public class ExampleDataService {
         String name = randomString(studentFirstNames);
         String surName = randomString(surNames);
         String completeName = name + "-" + surName;
-        if(usedLecturerNames.contains(completeName)) {
+        if(usedStudentNames.contains(completeName)) {
             return null;
         }
         usedStudentNames.add(completeName);

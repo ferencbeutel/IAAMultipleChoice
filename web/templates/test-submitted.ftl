@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <span>${result.points}</span>
+            <span><@s.text name="testresult.info"/> ${result.points} <@s.text name="testresult.points"/></span>
         </div>
     </div>
 </div>

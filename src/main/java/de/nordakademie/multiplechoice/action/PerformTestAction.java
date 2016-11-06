@@ -62,6 +62,7 @@ public class PerformTestAction extends BaseAction {
         if(result.getStartDateTime() != null) {
             throw new TestAlreadyStartedException();
         }
+        result.setPoints(0);
 
         test = seminar.getTest();
         testResultId = result.getTestResultId();

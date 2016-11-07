@@ -186,7 +186,7 @@
         <action name="sendTestToken" class="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" method="sendTestToken">
             <result type="redirectAction">home</result>
         </action>
-        <action name="application-administration">
+        <action name="application-administration" class="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" method="openForm">
             <result type="freemarker">templates/application-administration.ftl</result>
         </action>
         <action name="400-errorpage">

@@ -113,7 +113,7 @@ public class ExampleDataService {
                         question.setAnswers(answers);
 
                         if (question.getType() == QuestionType.Gap) {
-                            question.setText(question.getText() + "with gaps: ");
+                            question.setText(question.getText() + " with gaps: ");
                             for (int l = 0; l < question.getAnswers().size(); l++) {
                                 question.setText(question.getText() + " [...](" + question.getAnswers().get(l).getText() + "),");
                             }

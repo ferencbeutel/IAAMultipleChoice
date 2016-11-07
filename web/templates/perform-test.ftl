@@ -34,8 +34,7 @@
                                 <#list question.answers as answer>
                                     <#if question.type == "Gap">
                                         <div class="row">
-                                            <div class="col-xs-4"></div>
-                                            <div class="col-xs-6 answerText" data-id="${answer.answerId?c}">
+                                            <div class="col-xs-12 answerText" data-id="${answer.answerId?c}">
                                                 <@s.textfield class="gapAnswerInput" name="gapInput"/>
                                             </div>
                                         </div>

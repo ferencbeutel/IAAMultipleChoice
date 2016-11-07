@@ -55,12 +55,12 @@ public class ExampleDataService {
         seminarNames = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(SEMINAR_NAMES_FILE).toURI()));
         seminarDescriptions = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(SEMINAR_DESCRIPTIONS_FILE).toURI()));
     }
-    
+
     public void generateTestData(final int quantStudents, final int quantSeminars, final int quantLecturer) {
         List<Student> students = new ArrayList<>();
         for (int i = 0; i < quantStudents; i++) {
             Student student = randomStudent();
-            if(student == null) {
+            if (student == null) {
                 i--;
                 continue;
             }
@@ -72,7 +72,7 @@ public class ExampleDataService {
         int remainingLecturers = quantLecturer;
         for (int i = 0; i < quantLecturer; i++) {
             Lecturer lecturer = randomLecturer();
-            if(lecturer == null) {
+            if (lecturer == null) {
                 i--;
                 continue;
             }
@@ -84,7 +84,7 @@ public class ExampleDataService {
             } else {
                 seminarsPerLecturer = (int) Math.ceil((long) remainingSeminars / remainingLecturers);
                 remainingSeminars = remainingSeminars - seminarsPerLecturer;
-                remainingLecturers --;
+                remainingLecturers--;
             }
             for (int j = 0; j < seminarsPerLecturer; j++) {
                 Seminar seminar = randomSeminar();
@@ -96,13 +96,28 @@ public class ExampleDataService {
                     int amountOfQuestions = randomInt(5, 15);
                     List<Question> questions = new ArrayList<>();
                     for (int k = 0; k < amountOfQuestions; k++) {
-                        // every question should have between 2 and 8 answers
-                        int amountOfAnswers = randomInt(2, 8);
+                        Question question = randomQuestion(k);
+                        // every question should have between 2 and 8 answers (2-7 generated and one always true)
+                        int amountOfAnswers = randomInt(1, 7);
                         List<Answer> answers = new ArrayList<>();
-                        for (int l = 0; l < amountOfAnswers; l++) {
-                            answers.add(randomAnswer(l));
+                        if (question.getType() == QuestionType.Single) {
+                            for (int l = 0; l < amountOfAnswers; l++) {
+                                answers.add(randomAnswer(l, QuestionGenerationType.FALSE));
+                            }
+                        } else {
+                            for (int l = 0; l < amountOfAnswers; l++) {
+                                answers.add(randomAnswer(l, QuestionGenerationType.GENERATE));
+                            }
                         }
-                        questions.add(randomQuestion(k, answers));
+                        answers.add(randomAnswer(answers.size(), QuestionGenerationType.TRUE));
+                        question.setAnswers(answers);
+
+                        if (question.getType() == QuestionType.Gap) {
+                            question.setText(question.getText() + "with gaps: ");
+                            for (int l = 0; l < question.getAnswers().size(); l++) {
+                                question.setText(question.getText() + " [...](" + question.getAnswers().get(l).getText() + "),");
+                            }
+                        }
                     }
                     test.setQuestions(questions);
                     seminar.setTest(test);
@@ -141,17 +156,29 @@ public class ExampleDataService {
 
     }
 
-    private Answer randomAnswer(final int position) {
+    private Answer randomAnswer(final int position, QuestionGenerationType genType) {
         Answer answer = new Answer();
         answer.setPosition(position);
-        if (Math.random() < 0.5) {
-            answer.setCorrect(true);
-            answer.setText("Correct Answer");
-        } else {
-            answer.setCorrect(false);
-            answer.setText("False Answer");
-        }
 
+        switch (genType) {
+            case GENERATE:
+                if (Math.random() < 0.5) {
+                    answer.setCorrect(true);
+                    answer.setText("Correct Answer");
+                } else {
+                    answer.setCorrect(false);
+                    answer.setText("False Answer");
+                }
+                break;
+            case TRUE:
+                answer.setCorrect(true);
+                answer.setText("Correct Answer");
+                break;
+            case FALSE:
+                answer.setCorrect(false);
+                answer.setText("False Answer");
+                break;
+        }
         return answer;
     }
 
@@ -159,7 +186,7 @@ public class ExampleDataService {
         String name = randomString(lecturerFirstNames);
         String surName = randomString(surNames);
         String completeName = name + "-" + surName;
-        if(usedLecturerNames.contains(completeName)) {
+        if (usedLecturerNames.contains(completeName)) {
             return null;
         }
         usedLecturerNames.add(completeName);
@@ -175,20 +202,14 @@ public class ExampleDataService {
         return lecturer;
     }
 
-    private Question randomQuestion(final int position, final List<Answer> answers) {
+    private Question randomQuestion(final int position) {
         Question question = new Question();
         question.setPosition(position);
-        question.setPoints(answers.size());
         QuestionType type = randomEnum(QuestionType.class);
         question.setType(type);
         String text = "Example Question of type: " + type.getRealVal();
-        if (type == QuestionType.Gap) {
-            for(int i = 0; i < answers.size(); i++) {
-                text = text + "gap" + i + ": [...]";
-            }
-        }
+
         question.setText(text);
-        question.setAnswers(answers);
 
         return question;
     }
@@ -211,7 +232,7 @@ public class ExampleDataService {
         String name = randomString(studentFirstNames);
         String surName = randomString(surNames);
         String completeName = name + "-" + surName;
-        if(usedStudentNames.contains(completeName)) {
+        if (usedStudentNames.contains(completeName)) {
             return null;
         }
         usedStudentNames.add(completeName);
@@ -280,5 +301,11 @@ public class ExampleDataService {
     private <T extends Enum<?>> T randomEnum(final Class<T> clazz) {
         int x = randomInt(0, clazz.getEnumConstants().length - 1);
         return clazz.getEnumConstants()[x];
+    }
+
+    private enum QuestionGenerationType {
+        GENERATE,
+        TRUE,
+        FALSE
     }
 }

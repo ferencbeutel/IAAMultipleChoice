@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit Test</button>
+            <button type="button" id="submitButton" class="btn btn-primary">Submit Test</button>
             <span id="hiddenDuration" class="none">${test.duration}</span>
         </@s.form>
         </div>

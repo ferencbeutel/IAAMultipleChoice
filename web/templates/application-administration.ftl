@@ -33,9 +33,17 @@
     </div>
 
     <@s.submit class="btn btn-primary" value="Initialize"/>
+    <div class="row">
+        <div class="col-xs-12">
+            <span> <@s.text name="applicationAdministration.infoText"/></span>
+        </div>
+    </div>
 </@s.form>
-    <span> <@s.text name="applicationAdministration.infoText"/></span>
-    <button type="button" onClick="sendTestToken"><@s.text name="Send Test Token to Students"/></button>
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" onClick="sendTestToken"><@s.text name="Send Test Token to Students"/></button>
+        </div>
+    </div>
 </div>
 
 

@@ -69,6 +69,7 @@ public class ExampleDataService {
         }
 
         int remainingSeminars = quantSeminars;
+        int remainingLecturers = quantLecturer;
         for (int i = 0; i < quantLecturer; i++) {
             Lecturer lecturer = randomLecturer();
             if(lecturer == null) {
@@ -77,12 +78,13 @@ public class ExampleDataService {
             }
             int seminarsPerLecturer;
             // if last lecturer, give him all left seminars
-            // else, give him #remainingSeminars / #lecturers, in order to distribute seminars evenly
+            // else, give him #remainingSeminars / #remainingLecturers, in order to distribute seminars evenly
             if (i + 1 == quantLecturer) {
                 seminarsPerLecturer = remainingSeminars;
             } else {
-                seminarsPerLecturer = (int) Math.floor((long) remainingSeminars / quantLecturer);
+                seminarsPerLecturer = (int) Math.ceil((long) remainingSeminars / remainingLecturers);
                 remainingSeminars = remainingSeminars - seminarsPerLecturer;
+                remainingLecturers --;
             }
             for (int j = 0; j < seminarsPerLecturer; j++) {
                 Seminar seminar = randomSeminar();
@@ -133,8 +135,8 @@ public class ExampleDataService {
 
                 seminar.setParticipants(participants);
                 lecturer.getSeminars().add(seminar);
-                lecturer = lecturerService.createOrUpdate(lecturer);
             }
+            lecturerService.createOrUpdate(lecturer);
         }
 
     }

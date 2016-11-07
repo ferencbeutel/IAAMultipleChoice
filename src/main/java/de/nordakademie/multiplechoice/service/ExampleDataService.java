@@ -97,7 +97,7 @@ public class ExampleDataService {
                     List<Question> questions = new ArrayList<>();
                     for (int k = 0; k < amountOfQuestions; k++) {
                         Question question = randomQuestion(k);
-                        // every question should have between 2 and 8 answers (2-7 generated and one always true)
+                        // every question should have between 2 and 8 answers (1-7 generated and one always true)
                         int amountOfAnswers = randomInt(1, 7);
                         List<Answer> answers = new ArrayList<>();
                         if (question.getType() == QuestionType.Single) {
@@ -118,6 +118,7 @@ public class ExampleDataService {
                                 question.setText(question.getText() + " [...](" + question.getAnswers().get(l).getText() + "),");
                             }
                         }
+                        questions.add(question);
                     }
                     test.setQuestions(questions);
                     seminar.setTest(test);

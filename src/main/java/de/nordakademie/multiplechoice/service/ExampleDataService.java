@@ -288,11 +288,7 @@ public class ExampleDataService {
     private LocalTime randomTime() {
         int offset = randomInt(30, 90);
         LocalTime time = LocalTime.MIN;
-        if (Math.random() < 0.5) {
-            return time.minusMinutes(offset);
-        } else {
-            return time.plusMinutes(offset);
-        }
+        return time.plusMinutes(offset);
     }
 
     private String randomString(final List<String> possibleStrings) {

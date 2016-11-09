@@ -104,13 +104,19 @@ public class ExampleDataService {
                             for (int l = 0; l < amountOfAnswers; l++) {
                                 answers.add(randomAnswer(l, QuestionGenerationType.FALSE));
                             }
-                        } else {
+                        } else if(question.getType() == QuestionType.Gap){
+                            for (int l = 0; l < amountOfAnswers; l++) {
+                                answers.add(randomAnswer(l, QuestionGenerationType.TRUE));
+                            }
+                        }
+                        else {
                             for (int l = 0; l < amountOfAnswers; l++) {
                                 answers.add(randomAnswer(l, QuestionGenerationType.GENERATE));
                             }
                         }
                         answers.add(randomAnswer(answers.size(), QuestionGenerationType.TRUE));
                         question.setAnswers(answers);
+                        question.setPoints(answers.size());
 
                         if (question.getType() == QuestionType.Gap) {
                             question.setText(question.getText() + " with gaps: ");

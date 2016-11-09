@@ -100,7 +100,7 @@
                         <#if !testResultExist>
                             <#if testIsDueAndNoResult>
                                 <span>0 / ${seminar.test.maxScore}</span>
-                            <#elseif seminar.test.questions?size == 0>
+                            <#elseif seminar.test?? && seminar.test.questions?size == 0>
                                 <#assign tooltip><@s.text name="home.testNoQuestion"/></#assign>
                                 <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
                                         data-placement="top"

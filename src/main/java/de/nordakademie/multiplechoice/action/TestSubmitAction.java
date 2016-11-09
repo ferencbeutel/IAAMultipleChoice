@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ferencbeutel on 02.11.16.
+ * This class is responsible for....
+ * @author Max Hort, ....
  */
 public class TestSubmitAction extends BaseAction {
 

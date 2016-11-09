@@ -1,6 +1,14 @@
 /**
  * Created by melanie on 30.10.2016.
  */
+$('#questionList').children('.row').each(function(i, e) {
+    var children = $(e).children('.questionListItemEntry');
+    var height = $(e).outerHeight();
+    children.each(function(i, child) {
+        child.style.height = height + "px";
+    });
+});
+
 var startDate = new Date($('#startDate').val());
 if (startDate <= new Date()){
     $(':input').prop('disabled', true);

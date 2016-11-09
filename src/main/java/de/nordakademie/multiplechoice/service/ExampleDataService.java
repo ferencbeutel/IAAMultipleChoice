@@ -163,6 +163,12 @@ public class ExampleDataService {
 
     }
 
+    /**
+     * gnbkefmv,äcödas
+     * @param position of the answer in the question list
+     * @param genType Question Generation Type which determines the correctness of the answer
+     * @return
+     */
     private Answer randomAnswer(final int position, QuestionGenerationType genType) {
         Answer answer = new Answer();
         answer.setPosition(position);

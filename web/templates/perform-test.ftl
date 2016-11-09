@@ -55,15 +55,14 @@
                                         </div>
                                     </#if>
                                 </#list>
-                                <button type="button" class="button button-primary postponeQuestionButton">Postpone
-                                    Question
+                                <button type="button" class="button button-primary postponeQuestionButton"><@s.text name="performTest.postpone"/>
                                 </button>
                             </div>
                         </#list>
                     </div>
                 </div>
             </div>
-            <button type="button" id="submitButton" class="btn btn-primary">Submit Test</button>
+            <button type="button" id="submitButton" class="btn btn-primary"><@s.text name="performTest.submit"/></button>
             <span id="hiddenDuration" class="none">${test.duration}</span>
         </@s.form>
         </div>

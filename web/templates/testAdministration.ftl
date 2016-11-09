@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Test Verwalten</title>
+    <title>Test administration</title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>

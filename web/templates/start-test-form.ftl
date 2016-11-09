@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Start test</title>
+    <title><@s.text name="startTest.title"/></title>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <@s.hidden name="savedAccessToken" value="${savedAccessToken}"/>
             <div class="form-group row">
                 <label for="accessToken"
-                       class="col-md-4 col-form-label col-form-label-lg text-no-center">access-token: </label>
+                       class="col-md-4 col-form-label col-form-label-lg text-no-center"><@s.text name="startTest.accessToken"/></label>
                 <div class="col-md-8">
                     <@s.textfield class="form-control form-control-lg" id="accessToken" name="inputAccessToken"/>
                 </div>

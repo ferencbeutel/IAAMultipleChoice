@@ -121,17 +121,18 @@ function buildGapAnswer(i, text, answerList) {
 $('#select-question-type').change(function (e) {
     var target = e.target;
     selectedVal = $(target).val();
-
     var singleChoiceAnswers = $('#singleChoiceAnswers');
     var multipleChoiceAnswers = $('#multipleChoiceAnswers');
     var gapAnswers = $('#gapAnswers');
     singleChoiceAnswers.addClass('none');
     multipleChoiceAnswers.addClass('none');
     gapAnswers.addClass('none');
-    var addAnswerButton = $('#addAnswerButton');
-    var removeAnswerButton = $('#removeAnswerButton');
-    addAnswerButton.removeClass('none');
-    removeAnswerButton.removeClass('none');
+    var addAnswerButton = document.getElementById("addAnswerButton")
+    var removeAnswerButton =document.getElementById("removeAnswerButton")
+    addAnswerButton.className="manageAnswersButtons fa fa-plus";
+    removeAnswerButton.className="manageAnswersButtons fa fa-minus";
+    console.log(removeAnswerButton.className);
+
 
     switch (selectedVal) {
         case "Single":
@@ -155,11 +156,8 @@ $('#select-question-type').change(function (e) {
             document.getElementById("infoTextGap").className="row none"
             break;
         case "Gap":
-            if (gapAnswers.children().length == 0) {
-                buildGapAnswer(0, "", gapAnswers);
-            }
-            addAnswerButton.addClass('none');
-            removeAnswerButton.addClass('none');
+            addAnswerButton.className="manageAnswersButtons none";
+            removeAnswerButton.className="manageAnswersButtons none";
             gapAnswers.removeClass('none');
             document.getElementById("gapAnswersText").className="row"
             document.getElementById("infoTextGap").className="row"

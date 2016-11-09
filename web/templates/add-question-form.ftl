@@ -89,9 +89,9 @@
     </div>
     <br/>
     <div class="row">
-        <div class="col-xs-4 centered">
-            <button type="button" class="manageAnswersButtons fa fa-plus" id="addAnswerButton"/>
-            <button type="button" class="manageAnswersButtons fa fa-minus" id="removeAnswerButton"/>
+        <div class="col-xs-4 centered" id="buttonContainer">
+            <button type="button" class="none" id="addAnswerButton"/>
+            <button type="button" class="none" id="removeAnswerButton"/>
         </div>
     </div>
     <br/>

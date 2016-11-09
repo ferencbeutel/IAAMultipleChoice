@@ -83,10 +83,6 @@
                    class="col-md-5 col-form-label col-form-label-lg text-no-center"> <@s.text name="test.selectFalseAnswerGrading"/> </label>
             <div class="col-md-7">
                 <@s.select list="@de.nordakademie.multiplechoice.model.EvaluationType@values()" class="select form-control" id="selectfalseanswergrading" name="test.evaluationType" listValue="realVal"/>
-                    <#--            <select class="select form-control" id="selectfalseanswergrading" name="test.evaluationType">
-                <option value="SUBSTRACT"> <@s.text name="add-test.selectFalseAnswerGrading.ZeroPointDeduction"/></option>
-                <option value="FATAL"> <@s.text name="add-test.selectFalseAnswerGrading.OnePointDeduction"/></option>
-            </select>-->
             </div>
         </div>
         <div class="form-group row">

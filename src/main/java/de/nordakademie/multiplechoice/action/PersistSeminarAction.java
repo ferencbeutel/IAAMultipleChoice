@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * Created by Ferenc on 19.10.2016.
@@ -41,6 +42,7 @@ public class PersistSeminarAction extends BaseAction {
     @Getter
     private long seminarId;
 
+
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public String persistSeminar() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
@@ -48,6 +50,11 @@ public class PersistSeminarAction extends BaseAction {
             throw new InsufficientPermissionsException();
         }
         Lecturer lecturer = getLecturerFromSession();
+
+        if(seminarService.byId(seminarId)!= null){
+        Seminar seminarOld = seminarService.byId(seminarId);
+        seminar.setTest(seminarOld.getTest());
+        seminar.setParticipants(seminarOld.getParticipants());}
 
         seminar.setSeminarId(seminarId);
         seminar.setBeginDate(LocalDate.parse(beginDateString, dateFormatter));

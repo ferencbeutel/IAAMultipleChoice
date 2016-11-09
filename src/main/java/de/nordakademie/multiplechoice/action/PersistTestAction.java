@@ -44,13 +44,20 @@ public class PersistTestAction extends BaseAction {
     private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public String persistTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
-        if(getUserType() != UserType.LECTURER) {
+        if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
         }
+        Seminar seminar = seminarService.byId(seminarId);
+        System.out.println(seminar.getTest());
+        if (seminar.getTest().getQuestions() != null){
+            Test testOld = seminar.getTest();
+            test.setQuestions(testOld.getQuestions());
+            }
+
         test.setBeginDate(LocalDate.parse(startDateString, dateFormatter));
         test.setEndDate(LocalDate.parse(endDateString, dateFormatter));
         test.setDuration(LocalTime.parse(durationString, durationFormatter));
-        Seminar seminar = seminarService.byId(seminarId);
+
         seminar.setTest(test);
         seminarService.createOrUpdate(seminar);
         return SUCCESS;

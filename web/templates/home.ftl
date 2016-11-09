@@ -59,7 +59,8 @@
                         <#else>
                             <#if (seminar.endDate?datetime("yyyy-MM-dd")?date < .now?date)>
                                 <#assign toolTip><@s.text name="seminarDetail.past"/></#assign>
-                                <button class="btn btn-secondary add-test-button fa fa-plus disabled" data-toggle="tooltip"
+                                <button class="btn btn-secondary add-test-button fa fa-plus disabled"
+                                        data-toggle="tooltip"
                                         data-title="${toolTip}"/>
                             <#else>
                                 <button class="btn btn-secondary add-test-button fa fa-plus"/>
@@ -69,11 +70,13 @@
                 </div>
             <#elseif Session.userType == studentUser>
                 <#assign testResultExist = false/>
+                <#assign testIsDueAndNoResult = false/>
                 <div class="row seminarListItem studentItem" data-id="${seminar.seminarId?c}">
                     <#if seminar.test?? && student??>
                         <#list student.results as result>
-                            <#if seminar.test.results?seq_contains(result) && result.points??>
+                            <#if (seminar.test.results?seq_contains(result) && result.points??)>
                                 <#assign testResultExist = true/>
+                                <#assign testResultForTest = result>
                                 <#if (seminar.test.passingThreshold * seminar.test.maxScore) / 100 <= result.points>
                                     <@s.hidden class="hiddenResultToken" value="${true?c}"/>
                                 <#else>
@@ -81,6 +84,10 @@
                                 </#if>
                             </#if>
                         </#list>
+                        <#if !testResultExist && seminar.test.endDate.isBefore(now)>
+                            <#assign testIsDueAndNoResult = true/>
+                            <@s.hidden class="hiddenResultToken" value="${false?c}"/>
+                        </#if>
                     </#if>
                     <span class="overlay"></span>
                     <div class="col-xs-4 seminarListItemEntry">
@@ -91,7 +98,9 @@
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
                         <#if !testResultExist>
-                            <#if seminar.test.questions?size == 0>
+                            <#if testIsDueAndNoResult>
+                                <span>0 / ${seminar.test.maxScore}</span>
+                            <#elseif seminar.test.questions?size == 0>
                                 <#assign tooltip><@s.text name="home.testNoQuestion"/></#assign>
                                 <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
                                         data-placement="top"
@@ -101,15 +110,13 @@
                                         data-id="${seminar.seminarId?c}"/>
                             <#else>
                                 <#assign tooltip><@s.text name="home.noTest"/></#assign>
-                                <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
+                                <button class="btn btn-secondary startTestButton disabled fa fa-play"
+                                        data-toggle="tooltip"
                                         data-placement="top"
                                         data-title="${tooltip}"/>
                             </#if>
                         <#else>
-                            <#assign tooltip><@s.text name="home.testAbsolved"/></#assign>
-                            <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
-                                    data-placement="top"
-                                    data-title="${tooltip}"/>
+                            <span>${testResultForTest.points} / ${seminar.test.maxScore}</span>
                         </#if>
                     </div>
                 </div>

@@ -91,7 +91,12 @@
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
                         <#if !testResultExist>
-                            <#if seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
+                            <#if seminar.test.questions?size == 0>
+                                <#assign tooltip><@s.text name="home.testNoQuestion"/></#assign>
+                                <button class="btn btn-secondary startTestButton disabled fa fa-play" data-toggle="tooltip"
+                                        data-placement="top"
+                                        data-title="${tooltip}"/>
+                            <#elseif seminar.test?? && (now.isEqual(seminar.test.beginDate) || now.isAfter(seminar.test.beginDate)) && (seminar.test.endDate.isEqual(now) || seminar.test.endDate.isAfter(now))>
                                 <button class="btn btn-secondary startTestButton fa fa-play"
                                         data-id="${seminar.seminarId?c}"/>
                             <#else>

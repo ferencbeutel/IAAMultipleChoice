@@ -111,7 +111,7 @@ public class PersistQuestionAction extends BaseAction {
             switch (question.getType()) {
                 case Single:
                     for (int i = 0; i < singleChoiceAnswers.size(); i++) {
-                        if (singleChoiceAnswers.get(i).length() < 2) {
+                        if (singleChoiceAnswers.get(i).length() < 1) {
                             addFieldError("text", getI18NValue("questionFieldError.answers"));
                             break;
                         }
@@ -122,7 +122,7 @@ public class PersistQuestionAction extends BaseAction {
                     break;
                 case Multiple:
                     for (int i = 0; i < multipleChoiceAnswers.size(); i++) {
-                        if (multipleChoiceAnswers.get(i).length() < 2) {
+                        if (multipleChoiceAnswers.get(i).length() < 1) {
                             addFieldError("text", getI18NValue("questionFieldError.answers"));
                             break;
                         }
@@ -136,7 +136,7 @@ public class PersistQuestionAction extends BaseAction {
                         addFieldError("text", getI18NValue("questionFieldError.gapAnswers"));
                     } else {
                         for (int i = 0; i < gapAnswers.size(); i++) {
-                            if (gapAnswers.get(i).length() < 2) {
+                            if (gapAnswers.get(i).length() < 1) {
                                 addFieldError("text", getI18NValue("questionFieldError.answers"));
                                 break;
                             }

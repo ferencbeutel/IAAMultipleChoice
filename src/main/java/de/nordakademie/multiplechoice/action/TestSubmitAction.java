@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is responsible for....
- * @author Max Hort, ....
+ * This class is responsible for submitting a performed test and calculating and persisting the result
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class TestSubmitAction extends BaseAction {
 
@@ -44,6 +44,13 @@ public class TestSubmitAction extends BaseAction {
     @Getter
     private TestResult result;
 
+    /**
+     * This method performs the submitting of a test which was performed by a student and calculates the result
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException
+     */
     public String submitTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();

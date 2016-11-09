@@ -18,7 +18,7 @@
            <@s.text name="global.homeLink"/> <a class="nav-link" href="home"><@s.text name="global.clickHereLink"/></a>.<br>
         </div>
     </div>
-    <img src="/static/images/errorpage_paper_bene.png" alt="400_error" />
+    <img src="/static/images/errorpage_paper_code.png" alt="400_error" />
 </div>
 
 <#include "/templates/frameFooter.ftl">

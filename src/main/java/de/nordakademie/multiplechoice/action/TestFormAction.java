@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ *  This class is responsible for preparing the add and edit form for Test-Creation/Update
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class TestFormAction extends BaseAction {
 
@@ -26,18 +27,36 @@ public class TestFormAction extends BaseAction {
     @Setter
     private long seminarId;
 
+    /**
+     * This method prepares the form of the add Test Page
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String openAddForm() throws NotLoggedInException, InsufficientPermissionsException {
         checkAuth();
         seminar = seminarService.byId(seminarId);
         return SUCCESS;
     }
 
+    /**
+     * This method prepares the form of th edit Test Page
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String openEditForm() throws NotLoggedInException, InsufficientPermissionsException {
         checkAuth();
         seminar = seminarService.byId(seminarId);
         return SUCCESS;
     }
 
+
+    /**
+     * This method checks if the user is a lecturer
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     private void checkAuth() throws NotLoggedInException, InsufficientPermissionsException {
         if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();

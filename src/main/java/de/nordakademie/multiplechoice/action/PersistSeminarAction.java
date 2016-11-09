@@ -19,7 +19,8 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * This class is responsible for persisting a created seminar
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class PersistSeminarAction extends BaseAction {
     @Autowired
@@ -45,6 +46,13 @@ public class PersistSeminarAction extends BaseAction {
 
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * This method persists a created seminar
+     * @return  a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException
+     */
     public String persistSeminar() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if(getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
@@ -54,7 +62,8 @@ public class PersistSeminarAction extends BaseAction {
         if(seminarService.byId(seminarId)!= null){
         Seminar seminarOld = seminarService.byId(seminarId);
         seminar.setTest(seminarOld.getTest());
-        seminar.setParticipants(seminarOld.getParticipants());}
+        seminar.setParticipants(seminarOld.getParticipants());
+        }
 
         seminar.setSeminarId(seminarId);
         seminar.setBeginDate(LocalDate.parse(beginDateString, dateFormatter));
@@ -64,10 +73,10 @@ public class PersistSeminarAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method validates the inputs of the add-seminar-page
+     */
     public void validate() {
-
-
-
         boolean startDateParseable = false;
         if (!DateTimeValidationUtils.isDateParseable(beginDateString, dateFormatter)) {
             addFieldError("startDate", getI18NValue("persistSeminarFieldError.validStart"));

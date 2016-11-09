@@ -1,9 +1,17 @@
 package de.nordakademie.multiplechoice.action;
 
 /**
- * Created by ferencbeutel on 24.10.16.
+ * This class is responsible for the log out from the application
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
+
+
 public class LogoutAction extends BaseAction {
+
+    /**
+     * This method performs the log-out of an user
+     * @return a String  which is used to select a result element in struts
+     */
     public String logOut() {
         logOutUser();
         return SUCCESS;

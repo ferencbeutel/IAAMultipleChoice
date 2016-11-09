@@ -20,7 +20,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * This class is responsible for preparing the forms for adding and editing of questions
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class QuestionFormAction extends BaseAction {
 
@@ -39,7 +40,12 @@ public class QuestionFormAction extends BaseAction {
     @Setter
     private Question question;
 
-
+    /**
+     * This method prepares the input form for the add question page
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
@@ -48,6 +54,12 @@ public class QuestionFormAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method prepares edit-form for questions
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String openEditForm() throws NotLoggedInException, InsufficientPermissionsException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();

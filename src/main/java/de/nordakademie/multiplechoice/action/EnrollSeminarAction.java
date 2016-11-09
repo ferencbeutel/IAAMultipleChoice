@@ -16,7 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Set;
 
 /**
- * Created by ferencbeutel on 25.10.16.
+ * This class is responsible for enrolling a student to a seminar
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class EnrollSeminarAction extends BaseAction {
 
@@ -29,6 +30,14 @@ public class EnrollSeminarAction extends BaseAction {
     @Getter
     Seminar seminar;
 
+    /**
+     * This method enrolls the student for a seminar
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException
+     * @throws AlreadyEnrolledException
+     */
     public String enroll() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException, AlreadyEnrolledException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();

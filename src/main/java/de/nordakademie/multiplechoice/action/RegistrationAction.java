@@ -14,7 +14,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * This class is responsible for the registration process of the application
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class RegistrationAction extends BaseAction {
     private final String subjectLine = getI18NValue("registrationMail.subjectLine");
@@ -36,6 +37,11 @@ public class RegistrationAction extends BaseAction {
     @Setter
     private Student student;
 
+    /**
+     * This method performs the registration of a new user
+     * @return a String  which is used to select a result element in struts
+     * @throws AlreadyLoggedInException
+     */
     public String register() throws AlreadyLoggedInException {
         if(isUserLoggedIn()) {
             throw new AlreadyLoggedInException();
@@ -49,7 +55,10 @@ public class RegistrationAction extends BaseAction {
         return SUCCESS;
     }
 
-
+    /**
+     * This method performs the sending of the confirmation mail
+     * @return a String  which is used to select a result element in struts
+     */
     private String sendConfirmationMail() {
         HttpServletRequest request = ServletActionContext.getRequest();
 
@@ -69,11 +78,10 @@ public class RegistrationAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method validates the entered inputs of the registration-page
+     */
     public void validate() {
-
-
-
-
         if(student.getName() == null || student.getName().length() < 2) {
             addFieldError("name", getI18NValue("registrationFieldError.firstName"));
         }

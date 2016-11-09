@@ -15,7 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * This class is responsible for the delition of questions
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class QuestionDeleteAction extends BaseAction {
 
@@ -44,6 +45,12 @@ public class QuestionDeleteAction extends BaseAction {
     @Setter
     private List<Question> questions;
 
+    /**
+     * This method prepares the input-form for questions
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String openForm() throws NotLoggedInException, InsufficientPermissionsException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
@@ -52,6 +59,12 @@ public class QuestionDeleteAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method performs the deletion of a question from a test
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String deleteQuestion() throws NotLoggedInException, InsufficientPermissionsException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();

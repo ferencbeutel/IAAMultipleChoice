@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ferencbeutel on 25.10.16.
+ * This class is responsible for preparing the data for the seminar list
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class SeminarListAction extends BaseAction {
     @Autowired
@@ -22,6 +23,12 @@ public class SeminarListAction extends BaseAction {
     @Getter
     List<Seminar> seminarList = new ArrayList<>();
 
+    /**
+     * This method prepares the data for the seminar list
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     */
     public String displaySeminarList() throws NotLoggedInException, InsufficientPermissionsException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();

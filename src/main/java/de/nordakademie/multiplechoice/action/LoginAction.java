@@ -18,7 +18,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by Ferenc on 19.10.2016.
+ * This class is responsible for login to the application
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class LoginAction extends BaseAction {
 
@@ -36,6 +37,12 @@ public class LoginAction extends BaseAction {
     @Setter
     private String password;
 
+    /**
+     * This method performs the login of an user
+     * @return a String  which is used to select a result element in struts
+     * @throws AlreadyLoggedInException
+     * @throws GenericErrorException if no lecturer or student can be found by their mail
+     */
     public String login() throws AlreadyLoggedInException, GenericErrorException {
         if (isUserLoggedIn()) {
             throw new AlreadyLoggedInException();
@@ -52,6 +59,9 @@ public class LoginAction extends BaseAction {
         throw new GenericErrorException();
     }
 
+    /**
+     * This method validates the inputs of the login fields and adds possibly fieldErrors
+     */
     public void validate() {
 
         User user = lecturerService.findByMail(mail);

@@ -21,7 +21,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by ferencbeutel on 29.10.16.
+ * This class is responsible for the preparing the test which the student wants to perform
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class PerformTestAction extends BaseAction {
 
@@ -52,6 +53,14 @@ public class PerformTestAction extends BaseAction {
     @Getter
     private long testResultId;
 
+    /**
+     * This method prepares the execution of an test
+     * @return  a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException
+     * @throws TestAlreadyStartedException
+     */
     public String performTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException, TestAlreadyStartedException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();
@@ -71,8 +80,10 @@ public class PerformTestAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method checks, if the accessToken is valid
+     */
     public void validate() {
-
         if(!savedAccessToken.equals(inputAccessToken)) {
             addFieldError("accessToken", getI18NValue("performTestFieldError.token"));
         }

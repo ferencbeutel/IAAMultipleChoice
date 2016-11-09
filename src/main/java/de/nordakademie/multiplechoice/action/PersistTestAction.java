@@ -19,7 +19,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by Hendrik Peters on 17.10.16.
+ * This class is responsible for persisting a created Test
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class PersistTestAction extends BaseAction {
     @Autowired
@@ -43,6 +44,13 @@ public class PersistTestAction extends BaseAction {
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private DateTimeFormatter durationFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
+    /**
+     * This method persists a created test
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException
+     */
     public String persistTest() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if (getUserType() != UserType.LECTURER) {
             throw new InsufficientPermissionsException();
@@ -63,6 +71,9 @@ public class PersistTestAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * This method validates the inputs from th add-Test-Page
+     */
     public void validate() {
         boolean startDateParseable = false;
         if(!DateTimeValidationUtils.isDateParseable(startDateString, dateFormatter)) {
@@ -89,9 +100,11 @@ public class PersistTestAction extends BaseAction {
             }
         }
         Seminar seminar = seminarService.byId(seminarId);
+        //Checks that the testStartDate is after seminarStartDate
         if(LocalDate.parse(startDateString, dateFormatter).isBefore(seminar.getBeginDate())){
             addFieldError("startDate", getI18NValue("persistTestFieldError.seminarStart"));
         }
+
         if(!DateTimeValidationUtils.isTimeParseable(durationString, durationFormatter)) {
             addFieldError("duration", getI18NValue("persistTestFieldError.duration"));
         }

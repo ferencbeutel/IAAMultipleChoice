@@ -14,7 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by ferencbeutel on 17.10.16.
+ * This class is responsible for the contents on the home page
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 @Getter
 @Setter
@@ -38,6 +39,11 @@ public class HomeAction extends BaseAction {
     @Getter
     private Lecturer lecturer;
 
+    /**
+     * This method prepares the contents for the home-page
+     * @return a String  which is used to select a result element in struts
+     * @throws GenericErrorException if a user can't be fetched from a session
+     */
     public String execute() throws GenericErrorException {
         if (!isUserLoggedIn()) {
             return SUCCESS;
@@ -51,6 +57,7 @@ public class HomeAction extends BaseAction {
                 seminarList = lecturer.getSeminars();
             }
         } catch(NotLoggedInException e) {
+            //Todo delete this comment ?
             // if we cant fetch a user from the session for some reason, flush it and display generic error
             logOutUser();
             throw new GenericErrorException();

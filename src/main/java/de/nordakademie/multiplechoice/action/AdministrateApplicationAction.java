@@ -16,8 +16,10 @@ import java.util.List;
 
 
 /**
- * Created by Hendrik on 01.11.2016.
+ * This class is responsible for administrative tasks and to prepare test data
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
+
 public class AdministrateApplicationAction extends BaseAction {
 
     @Autowired
@@ -44,21 +46,33 @@ public class AdministrateApplicationAction extends BaseAction {
     @Autowired
     private LecturerService lecturerService;
 
+    /**
+     * This method prepares the input form for the application-administration page
+     * @return a String  which is used to select a result element in struts
+     */
     public String openForm() {
         List<Student> students = studentService.findAll();
         List<Lecturer> lecturers = lecturerService.findAll();
         dbState = students.isEmpty() && lecturers.isEmpty();
         return SUCCESS;
     }
+
+    /**
+     * This method calls the generateTestData method in the exampleDataService in order to create some test-data
+     * @return a String  which is used to select a result element in struts
+     */
     public String initialize() {
         exampleDataService.generateTestData(quantStudents, quantSeminars, quantLecturer);
-
         return SUCCESS;
     }
 
+    /**
+     * This method calls the sendTestToken method in mailScheduler in order to send the test tokens manually
+     * @return a String  which is used to select a result element in struts
+     * @throws GenericErrorException
+     */
     public String sendTestToken() throws GenericErrorException {
         mailScheduler.sendTestToken();
-
         return SUCCESS;
     }
 }

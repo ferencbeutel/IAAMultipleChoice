@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ferencbeutel on 29.10.16.
+ * This class is responsible for preparing the form for starting a test
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class StartTestFormAction extends BaseAction {
 
@@ -35,6 +36,13 @@ public class StartTestFormAction extends BaseAction {
     @Getter
     private String savedAccessToken;
 
+    /**
+     * This method prepares the form of the test-perform page
+     * @return a String  which is used to select a result element in struts
+     * @throws NotLoggedInException
+     * @throws InsufficientPermissionsException
+     * @throws GenericErrorException if there is not only one test result
+     */
     public String openStartForm() throws NotLoggedInException, InsufficientPermissionsException, GenericErrorException {
         if(getUserType() != UserType.STUDENT) {
             throw new InsufficientPermissionsException();

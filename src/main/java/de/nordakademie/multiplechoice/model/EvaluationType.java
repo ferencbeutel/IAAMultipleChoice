@@ -1,6 +1,7 @@
 package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,6 @@ public enum EvaluationType {
         HttpServletRequest request = ServletActionContext.getRequest();
         Locale userLocale = request.getLocale();
         ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
-
-        return messages.getString(i18nLookupKey);
+        return StringEscapeUtils.unescapeHtml4(messages.getString(i18nLookupKey));
     }
 }

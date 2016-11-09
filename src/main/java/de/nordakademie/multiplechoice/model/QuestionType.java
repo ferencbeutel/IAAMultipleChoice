@@ -1,5 +1,6 @@
 package de.nordakademie.multiplechoice.model;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,6 @@ public enum QuestionType {
         Locale userLocale = request.getLocale();
         ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);
 
-        return messages.getString(i18nLookupKey);
+        return StringEscapeUtils.unescapeHtml4(messages.getString(i18nLookupKey));
     }
 }

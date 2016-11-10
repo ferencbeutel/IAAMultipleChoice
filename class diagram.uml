@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>de.nordakademie.multiplechoice</OriginalElement>
+  <nodes>
+    <node x="4323.08735032923" y="1821.5">de.nordakademie.multiplechoice.action.BaseAction</node>
+    <node x="1656.2655022947147" y="0.0">de.nordakademie.multiplechoice.model.Answer</node>
+    <node x="4688.824192434493" y="2782.0">de.nordakademie.multiplechoice.action.SeminarDetailAction</node>
+    <node x="5436.824192434493" y="2771.0">de.nordakademie.multiplechoice.action.StartTestFormAction</node>
+    <node x="5570.511904761905" y="498.5">de.nordakademie.multiplechoice.model.User</node>
+    <node x="102.60714285714221" y="1092.0">de.nordakademie.multiplechoice.domain.QuestionRepository</node>
+    <node x="7035.858879759413" y="1910.0">de.nordakademie.multiplechoice.service.MailScheduler</node>
+    <node x="7597.385677733311" y="1976.5">de.nordakademie.multiplechoice.exception.AlreadyLoggedInException</node>
+    <node x="68.60714285714221" y="1910.0">de.nordakademie.multiplechoice.service.QuestionService</node>
+    <node x="2605.0416666666665" y="1976.5">de.nordakademie.multiplechoice.exception.InsufficientPermissionsException</node>
+    <node x="4077.7916666666665" y="829.0">de.nordakademie.multiplechoice.domain.TestResultRepository</node>
+    <node x="5465.761904761905" y="840.5">de.nordakademie.multiplechoice.model.Lecturer</node>
+    <node x="6344.136692434493" y="807.0">de.nordakademie.multiplechoice.domain.LecturerRepository</node>
+    <node x="375.99999999999955" y="2727.0">de.nordakademie.multiplechoice.action.QuestionDeleteAction</node>
+    <node x="4241.836692434493" y="2816.0">de.nordakademie.multiplechoice.action.LogoutAction</node>
+    <node x="1909.5155022947147" y="234.0">de.nordakademie.multiplechoice.model.CreditPointsType</node>
+    <node x="5829.8607020261015" y="2749.5">de.nordakademie.multiplechoice.action.HomeAction</node>
+    <node x="0.0" y="2760.0">de.nordakademie.multiplechoice.action.QuestionFormAction</node>
+    <node x="3545.541666666666" y="2793.0">de.nordakademie.multiplechoice.action.SeminarListAction</node>
+    <node x="1066.6360394080166" y="212.5">de.nordakademie.multiplechoice.model.Question</node>
+    <node x="0.0" y="3034.0">de.nordakademie.multiplechoice.util.DateTimeValidationUtils</node>
+    <node x="8654.38567773331" y="1147.5">de.nordakademie.multiplechoice.service.UUIDService</node>
+    <node x="2068.5155022947147" y="234.0">de.nordakademie.multiplechoice.model.EvaluationType</node>
+    <node x="2757.541666666666" y="2716.0">de.nordakademie.multiplechoice.action.PersistTestAction</node>
+    <node x="4134.765502294715" y="1125.0">de.nordakademie.multiplechoice.service.TestResultService</node>
+    <node x="3807.7655022947147" y="1048.5">de.nordakademie.multiplechoice.model.Seminar</node>
+    <node x="6764.483879759413" y="2760.0">de.nordakademie.multiplechoice.action.LoginAction</node>
+    <node x="1056.1360394080166" y="11.0">de.nordakademie.multiplechoice.model.QuestionType</node>
+    <node x="3336.4905022947146" y="818.0">de.nordakademie.multiplechoice.domain.SeminarRepository</node>
+    <node x="7490.533333333333" y="796.0">de.nordakademie.multiplechoice.domain.StudentRepository</node>
+    <node x="5901.208333333332" y="212.0">de.nordakademie.multiplechoice.model.TestResult</node>
+    <node x="1760.793358040169" y="2705.0">de.nordakademie.multiplechoice.action.PersistQuestionAction</node>
+    <node x="7478.811692434494" y="2705.0">de.nordakademie.multiplechoice.action.AdministrateApplicationAction</node>
+    <node x="1255.9999999999995" y="2782.0">de.nordakademie.multiplechoice.action.EnrollSeminarAction</node>
+    <node x="444.0" y="3034.0">de.nordakademie.multiplechoice.model.UserType</node>
+    <node x="1820.2655022947147" y="454.0">de.nordakademie.multiplechoice.model.Test</node>
+    <node x="606.0" y="3034.0">de.nordakademie.multiplechoice.exception.SeminarNotFoundException</node>
+    <node x="3876.0998503292294" y="2760.0">de.nordakademie.multiplechoice.action.TestFormAction</node>
+    <node x="6236.358879759413" y="2794.0">de.nordakademie.multiplechoice.service.ExampleDataService.QuestionGenerationType</node>
+    <node x="6316.636692434493" y="1103.0">de.nordakademie.multiplechoice.service.LecturerService</node>
+    <node x="5808.233879759413" y="1158.5">de.nordakademie.multiplechoice.exception.GenericErrorException</node>
+    <node x="2224.793358040169" y="2738.0">de.nordakademie.multiplechoice.action.TestSubmitAction</node>
+    <node x="3298.4905022947146" y="1103.0">de.nordakademie.multiplechoice.service.SeminarService</node>
+    <node x="811.9999999999995" y="2716.0">de.nordakademie.multiplechoice.action.PerformTestAction</node>
+    <node x="8180.38567773331" y="1048.0">de.nordakademie.multiplechoice.service.MailService</node>
+    <node x="8393.219011066645" y="2694.0">de.nordakademie.multiplechoice.action.RegistrationAction</node>
+    <node x="5012.824192434493" y="2727.0">de.nordakademie.multiplechoice.action.PersistSeminarAction</node>
+    <node x="3201.541666666666" y="2771.0">de.nordakademie.multiplechoice.action.SeminarFormAction</node>
+    <node x="6068.136692434493" y="818.0">de.nordakademie.multiplechoice.model.Student</node>
+    <node x="849.3010408054197" y="1976.5">de.nordakademie.multiplechoice.exception.TestAlreadyStartedException</node>
+    <node x="7124.483879759413" y="2793.0">de.nordakademie.multiplechoice.action.RegistrationAcceptationAction</node>
+    <node x="7464.533333333333" y="1092.0">de.nordakademie.multiplechoice.service.StudentService</node>
+    <node x="6134.108879759413" y="1668.0">de.nordakademie.multiplechoice.service.ExampleDataService</node>
+    <node x="1192.4499999999998" y="1976.5">de.nordakademie.multiplechoice.exception.AlreadyEnrolledException</node>
+    <node x="4513.765502294715" y="1158.5">de.nordakademie.multiplechoice.exception.NotLoggedInException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="de.nordakademie.multiplechoice.action.PersistQuestionAction" target="de.nordakademie.multiplechoice.model.Question">
+      <point x="-177.5999999999999" y="-136.5" />
+      <point x="1805.1933580401692" y="2504.0" />
+      <point x="1521.6999999999994" y="2504.0" />
+      <point x="1521.6999999999994" y="434.0" />
+      <point x="1201.6360394080166" y="434.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Question" target="de.nordakademie.multiplechoice.model.Answer">
+      <point x="67.5" y="-80.5" />
+      <point x="1269.1360394080166" y="182.0" />
+      <point x="1693.2655022947147" y="182.0" />
+      <point x="-111.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistTestAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="159.0" y="-125.5" />
+      <point x="3128.541666666666" y="2634.0" />
+      <point x="4495.166297697651" y="2634.0" />
+      <point x="-79.42105263157919" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.service.UUIDService">
+      <point x="96.25" y="-147.5" />
+      <point x="8681.969011066645" y="2664.0" />
+      <point x="8748.13567773331" y="2664.0" />
+      <point x="31.25" y="25.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Student" target="de.nordakademie.multiplechoice.model.User">
+      <point x="-64.0" y="-59.0" />
+      <point x="6132.136692434493" y="776.0" />
+      <point x="5755.761904761905" y="776.0" />
+      <point x="61.75" y="91.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Lecturer">
+      <point x="-195.75" y="-323.0" />
+      <point x="6329.858879759413" y="1378.0" />
+      <point x="5989.733879759413" y="1378.0" />
+      <point x="5989.733879759413" y="988.0" />
+      <point x="5660.011904761905" y="988.0" />
+      <point x="83.25" y="36.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionFormAction" target="de.nordakademie.multiplechoice.model.Question">
+      <point x="-133.5" y="-81.5" />
+      <point x="44.5" y="2674.0" />
+      <point x="33.499999999999545" y="2674.0" />
+      <point x="33.499999999999545" y="424.0" />
+      <point x="1093.6360394080166" y="424.0" />
+      <point x="-108.0" y="80.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LogoutAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="0.0" y="-25.5" />
+      <point x="4313.836692434493" y="2674.0" />
+      <point x="4601.061034539756" y="2674.0" />
+      <point x="26.4736842105267" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="93.33333333333303" y="-48.5" />
+      <point x="7357.817213092747" y="2674.0" />
+      <point x="7806.885677733311" y="2674.0" />
+      <point x="7806.885677733311" y="1628.0" />
+      <point x="7729.908333333333" y="1628.0" />
+      <point x="72.375" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistTestAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-159.0" y="-125.5" />
+      <point x="2810.541666666666" y="2564.0" />
+      <point x="2736.125" y="2564.0" />
+      <point x="10.083333333333485" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LoginAction" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="0.0" y="-81.5" />
+      <point x="6934.483879759413" y="2634.0" />
+      <point x="7434.755520658253" y="2634.0" />
+      <point x="7434.755520658253" y="1348.0" />
+      <point x="6593.386692434493" y="1348.0" />
+      <point x="92.25" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistSeminarAction" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="161.60000000000036" y="-114.5" />
+      <point x="5376.424192434493" y="2594.0" />
+      <point x="6112.608879759413" y="2594.0" />
+      <point x="6112.608879759413" y="1508.0" />
+      <point x="6408.886692434493" y="1508.0" />
+      <point x="-92.25" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction" target="de.nordakademie.multiplechoice.exception.AlreadyLoggedInException">
+      <point x="0.0" y="-48.5" />
+      <point x="7264.483879759413" y="2664.0" />
+      <point x="7696.885677733311" y="2664.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-121.14285714285734" y="-125.5" />
+      <point x="902.8571428571422" y="2474.0" />
+      <point x="748.3571428571422" y="2474.0" />
+      <point x="748.3571428571422" y="1518.0" />
+      <point x="3341.182809987022" y="1518.0" />
+      <point x="-142.30769230769238" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.EnrollSeminarAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="60.799999999999955" y="-59.5" />
+      <point x="1468.7999999999993" y="2544.0" />
+      <point x="2675.625" y="2544.0" />
+      <point x="-50.416666666666515" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarDetailAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="0.0" y="-59.5" />
+      <point x="4840.824192434493" y="1458.0" />
+      <point x="3568.87511767933" y="1458.0" />
+      <point x="85.38461538461524" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionFormAction" target="de.nordakademie.multiplechoice.service.QuestionService">
+      <point x="-44.5" y="-81.5" />
+      <point x="133.5" y="2674.0" />
+      <point x="169.1071428571422" y="2674.0" />
+      <point x="-100.5" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.StartTestFormAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-64.80000000000018" y="-70.5" />
+      <point x="5534.024192434494" y="2464.0" />
+      <point x="4680.482087171335" y="2464.0" />
+      <point x="105.89473684210498" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestFormAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-42.999999999999545" y="-81.5" />
+      <point x="4005.0998503292294" y="2514.0" />
+      <point x="3845.2916666666665" y="2514.0" />
+      <point x="3845.2916666666665" y="1568.0" />
+      <point x="3540.4135792177917" y="1568.0" />
+      <point x="56.92307692307713" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="115.71428571428532" y="-92.0" />
+      <point x="6080.574987740387" y="2624.0" />
+      <point x="7343.358879759413" y="2624.0" />
+      <point x="7343.358879759413" y="1618.0" />
+      <point x="7633.408333333333" y="1618.0" />
+      <point x="-24.125" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="-59.428571428571104" y="-114.5" />
+      <point x="524.5714285714284" y="2504.0" />
+      <point x="563.5714285714284" y="2504.0" />
+      <point x="563.5714285714284" y="766.0" />
+      <point x="1861.2655022947147" y="766.0" />
+      <point x="-205.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.service.UUIDService">
+      <point x="123.75" y="-81.0" />
+      <point x="7308.108879759413" y="1648.0" />
+      <point x="8685.63567773331" y="1648.0" />
+      <point x="-31.25" y="25.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.BaseAction" target="de.nordakademie.multiplechoice.exception.NotLoggedInException">
+      <point x="-188.625" y="-169.5" />
+      <point x="4385.96235032923" y="1468.0" />
+      <point x="4601.265502294715" y="1468.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-160.41666666666606" y="-147.5" />
+      <point x="8425.302344399977" y="2344.0" />
+      <point x="4812.850508223966" y="2344.0" />
+      <point x="238.26315789473665" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionFormAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="133.5" y="-81.5" />
+      <point x="311.5" y="2574.0" />
+      <point x="4336.324192434493" y="2574.0" />
+      <point x="-238.26315789473665" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.model.Student">
+      <point x="38.57142857142844" y="-92.0" />
+      <point x="6003.43213059753" y="2584.0" />
+      <point x="6000.733879759413" y="2584.0" />
+      <point x="6000.733879759413" y="1028.0" />
+      <point x="6196.136692434493" y="1028.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.TestResult">
+      <point x="195.75" y="-323.0" />
+      <point x="6721.358879759413" y="1568.0" />
+      <point x="6840.986692434493" y="1568.0" />
+      <point x="6840.986692434493" y="404.0" />
+      <point x="6108.408333333333" y="404.0" />
+      <point x="59.19999999999982" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Seminar" target="de.nordakademie.multiplechoice.model.Lecturer">
+      <point x="-61.399999999999636" y="-124.5" />
+      <point x="3899.865502294715" y="988.0" />
+      <point x="5493.511904761905" y="988.0" />
+      <point x="-83.25" y="36.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="96.0" y="-103.5" />
+      <point x="2512.793358040169" y="2564.0" />
+      <point x="2715.958333333333" y="2564.0" />
+      <point x="-10.083333333333485" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.service.TestResultService">
+      <point x="60.57142857142844" y="-125.5" />
+      <point x="1084.571428571428" y="2504.0" />
+      <point x="1101.9285714285706" y="2504.0" />
+      <point x="1101.9285714285706" y="1638.0" />
+      <point x="4179.640502294715" y="1638.0" />
+      <point x="-134.625" y="48.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarListAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="106.5" y="-48.5" />
+      <point x="3794.041666666666" y="2654.0" />
+      <point x="4548.113666118703" y="2654.0" />
+      <point x="-26.4736842105267" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.StudentService" target="de.nordakademie.multiplechoice.domain.StudentRepository">
+      <point x="0.0" y="-81.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistSeminarAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="80.80000000000018" y="-114.5" />
+      <point x="5295.624192434494" y="2584.0" />
+      <point x="5428.706511066644" y="2584.0" />
+      <point x="5428.706511066644" y="1418.0" />
+      <point x="4038.0155022947147" y="1418.0" />
+      <point x="76.75" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="0.0" y="-125.5" />
+      <point x="1023.9999999999995" y="2494.0" />
+      <point x="1090.9285714285706" y="2494.0" />
+      <point x="1090.9285714285706" y="1588.0" />
+      <point x="3853.815502294715" y="1588.0" />
+      <point x="-107.44999999999982" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Test" target="de.nordakademie.multiplechoice.model.EvaluationType">
+      <point x="61.5" y="-136.0" />
+      <point x="2127.7655022947147" y="434.0" />
+      <point x="2153.5155022947147" y="434.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" target="de.nordakademie.multiplechoice.service.MailScheduler">
+      <point x="0.0" y="-136.5" />
+      <point x="7732.811692434494" y="2354.0" />
+      <point x="7258.608879759413" y="2354.0" />
+      <point x="74.25" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarDetailAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="101.33333333333303" y="-59.5" />
+      <point x="4942.157525767827" y="2674.0" />
+      <point x="4851.824192434493" y="2674.0" />
+      <point x="4851.824192434493" y="1448.0" />
+      <point x="4007.3155022947144" y="1448.0" />
+      <point x="46.04999999999973" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="118.85714285714289" y="-114.5" />
+      <point x="702.8571428571422" y="2524.0" />
+      <point x="2635.2916666666665" y="2524.0" />
+      <point x="-90.75" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.LecturerService" target="de.nordakademie.multiplechoice.domain.LecturerRepository">
+      <point x="0.0" y="-70.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarDetailAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-101.33333333333303" y="-59.5" />
+      <point x="4739.490859101161" y="2674.0" />
+      <point x="4627.534718750283" y="2674.0" />
+      <point x="52.94736842105249" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Question" target="de.nordakademie.multiplechoice.model.QuestionType">
+      <point x="-67.5" y="-80.5" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionFormAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="44.5" y="-81.5" />
+      <point x="222.5" y="2514.0" />
+      <point x="2615.125" y="2514.0" />
+      <point x="-110.91666666666652" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.service.QuestionService">
+      <point x="-178.28571428571428" y="-114.5" />
+      <point x="405.7142857142853" y="2504.0" />
+      <point x="370.1071428571422" y="2504.0" />
+      <point x="100.5" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.StartTestFormAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="0.0" y="-70.5" />
+      <point x="5598.824192434493" y="2454.0" />
+      <point x="5417.706511066644" y="2454.0" />
+      <point x="5417.706511066644" y="1428.0" />
+      <point x="3625.798194602407" y="1428.0" />
+      <point x="142.30769230769238" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="160.0" y="-103.5" />
+      <point x="2576.793358040169" y="2624.0" />
+      <point x="4468.692613487125" y="2624.0" />
+      <point x="-105.89473684210498" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LoginAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-136.0" y="-81.5" />
+      <point x="6798.483879759413" y="2404.0" />
+      <point x="4733.429455592388" y="2404.0" />
+      <point x="158.84210526315746" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.model.Student">
+      <point x="160.41666666666606" y="-147.5" />
+      <point x="8746.13567773331" y="2674.0" />
+      <point x="8789.88567773331" y="2674.0" />
+      <point x="8789.88567773331" y="1018.0" />
+      <point x="6298.536692434493" y="1018.0" />
+      <point x="102.39999999999964" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Test" target="de.nordakademie.multiplechoice.model.Question">
+      <point x="-184.5" y="-136.0" />
+      <point x="1881.7655022947147" y="424.0" />
+      <point x="1255.6360394080166" y="424.0" />
+      <point x="54.0" y="80.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.BaseAction" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="62.875" y="-169.5" />
+      <point x="4637.46235032923" y="1498.0" />
+      <point x="6347.386692434493" y="1498.0" />
+      <point x="-153.75" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="-352.34999999999945" y="-323.0" />
+      <point x="6173.258879759414" y="1398.0" />
+      <point x="4099.415502294714" y="1398.0" />
+      <point x="138.1500000000001" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.EnrollSeminarAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-60.79999999999973" y="-59.5" />
+      <point x="1347.1999999999998" y="2504.0" />
+      <point x="1394.9499999999998" y="2504.0" />
+      <point x="1394.9499999999998" y="1528.0" />
+      <point x="3369.644348448561" y="1528.0" />
+      <point x="-113.84615384615381" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarFormAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-121.5" y="-70.5" />
+      <point x="3242.041666666666" y="2554.0" />
+      <point x="2756.2916666666665" y="2554.0" />
+      <point x="30.25" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Lecturer" target="de.nordakademie.multiplechoice.model.User">
+      <point x="55.5" y="-36.5" />
+      <point x="-61.75" y="91.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistTestAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="53.0" y="-125.5" />
+      <point x="3022.541666666666" y="2564.0" />
+      <point x="2982.7499999999995" y="2564.0" />
+      <point x="2982.7499999999995" y="1558.0" />
+      <point x="3455.028963833176" y="1558.0" />
+      <point x="-28.461538461538566" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.service.MailService">
+      <point x="32.08333333333394" y="-147.5" />
+      <point x="8617.802344399977" y="2664.0" />
+      <point x="8520.88567773331" y="2664.0" />
+      <point x="113.5" y="125.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.exception.GenericErrorException">
+      <point x="0.0" y="-92.0" />
+      <point x="5964.8607020261015" y="2414.0" />
+      <point x="5930.983879759413" y="2414.0" />
+      <point x="5930.983879759413" y="1488.0" />
+      <point x="5915.108879759413" y="1488.0" />
+      <point x="21.375" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="24.75" y="-81.0" />
+      <point x="7209.108879759413" y="1608.0" />
+      <point x="7585.158333333333" y="1608.0" />
+      <point x="-72.375" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarListAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-106.5" y="-48.5" />
+      <point x="3581.041666666666" y="2544.0" />
+      <point x="2776.458333333333" y="2544.0" />
+      <point x="50.416666666666515" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="181.71428571428578" y="-125.5" />
+      <point x="1205.7142857142853" y="2594.0" />
+      <point x="4389.271560855546" y="2594.0" />
+      <point x="-185.31578947368416" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.service.TestResultService">
+      <point x="-74.25" y="-81.0" />
+      <point x="7110.108879759413" y="1358.0" />
+      <point x="4448.890502294715" y="1358.0" />
+      <point x="134.625" y="48.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="77.14285714285688" y="-92.0" />
+      <point x="6042.003559168958" y="2604.0" />
+      <point x="6123.608879759413" y="2604.0" />
+      <point x="6123.608879759413" y="1518.0" />
+      <point x="6470.386692434493" y="1518.0" />
+      <point x="-30.75" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.StartTestFormAction" target="de.nordakademie.multiplechoice.service.MailScheduler">
+      <point x="129.60000000000036" y="-70.5" />
+      <point x="5728.424192434493" y="2614.0" />
+      <point x="7110.108879759413" y="2614.0" />
+      <point x="-74.25" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.EnrollSeminarAction" target="de.nordakademie.multiplechoice.exception.AlreadyEnrolledException">
+      <point x="-121.59999999999991" y="-59.5" />
+      <point x="1286.3999999999996" y="2504.0" />
+      <point x="1288.4499999999998" y="2504.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LoginAction" target="de.nordakademie.multiplechoice.exception.GenericErrorException">
+      <point x="-68.0" y="-81.5" />
+      <point x="6866.483879759413" y="2394.0" />
+      <point x="5941.983879759413" y="2394.0" />
+      <point x="5941.983879759413" y="1488.0" />
+      <point x="5957.858879759413" y="1488.0" />
+      <point x="64.125" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-32.0" y="-103.5" />
+      <point x="2384.793358040169" y="2494.0" />
+      <point x="2583.5416666666665" y="2494.0" />
+      <point x="2583.5416666666665" y="1548.0" />
+      <point x="3426.5674253716375" y="1548.0" />
+      <point x="-56.92307692307713" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.TestResultService" target="de.nordakademie.multiplechoice.domain.TestResultRepository">
+      <point x="0.0" y="-48.0" />
+      <point x="4314.265502294715" y="978.0" />
+      <point x="4214.791666666666" y="978.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Student" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="-51.19999999999982" y="59.0" />
+      <point x="6144.936692434494" y="1018.0" />
+      <point x="4084.0655022947153" y="1018.0" />
+      <point x="122.80000000000064" y="-124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.model.Question">
+      <point x="-118.85714285714266" y="-114.5" />
+      <point x="465.1428571428569" y="2494.0" />
+      <point x="552.5714285714284" y="2494.0" />
+      <point x="552.5714285714284" y="434.0" />
+      <point x="1147.6360394080166" y="434.0" />
+      <point x="-54.0" y="80.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.EnrollSeminarAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="121.59999999999991" y="-59.5" />
+      <point x="1529.5999999999995" y="2604.0" />
+      <point x="4415.745245066073" y="2604.0" />
+      <point x="-158.84210526315746" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.exception.TestAlreadyStartedException">
+      <point x="-60.57142857142867" y="-125.5" />
+      <point x="963.4285714285706" y="2504.0" />
+      <point x="955.3010408054197" y="2504.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistQuestionAction" target="de.nordakademie.multiplechoice.model.Answer">
+      <point x="-88.80000000000018" y="-136.5" />
+      <point x="1893.993358040169" y="2494.0" />
+      <point x="1696.6999999999994" y="2494.0" />
+      <point x="1696.6999999999994" y="192.0" />
+      <point x="1767.2655022947147" y="192.0" />
+      <point x="-37.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestFormAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="129.00000000000045" y="-81.5" />
+      <point x="4177.099850329229" y="2664.0" />
+      <point x="4574.58735032923" y="2664.0" />
+      <point x="0.0" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="0.0" y="-114.5" />
+      <point x="583.9999999999995" y="2494.0" />
+      <point x="737.3571428571422" y="2494.0" />
+      <point x="737.3571428571422" y="1508.0" />
+      <point x="3312.7212715254836" y="1508.0" />
+      <point x="-170.76923076923094" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="59.42857142857156" y="-114.5" />
+      <point x="643.4285714285711" y="2504.0" />
+      <point x="759.3571428571422" y="2504.0" />
+      <point x="759.3571428571422" y="1578.0" />
+      <point x="3823.1155022947146" y="1578.0" />
+      <point x="-138.1500000000001" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAcceptationAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-93.33333333333303" y="-48.5" />
+      <point x="7171.150546426081" y="2384.0" />
+      <point x="4759.903139802915" y="2384.0" />
+      <point x="185.31578947368416" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarListAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="35.5" y="-48.5" />
+      <point x="3723.041666666666" y="2564.0" />
+      <point x="3856.2916666666665" y="2564.0" />
+      <point x="3856.2916666666665" y="1618.0" />
+      <point x="3945.9155022947148" y="1618.0" />
+      <point x="-15.349999999999909" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.model.TestResult">
+      <point x="-24.75" y="-81.0" />
+      <point x="7159.608879759413" y="1578.0" />
+      <point x="7382.386692434493" y="1578.0" />
+      <point x="7382.386692434493" y="394.0" />
+      <point x="6167.608333333332" y="394.0" />
+      <point x="118.39999999999964" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-115.71428571428623" y="-92.0" />
+      <point x="5849.146416311815" y="2444.0" />
+      <point x="4706.955771381861" y="2444.0" />
+      <point x="132.36842105263167" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.model.Lecturer">
+      <point x="-38.57142857142844" y="-92.0" />
+      <point x="5926.289273454673" y="2424.0" />
+      <point x="5719.921379759413" y="2424.0" />
+      <point x="5719.921379759413" y="998.0" />
+      <point x="5604.511904761905" y="998.0" />
+      <point x="27.75" y="36.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Student">
+      <point x="-39.149999999999636" y="-323.0" />
+      <point x="6486.458879759413" y="1538.0" />
+      <point x="6807.986692434493" y="1538.0" />
+      <point x="6807.986692434493" y="1028.0" />
+      <point x="6247.336692434494" y="1028.0" />
+      <point x="51.19999999999982" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.service.TestResultService">
+      <point x="32.0" y="-103.5" />
+      <point x="2448.793358040169" y="2504.0" />
+      <point x="2594.5416666666665" y="2504.0" />
+      <point x="2594.5416666666665" y="1648.0" />
+      <point x="4269.390502294715" y="1648.0" />
+      <point x="-44.875" y="48.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Test" target="de.nordakademie.multiplechoice.model.CreditPointsType">
+      <point x="-61.5" y="-136.0" />
+      <point x="2004.7655022947147" y="434.0" />
+      <point x="1979.0155022947147" y="434.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Answer">
+      <point x="274.0500000000002" y="-323.0" />
+      <point x="6799.658879759414" y="1578.0" />
+      <point x="6851.986692434493" y="1578.0" />
+      <point x="6851.986692434493" y="192.0" />
+      <point x="1915.2655022947147" y="192.0" />
+      <point x="111.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarListAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-35.5" y="-48.5" />
+      <point x="3652.041666666666" y="2534.0" />
+      <point x="3522.541666666666" y="2534.0" />
+      <point x="3522.541666666666" y="1568.0" />
+      <point x="3511.952040756253" y="1568.0" />
+      <point x="28.461538461538566" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.QuestionService" target="de.nordakademie.multiplechoice.domain.QuestionRepository">
+      <point x="0.0" y="-81.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="121.14285714285711" y="-125.5" />
+      <point x="1145.1428571428569" y="2534.0" />
+      <point x="2655.458333333333" y="2534.0" />
+      <point x="-70.58333333333348" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestFormAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-128.99999999999955" y="-81.5" />
+      <point x="3919.0998503292294" y="2524.0" />
+      <point x="2796.625" y="2524.0" />
+      <point x="70.58333333333348" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistSeminarAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-161.60000000000036" y="-114.5" />
+      <point x="5053.224192434493" y="2494.0" />
+      <point x="2816.7916666666665" y="2494.0" />
+      <point x="90.75" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Lecturer" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="-55.5" y="-36.5" />
+      <point x="5521.261904761905" y="756.0" />
+      <point x="2189.2655022947147" y="756.0" />
+      <point x="123.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.BaseAction" target="de.nordakademie.multiplechoice.exception.GenericErrorException">
+      <point x="-62.875" y="-169.5" />
+      <point x="4511.71235032923" y="1478.0" />
+      <point x="5829.608879759413" y="1478.0" />
+      <point x="-64.125" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="352.35000000000036" y="-323.0" />
+      <point x="6877.958879759413" y="1598.0" />
+      <point x="7536.908333333333" y="1598.0" />
+      <point x="-120.625" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="101.60000000000036" y="-136.5" />
+      <point x="7834.411692434494" y="2674.0" />
+      <point x="7923.636692434493" y="2674.0" />
+      <point x="7923.636692434493" y="1338.0" />
+      <point x="6654.886692434493" y="1338.0" />
+      <point x="153.75" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="39.149999999999636" y="-323.0" />
+      <point x="6564.758879759413" y="1548.0" />
+      <point x="6818.986692434493" y="1548.0" />
+      <point x="6818.986692434493" y="746.0" />
+      <point x="2271.2655022947147" y="746.0" />
+      <point x="205.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LoginAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="68.0" y="-81.5" />
+      <point x="7002.483879759413" y="2644.0" />
+      <point x="7445.755520658253" y="2644.0" />
+      <point x="7445.755520658253" y="1628.0" />
+      <point x="7681.658333333333" y="1628.0" />
+      <point x="24.125" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.EnrollSeminarAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="0.0" y="-59.5" />
+      <point x="1407.9999999999995" y="2504.0" />
+      <point x="1405.9499999999998" y="2504.0" />
+      <point x="1405.9499999999998" y="1598.0" />
+      <point x="3884.5155022947147" y="1598.0" />
+      <point x="-76.75" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.BaseAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="188.625" y="-169.5" />
+      <point x="4763.21235032923" y="1588.0" />
+      <point x="7488.658333333333" y="1588.0" />
+      <point x="-168.875" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService.QuestionGenerationType" target="de.nordakademie.multiplechoice.service.ExampleDataService">
+      <point x="0.0" y="-47.5" />
+      <point x="-195.75" y="323.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarFormAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="121.5" y="-70.5" />
+      <point x="3485.041666666666" y="2644.0" />
+      <point x="4521.639981908178" y="2644.0" />
+      <point x="-52.94736842105249" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="-32.08333333333394" y="-147.5" />
+      <point x="8553.63567773331" y="2674.0" />
+      <point x="8509.88567773331" y="2674.0" />
+      <point x="8509.88567773331" y="1318.0" />
+      <point x="7826.408333333333" y="1318.0" />
+      <point x="168.875" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.service.MailService">
+      <point x="74.25" y="-81.0" />
+      <point x="7258.608879759413" y="1638.0" />
+      <point x="8293.88567773331" y="1638.0" />
+      <point x="-113.5" y="125.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.model.TestResult">
+      <point x="-96.0" y="-103.5" />
+      <point x="2320.793358040169" y="2494.0" />
+      <point x="2347.9155022947148" y="2494.0" />
+      <point x="2347.9155022947148" y="434.0" />
+      <point x="5990.008333333333" y="434.0" />
+      <point x="-59.19999999999982" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.MailScheduler" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-123.75" y="-81.0" />
+      <point x="7060.608879759413" y="1368.0" />
+      <point x="3654.259733063945" y="1368.0" />
+      <point x="170.7692307692305" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.service.LecturerService">
+      <point x="-117.44999999999982" y="-323.0" />
+      <point x="6408.158879759414" y="1528.0" />
+      <point x="6531.886692434493" y="1528.0" />
+      <point x="30.75" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.RegistrationAction" target="de.nordakademie.multiplechoice.exception.AlreadyLoggedInException">
+      <point x="-96.25" y="-147.5" />
+      <point x="8489.469011066645" y="2334.0" />
+      <point x="7763.219011066643" y="2334.0" />
+      <point x="66.33333333333303" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Lecturer" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="-27.75" y="36.5" />
+      <point x="5549.011904761905" y="998.0" />
+      <point x="3961.265502294715" y="998.0" />
+      <point x="4.547473508864641E-13" y="-124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistQuestionAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="0.0" y="-136.5" />
+      <point x="1982.793358040169" y="2504.0" />
+      <point x="2358.9155022947148" y="2504.0" />
+      <point x="2358.9155022947148" y="1538.0" />
+      <point x="3398.1058869100993" y="1538.0" />
+      <point x="-85.38461538461524" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.HomeAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="-77.14285714285688" y="-92.0" />
+      <point x="5887.717844883245" y="2434.0" />
+      <point x="5439.706511066644" y="2434.0" />
+      <point x="5439.706511066644" y="1408.0" />
+      <point x="4068.7155022947145" y="1408.0" />
+      <point x="107.44999999999982" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistTestAction" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="-53.0" y="-125.5" />
+      <point x="2916.541666666666" y="2564.0" />
+      <point x="2950.8081836625624" y="2564.0" />
+      <point x="2950.8081836625624" y="776.0" />
+      <point x="2025.2655022947147" y="776.0" />
+      <point x="-41.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistQuestionAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="88.80000000000018" y="-136.5" />
+      <point x="2071.5933580401693" y="2554.0" />
+      <point x="2695.7916666666665" y="2554.0" />
+      <point x="-30.25" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Test" target="de.nordakademie.multiplechoice.model.TestResult">
+      <point x="184.5" y="-136.0" />
+      <point x="2250.7655022947147" y="424.0" />
+      <point x="5930.8083333333325" y="424.0" />
+      <point x="-118.39999999999964" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Student" target="de.nordakademie.multiplechoice.model.TestResult">
+      <point x="64.0" y="-59.0" />
+      <point x="6260.136692434493" y="434.0" />
+      <point x="6049.208333333332" y="434.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-203.19999999999982" y="-136.5" />
+      <point x="7529.611692434493" y="2374.0" />
+      <point x="4786.37682401344" y="2374.0" />
+      <point x="211.78947368420995" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.StartTestFormAction" target="de.nordakademie.multiplechoice.exception.InsufficientPermissionsException">
+      <point x="-129.60000000000036" y="-70.5" />
+      <point x="5469.224192434493" y="2474.0" />
+      <point x="2836.9583333333335" y="2474.0" />
+      <point x="110.91666666666697" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.QuestionDeleteAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="178.28571428571422" y="-114.5" />
+      <point x="762.2857142857138" y="2584.0" />
+      <point x="4362.79787664502" y="2584.0" />
+      <point x="-211.78947368421086" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistSeminarAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="0.0" y="-114.5" />
+      <point x="5214.824192434493" y="1438.0" />
+      <point x="3597.3366561408684" y="1438.0" />
+      <point x="113.84615384615381" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarFormAction" target="de.nordakademie.multiplechoice.service.SeminarService">
+      <point x="-40.5" y="-70.5" />
+      <point x="3323.041666666666" y="2564.0" />
+      <point x="3341.616666666666" y="2564.0" />
+      <point x="3341.616666666666" y="1568.0" />
+      <point x="3483.4905022947146" y="1568.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.StartTestFormAction" target="de.nordakademie.multiplechoice.exception.GenericErrorException">
+      <point x="64.80000000000018" y="-70.5" />
+      <point x="5663.624192434494" y="2584.0" />
+      <point x="5708.921379759413" y="2584.0" />
+      <point x="5708.921379759413" y="1488.0" />
+      <point x="5872.358879759413" y="1488.0" />
+      <point x="-21.375" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Seminar" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="-122.79999999999973" y="-124.5" />
+      <point x="3838.465502294715" y="1028.0" />
+      <point x="3738.991666666667" y="1028.0" />
+      <point x="3738.991666666667" y="766.0" />
+      <point x="2107.2655022947147" y="766.0" />
+      <point x="41.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestSubmitAction" target="de.nordakademie.multiplechoice.model.Answer">
+      <point x="-160.0" y="-103.5" />
+      <point x="2256.793358040169" y="2484.0" />
+      <point x="1809.7655022947147" y="2484.0" />
+      <point x="1809.7655022947147" y="192.0" />
+      <point x="1841.2655022947147" y="192.0" />
+      <point x="37.0" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.service.TestResultService">
+      <point x="-274.0499999999993" y="-323.0" />
+      <point x="6251.558879759414" y="1388.0" />
+      <point x="4359.140502294715" y="1388.0" />
+      <point x="44.875" y="48.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" target="de.nordakademie.multiplechoice.service.ExampleDataService">
+      <point x="-101.60000000000036" y="-136.5" />
+      <point x="7631.211692434494" y="2364.0" />
+      <point x="6721.358879759413" y="2364.0" />
+      <point x="195.75" y="323.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.TestFormAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="43.000000000000455" y="-81.5" />
+      <point x="4091.0998503292294" y="2504.0" />
+      <point x="3867.2916666666665" y="2504.0" />
+      <point x="3867.2916666666665" y="1628.0" />
+      <point x="3976.6155022947146" y="1628.0" />
+      <point x="15.349999999999909" y="124.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.SeminarService" target="de.nordakademie.multiplechoice.domain.SeminarRepository">
+      <point x="0.0" y="-70.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PerformTestAction" target="de.nordakademie.multiplechoice.model.Test">
+      <point x="-181.71428571428578" y="-125.5" />
+      <point x="842.2857142857138" y="2484.0" />
+      <point x="726.3571428571422" y="2484.0" />
+      <point x="726.3571428571422" y="776.0" />
+      <point x="1943.2655022947147" y="776.0" />
+      <point x="-123.0" y="136.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.service.ExampleDataService" target="de.nordakademie.multiplechoice.model.Question">
+      <point x="117.44999999999982" y="-323.0" />
+      <point x="6643.058879759414" y="1558.0" />
+      <point x="6829.986692434493" y="1558.0" />
+      <point x="6829.986692434493" y="414.0" />
+      <point x="1309.6360394080166" y="414.0" />
+      <point x="108.0" y="80.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.AdministrateApplicationAction" target="de.nordakademie.multiplechoice.service.StudentService">
+      <point x="203.19999999999982" y="-136.5" />
+      <point x="7936.011692434493" y="2674.0" />
+      <point x="8229.133333333331" y="2674.0" />
+      <point x="8229.133333333331" y="1328.0" />
+      <point x="7778.158333333333" y="1328.0" />
+      <point x="120.625" y="81.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistQuestionAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="177.5999999999999" y="-136.5" />
+      <point x="2160.393358040169" y="2614.0" />
+      <point x="4442.218929276598" y="2614.0" />
+      <point x="-132.36842105263167" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.PersistSeminarAction" target="de.nordakademie.multiplechoice.action.BaseAction">
+      <point x="-80.80000000000018" y="-114.5" />
+      <point x="5134.024192434494" y="2484.0" />
+      <point x="4654.00840296081" y="2484.0" />
+      <point x="79.42105263157919" y="169.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.model.Seminar" target="de.nordakademie.multiplechoice.model.Student">
+      <point x="61.400000000000546" y="-124.5" />
+      <point x="4022.665502294715" y="1008.0" />
+      <point x="6093.736692434493" y="1008.0" />
+      <point x="-102.39999999999964" y="59.0" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.LoginAction" target="de.nordakademie.multiplechoice.exception.AlreadyLoggedInException">
+      <point x="136.0" y="-81.5" />
+      <point x="7070.483879759413" y="2654.0" />
+      <point x="7630.552344399977" y="2654.0" />
+      <point x="-66.33333333333303" y="14.5" />
+    </edge>
+    <edge source="de.nordakademie.multiplechoice.action.SeminarFormAction" target="de.nordakademie.multiplechoice.model.Seminar">
+      <point x="40.5" y="-70.5" />
+      <point x="3404.041666666666" y="2564.0" />
+      <point x="3533.541666666666" y="2564.0" />
+      <point x="3533.541666666666" y="1608.0" />
+      <point x="3915.2155022947145" y="1608.0" />
+      <point x="-46.05000000000018" y="124.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.11906923950056754" x="4395.0" y="1553.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

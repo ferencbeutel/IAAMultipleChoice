@@ -1,7 +1,8 @@
 package de.nordakademie.multiplechoice.exception;
 
 /**
- * Created by ferencbeutel on 26.10.16.
+ * Exception for students that try to enroll in a seminar, but are already enrolled
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class AlreadyEnrolledException extends Exception {
 }

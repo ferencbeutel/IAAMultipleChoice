@@ -1,3 +1,7 @@
+/**
+ * Functionality of test performing, changing and postponing questions
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ */
 function submitForm() {
     $('.gapAnswerInput').each(function (i, e) {
         e.value = e.value + "|" + $(e).parent().data("id");

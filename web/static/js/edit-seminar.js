@@ -1,5 +1,6 @@
 /**
- * Created by Max on 02.11.2016
+ * Disabling of inputs when seminar already started
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 var startDate = new Date($('#startDate').val());
 if (startDate <= new Date()) {

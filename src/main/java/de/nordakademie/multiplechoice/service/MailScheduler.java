@@ -17,27 +17,43 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by ferencbeutel on 26.10.16.
+ * This class is used to generate mails with test tokens
+ * Mails will be send out, when a test starts
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 @Service
 public class MailScheduler {
-
+    /**
+     * Mail service that is used to send mails
+     */
     @Autowired
     private MailService mailService;
-
+    /**
+     * Service to manage testresults
+     */
     @Autowired
     private TestResultService testResultService;
 
+    /**
+     * Service to manage seminars
+     */
     @Autowired
     private SeminarService seminarService;
-
+    /**
+     * Service to manage students
+     */
     @Autowired
     private StudentService studentService;
-
+    /**
+     * Creation of unique ids
+     */
     @Autowired
     private UUIDService uuidService;
 
-
+    /**
+     * This method is used to send test token via mail
+     * @throws GenericErrorException
+     */
     @Scheduled(cron = "0 0 1 * * *")
     public void sendTestToken() throws GenericErrorException {
         for (Seminar seminar : seminarService.allWithTestsStartingToday()) {
@@ -55,7 +71,7 @@ public class MailScheduler {
 
                 seminar.getTest().getResults().add(testResult);
                 seminar = seminarService.createOrUpdate(seminar);
-
+                // Creation of mail
                 HttpServletRequest request = ServletActionContext.getRequest();
                 Locale userLocale = request.getLocale();
                 ResourceBundle messages = ResourceBundle.getBundle("messages", userLocale);

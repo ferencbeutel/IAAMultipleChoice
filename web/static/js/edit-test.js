@@ -1,5 +1,6 @@
 /**
- * Created by melanie on 30.10.2016.
+ * Naviation for edit test, functionality of buttons
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 $('#questionList').children('.row').each(function(i, e) {
     var children = $(e).children('.questionListItemEntry');

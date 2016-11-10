@@ -5,7 +5,9 @@ import lombok.Getter;
 
 
 /**
- * Created by MHORT on 24.10.2016.
+ * This class represents the Creditpoints that a test can have
+ * Each test gets a amount of credits assigned
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public enum CreditPointsType {
     HALF("0.5"),

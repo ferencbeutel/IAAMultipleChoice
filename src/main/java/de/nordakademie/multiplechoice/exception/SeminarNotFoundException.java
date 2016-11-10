@@ -1,7 +1,8 @@
 package de.nordakademie.multiplechoice.exception;
 
 /**
- * Created by ferencbeutel on 26.10.16.
+ * Exception when trying to access a seminar that isn't persisted
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class SeminarNotFoundException extends Exception {
 }

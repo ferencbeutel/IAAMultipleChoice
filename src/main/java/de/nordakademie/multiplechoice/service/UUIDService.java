@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 /**
- * Created by Ferenc on 18.10.2016.
+ * This class is used to generate unique ids
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 @Service
 public class UUIDService {

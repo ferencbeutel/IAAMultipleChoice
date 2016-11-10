@@ -1,3 +1,7 @@
+/**
+ * Processing of question creation
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ */
 var selectedVal;
 
 function buildSingleChoiceAnswer(text, buttonState) {
@@ -117,7 +121,7 @@ function buildGapAnswer(i, text, answerList) {
     answerList.append(answerContainer);
 }
 
-
+// actions on change of questiontype
 $('#select-question-type').change(function (e) {
     var target = e.target;
     selectedVal = $(target).val();

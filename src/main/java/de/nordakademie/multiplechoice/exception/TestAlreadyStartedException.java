@@ -1,7 +1,8 @@
 package de.nordakademie.multiplechoice.exception;
 
 /**
- * Created by ferencbeutel on 26.10.16.
+ * Exception for starting a test, that has already started
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class TestAlreadyStartedException extends Exception {
 }

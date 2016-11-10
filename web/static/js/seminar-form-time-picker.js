@@ -1,3 +1,7 @@
+/**
+ * Time picker for startdate and endate for seminar creation and editing
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ */
 $(document).ready(function () {
     /** TODO: Language beim Datepicker auch in ausgelagerter JS-Datei anpassen (AddSeminar) **/
     var language = window.navigator.language;

@@ -164,10 +164,10 @@ public class ExampleDataService {
     }
 
     /**
-     * gnbkefmv,äcödas
+     * This method is used to create answers and assign truth values to them
      * @param position of the answer in the question list
      * @param genType Question Generation Type which determines the correctness of the answer
-     * @return
+     * @return answer object
      */
     private Answer randomAnswer(final int position, QuestionGenerationType genType) {
         Answer answer = new Answer();
@@ -195,6 +195,10 @@ public class ExampleDataService {
         return answer;
     }
 
+    /**
+     * This method is uses to generate a lecturer
+     * @return lecturer object
+     */
     private Lecturer randomLecturer() {
         String name = randomString(lecturerFirstNames);
         String surName = randomString(surNames);
@@ -215,6 +219,11 @@ public class ExampleDataService {
         return lecturer;
     }
 
+    /**
+     * This method is used to create a question with given position
+     * @param position of question
+     * @return question object
+     */
     private Question randomQuestion(final int position) {
         Question question = new Question();
         question.setPosition(position);
@@ -227,6 +236,10 @@ public class ExampleDataService {
         return question;
     }
 
+    /**
+     * This method is used to create a seminar
+     * @return seminar objcet
+     */
     private Seminar randomSeminar() {
         Seminar seminar = new Seminar();
         seminar.setName(randomString(seminarNames));
@@ -241,6 +254,10 @@ public class ExampleDataService {
         return seminar;
     }
 
+    /**
+     * This method is used to create a student
+     * @return student object
+     */
     private Student randomStudent() {
         String name = randomString(studentFirstNames);
         String surName = randomString(surNames);
@@ -261,6 +278,11 @@ public class ExampleDataService {
         return student;
     }
 
+    /**
+     * This method is used to create a test in a randomized period
+     * @param beginDateBase base for assigning begindate and enddate
+     * @return test object
+     */
     private Test randomTest(final LocalDate beginDateBase) {
         Test test = new Test();
         LocalDate beginDate = beginDateBase.plusDays(randomInt(0, 10));
@@ -276,6 +298,12 @@ public class ExampleDataService {
         return test;
     }
 
+    /**
+     * This method is used to create a test result
+     * @param startTime of test
+     * @param maxScore that can be achieved in the test
+     * @return testresult object
+     */
     private TestResult randomTestResult(final LocalDateTime startTime, final int maxScore) {
         TestResult result = new TestResult();
         result.setStartDateTime(startTime);
@@ -284,10 +312,20 @@ public class ExampleDataService {
         return result;
     }
 
+    /**
+     * This method is used to create a random integer
+     * @param lowerBoundary
+     * @param upperBoundary
+     * @return randomized integer
+     */
     private Integer randomInt(final int lowerBoundary, final int upperBoundary) {
         return lowerBoundary + ((int) Math.round(Math.random() * upperBoundary) - lowerBoundary);
     }
 
+    /**
+     * This method is used to create a random date 365 +/- from today
+     * @return
+     */
     private LocalDate randomDate() {
         int offset = randomInt(0, 365);
         if (Math.random() < 0.5) {
@@ -297,12 +335,21 @@ public class ExampleDataService {
         }
     }
 
+    /**
+     * Create random time
+     * @return time
+     */
     private LocalTime randomTime() {
         int offset = randomInt(30, 90);
         LocalTime time = LocalTime.MIN;
         return time.plusMinutes(offset);
     }
 
+    /**
+     * This method will return a random string from a list of strings
+     * @param possibleStrings list of strings to choose from
+     * @return Random string that has been picked
+     */
     private String randomString(final List<String> possibleStrings) {
         return possibleStrings.get(randomInt(0, possibleStrings.size() - 1));
     }

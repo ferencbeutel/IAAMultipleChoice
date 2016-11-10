@@ -1,5 +1,8 @@
+/**
+ * functionality of buttons
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ */
 var descriptionHeight = $("#seminarDescriptionText").height() +"px";
-console.log(descriptionHeight);
 $("#seminarDescriptionLabel").height(descriptionHeight);
 
 $(".enrollButton").click(function (event) {

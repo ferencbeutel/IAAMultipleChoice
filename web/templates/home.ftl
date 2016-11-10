@@ -33,12 +33,13 @@
     <#if seminarList?has_content>
         <div class="row seminarListItem seminarListHeader">
             <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderName"/></div>
-            <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderDate"/></div>
 
-            <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == "Student">
+
+            <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == studentUser>
+                <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderTestDate"/></div>
                 <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.startTest"/></div>
-
             <#else>
+                <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.tableHeaderSeminarDate"/></div>
                 <div class="col-xs-4 seminarListItemEntry"><@s.text name="home.AdministrateTest"/></div>
             </#if>
         </div>
@@ -94,7 +95,11 @@
                         <span>${seminar.name}</span>
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
-                        <span>${seminar.beginDate} - ${seminar.endDate}</span>
+                        <#if seminar.test??>
+                            <span>${seminar.test.beginDate} - ${seminar.test.endDate}</span>
+                        <#else>
+                            <span><@s.text name="home.noTest"/></span>
+                        </#if>
                     </div>
                     <div class="col-xs-4 seminarListItemEntry">
                         <#if !testResultExist>

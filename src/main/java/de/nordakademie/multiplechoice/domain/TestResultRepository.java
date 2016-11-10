@@ -9,7 +9,8 @@ import javax.persistence.PersistenceContext;
 
 
 /**
- * Created by MHORT on 20.10.2016.
+ * This class is responsible for CRU(D)-Database operations for TestResults
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 
 @Repository
@@ -18,10 +19,20 @@ public class TestResultRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * This method persists a new testResult or persists the changes made to an existing testResult in db
+     * @param testResult new or updated instance of a testResult
+     * @return the saved testResult
+     */
     public TestResult createOrUpdate(final TestResult testResult) {
         return entityManager.merge(testResult);
     }
 
+    /**
+     * This method finds a testResult from the database by the forwarded id
+     * @param id the id of the testResult
+     * @return the testResult with id = id
+     */
     public TestResult byId(final long id) {
         try {
             return entityManager.createQuery(

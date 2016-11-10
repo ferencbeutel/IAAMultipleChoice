@@ -2,8 +2,7 @@ package de.nordakademie.multiplechoice.model;
 
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * Created by MHORT on 24.10.2016.

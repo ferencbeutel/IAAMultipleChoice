@@ -1,23 +1,14 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.exception.GenericErrorException;
+
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Question;
-import de.nordakademie.multiplechoice.model.QuestionType;
-import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.QuestionService;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * This class is responsible for preparing the forms for adding and editing of questions

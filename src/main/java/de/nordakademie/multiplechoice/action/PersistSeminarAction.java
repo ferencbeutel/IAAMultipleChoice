@@ -8,15 +8,10 @@ import de.nordakademie.multiplechoice.service.*;
 import de.nordakademie.multiplechoice.util.DateTimeValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Set;
 
 /**
  * This class is responsible for persisting a created seminar

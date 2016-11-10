@@ -9,7 +9,8 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * Created by MHORT on 20.10.2016.
+ * This class is responsible for administrative tasks and to prepare test data
+ * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 
 @Repository

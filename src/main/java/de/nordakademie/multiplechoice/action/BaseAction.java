@@ -5,7 +5,6 @@ import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
-import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;

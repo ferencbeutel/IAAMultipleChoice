@@ -6,8 +6,6 @@ import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.MailScheduler;
 import de.nordakademie.multiplechoice.service.SeminarService;
-import de.nordakademie.multiplechoice.service.StudentService;
-import de.nordakademie.multiplechoice.service.TestResultService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;

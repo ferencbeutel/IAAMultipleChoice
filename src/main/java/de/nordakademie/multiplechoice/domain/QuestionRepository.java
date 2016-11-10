@@ -1,7 +1,6 @@
 package de.nordakademie.multiplechoice.domain;
 
 import de.nordakademie.multiplechoice.model.Question;
-import de.nordakademie.multiplechoice.model.Seminar;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

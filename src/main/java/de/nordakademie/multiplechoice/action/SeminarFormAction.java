@@ -4,7 +4,6 @@ import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.Seminar;
-import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.SeminarService;
 import lombok.Getter;

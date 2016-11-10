@@ -2,15 +2,12 @@ package de.nordakademie.multiplechoice.action;
 
 import de.nordakademie.multiplechoice.exception.AlreadyLoggedInException;
 import de.nordakademie.multiplechoice.exception.GenericErrorException;
-import de.nordakademie.multiplechoice.model.Lecturer;
-import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.User;
 import de.nordakademie.multiplechoice.model.UserType;
 import de.nordakademie.multiplechoice.service.LecturerService;
 import de.nordakademie.multiplechoice.service.StudentService;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;

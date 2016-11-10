@@ -6,13 +6,8 @@ import de.nordakademie.multiplechoice.model.*;
 import de.nordakademie.multiplechoice.service.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 

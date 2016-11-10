@@ -1,6 +1,5 @@
 package de.nordakademie.multiplechoice.action;
 
-import de.nordakademie.multiplechoice.exception.GenericErrorException;
 import de.nordakademie.multiplechoice.exception.InsufficientPermissionsException;
 import de.nordakademie.multiplechoice.exception.NotLoggedInException;
 import de.nordakademie.multiplechoice.model.*;
@@ -9,8 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *  This class is responsible for preparing the add and edit form for Test-Creation/Update

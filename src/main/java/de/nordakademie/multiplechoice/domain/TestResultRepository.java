@@ -1,13 +1,12 @@
 package de.nordakademie.multiplechoice.domain;
 
-import de.nordakademie.multiplechoice.model.Student;
 import de.nordakademie.multiplechoice.model.TestResult;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import java.util.List;
+
 
 /**
  * Created by MHORT on 20.10.2016.

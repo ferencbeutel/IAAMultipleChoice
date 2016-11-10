@@ -1,6 +1,5 @@
 package de.nordakademie.multiplechoice.domain;
 
-import de.nordakademie.multiplechoice.model.Lecturer;
 import de.nordakademie.multiplechoice.model.Student;
 import org.springframework.stereotype.Repository;
 

@@ -11,46 +11,50 @@ import java.util.Set;
 /**
  * This class represents a student
  * A student is a type of user who can enroll in seminars and carry out tests
- * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ *
+ * @author Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 @Setter
 @Getter
 @Entity
 public class Student extends User {
-    /**
-     * List of seminars student is attending or has attended
-     */
-    @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
-    @OrderBy("beginDate desc")
-    private Set<Seminar> seminars;
-    /**
-     * results for tests of seminars that student carried out
-     */
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private Set<TestResult> results;
+  /**
+   * List of seminars student is attending or has attended
+   */
+  @ManyToMany(mappedBy = "participants", fetch = FetchType.EAGER)
+  @OrderBy("beginDate desc")
+  private Set<Seminar> seminars;
+  /**
+   * results for tests of seminars that student carried out
+   */
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @Fetch(value = FetchMode.SUBSELECT)
+  private Set<TestResult> results;
 
-    /**
-     * This method is used to compare student objects
-     * @param o object as comparison
-     * @return truth value if both student object are equal
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+  /**
+   * Creation of a HashCode of the student
+   *
+   * @return hashcode of student
+   */
+  @Override
+  public int hashCode() {
+    return (int) (getUserId() ^ (getUserId() >>> 32));
+  }
 
-        Student student = (Student) o;
+  /**
+   * This method is used to compare student objects
+   *
+   * @param o object as comparison
+   *
+   * @return truth value if both student object are equal
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
 
-        return getUserId() == student.getUserId();
+    Student student = (Student) o;
 
-    }
-    /**
-     * Creation of a HashCode of the student
-     * @return hashcode of student
-     */
-    @Override
-    public int hashCode() {
-        return (int) (getUserId() ^ (getUserId() >>> 32));
-    }
+    return getUserId() == student.getUserId();
+  }
 }

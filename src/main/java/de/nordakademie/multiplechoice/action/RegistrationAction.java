@@ -15,111 +15,116 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * This class is responsible for the registration process of the application
- * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ *
+ * @author Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class RegistrationAction extends BaseAction {
-    private final String subjectLine = getI18NValue("registrationMail.subjectLine");
-    private final String mailTextBeginning = getI18NValue("registrationMail.textBeginning");
-    private final String mailTextEnding = getI18NValue("registrationMail.textEnding");
-    private final String mailTextGreeting = getI18NValue("registrationMail.textGreeting");
-    private final String mailTextSignature = getI18NValue("registrationMail.textSignature");
+  private final String subjectLine = getI18NValue("registrationMail.subjectLine");
+  private final String mailTextBeginning = getI18NValue("registrationMail.textBeginning");
+  private final String mailTextEnding = getI18NValue("registrationMail.textEnding");
+  private final String mailTextGreeting = getI18NValue("registrationMail.textGreeting");
+  private final String mailTextSignature = getI18NValue("registrationMail.textSignature");
 
-    @Autowired
-    UUIDService uuidService;
+  @Autowired
+  UUIDService uuidService;
 
-    @Autowired
-    StudentService studentService;
+  @Autowired
+  StudentService studentService;
 
-    @Autowired
-    MailService mailService;
+  @Autowired
+  MailService mailService;
 
-    @Getter
-    @Setter
-    private Student student;
+  @Getter
+  @Setter
+  private Student student;
 
-    /**
-     * This method performs the registration of a new user
-     * @return a String  which is used to select a result element in struts
-     * @throws AlreadyLoggedInException
-     */
-    public String register() throws AlreadyLoggedInException {
-        if(isUserLoggedIn()) {
-            throw new AlreadyLoggedInException();
-        }
-        final String uuid = uuidService.getUUID();
-        student.setRegToken(uuid);
-        student.setRegComplete(false);
-        studentService.createOrUpdate(student);
-        sendConfirmationMail();
+  /**
+   * This method performs the registration of a new user
+   *
+   * @return a String  which is used to select a result element in struts
+   *
+   * @throws AlreadyLoggedInException
+   */
+  public String register() throws AlreadyLoggedInException {
+    if (isUserLoggedIn()) {
+      throw new AlreadyLoggedInException();
+    }
+    final String uuid = uuidService.getUUID();
+    student.setRegToken(uuid);
+    student.setRegComplete(false);
+    studentService.createOrUpdate(student);
+    sendConfirmationMail();
 
-        return SUCCESS;
+    return SUCCESS;
+  }
+
+  /**
+   * This method performs the sending of the confirmation mail
+   *
+   * @return a String  which is used to select a result element in struts
+   */
+  private String sendConfirmationMail() {
+    HttpServletRequest request = ServletActionContext.getRequest();
+
+    final String protocol = request.getScheme();
+    final String host = request.getLocalAddr() + ":" + request.getLocalPort() + "/";
+    final String action = "acceptRegistration";
+    final String uuidParameterName = "regCode";
+    final String link = protocol + "://" + host + action + "?" + uuidParameterName + "=" + student.getRegToken();
+    final String htmlLink = "<a href=" + link + ">" + link + "</a>";
+
+    try {
+      mailService.sendMail(student.getEmail(), subjectLine,
+                           mailTextBeginning + htmlLink + mailTextEnding + mailTextGreeting + mailTextSignature);
+    } catch (MessagingException e) {
+      return "mailError";
     }
 
-    /**
-     * This method performs the sending of the confirmation mail
-     * @return a String  which is used to select a result element in struts
-     */
-    private String sendConfirmationMail() {
-        HttpServletRequest request = ServletActionContext.getRequest();
+    return SUCCESS;
+  }
 
-        final String protocol = request.getScheme();
-        final String host = request.getLocalAddr() + ":" + request.getLocalPort() + "/";
-        final String action = "acceptRegistration";
-        final String uuidParameterName = "regCode";
-        final String link = protocol + "://" + host + action + "?" + uuidParameterName + "=" + student.getRegToken();
-        final String htmlLink = "<a href=" + link + ">" + link + "</a>";
-
-        try {
-            mailService.sendMail(student.getEmail(), subjectLine, mailTextBeginning + htmlLink + mailTextEnding + mailTextGreeting + mailTextSignature);
-        } catch(MessagingException e) {
-            return "mailError";
-        }
-
-        return SUCCESS;
+  /**
+   * This method validates the entered inputs of the registration-page
+   */
+  public void validate() {
+    if (student.getName() == null || student.getName().length() < 2) {
+      addFieldError("name", getI18NValue("registrationFieldError.firstName"));
     }
-
-    /**
-     * This method validates the entered inputs of the registration-page
-     */
-    public void validate() {
-        if(student.getName() == null || student.getName().length() < 2) {
-            addFieldError("name", getI18NValue("registrationFieldError.firstName"));
-        }
-        if(student.getSurName() == null || student.getSurName().length() < 2) {
-            addFieldError("surName", getI18NValue("registrationFieldError.lastName"));
-        }
-        if(student.getEmail() == null || student.getEmail().length() == 0) {
-            addFieldError("mail", getI18NValue("registrationFieldError.mail"));
-        } else {
-            String[] domains = student.getEmail().split("@");
-            if (!domains[domains.length - 1].equals("nordakademie.de")) {
-                addFieldError("mail", getI18NValue("registrationFieldError.nakMail"));
-            } else {
-                if(studentService.findByMail(student.getEmail()) != null) {
-                    addFieldError("mail", getI18NValue("registrationFieldError.mailRegistrated"));
-                }
-            }
-        }
-        if(student.getPassword() == null || student.getPassword().length() < 8) {
-            addFieldError("password", getI18NValue("registrationFieldError.passwordLen"));
-        } else {
-            int fulfilledCriteria = 0;
-            if (student.getPassword().matches(".*\\d+.*")) {
-                fulfilledCriteria ++;
-            }
-            if(!student.getPassword().equals(student.getPassword().toLowerCase())) {
-                fulfilledCriteria ++;
-            }
-            if(!student.getPassword().equals(student.getPassword().toUpperCase())) {
-                fulfilledCriteria ++;
-            }
-            if(!student.getPassword().matches("[a-zA-Z0-9 ]*")) {
-                fulfilledCriteria ++;
-            }
-
-            if (fulfilledCriteria < 3) {
-                addFieldError("password", getI18NValue("registrationFieldError.passwordCriteria"));
-            }
-        }
+    if (student.getSurName() == null || student.getSurName().length() < 2) {
+      addFieldError("surName", getI18NValue("registrationFieldError.lastName"));
     }
+    if (student.getEmail() == null || student.getEmail().length() == 0) {
+      addFieldError("mail", getI18NValue("registrationFieldError.mail"));
+    } else {
+      String[] domains = student.getEmail().split("@");
+      if (!domains[domains.length - 1].equals("nordakademie.de")) {
+        addFieldError("mail", getI18NValue("registrationFieldError.nakMail"));
+      } else {
+        if (studentService.findByMail(student.getEmail()) != null) {
+          addFieldError("mail", getI18NValue("registrationFieldError.mailRegistrated"));
+        }
+      }
+    }
+    if (student.getPassword() == null || student.getPassword().length() < 8) {
+      addFieldError("password", getI18NValue("registrationFieldError.passwordLen"));
+    } else {
+      int fulfilledCriteria = 0;
+      if (student.getPassword().matches(".*\\d+.*")) {
+        fulfilledCriteria++;
+      }
+      if (!student.getPassword().equals(student.getPassword().toLowerCase())) {
+        fulfilledCriteria++;
+      }
+      if (!student.getPassword().equals(student.getPassword().toUpperCase())) {
+        fulfilledCriteria++;
+      }
+      if (!student.getPassword().matches("[a-zA-Z0-9 ]*")) {
+        fulfilledCriteria++;
+      }
+
+      if (fulfilledCriteria < 3) {
+        addFieldError("password", getI18NValue("registrationFieldError.passwordCriteria"));
+      }
+    }
+  }
 }

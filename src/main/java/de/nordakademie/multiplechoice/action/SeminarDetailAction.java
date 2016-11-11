@@ -9,28 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * This class is responsible for preapring the detail-data of a seminar
- * @author  Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
+ *
+ * @author Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 public class SeminarDetailAction extends BaseAction {
 
-    @Autowired
-    SeminarService seminarService;
+  @Autowired
+  SeminarService seminarService;
+  @Getter
+  Seminar seminar;
+  @Setter
+  @Getter
+  private long seminarId;
 
-    @Setter
-    @Getter
-    private long seminarId;
+  /**
+   * This method prepares the details of a seminar fpr the detail page
+   *
+   * @return a String  which is used to select a result element in struts
+   *
+   * @throws GenericErrorException
+   */
+  public String displaySeminarDetail() throws GenericErrorException {
+    seminar = seminarService.byId(seminarId);
 
-    @Getter
-    Seminar seminar;
-
-    /**
-     * This method prepares the details of a seminar fpr the detail page
-     * @return a String  which is used to select a result element in struts
-     * @throws GenericErrorException
-     */
-    public String displaySeminarDetail() throws GenericErrorException {
-        seminar = seminarService.byId(seminarId);
-
-        return SUCCESS;
-    }
+    return SUCCESS;
+  }
 }

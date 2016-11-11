@@ -29,15 +29,7 @@
                     </#if>
                     </li>
 
-                    <li class="nav-item">
-                    <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == studentUser>
-                        <#if currentPage == "results">
-                            <a class="nav-link active" href="#"><@s.text name="frameHeader.linkResults"/></a>
-                        <#else>
-                            <a class="nav-link" href="results"><@s.text name="frameHeader.linkResults"/></a>
-                        </#if>
-                    </#if>
-                    </li>
+
 
                     <li class="nav-item">
                     <#if Session?? && Session.userMail?? && Session.userType?? && Session.userType == lecturerUser>

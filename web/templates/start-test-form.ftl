@@ -3,6 +3,7 @@
 <html>
 <head>
     <title><@s.text name="startTest.title"/></title>
+    <link rel="stylesheet" type="text/css" href="/static/css/start-test-form.css"/>
 <#include "/templates/frameHeadImports.ftl">
 </head>
 <body>
@@ -10,6 +11,9 @@
 <div class="container">
 <@s.form action="perform-test" method="post">
     <div class="row">
+        <div class="col-xs-12 text-no-center text-large">
+            <p><@s.text name="startTest.accessTokenInfo"/></p>
+        </div>
         <div class="col-xs-12">
             <@s.hidden name="seminarId" value="${seminarId?c}"/>
             <@s.hidden name="savedAccessToken" value="${savedAccessToken}"/>
@@ -28,9 +32,26 @@
         </div>
     </div>
     <div class="row">
-        <button type="submit" class="btn btn-primary"><@s.text name="button.submit"/></button>
+        <button type="submit" class="btn btn-primary"><@s.text name="startTest.startTestButton"/></button>
     </div>
 </@s.form>
+    <div class="row">
+        <div class="col-xs-12 text-no-center">
+            <div class="text-large">
+                <@s.text name="startTest.note"/>
+            </div>
+            <span><@s.text name="startTest.description"/><br>
+            <@s.text name="startTest.postponeButton"/><br>
+            <@s.text name="startTest.timeLapse"/><br>
+            <@s.text name="startTest.QuestionTypes"/></span>
+            <div class="text-margin-left">
+                <span><@s.text name="startTest.QuestionTypeSingle"/> <br>
+                <p></p><@s.text name="startTest.QuestionTypeMultiple"/></p>
+                <p></p><@s.text name="startTest.QuestionTypeGap"/></p></span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <#include "/templates/frameFooter.ftl">

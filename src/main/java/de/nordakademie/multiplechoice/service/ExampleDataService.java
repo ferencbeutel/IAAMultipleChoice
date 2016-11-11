@@ -19,7 +19,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Created by ferencbeutel on 05.11.16.
+ * This class provides the functionality to create ExampleData for the application
+ *
+ * @author Ferenc Beutel, Max Hort, Melanie Beckmann, Hendrik Peters
  */
 @Service
 public class ExampleDataService {
@@ -54,6 +56,12 @@ public class ExampleDataService {
         Files.readAllLines(Paths.get(getClass().getClassLoader().getResource(SEMINAR_DESCRIPTIONS_FILE).toURI()));
   }
 
+    /**
+     * This method generates the exampleData for the application
+     * @param quantStudents quantity of Students that should be created
+     * @param quantSeminars quantity of Seminars that should be created
+     * @param quantLecturer quantity of Lecturer that should be created
+     */
   public void generateTestData(final int quantStudents, final int quantSeminars, final int quantLecturer) {
     List<Student> students = new ArrayList<>();
     for (int i = 0; i < quantStudents; i++) {

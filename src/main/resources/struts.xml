@@ -32,6 +32,8 @@
                                result="seminarNotFound"/>
             <exception-mapping exception="de.nordakademie.multiplechoice.exception.GenericErrorException"
                                result="genericError"/>
+            <exception-mapping exception="java.lang.Exception"
+                               result="genericError"/>
         </global-exception-mappings>
         <action name="">
             <result type="redirectAction">home</result>
@@ -195,8 +197,5 @@
         <action name="500-errorpage">
             <result type="freemarker">templates/500-errorpage.ftl</result>
         </action>
-       <!--<action name="*"> Todo: Generic Error Handling -> Yes or no? 404 doenst work when this is implemented
-            <result type="freemarker">templates/generic-errorpage.ftl</result>
-        </action> -->
     </package>
 </struts>

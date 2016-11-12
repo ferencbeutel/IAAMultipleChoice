@@ -63,6 +63,9 @@ public class ExampleDataService {
      * @param quantLecturer quantity of Lecturer that should be created
      */
   public void generateTestData(final int quantStudents, final int quantSeminars, final int quantLecturer) {
+    generateExampleStudent();
+    generateExampleLecturer();
+
     List<Student> students = new ArrayList<>();
     for (int i = 0; i < quantStudents; i++) {
       Student student = randomStudent();
@@ -165,6 +168,26 @@ public class ExampleDataService {
       }
       lecturerService.createOrUpdate(lecturer);
     }
+  }
+
+  private void generateExampleStudent() {
+    Student exampleStudent = new Student();
+    exampleStudent.setPassword("genExamplePW");
+    exampleStudent.setEmail("student@nordakademie.de");
+    exampleStudent.setName("Example");
+    exampleStudent.setSurName("Student");
+    exampleStudent.setRegComplete(true);
+    studentService.createOrUpdate(exampleStudent);
+  }
+
+  private void generateExampleLecturer() {
+    Lecturer exampleLecturer = new Lecturer();
+    exampleLecturer.setPassword("genExamplePW");
+    exampleLecturer.setEmail("lecturer@nordakademie.de");
+    exampleLecturer.setName("Example");
+    exampleLecturer.setSurName("Lecturer");
+    exampleLecturer.setRegComplete(true);
+    lecturerService.createOrUpdate(exampleLecturer);
   }
 
   /**

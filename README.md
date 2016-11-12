@@ -12,7 +12,7 @@ https://groups.google.com/forum/#!topic/h-database/5LZlZ_jC4QI
 ```
 - First, download latest drivers, for example from here:
 ```shell
-http://repo2.maven.org/maven2/com/h2database/h2/1.4.192/h-1.4.192.jar
+http://repo2.maven.org/maven2/com/h2database/h2/1.4.193/h2-1.4.193.jar
 ```
 - Then, in IntelliJ, open your Database view and click on Data Source Properties
 - Under Drivers, select H2

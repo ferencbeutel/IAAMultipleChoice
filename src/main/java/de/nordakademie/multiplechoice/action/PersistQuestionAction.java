@@ -58,19 +58,24 @@ public class PersistQuestionAction extends BaseAction {
    * @throws InsufficientPermissionsException
    */
   public String persist() throws NotLoggedInException, InsufficientPermissionsException {
+    //Check whether the user is a lecturer or not
     if (getUserType() != UserType.LECTURER) {
       throw new InsufficientPermissionsException();
     }
+    //Get seminar and test of seminar, where the question should be persisted
     Seminar seminar = seminarService.byId(seminarId);
     Test test = seminar.getTest();
+    //
     question.setQuestionId(questionId);
     question.setAnswers(new ArrayList<>());
+    //if there is no position set (in case of update) --> set position to the size of questionSet of the test.
+    //(Put the question at the end of the questionSet)
     if (question.getPosition() == 0) {
       question.setPosition(test.getQuestions().size());
     }
     List<String> answersToPersist = new ArrayList<>();
     List<Integer> answerValuesToPersist = new ArrayList<>();
-
+    //Distinction which type of answers should be created
     switch (question.getType()) {
       case Single:
         answersToPersist = singleChoiceAnswers;
@@ -89,7 +94,7 @@ public class PersistQuestionAction extends BaseAction {
     }
 
     int i = 0;
-    //Save answer to question
+    //Save answerString to question
     for (String answerString : answersToPersist) {
       Answer answer = new Answer();
       answer.setText(answerString);

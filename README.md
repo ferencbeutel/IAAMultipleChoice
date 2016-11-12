@@ -72,33 +72,40 @@ sass --update web/static/:web/static/
 - your first action after starting the application should be the generation of test data
 - navigate to localhost:8080/application-administration
 - fill in the form and submit the form
+
 ### Registration
 - select register in the navigation menu
 - fill in the form and follow the instructions in the mail sent to you
+
 ### Login
 - you can login as a lecturer either with any of the Lecturers found in the User Database Table or with 
 lecturer@nordakademie.de and PW genExamplePW
 - you can login as a student with your registered mail, with any of the Students found in the User Database Table or 
 with student@nordakademie.de and PW genExamplePW
+
 ### Lecturer Actions
 #### Seminars
 - you can add Seminars under the add Seminar navigation entry
 - you can edit Seminars by clicking on the Seminar on your home page
+
 #### Tests
 - once you have created some Seminars, you can create tests for them by clicking on the appropriate button on the
 home page
 - you can edit them with in the same location after creation
 - once you have created a test, you can start adding questions and answers to it at the edit test page
+
 ### Student Actions
 #### Seminars
 - you can view all seminars under the seminar list navigation entry
 - to enroll in one, click on it and then hit the enroll button
+
 #### Tests
 - Once you have enrolled for a Seminar you will get an email at 01:00AM of the start day of the test
     - this is fully configurable in the SeminarScheduler by a cron expression
 - When you got the mail, you can start the test on your home page by clicking on the appropriate button
 - After that, enter your access token and follow the instructions on the screen
 - Once you have finished a test, check your result on the home page
+
 ### Admin Actions
 - under localhost:8080/application-administration, you can generate initial application data
 - furthermore, you can send the test access token to everyone who is enrolled to a seminar which test starts today

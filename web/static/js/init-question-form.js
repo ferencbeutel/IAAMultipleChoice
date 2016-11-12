@@ -131,12 +131,10 @@ $('#select-question-type').change(function (e) {
     singleChoiceAnswers.addClass('none');
     multipleChoiceAnswers.addClass('none');
     gapAnswers.addClass('none');
-    var addAnswerButton = document.getElementById("addAnswerButton")
-    var removeAnswerButton =document.getElementById("removeAnswerButton")
-    addAnswerButton.className="manageAnswersButtons fa fa-plus";
-    removeAnswerButton.className="manageAnswersButtons fa fa-minus";
-    console.log(removeAnswerButton.className);
-
+    var addAnswerButton = document.getElementById("addAnswerButton");
+    var removeAnswerButton = document.getElementById("removeAnswerButton");
+    addAnswerButton.className = "manageAnswersButtons fa fa-plus";
+    removeAnswerButton.className = "manageAnswersButtons fa fa-minus";
 
     switch (selectedVal) {
         case "Single":
@@ -144,29 +142,29 @@ $('#select-question-type').change(function (e) {
                 buildSingleChoiceAnswer("", false);
             }
             singleChoiceAnswers.removeClass('none');
-            document.getElementById("gapAnswersText").className="row none"
-            document.getElementById("infoTextSingle").className="row"
-            document.getElementById("infoTextGap").className="row none"
-            document.getElementById("infoTextMultiple").className="row none"
+            document.getElementById("gapAnswersText").className = "row none"
+            document.getElementById("infoTextSingle").className = "row"
+            document.getElementById("infoTextGap").className = "row none"
+            document.getElementById("infoTextMultiple").className = "row none"
             break;
         case "Multiple":
             if (multipleChoiceAnswers.children().length == 0) {
                 buildMultiChoiceAnswer("", false);
             }
             multipleChoiceAnswers.removeClass('none');
-            document.getElementById("gapAnswersText").className="row none"
-            document.getElementById("infoTextMultiple").className="row"
-            document.getElementById("infoTextSingle").className="row none"
-            document.getElementById("infoTextGap").className="row none"
+            document.getElementById("gapAnswersText").className = "row none"
+            document.getElementById("infoTextMultiple").className = "row"
+            document.getElementById("infoTextSingle").className = "row none"
+            document.getElementById("infoTextGap").className = "row none"
             break;
         case "Gap":
-            addAnswerButton.className="manageAnswersButtons none";
-            removeAnswerButton.className="manageAnswersButtons none";
+            addAnswerButton.className = "manageAnswersButtons none";
+            removeAnswerButton.className = "manageAnswersButtons none";
             gapAnswers.removeClass('none');
-            document.getElementById("gapAnswersText").className="row"
-            document.getElementById("infoTextGap").className="row"
-            document.getElementById("infoTextMultiple").className="row none"
-            document.getElementById("infoTextSingle").className="row none"
+            document.getElementById("gapAnswersText").className = "row"
+            document.getElementById("infoTextGap").className = "row"
+            document.getElementById("infoTextMultiple").className = "row none"
+            document.getElementById("infoTextSingle").className = "row none"
             break;
     }
 });

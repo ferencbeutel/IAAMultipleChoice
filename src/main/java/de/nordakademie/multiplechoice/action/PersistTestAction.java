@@ -58,7 +58,6 @@ public class PersistTestAction extends BaseAction {
       throw new InsufficientPermissionsException();
     }
     Seminar seminar = seminarService.byId(seminarId);
-    System.out.println(seminar.getTest());
     if (seminar.getTest().getQuestions() != null) {
       Test testOld = seminar.getTest();
       test.setQuestions(testOld.getQuestions());

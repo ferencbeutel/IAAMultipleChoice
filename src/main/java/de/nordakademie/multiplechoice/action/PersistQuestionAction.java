@@ -57,8 +57,6 @@ public class PersistQuestionAction extends BaseAction {
    * @throws NotLoggedInException
    * @throws InsufficientPermissionsException
    */
-
-  //Todo more inline coding?
   public String persist() throws NotLoggedInException, InsufficientPermissionsException {
     if (getUserType() != UserType.LECTURER) {
       throw new InsufficientPermissionsException();

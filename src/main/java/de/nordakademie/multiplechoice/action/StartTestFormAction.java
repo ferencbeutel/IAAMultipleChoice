@@ -27,10 +27,6 @@ public class StartTestFormAction extends BaseAction {
   @Autowired
   private SeminarService seminarService;
 
-  //TODO: remove, only here for testing purposes
-  @Autowired
-  private MailScheduler mailScheduler;
-
   @Getter
   @Setter
   private long seminarId;

@@ -89,8 +89,7 @@ public class MailScheduler {
                                StringEscapeUtils.unescapeHtml4(messages.getString("tokenMail.tokenTest")) + " " +
                                seminar.getName(), mailText);
         } catch (MessagingException e) {
-          System.out.println("Gmail sucks :/");
-          //TODO: Implement Logging
+          System.out.println("failed to send mail to " + student.getEmail());
         }
       }
     }

@@ -34,8 +34,9 @@ https://github.com/ferencbeutel/IAAMultipleChoice.git
 ```
 - Click through the Project Setup
 - Right-Click pom.xml, select Maven -> Reimport
-- Navigate to File -> Project Structure -> Artifacts
-- If not already there add a Web Application: explored Artifact
+- Navigate to File -> Project Structure
+- under Facets, add a web facet
+- If not already there add a Web Application: explored Artifact under Artifacts
 - Add Libraries into the Artifact
 
 #### Configure Project

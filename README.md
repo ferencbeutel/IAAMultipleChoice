@@ -32,7 +32,7 @@ http://repo2.maven.org/maven2/com/h2database/h2/1.4.193/h2-1.4.193.jar
 ```
 https://github.com/ferencbeutel/IAAMultipleChoice.git
 ```
-- Click through the Project Setup, make sure you add at least the web facet
+- Click through the Project Setup
 - Right-Click pom.xml, select Maven -> Reimport
 - Navigate to File -> Project Structure -> Artifacts
 - If not already there add a Web Application: explored Artifact

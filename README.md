@@ -21,7 +21,7 @@ http://repo2.maven.org/maven2/com/h2database/h2/1.4.193/h2-1.4.193.jar
 ## Installation
 - Fulfill Prerequirements
 
-##### IntelliJ Basic Config
+#### IntelliJ Basic Config
 - Enable Annotation Processing
 - Search and install the Lombok Plugins for IntelliJ
 - Restart IntelliJ
